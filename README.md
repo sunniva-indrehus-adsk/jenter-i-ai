@@ -104,6 +104,39 @@ docker run --rm -v "$PWD":/home/marp/app/ -e MARP_USER="$(id -u):$(id -g)" -e LA
     --theme theme.css --allow-local-files --html slides.md --pdf
 ```
 
+## Publisering
+
+`.github/workflows/publiser-slides.yml` bygger decket ved hver push til `main`
+og legger resultatet på `gh-pages`-branchen, som GitHub Pages serverer:
+
+- `index.html` — decket
+- `slides.pdf` — samme deck som PDF
+- `figures/`, `fonts/` — kopiert med, siden temaet peker på dem relativt
+
+Workflowen kjører også på pull requests, men publiserer ikke da — den laster i
+stedet opp resultatet som en artefakt du kan laste ned fra kjøringen. Det gjør
+at en ødelagt slide fanges opp før den treffer `main`.
+
+Byggingen bruker samme Docker-image og versjon som README-en over
+(`marpteam/marp-cli:v3.2.0`), med `talk/` montert som arbeidsmappe. Da blir CI og
+maskinen din identiske.
+
+### Engangsoppsett
+
+Pages må slås på én gang, etter at workflowen har kjørt første gang og laget
+`gh-pages`:
+
+**Settings → Pages → Source: Deploy from a branch → `gh-pages` / `(root)`**
+
+eller fra terminalen:
+
+```bash
+gh api -X POST repos/sunniva-indrehus-adsk/jenter-i-ai/pages \
+  -f 'source[branch]=gh-pages' -f 'source[path]=/'
+```
+
+Decket ligger så på `https://sunniva-indrehus-adsk.github.io/jenter-i-ai/`.
+
 ## Autodesk-profil
 
 Temaet (`talk/theme.css`) etterligner Autodesks visuelle profil:

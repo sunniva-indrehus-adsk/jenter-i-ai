@@ -9,7 +9,7 @@ math: katex
 <!-- _header: '24.09.2026' -->
 <!-- paginate: false -->
 
-# Mer bruk, men mindre nøyaktig
+# Mer brukt, men mindre nøyaktig
 
 ### Jenter i AI
 

@@ -4,3 +4,7 @@ talk/_p.*.png
 talk/slides.html
 talk/slides.pdf
 .DS_Store
+
+# Byggeresultat (workflowen lager dette i CI)
+_site/
+talk/index.html

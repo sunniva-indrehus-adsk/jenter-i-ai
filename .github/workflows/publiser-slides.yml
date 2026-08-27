@@ -1,0 +1,79 @@
+name: Publiser slides
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publiser-slides
+  cancel-in-progress: true
+
+jobs:
+  bygg:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hent ut repoet
+        uses: actions/checkout@v4
+
+      # Samme image og versjon som README-en bruker lokalt, så CI og maskinen
+      # din gir identisk resultat. Katalogen `talk` monteres som arbeidsmappe,
+      # slik at de relative stiene til figures/ og fonts/ i theme.css stemmer.
+      - name: Bygg HTML
+        run: |
+          docker run --rm \
+            -v "$PWD/talk":/home/marp/app \
+            -e MARP_USER="$(id -u):$(id -g)" \
+            -e LANG=C.UTF-8 \
+            marpteam/marp-cli:v3.2.0 \
+            --theme theme.css --allow-local-files --html slides.md -o index.html
+
+      - name: Bygg PDF
+        run: |
+          docker run --rm \
+            -v "$PWD/talk":/home/marp/app \
+            -e MARP_USER="$(id -u):$(id -g)" \
+            -e LANG=C.UTF-8 \
+            marpteam/marp-cli:v3.2.0 \
+            --theme theme.css --allow-local-files --html slides.md --pdf -o slides.pdf
+
+      - name: Sett sammen nettstedet
+        run: |
+          mkdir -p _site
+          mv talk/index.html _site/index.html
+          mv talk/slides.pdf  _site/slides.pdf
+          cp -R talk/figures  _site/figures
+          cp -R talk/fonts    _site/fonts
+          # Uten denne kjører GitHub Pages innholdet gjennom Jekyll.
+          touch _site/.nojekyll
+          echo "Bygget:"; find _site -type f | sort
+
+      # Gjør resultatet nedlastbart fra kjøringen — også for pull requests,
+      # der vi ikke publiserer.
+      - name: Last opp som artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: slides
+          path: _site
+          retention-days: 14
+
+      - name: Publiser til gh-pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _site
+          git init -q
+          git checkout -q -b gh-pages
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Publiser slides fra ${GITHUB_SHA::7}"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            gh-pages
