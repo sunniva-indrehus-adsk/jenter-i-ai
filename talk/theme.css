@@ -339,6 +339,69 @@ figcaption, .figcap {
 }
 .figcap .figref { color: var(--ink); font-weight: 700; }
 
+/* Compact source list — small print under a text column */
+.sources {
+  margin-top: 1em;
+  font-size: 0.58em;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.sources .src-label {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.sources a {
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Person slide: text left, one large portrait right */
+.person {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2.2em;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.person-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+}
+
+/* The portraits differ: one is a photo that fills the frame, the other a
+   cut-out on a white studio background with a thin grey edge baked in. The
+   ring gives the disc a defined edge against the white slide either way, and
+   the slight scale crops that baked edge away. */
+.person-photo .frame {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ECEEEF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.person-photo .frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  display: block;
+}
+
+.person-photo span {
+  font-size: 0.62em;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* Portrait row */
 .who-row {
   display: flex;

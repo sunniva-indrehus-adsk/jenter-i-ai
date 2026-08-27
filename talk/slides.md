@@ -15,15 +15,9 @@ math: katex
 
 ---
 
-# Hvorfor jobber Vilde hos Autodesk?
+# Fra indøk til Autodesk
 
-## Fra konsulent til produktutvikler
-
-<div class="who-row">
-  <div class="who"><img src="figures/people/vilde.png" alt="Vilde"/><span>Vilde</span></div>
-</div>
-
-<div class="cols-2">
+<div class="person">
 
 <div>
 
@@ -35,14 +29,9 @@ math: katex
 
 </div>
 
-<div>
-
-<div class="kicker">Produktutvikler</div>
-
-- Ett produkt, samme kodebase, over år
-- Lever med konsekvensene av egne valg
-- Dybde: kjenner brukerne og domenet
-
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/vilde.png" alt="Vilde"/></div>
+  <span>Vilde</span>
 </div>
 
 </div>
@@ -61,15 +50,12 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 <!-- paginate: true -->
 
-# Hvorfor jobber Sunniva hos Autodesk?
+# Fra fysmat til Autodesk
 
-<div class="cols-2">
+
+<div class="person">
 
 <div>
-
-<div class="who-row">
-  <div class="who"><img src="figures/people/sunniva.png" alt="Sunniva"/><span>Sunniva</span></div>
-</div>
 
 - Fysiker som ble programmerer
 - Jobber med *…* i Forma hos Autodesk
@@ -77,14 +63,9 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 </div>
 
-<div>
-
-<div class="callout">
-
-Én setning om hvorfor <em>du</em> står her og snakker om dette.
-
-</div>
-
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  <span>Sunniva</span>
 </div>
 
 </div>
@@ -93,57 +74,38 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 ---
 
-
-# Hva skal vi snakke om?
-
-<div class="cols-3">
-
-<div class="card">
-<h3>1 · …</h3>
-<p>Kroken på døra — hvorfor bry seg.</p>
-</div>
-
-<div class="card">
-<h3>2 · …</h3>
-<p>Kjernen i historien.</p>
-</div>
-
-<div class="card">
-<h3>3 · …</h3>
-<p>Hva det betyr i praksis.</p>
-</div>
-
-</div>
-
-<!-- TODO ~1:00 -->
-
----
-
 <!-- _class: section -->
 
-# Del 1
+# Regulering av Hesthaugen
 
-## …
 
 ---
 
-# Et poeng med bilde
+# Hesthagen — fra parkering til byggeplass
 
 <div class="cols-2">
 
 <div>
 
-<div class="kicker">Poenget</div>
+<div class="kicker">Tomta</div>
 
-- Punkt én
-- Punkt to
-- Punkt tre
+- Nedlagt NTNU-parkering mellom Klæbuveien og Gløshaugen
+- Detaljregulert av Trondheim kommune (R20200034)
+- …
+
+<div class="sources">
+
+<span class="src-label">Kilder</span><br>
+Trondheim kommune, <a href="https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/">vedtatt detaljregulering</a> og <a href="https://www.trondheim.kommune.no/globalassets/10-bilder-og-filer-eksternt/10-byutvikling/byplankontoret/1c_vedtatt-plan/2023/campus_hesthagen-og-del-av-hogskoleparken-gnrbnr-40539-405177-405101-m.fl.-detaljregulering--r20200034/planbeskrivelse.pdf">planbeskrivelse (PDF)</a><br>
+Adresseavisen, <a href="https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim">«Nå starter det enorme byggeprosjektet i Trondheim»</a>
+
+</div>
 
 </div>
 
 <div>
-<img src="figures/illustrations/01-eksempel.svg" alt="eksempel">
-<div class="figcap"><span class="figref">Figur 1</span> Bildetekst.</div>
+<img src="figures/illustrations/hesthagen-kart.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen">
+<div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
 </div>
 
 </div>
