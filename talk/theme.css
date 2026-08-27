@@ -1,0 +1,372 @@
+/* @theme autodesk */
+/* Autodesk-flavoured Marp theme — black/white, Artifakt Element, "A" mark in the corner. */
+
+@import 'default';
+
+/* Type. Artifakt is Autodesk's brand face but it is licensed, so no Artifakt
+   files are checked in — `local()` picks it up when it happens to be installed.
+   Everyone else (and every Docker/PDF export) gets Inter, bundled below under
+   the SIL Open Font License 1.1: see fonts/Inter-OFL.txt. Inter is a close
+   enough neo-grotesque that the deck looks the same either way. */
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  --ink: #000000;          /* Autodesk black — the primary brand colour */
+  --paper: #FFFFFF;
+  --muted: #6E6E6E;
+  --rule: #D9D9D9;
+  --accent: #0696D7;       /* Autodesk blue */
+  --accent-soft: rgba(6, 150, 215, 0.10);
+
+  --margin-x: 64px;
+  --margin-top: 56px;
+  --margin-bottom: 72px;
+
+  --sans: 'Artifakt Element', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --display: 'Artifakt Legend', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+section {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.5;
+  padding: var(--margin-top) var(--margin-x) var(--margin-bottom);
+  justify-content: flex-start;
+}
+
+/* ── Headings ─────────────────────────────────────────────────────────── */
+
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.75em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 0.55em 0;
+  padding-bottom: 0.35em;
+  border-bottom: 2px solid var(--ink);
+}
+
+h2 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 1.15em;
+  color: var(--muted);
+  margin: 0 0 0.6em 0;
+}
+
+h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--ink);
+  margin: 0 0 0.3em 0;
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+ul, ol { margin: 0.2em 0 0 0; padding-left: 1.1em; }
+li { margin: 0.45em 0; }
+li::marker { color: var(--accent); }
+
+blockquote {
+  border: 0;
+  border-left: 3px solid var(--accent);
+  margin: 0.6em 0;
+  padding: 0.1em 0 0.1em 0.9em;
+  color: var(--muted);
+  font-size: 1.05em;
+}
+
+code {
+  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  font-size: 0.82em;
+  background: #F3F3F3;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+pre { background: #F3F3F3; border-radius: 6px; padding: 0.8em 1em; }
+pre code { background: none; padding: 0; }
+
+/* ── The Autodesk mark, bottom-left on every content slide ────────────── */
+
+section::before {
+  content: '';
+  position: absolute;
+  left: var(--margin-x);
+  bottom: 30px;
+  width: 130px;
+  height: 15px;
+  background-image: url('figures/logos/autodesk-logo-black.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  opacity: 0.9;
+}
+
+/* Page number, bottom-right */
+section::after {
+  content: attr(data-marpit-pagination);
+  position: absolute;
+  right: var(--margin-x);
+  bottom: 34px;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--muted);
+}
+
+header {
+  position: absolute;
+  top: 26px;
+  left: auto;
+  right: var(--margin-x);
+  text-align: right;
+  font-size: 15px;
+  color: var(--muted);
+  font-family: var(--sans);
+}
+
+footer {
+  position: absolute;
+  left: calc(var(--margin-x) + 148px);
+  bottom: 32px;
+  font-size: 15px;
+  color: var(--muted);
+  font-family: var(--sans);
+}
+
+/* ── Title slide: black, full-bleed, stacked lockup ───────────────────── */
+
+section.title {
+  background-color: var(--ink);
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: left;
+  padding-bottom: 96px;
+}
+
+section.title h1 {
+  font-family: var(--display);
+  font-size: 2.6em;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin: 0 0 0.25em 0;
+  max-width: 88%;
+}
+
+section.title h2 {
+  font-family: var(--sans);
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #B4B4B4;
+  margin: 0 0 1.1em 0;
+}
+
+section.title h3 {
+  font-family: var(--sans);
+  font-size: 0.82em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin: 0;
+}
+
+/* White lockup, top-left */
+section.title::before {
+  content: '';
+  position: absolute;
+  left: var(--margin-x);
+  top: var(--margin-top);
+  bottom: auto;
+  width: 190px;
+  height: 21px;
+  background-image: url('figures/logos/autodesk-logo-white.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left top;
+  opacity: 1;
+}
+
+section.title::after { color: transparent; }
+section.title header { color: #B4B4B4; }
+
+/* ── Title slide over a full-bleed render ─────────────────────────────── */
+/* The Gløshaugen streamlines render is near-white, so this flips the title
+   slide from black to light and sets the type in ink. A soft white scrim on
+   the left keeps the text legible wherever the streamlines happen to fall.
+   The render already carries an Autodesk Forma lockup, so the theme's own
+   logo is suppressed here to avoid two logos on one slide. */
+
+section.title-photo {
+  /* Override --photo in a slide's <style scoped> to use a different render. */
+  --photo: url('figures/illustrations/gløshaugen-streamlines.png');
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse 78% 62% at 2% 104%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.82) 42%,
+      rgba(255, 255, 255, 0.34) 70%,
+      rgba(255, 255, 255, 0) 100%),
+    var(--photo);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  color: var(--ink);
+}
+
+section.title-photo h1 { color: var(--ink); }
+section.title-photo h2 { color: #4A4A4A; }
+section.title-photo h3 { color: var(--accent); }
+section.title-photo header { color: var(--muted); }
+section.title-photo::before { content: none; }
+
+/* ── Section divider: black, centred ──────────────────────────────────── */
+
+section.section {
+  background-color: var(--ink);
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+section.section h1 {
+  font-family: var(--display);
+  font-size: 2.2em;
+  color: var(--paper);
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin: 0 0 0.2em 0;
+}
+
+section.section h2 { color: #B4B4B4; margin: 0; }
+
+section.section::before {
+  background-image: url('figures/logos/autodesk-logo-white.svg');
+}
+section.section::after { color: #8A8A8A; }
+
+/* ── Statement slide: one big line on white ───────────────────────────── */
+
+section.statement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+section.statement h1 {
+  font-size: 2.1em;
+  border-bottom: 0;
+  padding-bottom: 0;
+  max-width: 92%;
+}
+
+/* ── Layout helpers ───────────────────────────────────────────────────── */
+
+.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6em;
+  align-items: start;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+  align-items: stretch;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--ink);
+  padding: 0.9em 1em;
+  background: var(--paper);
+}
+
+.card h3 { margin-bottom: 0.25em; }
+.card p { margin: 0; color: var(--muted); font-size: 0.9em; }
+
+.callout {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 0.7em 1em;
+  margin: 0.6em 0;
+}
+
+.kicker {
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4em;
+}
+
+/* Figures */
+figure { border: 0; margin: 0; padding: 0; max-width: none; display: block; }
+
+img { background-color: transparent !important; max-width: 100%; height: auto; }
+
+figcaption, .figcap {
+  font-size: 0.66em;
+  color: var(--muted);
+  text-align: left;
+  margin-top: 0.5em;
+  line-height: 1.45;
+}
+.figcap .figref { color: var(--ink); font-weight: 700; }
+
+/* Portrait row */
+.who-row {
+  display: flex;
+  gap: 1em;
+  margin: 0 0 0.8em 0;
+}
+.who-row .who {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.3em;
+  width: 78px;
+}
+.who-row img {
+  width: 72px; height: 72px;
+  border-radius: 50%; object-fit: cover;
+  border: 0;
+}
+.who-row span { font-size: 0.5em; color: var(--muted); }
+
+/* Tables */
+table { border-collapse: collapse; width: 100%; font-size: 0.9em; }
+th, td {
+  padding: 0.5em 0.8em;
+  text-align: left;
+  border: 0 !important;
+  border-bottom: 1px solid var(--rule) !important;
+  background: transparent !important;
+}
+th {
+  font-weight: 700;
+  border-bottom: 2px solid var(--ink) !important;
+}
