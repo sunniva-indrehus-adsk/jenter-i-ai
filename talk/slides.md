@@ -30,7 +30,7 @@ math: katex
 </div>
 
 <div class="person-photo">
-  <div class="frame"><img src="figures/people/vilde.png" alt="Vilde"/></div>
+  <div class="frame"><img src="figures/people/vilde.jpg" alt="Vilde"/></div>
   <span>Vilde</span>
 </div>
 
