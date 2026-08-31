@@ -74,6 +74,63 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 ---
 
+# Analyser i Autodesk Forma
+
+<style scoped>
+.cols-3 .card {
+  padding: 0;
+  overflow: hidden;
+  align-self: start;
+  border-top: 1px solid var(--rule);
+}
+.cols-3 .card img {
+  display: block;
+  width: 100%;
+  height: 7em;
+  object-fit: cover;
+}
+.cols-3 .card .figcap {
+  padding: 0.5em 0.7em;
+  margin: 0;
+}
+</style>
+
+<div class="cols-3">
+
+<div class="card">
+<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<div class="figcap"><span class="figref">Støy</span></div>
+</div>
+
+<div class="card">
+<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<div class="figcap"><span class="figref">Solenergi</span></div>
+</div>
+
+<div class="card">
+<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<div class="figcap"><span class="figref">Dagslys</span></div>
+</div>
+
+<div class="card">
+<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<div class="figcap"><span class="figref">Mikroklima</span></div>
+</div>
+
+<div class="card">
+<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<div class="figcap"><span class="figref">Sol</span></div>
+</div>
+
+<div class="card">
+<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<div class="figcap"><span class="figref">Vind</span></div>
+</div>
+
+</div>
+
+---
+
 <!-- _class: section -->
 
 # Regulering av Hesthaugen
