@@ -72,6 +72,41 @@ eller, for å styre størrelsen:
 <img src="figures/illustrations/01-eksempel.svg" width="90%">
 ```
 
+#### Kartet med ring
+
+`hesthagen-kart-ring.png` er `hesthagen-kart.png` beskåret rundt tomta med en rød
+ring rundt parkeringsplassen. Ringen er **brent inn i fila**, ikke lagt på i CSS
+eller SVG — Marp rendrer hver slide inne i sin egen `<svg>`, og en nøstet
+inline-SVG med en ekstern `<image>` kom ikke opp i eksporten. En bakt PNG rendrer
+likt i watch-modus, HTML og PDF.
+
+Kildefila er urørt, så ringen kan flyttes ved å kjøre skriptet på nytt fra
+`talk/`. `CROP` er utsnittet (behold forholdet 1,6:1, ellers endres høyden på
+sliden), `CX/CY/RX/RY` er ringen — alt i kildefilas pikselkoordinater:
+
+```python
+from PIL import Image, ImageDraw
+
+SRC = 'figures/illustrations/hesthagen-kart.png'
+OUT = 'figures/illustrations/hesthagen-kart-ring.png'
+CROP = (100, 190, 1100, 815)          # 1000x625 = 1,6:1
+CX, CY, RX, RY = 572, 500, 142, 138   # midt på parkeringsplassen
+RED, W, SS = (225, 37, 27, 255), 8, 4 # SS = supersampling, PIL tegner uten antialias
+
+base = Image.open(SRC).convert('RGBA').crop(CROP)
+w, h = base.size
+ov = Image.new('RGBA', (w * SS, h * SS), (0, 0, 0, 0))
+cx, cy = (CX - CROP[0]) * SS, (CY - CROP[1]) * SS
+ImageDraw.Draw(ov).ellipse(
+    [cx - RX * SS, cy - RY * SS, cx + RX * SS, cy + RY * SS],
+    outline=RED, width=W * SS)
+base.alpha_composite(ov.resize((w, h), Image.LANCZOS))
+base.convert('RGB').save(OUT)
+```
+
+CC BY tillater derivater så lenge attribusjonen følger med — den står i
+bildeteksten på sliden.
+
 For animerte SVG-er med SMIL (`<animate>` / `<animateMotion>`), bruk `<object>`
 i stedet for `<img>` — da kjører nettleseren dem som et levende dokument:
 
@@ -146,6 +181,7 @@ Temaet (`talk/theme.css`) etterligner Autodesks visuelle profil:
 | Typografi | **Inter** (åpen) — eller **Artifakt** hvis du har den installert |
 | Farger | Autodesk-svart `#000000` på hvit `#FFFFFF`, grå `#6E6E6E` til sekundærtekst |
 | Aksent | Autodesk-blå `#0696D7` — kulepunkter, lenker, `.kicker`, `.callout` |
+| Oransje | `#F5871F` — **kun** `.todo`-lappene, ikke en merkevarefarge |
 | Logo | Hvit lockup øverst til venstre på tittel- og `section`-slidene, svart nede til venstre ellers |
 | Sidetall | Nede til høyre, grått |
 
@@ -235,7 +271,40 @@ to logoer.
   <div class="who"><img src="figures/people/sunniva.png"/><span>Sunniva</span></div>
 </div>
 <div class="figcap"><span class="figref">Figur 1</span> Bildetekst.</div>
+<div class="todo">Ting som mangler</div>  <!-- oransje lapp, se under -->
 ```
+
+### TODO-lapper
+
+Ting som skal fikses før du går på scenen, som en oransje lapp nede til venstre —
+rett til høyre for logoen, på samme plass som `footer` har i temaet:
+
+```html
+<div class="todo">Sett inn faktiske tall</div>
+```
+
+Flere på samme slide: skill dem med `<br>` inni **samme** div. Lappen er ankret i
+bunnen og vokser oppover. To `.todo`-divs på én slide legger seg oppå hverandre.
+
+Lappen er absolutt posisjonert, så den skyver aldri innhold rundt — den kan
+ligge hvor som helst i slidens markup, og en slide som var trang før blir ikke
+trangere. Den er også med i PDF-eksporten, som er poenget: da ser du restene når
+du blar gjennom decket.
+
+**Skjul alle før presentasjon** ved å sette én verdi i `theme.css`:
+
+```css
+:root { --todo-display: none; }   /* block når du redigerer videre */
+```
+
+Rekk over alt som står igjen:
+
+```bash
+grep -n 'class="todo"' talk/slides.md
+```
+
+`<!-- TODO ~M:SS -->`-kommentarene er noe annet: de er tidsbudsjett per slide,
+ikke ting som skal endres, og de skal ikke vises.
 
 ### Person-slides
 
@@ -270,6 +339,7 @@ er offentlig.
 | `figures/illustrations/hesthagen-kart.png` | [Kartverket][kv], `topograatone` WMTS, sydd sammen av fliser | CC BY 4.0 — «© Kartverket» |
 | `figures/illustrations/gløshaugen-*.png` | Egne Forma-renderinger | Egne |
 | `figures/illustrations/02-surrogat-pipeline.svg` | Egen tegning | Egen |
+| `figures/illustrations/hesthagen-kart-ring.png` | Derivat av Kartverket-kartet, se «Kartet med ring» | CC BY 4.0 — «© Kartverket» |
 | `figures/people/*.png` | Egne portretter | Egne |
 | `fonts/Inter-latin.woff2` | [Inter][inter] | SIL OFL 1.1, se `fonts/Inter-OFL.txt` |
 

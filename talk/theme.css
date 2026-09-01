@@ -23,6 +23,12 @@
   --rule: #D9D9D9;
   --accent: #0696D7;       /* Autodesk blue */
   --accent-soft: rgba(6, 150, 215, 0.10);
+  --todo: #F5871F;         /* Oransje — bare for TODO-lappene, ikke en merkevarefarge */
+
+  /* Alle TODO-lappene av og på med ett ord: sett denne til none før du går på
+     scenen, så forsvinner de fra både skjerm og PDF. Sett den tilbake til block
+     når du redigerer videre. */
+  --todo-display: block;
 
   --margin-x: 64px;
   --margin-top: 56px;
@@ -371,6 +377,59 @@ section.demo::before {
   background-image: url('figures/logos/autodesk-logo-white.svg');
 }
 section.demo::after { color: rgba(255, 255, 255, 0.75); }
+
+/* ── TODO-lapper ──────────────────────────────────────────────────────────
+   Oransje lapp nede til venstre, rett til høyre for logoen — samme plass som
+   footer-en har i temaet. Ting som skal fikses før du går på scenen.
+
+   Bruk:
+     <div class="todo">Sett inn faktiske tall</div>
+
+   Flere på samme slide: skill dem med <br> inni SAMME div. Lappen er ankret i
+   bunnen og vokser oppover, så den kolliderer ikke med noe. To divs ville lagt
+   seg oppå hverandre.
+
+   Lappen er absolutt posisjonert, så den skyver aldri innhold rundt på en
+   slide — den kan legges hvor som helst i slidens markup. Og den er med i
+   PDF-eksporten, som er poenget: da ser du restene når du blar gjennom decket.
+
+   Skjul alle: --todo-display: none, i :root øverst i fila. */
+
+.todo {
+  display: var(--todo-display, block);
+  position: absolute;
+  left: calc(var(--margin-x) + 148px);
+  bottom: 26px;
+  max-width: 58%;
+  background: var(--todo);
+  /* Svart tekst på oransje, ikke hvit: 8,4:1 mot 3,6:1. Lappen skal kunne leses
+     i et øyekast på en projektor, ikke bare på skjermen din. */
+  color: #000000;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 0.3em 0.65em;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.todo::before {
+  content: 'TODO';
+  display: inline-block;
+  margin-right: 0.55em;
+  padding: 0 0.4em;
+  border-radius: 2px;
+  background: #000000;
+  color: var(--todo);
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+/* Tittelsliden med foto har temaets logo skrudd av, så lappen skal ikke stå
+   og forskyves rundt et merke som ikke er der. */
+section.title-photo .todo { left: var(--margin-x); }
 
 /* ── Layout helpers ───────────────────────────────────────────────────── */
 
