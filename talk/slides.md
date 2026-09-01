@@ -225,3 +225,49 @@ $$
 </div>
 
 
+
+---
+
+# Takk for oppmerksomheten!
+
+<style scoped>
+.people-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4em;
+  margin-top: 1.2em;
+}
+.people-row .person-photo .frame { width: 190px; height: 190px; }
+</style>
+
+<div class="people-row">
+
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/vilde.jpg" alt="Vilde"/></div>
+  <span>Vilde</span>
+</div>
+
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  <span>Sunniva</span>
+</div>
+
+<!-- TODO: legg inn figures/people/elizabeth.jpg -->
+<div class="person-photo">
+  <div class="frame"></div>
+  <span>Elizabeth</span>
+</div>
+
+<!-- TODO: legg inn figures/people/guro.jpg -->
+<div class="person-photo">
+  <div class="frame"></div>
+  <span>Guro</span>
+</div>
+
+</div>
+
+<div class="callout">
+
+Vi står på stand — kom og spør oss om alt vi ikke fikk plass til her!
+
+</div>
