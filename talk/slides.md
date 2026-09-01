@@ -21,11 +21,11 @@ math: katex
 
 <div>
 
-<div class="kicker">Konsulent</div>
+<div class="kicker">Ville bygge produkt i stedet for slides</div>
 
-- Ny kunde, ny kodebase, ofte
-- Leverer, og går videre
-- Bredde: mange bransjer, mange stacker
+- Internship som utvikler under studiene
+- Bruke kode til å løse komplekse problemer
+- Jobbe i en produktorganisasjon
 
 </div>
 
@@ -38,7 +38,7 @@ math: katex
 
 <div class="callout">
 
-Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
+Det er spennende å kombinere matematikk, algoritmer og programvareutvikling for å bidra til en mer bærekraftig verden.</em>
 
 </div>
 
