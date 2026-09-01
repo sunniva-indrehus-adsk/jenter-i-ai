@@ -30,11 +30,11 @@ math: katex
 
 <div>
 
-<div class="kicker">Vilde</div>
+<div class="kicker">Ville bygge produkt i stedet for slides</div>
 
-- **Indøk på NTNU**, med spesialisering mot programmering
-- **Konsulent** først: ny kunde, ny kodebase, ofte — leverer, og går videre
-- **Utvikler** nå: gøyere å bygge produktet enn å lage slides om det
+- Internship som utvikler under studiene
+- Bruke kode til å løse komplekse problemer
+- Jobbe i en produktorganisasjon
 
 </div>
 
@@ -47,7 +47,7 @@ math: katex
 
 <div class="callout">
 
-Det som overførte seg fra konsulentårene: å høre hva kunden **egentlig** spør om. Det som måtte læres på nytt: at koden ikke leveres — den eies, i årevis.
+Det er spennende å kombinere matematikk, algoritmer og programvareutvikling for å bidra til en mer bærekraftig verden.</em>
 
 </div>
 
