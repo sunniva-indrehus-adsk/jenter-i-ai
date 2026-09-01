@@ -11,8 +11,7 @@ math: katex
 
 # AI i Autodesk
 
-## Litt feil, men akkurat i tide
-
+## Jenter i AI
 
 
 
@@ -680,7 +679,6 @@ Modellen har sett så mange løsninger at den kjenner igjen svaret.
 </div>
 
 <div class="punch">
-  <p class="line">Litt feil, men akkurat i tide.</p>
   <p class="sub">Surrogatmodellen gir arkitekten mulighet til å teste mange alternativer — mens det ennå går an å endre dem.</p>
 </div>
 
