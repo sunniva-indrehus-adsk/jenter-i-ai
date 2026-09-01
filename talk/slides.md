@@ -74,6 +74,40 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 ---
 
+<!-- _class: demo -->
+
+<!--
+«What is Forma Site Design» fra YouTube. Marp trenger --html=true for at
+<iframe> skal rendres; det ligger allerede i kommandoen i README.
+
+Embedden krever nett i salen, og den fungerer ikke i PDF-eksport. Last ned en
+lokal kopi som reserve og bytt iframe-en mot:
+  <video src="figures/video/forma-demo.mp4" controls muted playsinline></video>
+CSS-en i theme.css håndterer begge.
+
+start=18 og end=74: klippet går fra 0:18 til 1:14 — 56 sekunder, spilt i vanlig
+hastighet. Bruker du den lokale reservefila i stedet, blir det #t=18,74 på
+slutten av src.
+
+rel=0 og modestbranding=1 demper YouTubes egne forslag; ingen autoplay, du
+starter selv fra scenen.
+
+cc_load_policy=0 og iv_load_policy=3 ber om ingen undertekster og ingen
+annotasjoner. cc_load_policy er bare et hint — er undertekster slått på i din
+egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på.
+-->
+
+<iframe
+  src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=18&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3"
+  title="What is Forma Site Design"
+  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen></iframe>
+
+<div class="scrim"></div>
+
+---
+
 # Analyser i Autodesk Forma
 
 <style scoped>
