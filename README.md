@@ -224,11 +224,32 @@ to logoer.
 <div class="card"><h3>…</h3><p>…</p></div>
 <div class="callout"> … </div>    <!-- blå ramme til venstre -->
 <div class="kicker">Stikkord</div>
-<div class="who-row">            <!-- portretter -->
+<div class="person">             <!-- tekst venstre, stort portrett høyre -->
+  <div>… kulepunkter …</div>
+  <div class="person-photo">
+    <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+    <span>Sunniva</span>
+  </div>
+</div>
+<div class="who-row">            <!-- flere små portretter på rad -->
   <div class="who"><img src="figures/people/sunniva.png"/><span>Sunniva</span></div>
 </div>
 <div class="figcap"><span class="figref">Figur 1</span> Bildetekst.</div>
 ```
+
+### Person-slides
+
+`.person` er et rutenett med tekst til venstre og étt stort portrett til
+høyre. Portrettet ligger i `.person-photo > .frame`, som klipper det til en
+sirkel på 250 px.
+
+`.frame` finnes fordi portrettene er av ulik type: noen er fotografier som
+fyller hele flaten, andre utklipp på hvit studiobakgrunn. Ringen rundt gir
+sirkelen en definert kant også mot hvit slide, og en liten `scale(1.05)` kutter
+bort kanter som måtte være bakt inn i bildefila.
+
+Portrettene bør være kvadratiske og minst 500×500 px — de vises på 250 px, så
+mindre filer blir synlig uskarpe på projektor.
 
 ## Konvensjoner
 
@@ -238,6 +259,37 @@ to logoer.
 - **Eksporter alltid til `talk/`.** Logoen hentes med en relativ `url()` i
   temaet, så en HTML-fil som havner utenfor `talk/` mister merket i hjørnet.
 
-## Kilder
+## Kilder og rettigheter
 
-_Pekere til kildemateriale her._
+Alt bildemateriale i repoet er enten eget eller åpent lisensiert, siden repoet
+er offentlig.
+
+| Fil | Kilde | Lisens |
+| --- | --- | --- |
+| `figures/logos/autodesk-logo-*.svg` | [Wikimedia Commons][logo] | Public domain (varemerke består) |
+| `figures/illustrations/hesthagen-kart.png` | [Kartverket][kv], `topograatone` WMTS, sydd sammen av fliser | CC BY 4.0 — «© Kartverket» |
+| `figures/illustrations/gløshaugen-*.png` | Egne Forma-renderinger | Egne |
+| `figures/illustrations/02-surrogat-pipeline.svg` | Egen tegning | Egen |
+| `figures/people/*.png` | Egne portretter | Egne |
+| `fonts/Inter-latin.woff2` | [Inter][inter] | SIL OFL 1.1, se `fonts/Inter-OFL.txt` |
+
+[kv]: https://www.kartverket.no/api-og-data/vilkar-for-bruk
+[inter]: https://rsms.me/inter/
+
+Attribusjonen for kartet står i bildeteksten på selve sliden — det er et krav
+i CC BY, ikke bare god skikk.
+
+### Ikke bruk
+
+`figures/illustrations/hesthagen-regulering.png` er et skjermbilde av
+planbeskrivelsen. Teksten er kommunens, men massevolum-illustrasjonene ved siden
+av er forslagsstillerens, og de kan ikke ligge på en slide i et offentlig repo.
+Innholdet er derfor skrevet av som kulepunkter på «Hva planen faktisk tillater»
+i stedet. Trenger sliden et bilde, er svaret en egen Forma-render av
+massevolumene, bygget fra reguleringskartet.
+
+Pressefoto fra Adresseavisen og bilder fra Google-søk/Google Maps er
+opphavsrettsbeskyttet og kan ikke ligge i et offentlig repo. Å lenke til og
+sitere artikkelen er greit, og det er det sliden gjør. Trenger du et ekte
+fotografi av tomta, er alternativene et bilde du tar selv, en Forma-render fra
+din egen modell, eller et bilde med åpen lisens fra Wikimedia Commons.

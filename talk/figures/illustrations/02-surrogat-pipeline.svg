@@ -1,0 +1,70 @@
+<!-- Surrogatmodellen: hva som skjer når arkitekten trykker «kjør».
+     Fargene følger theme.css: ink #000, accent #0696D7, muted #6E6E6E, rule #D9D9D9.
+     Fonten er den samme stakken som temaet, med fallback til Inter/Helvetica.
+     Figuren er holdt bred og lav (2,6:1) med vilje — sliden skal ha plass til en
+     callout under den uten at noe havner i logoen nede til venstre. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 402" width="1040" height="402"
+     font-family="'Artifakt Element','Inter','Helvetica Neue',Helvetica,Arial,sans-serif">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#000000"/>
+    </marker>
+    <marker id="arrow-muted" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6E6E6E"/>
+    </marker>
+  </defs>
+
+  <!-- ── Øverste rad: det som skjer i appen, hver gang ──────────────────── -->
+
+  <text x="10" y="22" font-size="19" font-weight="700" letter-spacing="2.6"
+        fill="#0696D7">I APPEN — SEKUNDER</text>
+
+  <!-- Inn -->
+  <rect x="10" y="42" width="290" height="126" fill="#FFFFFF"
+        stroke="#D9D9D9" stroke-width="2"/>
+  <rect x="10" y="42" width="290" height="4" fill="#000000"/>
+  <text x="32" y="90" font-size="30" font-weight="700" fill="#000000">Inn</text>
+  <text x="32" y="122" font-size="20" fill="#6E6E6E">Bygningene som et høydekart,</text>
+  <text x="32" y="148" font-size="20" fill="#6E6E6E">pluss én vindretning</text>
+
+  <line x1="312" y1="105" x2="363" y2="105" stroke="#000000" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+
+  <!-- Modellen -->
+  <rect x="375" y="42" width="290" height="126" fill="#0696D7" stroke="#0696D7"
+        stroke-width="2"/>
+  <text x="397" y="90" font-size="30" font-weight="700" fill="#FFFFFF">Nevralt nett</text>
+  <text x="397" y="122" font-size="20" fill="#FFFFFF" opacity="0.85">Bilde inn, bilde ut —</text>
+  <text x="397" y="148" font-size="20" fill="#FFFFFF" opacity="0.85">ingen ligninger løses her</text>
+
+  <line x1="677" y1="105" x2="728" y2="105" stroke="#000000" stroke-width="2.5"
+        marker-end="url(#arrow)"/>
+
+  <!-- Ut -->
+  <rect x="740" y="42" width="290" height="126" fill="#FFFFFF"
+        stroke="#D9D9D9" stroke-width="2"/>
+  <rect x="740" y="42" width="290" height="4" fill="#000000"/>
+  <text x="762" y="90" font-size="30" font-weight="700" fill="#000000">Ut</text>
+  <text x="762" y="122" font-size="20" fill="#6E6E6E">Vindhastighet i hvert punkt</text>
+  <text x="762" y="148" font-size="20" fill="#6E6E6E">på bakkeplan</text>
+
+  <!-- ── Nederste rad: det som skjedde én gang, hos oss ─────────────────── -->
+
+  <line x1="520" y1="272" x2="520" y2="176" stroke="#6E6E6E" stroke-width="2.5"
+        stroke-dasharray="7 6" marker-end="url(#arrow-muted)"/>
+  <text x="540" y="228" font-size="20" fill="#6E6E6E">trening</text>
+
+  <rect x="230" y="276" width="580" height="116" fill="#FFFFFF"
+        stroke="#6E6E6E" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="256" y="320" font-size="26" font-weight="700" fill="#000000">Fullverdige CFD-kjøringer</text>
+  <text x="256" y="352" font-size="20" fill="#6E6E6E">Timer per kjøring — men gjort én gang, hos oss,</text>
+  <text x="256" y="376" font-size="20" fill="#6E6E6E">før noen arkitekt åpnet appen</text>
+
+  <text x="10" y="324" font-size="19" font-weight="700" letter-spacing="2.6"
+        fill="#6E6E6E">HOS OSS</text>
+  <text x="10" y="350" font-size="19" font-weight="700" letter-spacing="2.6"
+        fill="#6E6E6E">— ÉN GANG</text>
+</svg>

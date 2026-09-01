@@ -11,21 +11,29 @@ math: katex
 
 # Mer brukt, men mindre nøyaktig
 
+## Hvorfor vi ga opp presisjon i vindberegninger — og fikk noe bedre igjen
+
 ### Jenter i AI
+
+<!-- Say: les tittelen høyt. «Det høres ut som en innrømmelse. Det er en
+     designbeslutning, og vi skal vise dere hvorfor.» -->
+<!-- TODO ~0:20 -->
 
 ---
 
-# Fra indøk til Autodesk
+<!-- paginate: true -->
+
+# Jente i Autodesk
 
 <div class="person">
 
 <div>
 
-<div class="kicker">Konsulent</div>
+<div class="kicker">Vilde</div>
 
-- Ny kunde, ny kodebase, ofte
-- Leverer, og går videre
-- Bredde: mange bransjer, mange stacker
+- **Indøk på NTNU**, med spesialisering mot programmering
+- **Konsulent** først: ny kunde, ny kodebase, ofte — leverer, og går videre
+- **Utvikler** nå: gøyere å bygge produktet enn å lage slides om det
 
 </div>
 
@@ -38,28 +46,26 @@ math: katex
 
 <div class="callout">
 
-Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
+Det som overførte seg fra konsulentårene: å høre hva kunden **egentlig** spør om. Det som måtte læres på nytt: at koden ikke leveres — den eies, i årevis.
 
 </div>
 
-<!-- Say: la Vilde fortelle selv — 2 min. Poenget for publikum: det finnes flere veier inn. -->
-<!-- TODO ~2:00 -->
-
+<!-- Say: la Vilde fortelle selv. Poenget for publikum: det finnes flere veier inn,
+     og «jeg gikk ikke datateknikk» er ikke en sperre. -->
+<!-- TODO ~1:20 -->
 
 ---
 
-<!-- paginate: true -->
-
-# Fra fysmat til Autodesk
-
-
+# Jente i Autodesk
 <div class="person">
 
 <div>
 
-- Fysiker som ble programmerer
-- Jobber med *…* i Forma hos Autodesk
-- Kort om veien hit
+<div class="kicker">Sunniva</div>
+
+- **Fysmat på NTNU**, så forskning: numerikk — å gjøre ligninger om til kode
+- Skrev et paper som kanskje fem mennesker i verden har lest
+- Nå: de samme ligningene, i et verktøy tusenvis av arkitekter åpner hver dag
 
 </div>
 
@@ -70,7 +76,25 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 
 </div>
 
-<!-- Say: kort og personlig — 1 min, ikke mer. -->
+<div class="callout">
+
+Det er den samme jobben. Forskjellen er hvor mange som får noe ut av den.
+
+</div>
+
+<!-- Say: kort og personlig. Ikke fortell hele doktorgraden — fortell hvorfor du
+     byttet. -->
+<!-- TODO ~1:20 -->
+
+---
+
+<!-- _class: section -->
+
+# Hva vi bygger
+
+## Autodesk Forma — tidligfase for by- og stedsutvikling
+
+<!-- TODO ~0:10 -->
 
 ---
 
@@ -176,6 +200,81 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
 
 ---
 
+# Tidligfasen: alt er åpent, ingenting er tegnet
+
+<div class="cols-2">
+
+<div>
+
+<div class="kicker">Arkitekten lurer på</div>
+
+- Hvor mange kvadratmeter får jeg plass til her?
+- Hvor skal bygget stå, og hvor høyt kan det bli?
+- Blir det bra å være her — sol, lys, luft, lyd?
+
+</div>
+
+<div>
+
+<div class="kicker">Utbyggeren lurer på</div>
+
+- Går regnestykket opp?
+- Hva må vi dokumentere for kommunen?
+- Hva koster det å ombestemme seg om tre måneder?
+
+</div>
+
+</div>
+
+<div class="callout">
+
+Tidligfasen er noen få uker der nesten ingenting er bestemt — og der nesten alt avgjøres.
+
+</div>
+
+<!-- Say: dette er rammen for hele resten av talken. Alt vi bygger, bygges for
+     disse ukene. -->
+<!-- TODO ~0:50 -->
+
+---
+
+# Produktreisen
+
+<style scoped>
+.cols-3 .card p { font-size: 0.85em; }
+</style>
+
+<div class="cols-3">
+
+<div class="card">
+<h3>1. Tegne</h3>
+<p>Volumer, gater, høyder. Grovt og raskt, rett i nettleseren — ingen installasjon, ingen modell å arve.</p>
+</div>
+
+<div class="card">
+<h3>2. Hente inn verden</h3>
+<p>Terreng, nabobygg, veier, klimadata. Bestilles for tomta, i stedet for å modelleres i hånd.</p>
+</div>
+
+<div class="card">
+<h3>3. Analysere</h3>
+<p>Sol, dagslys, støy, vind, karbon. På forslaget du tegnet for tretti sekunder siden.</p>
+</div>
+
+</div>
+
+<div class="callout">
+
+Og så om igjen. Et prosjekt er ikke en fase man leverer og går fra — det er en modell noen eier i årevis.
+
+</div>
+
+<!-- Say: nevn at dette er forskjellen fra konsulentmodellen Vilde kom fra.
+     Kuttkandidat hvis tiden blir knapp — slå den sammen med sliden før. -->
+<!-- TODO ~0:50 -->
+
+---
+
 # Analyser i Autodesk Forma
 
 <style scoped>
@@ -231,12 +330,59 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
 
 </div>
 
+<div class="figcap">Alle seks kjørt på samme tomt: hovedbygget på Gløshaugen.</div>
+
+<!-- Say: seks analyser, samme modell, samme ettermiddag. Pek på vind — «den ene
+     nederst til høyre er den vi skal snakke om resten av tiden.» -->
+<!-- TODO ~0:40 -->
+
+---
+
+# Én analyse, eller hundre?
+
+<div class="cols-2">
+
+<div>
+
+<div class="kicker">Hvis analysen tar en time</div>
+
+- Du kjører den når du er ferdig
+- Den blir dokumentasjon
+- Den bekrefter valget ditt — eller knuser det, for sent
+
+</div>
+
+<div>
+
+<div class="kicker">Hvis analysen tar fem sekunder</div>
+
+- Du kjører den mens du tegner
+- Den blir et tegneverktøy
+- Den former bygget, i stedet for å godkjenne det
+
+</div>
+
+</div>
+
+<div class="callout">
+
+Dette er hele talken på én slide: **en analyse som ikke rekker å bli brukt, er ikke verdt nøyaktigheten sin.**
+
+</div>
+
+<!-- Say: her setter du opp betalingen som kommer helt til slutt. Ikke avslør
+     løsningen ennå. -->
+<!-- TODO ~0:40 -->
+
 ---
 
 <!-- _class: section -->
 
-# Regulering av Hesthaugen
+# Regulering av Hesthagen
 
+## Parkeringsplassen dere går forbi på vei opp til Gløshaugen
+
+<!-- TODO ~0:10 -->
 
 ---
 
@@ -249,13 +395,15 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
 <div class="kicker">Tomta</div>
 
 - Nedlagt NTNU-parkering mellom Klæbuveien og Gløshaugen
-- Detaljregulert av Trondheim kommune (R20200034)
-- …
+- Del av **NTNU Campussamling**; Statsbygg er byggherre
+- Detaljregulering **r20200032**, vedtatt av bystyret 2. mars 2023
+- Trolig Trondheims største byggeprosjekt det neste tiåret
+- Nesten ingen bilparkering igjen: seks HC-plasser i Klæbuveien
 
 <div class="sources">
 
 <span class="src-label">Kilder</span><br>
-Trondheim kommune, <a href="https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/">vedtatt detaljregulering</a> og <a href="https://www.trondheim.kommune.no/globalassets/10-bilder-og-filer-eksternt/10-byutvikling/byplankontoret/1c_vedtatt-plan/2023/campus_hesthagen-og-del-av-hogskoleparken-gnrbnr-40539-405177-405101-m.fl.-detaljregulering--r20200034/planbeskrivelse.pdf">planbeskrivelse (PDF)</a><br>
+Trondheim kommune, <a href="https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/">vedtatt detaljregulering</a> og <a href="https://www.trondheim.kommune.no/globalassets/10-bilder-og-filer/10-byutvikling/byplankontoret/1c_vedtatt-plan/2023/campus_hesthagen-og-del-av-hogskoleparken-gnrbnr-40539-405177-405101-m.fl.-detaljregulering--r20200034/planbeskrivelse.pdf">planbeskrivelse (PDF)</a><br>
 Adresseavisen, <a href="https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim">«Nå starter det enorme byggeprosjektet i Trondheim»</a>
 
 </div>
@@ -269,37 +417,307 @@ Adresseavisen, <a href="https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-st
 
 </div>
 
+<!-- Say: «dette er tomta, og halve salen har parkert der.» Gjør det lokalt før
+     du gjør det teknisk. -->
+<!-- TODO ~0:50 -->
+
+---
+
+# Hva planen faktisk tillater
+
+<div class="cols-2">
+
+<div>
+
+<div class="kicker">Tomt 6B — bygget</div>
+
+- Ny kvartalsstruktur på dagens parkeringsplass
+- Fem etasjer og kjeller, trappet ned til fire mot Klæbuveien
+- Stor transparens i fasadene i første og andre etasje
+
+</div>
+
+<div>
+
+<div class="kicker">Tomt 6B — uterommene</div>
+
+- Torg i krysset Klæbuveien / Gløshaugveien
+- Delvis overbygget trapp opp mot Gløshaugen-platået
+- Gangbru fra Sem Sælands vei, gjennom parken
+- Offentlig tilgjengelig plass sør for bygget
+
+</div>
+
+</div>
+
+<div class="callout">
+
+Fire av sju punkter handler om uterom. Det er der folk skal være — og det er der vinden bor.
+
+</div>
+
+<!-- Say: dette er svinget inn til vindanalysen. Les det siste punktet sakte. -->
+<!--
+FIGUR: denne sliden tåler en massevolum-render ved siden av teksten.
+Lag den i Forma fra reguleringskartet og eksporter selv — IKKE klipp ut
+illustrasjonene fra planbeskrivelsen. De er forslagsstillerens, og repoet er
+offentlig (se «Ikke bruk» i README). figures/illustrations/hesthagen-regulering.png
+er et slikt skjermbilde og bør ikke ende opp på en slide.
+-->
+<!-- TODO ~0:40 -->
+
 ---
 
 <!-- _class: statement -->
 
-# En påstand som fortjener hele sliden
+# Et torg ingen vil sitte på, er ikke et torg. Det er en snarvei.
+
+<!-- Say: pause. Så: «hvordan vet man det, før det er bygget?» -->
+<!-- TODO ~0:20 -->
 
 ---
 
-# En likning, om det trengs
+# Vindkomfort: samme vind, ulik opplevelse
 
-$$
-E = \int_{\Omega} L(\omega)\,\cos\theta\,\mathrm{d}\omega
-$$
+<style scoped>
+.wind { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5em; align-items: start; }
+/* Bildet er 2460x1606 — uten høydetak presser det callouten ned i logoen. */
+.wind img { height: 430px; width: 100%; object-fit: cover; object-position: center 45%; }
+.scale { list-style: none; margin: 0.2em 0 0 0; padding: 0; font-size: 0.78em; }
+.scale li { display: grid; grid-template-columns: 1em 1fr; gap: 0.75em; margin: 0.5em 0; align-items: baseline; }
+.scale .sw { width: 1em; height: 1em; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+.scale b { font-weight: 700; }
+.scale span.txt { color: var(--muted); font-size: 0.9em; display: block; }
+.wind .callout { font-size: 0.82em; margin-top: 1.1em; }
+</style>
 
-<!-- KaTeX er slått på i frontmatter (math: katex). -->
+<div class="wind">
+
+<div>
+<img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+<div class="figcap"><span class="figref">Figur</span> Komfortkart for vind, hovedbygget på Gløshaugen. Egen Forma-analyse.</div>
+</div>
+
+<div>
+
+<div class="kicker">Komfortskalaen</div>
+
+<ul class="scale">
+<li><span class="sw" style="background:#75CD9B"></span><span><b>Sitte i ro</b><span class="txt">Behagelig å bli sittende ute</span></span></li>
+<li><span class="sw" style="background:#EACA41"></span><span><b>Stå og vente</b><span class="txt">Greit i noen minutter</span></span></li>
+<li><span class="sw" style="background:#E5A32B"></span><span><b>Gå forbi</b><span class="txt">Fint å passere, ikke å oppholde seg</span></span></li>
+<li><span class="sw" style="background:#DE533E"></span><span><b>Ubehagelig</b><span class="txt">Her går man en annen vei</span></span></li>
+</ul>
+
+<div class="callout">
+
+Skalaen spør ikke «hvor mye blåser det», men «hvor ofte blåser det for mye til det du skal gjøre her».
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Say: pek på de oransje flekkene ved bygningshjørnene. Det er der vinden
+     akselererer — og der arkitekten hadde tenkt en benk. -->
+<!-- TODO: verifiser at fargene og kategorinavnene her matcher legenden i appen
+     (fargekodene er plukket rett ut av PNG-en, men navnene er mine). -->
+<!-- TODO ~1:10 -->
 
 ---
 
 <!-- _class: section -->
 
-# Del 2
+# Hvorfor tar dette tid?
 
-## …
+## Fysikken, og regningen
+
+<!-- TODO ~0:10 -->
+
+---
+
+# Ligningen bak et vindkart
+
+$$
+\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u}\cdot\nabla)\mathbf{u}
+= -\frac{1}{\rho}\nabla p + \nu\nabla^{2}\mathbf{u},
+\qquad
+\nabla\cdot\mathbf{u} = 0
+$$
+
+<div class="cols-2">
+
+<div>
+
+<div class="kicker">Hva som står der</div>
+
+- $\mathbf{u}$ — vindens hastighet, i hvert punkt
+- $p$ trykk, $\rho$ tetthet, $\nu$ hvor seig luften er
+- Første ligning: Newtons andre lov, for en luftpakke
+- Andre ligning: luft blir ikke borte
+
+</div>
+
+<div>
+
+<div class="kicker">Hva som er problemet</div>
+
+- Ingen formel gir deg $\mathbf{u}$ for et bykvartal
+- Vi må regne oss frem — punkt for punkt, steg for steg
+- Det er dette «numerikk» betyr, og det var jobben min
+
+</div>
+
+</div>
+
+<!-- Say: ikke gå gjennom ligningen ledd for ledd. Poenget er ett: den kan ikke
+     løses, bare regnes. Salen er teknisk — de tåler å se den, men ikke å bli
+     forelest om den. -->
+<!-- TODO ~1:00 -->
+
+---
+
+# Fra ligning til regning: diskretisering
+
+<style scoped>
+.bignum { border-left: 3px solid var(--ink); padding-left: 0.9em; margin-top: 0.6em; }
+.bignum .n { display: block; font-family: var(--display); font-weight: 700; font-size: 2.1em; line-height: 1.05; letter-spacing: -0.02em; }
+.bignum .u { display: block; color: var(--muted); font-size: 0.82em; margin-top: 0.35em; }
+</style>
+
+<div class="cols-2">
+
+<div>
+
+<div class="kicker">Slik gjøres det</div>
+
+- Legg en boks rundt tomta, og del boksen i celler
+- Millioner av celler for et bykvartal
+- Løs ligningene i hver celle, om og om igjen, til svaret slutter å endre seg
+- Gjenta for hver vindretning, og vekt med vindstatistikken for stedet
+
+</div>
+
+<div>
+
+<div class="kicker">Prislappen</div>
+
+<div class="bignum">
+<span class="n">Timer</span>
+<span class="u">per alternativ — på mange kjerner, for én tomt, for én utforming</span>
+</div>
+
+<div class="callout">
+
+Arkitekten har ikke timer. Arkitekten har tiden det tar å dra i et hjørne.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Say: her er det verdt å si høyt at det ikke er kode som er treg — det er
+     problemet. Flere celler og flere retninger er den eneste veien til et
+     nøyaktigere svar. -->
+<!-- TODO: bytt «Timer» mot det faktiske tallet fra vårt CFD-oppsett, og sett
+     inn antall celler + antall vindretninger. Konkrete tall slår «timer». -->
+<!-- TODO ~1:00 -->
 
 ---
 
 <!-- _class: section -->
 
-# Del 3
+# AI-svaret
 
-## …
+## En modell som har sett nok CFD til å gjette godt
+
+<!-- TODO ~0:10 -->
+
+---
+
+# Surrogatmodellen
+
+<style scoped>
+/* 74 %, ikke 100 %: figuren er bred og lav, og callouten under trenger plassen. */
+img { display: block; margin: 0.6em auto 0; width: 74%; }
+</style>
+
+<img src="figures/illustrations/02-surrogat-pipeline.svg" alt="Geometri og vindretning inn, nevralt nett, vindfelt ut — trent på ferdige CFD-kjøringer">
+
+<div class="callout">
+
+Modellen løser ingen ligninger. Den har sett så mange løsninger at den kjenner igjen svaret.
+
+</div>
+
+<!-- Say: rammen som gjør det forståelig for en AI-sal: det er bilde-til-bilde.
+     Inn: geometrien som et høydekart. Ut: et hastighetsfelt. Nettverket er
+     kjedelig — det er treningsdataene som er hele arbeidet, og de er dyre,
+     fordi hvert eksempel ER en full CFD-kjøring. -->
+<!-- TODO: hvis tallene kan deles: hvor mange CFD-kjøringer ligger i
+     treningssettet, og hvor lang tid tok det å generere dem? -->
+<!-- TODO ~1:10 -->
+
+---
+
+# Hva vi ga opp, og hva vi fikk
+
+<style scoped>
+.cols-2 { gap: 1.4em; }
+.card { border-top-width: 3px; }
+.card.ai { border-top-color: var(--accent); background: var(--accent-soft); }
+.card ul { font-size: 0.88em; margin-top: 0.4em; }
+.card li { margin: 0.35em 0; }
+</style>
+
+<div class="cols-2">
+
+<div class="card">
+
+<h3>Fullverdig CFD</h3>
+
+- Nøyaktig, og etterprøvbar
+- Timer per kjøring
+- Kjøres én gang, til slutt
+- **Dokumenterer** et valg som alt er tatt
+
+</div>
+
+<div class="card ai">
+
+<h3>Surrogatmodellen</h3>
+
+- Omtrentlig, med et avvik vi måler
+- Sekunder per kjøring
+- Kjøres hele tiden, mens man tegner
+- **Tar** valget, sammen med arkitekten
+
+</div>
+
+</div>
+
+<div class="callout">
+
+Begge finnes i Forma. Den raske former bygget; den nøyaktige signerer det.
+
+</div>
+
+<!-- Say: viktig nyanse — vi erstatter ikke CFD, vi flytter den bakover i
+     prosessen. Vær ærlig om avviket hvis noen spør; ikke selg det som gratis. -->
+<!-- TODO ~0:50 -->
+
+---
+
+<!-- _class: statement -->
+
+# Mer brukt, men mindre nøyaktig.
+
+## En modell som er litt feil og alltid tilgjengelig, endrer flere bygg enn en som er riktig og kommer for sent.
+
+<!-- Say: dette er betalingen for tittelen. Si den, og hold pausen. -->
+<!-- TODO ~0:20 -->
 
 ---
 
@@ -309,24 +727,35 @@ $$
 
 <div>
 
-<div class="kicker">Kom i gang</div>
+<div class="kicker">Prøv det selv</div>
 
-- Ressurs 1 — …
-- Ressurs 2 — …
+- **Autodesk Forma** — kjører i nettleseren, ingen installasjon
+- Studenttilgang via **Autodesk Education**
+- Bygg tomta di, kjør vindanalysen, dra i et hjørne
 
 </div>
 
 <div>
 
-<div class="kicker">Ta kontakt</div>
+<div class="kicker">Hvis dette hørtes gøy ut</div>
 
-- …
+- Vi sitter i Trondheim — kom og spør om hvordan det er
+- Numerikk, ML og frontend i samme kodebase
+- Ingen av oss gikk datateknikk
 
 </div>
 
 </div>
 
+<div class="callout">
 
+Spørsmålet vi begge fikk, og som du kan hoppe over: «er jeg teknisk nok til dette?»
+
+</div>
+
+<!-- TODO: sjekk hva som faktisk er riktig å si om studenttilgang til Forma før
+     du lover det fra scenen, og om vi har lov til å nevne rekruttering. -->
+<!-- TODO ~0:30 -->
 
 ---
 
@@ -373,3 +802,5 @@ $$
 Vi står på stand — kom og spør oss om alt vi ikke fikk plass til her!
 
 </div>
+
+<!-- TODO ~0:20 -->
