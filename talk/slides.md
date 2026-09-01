@@ -13,7 +13,7 @@ math: katex
 
 ## Litt feil, men akkurat i tide
 
-### Fra indøk til Autodesk
+
 
 
 <!-- Say: les tittelen høyt. «Det høres ut som en innrømmelse. Det er en
@@ -24,7 +24,7 @@ math: katex
 
 <!-- paginate: true -->
 
-# Jente i Autodesk
+# Fra indøk til Autodesk
 
 <div class="person">
 
