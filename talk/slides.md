@@ -81,7 +81,7 @@ Det som overførte seg — og det som måtte læres på nytt: <em>…</em>
 <iframe> skal rendres; det ligger allerede i kommandoen i README.
 
 Embedden krever nett i salen, og den fungerer ikke i PDF-eksport. Last ned en
-lokal kopi som reserve og bytt iframe-en mot:
+lokal kopi som reserve og bytt iframe-en (og skriptet) mot:
   <video src="figures/video/forma-demo.mp4" controls muted playsinline></video>
 CSS-en i theme.css håndterer begge.
 
@@ -89,8 +89,12 @@ start=18 og end=74: klippet går fra 0:18 til 1:14 — 56 sekunder, spilt i vanl
 hastighet. Bruker du den lokale reservefila i stedet, blir det #t=18,74 på
 slutten av src.
 
-rel=0 og modestbranding=1 demper YouTubes egne forslag; ingen autoplay, du
-starter selv fra scenen.
+rel=0 og modestbranding=1 demper YouTubes egne forslag. autoplay=1 krever
+mute=1 — nettlesere blokkerer autoplay med lyd. Lyden skal av uansett.
+
+Tittelkortet «Autodesk Forma» ligger over videoen de første 5 sekundene og fader
+ut. Teksten står i .demo-intro-diven under, utseendet i theme.css, og de 5
+sekundene i setTimeout-en i skriptet.
 
 cc_load_policy=0 og iv_load_policy=3 ber om ingen undertekster og ingen
 annotasjoner. cc_load_policy er bare et hint — er undertekster slått på i din
@@ -98,13 +102,77 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
 -->
 
 <iframe
+  id="forma-demo"
   src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=18&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3"
+  data-autoplay-src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=18&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3&autoplay=1&mute=1"
   title="What is Forma Site Design"
   allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-  referrerpolicy="strict-origin-when-cross-origin"
-  allowfullscreen></iframe>
+  referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
-<div class="scrim"></div>
+
+
+<div class="demo-intro">
+  <img src="figures/logos/autodesk-forma-logo.png" alt="Autodesk Forma"/>
+</div>
+
+<script>
+  // Autoplay og tittelkortet trigges når sliden BLIR AKTIV, ikke ved sidelast:
+  // Marp holder alle slides i DOM samtidig, så autoplay=1 rett i src ville
+  // spilt videoen ferdig lenge før du kom hit.
+  //
+  // Derfor to URL-er. src er uten autoplay og fullt spillbar — svikter skriptet,
+  // står du igjen med en vanlig video du trykker play på, ikke en svart slide.
+  // data-autoplay-src er den samme med autoplay=1&mute=1, og byttes inn av
+  // skriptet. (mute=1 er påkrevd; nettlesere blokkerer autoplay med lyd.)
+  //
+  // Dette må gjøres i JS, ikke CSS: Marpit prefikser alle selektorer — også i en
+  // global style-blokk — med section-scopet, mens aktiv-klassen bespoke-marp-active
+  // ligger på svg-elementet OVER section, altså utenfor rekkevidde derfra.
+  //
+  // VIKTIG: ingen bruk av tegnet «større enn» i denne blokka. Marp escaper det
+  // til en HTML-entitet inne i inline-script, og da knekker JS-en. Derfor
+  // function () i stedet for pilfunksjoner, og === i stedet for sammenligninger.
+  (function () {
+    const frame = document.getElementById('forma-demo');
+    if (!frame) return;
+    const intro = frame.parentElement.querySelector('.demo-intro');
+    const idleSrc = frame.src;
+    const slide = frame.closest('svg');
+    let timer;
+    function activate() {
+      frame.src = frame.dataset.autoplaySrc; // Ny src = starter forfra.
+      if (!intro) return;
+      intro.classList.remove('is-hidden');
+      clearTimeout(timer);
+      timer = setTimeout(function () { intro.classList.add('is-hidden'); }, 4000);
+    }
+    function deactivate() {
+      frame.src = idleSrc; // Stopper avspilling når du går videre.
+      clearTimeout(timer);
+      if (intro) intro.classList.add('is-hidden');
+    }
+    // Bespoke legger på klassene sine ETTER at denne script-taggen er parset, så
+    // svg-en er ennå ikke merket når vi kommer hit. Poll litt før vi gir opp.
+    let tries = 0;
+    (function waitForBespoke() {
+      // Statisk eksport (PDF): ingen bespoke, la src stå spillbar som den er.
+      if (!slide || tries++ === 40) return;
+      if (!slide.classList.contains('bespoke-marp-slide')) {
+        setTimeout(waitForBespoke, 50);
+        return;
+      }
+      let wasActive = slide.classList.contains('bespoke-marp-active');
+      if (wasActive) activate();
+      else if (intro) intro.classList.add('is-hidden');
+      new MutationObserver(function () {
+        const isActive = slide.classList.contains('bespoke-marp-active');
+        if (isActive === wasActive) return;
+        wasActive = isActive;
+        if (isActive) activate(); else deactivate();
+      }).observe(slide, { attributes: true, attributeFilter: ['class'] });
+    })();
+  })();
+</script>
 
 ---
 
