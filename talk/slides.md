@@ -119,16 +119,28 @@ lokal kopi som reserve og bytt iframe-en (og skriptet) mot:
   <video src="figures/video/forma-demo.mp4" controls muted playsinline></video>
 CSS-en i theme.css håndterer begge.
 
-start=18 og end=74: klippet går fra 0:18 til 1:14 — 56 sekunder, spilt i vanlig
-hastighet. Bruker du den lokale reservefila i stedet, blir det #t=18,74 på
+start=14 og end=74: klippet går fra 0:14 til 1:14 — 60 sekunder, spilt i vanlig
+hastighet. Bruker du den lokale reservefila i stedet, blir det #t=14,74 på
 slutten av src.
+
+Hvorfor 14 og ikke 18: tittelkortet ligger over de første 5 sekundene, så de
+fem første sekundene av klippet ser ingen. Starter vi på 0:14, er videoen kommet
+til 0:19 når kortet er borte, og det er der klippet skal begynne for publikum.
 
 rel=0 og modestbranding=1 demper YouTubes egne forslag. autoplay=1 krever
 mute=1 — nettlesere blokkerer autoplay med lyd. Lyden skal av uansett.
 
+controls=0 ligger BARE på data-autoplay-src: det er den som spilles i salen, og
+uten den blinker YouTubes store play-knapp og kontrollinjen gjennom tittelkortet
+(som er halvgjennomsiktig) i det videoen starter. Prisen er at du ikke kan pause
+midt i klippet — gå videre til neste slide i stedet. src beholder kontrollene,
+så reserveløsningen (og PDF-eksport, der skriptet ikke kjører) fortsatt har en
+play-knapp å trykke på.
+
 Tittelkortet «Autodesk Forma» ligger over videoen de første 5 sekundene og fader
-ut. Teksten står i .demo-intro-diven under, utseendet i theme.css, og de 5
-sekundene i setTimeout-en i skriptet.
+ut. Teksten står i .demo-intro-diven under, utseendet i theme.css, og tidene i
+setTimeout-en i skriptet. Kortet er helt dekkende hele tiden det ligger der, så
+verken YouTubes spinner eller kontrollinjen synes gjennom mens videoen laster.
 
 cc_load_policy=0 og iv_load_policy=3 ber om ingen undertekster og ingen
 annotasjoner. cc_load_policy er bare et hint — er undertekster slått på i din
@@ -137,8 +149,8 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
 
 <iframe
   id="forma-demo"
-  src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=18&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3"
-  data-autoplay-src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=18&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3&autoplay=1&mute=1"
+  src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=14&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3"
+  data-autoplay-src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=14&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3&autoplay=1&mute=1&controls=0"
   title="What is Forma Site Design"
   allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
   referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -178,7 +190,7 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
       if (!intro) return;
       intro.classList.remove('is-hidden');
       clearTimeout(timer);
-      timer = setTimeout(function () { intro.classList.add('is-hidden'); }, 4000);
+      timer = setTimeout(function () { intro.classList.add('is-hidden'); }, 5000);
     }
     function deactivate() {
       frame.src = idleSrc; // Stopper avspilling når du går videre.
@@ -208,7 +220,7 @@ egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på
   })();
 </script>
 
-<!-- Say: 56 sekunder klipp. Ikke snakk over hele — la den rulle, og kommenter
+<!-- Say: 60 sekunder klipp. Ikke snakk over hele — la den rulle, og kommenter
      bare det som skjer på slutten. -->
 <!-- TODO ~1:00 -->
 
