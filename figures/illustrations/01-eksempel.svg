@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="400" height="260">
+  <rect x="1" y="1" width="398" height="258" rx="8" fill="#ffffff" stroke="#b0b8be" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="200" y="126" text-anchor="middle" font-family="'Latin Modern Roman','Times New Roman',serif" font-size="20" fill="#555">Figur kommer her</text>
+  <text x="200" y="154" text-anchor="middle" font-family="'Latin Modern Roman','Times New Roman',serif" font-size="14" fill="#999">figures/illustrations/01-eksempel.svg</text>
+</svg>
