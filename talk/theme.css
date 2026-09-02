@@ -550,6 +550,43 @@ figcaption, .figcap {
   color: var(--muted);
 }
 
+/* Person slide, variant: two overlapping circles instead of one portrait.
+   Boksen er 300x340: den store sirkelen ligger oppe til høyre, den lille
+   henger ut under midten av den. Endrer du størrelsene, må boksen og
+   topp/venstre på .portrait følge etter.
+
+   Selve utsnittet (object-position, evt. zoom) er bildeavhengig og settes i en
+   <style scoped> på den enkelte sliden — resten er felles og bor her, ellers
+   må hele blokka kopieres per slide siden scoped style bare gjelder én slide. */
+.photo-cluster { position: relative; width: 300px; height: 340px; }
+
+.photo-cluster .frame {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ECEEEF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.photo-cluster .frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-cluster .family { width: 250px; height: 250px; top: 0; right: 0; }
+
+/* Hvit ring rundt portrettet, ikke bare kant: den løfter den lille sirkelen
+   visuelt over den store der de overlapper. */
+.photo-cluster .portrait {
+  width: 125px;
+  height: 125px;
+  top: 212px;
+  left: 112px;
+  box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px rgba(0, 0, 0, 0.08);
+}
+
 /* Portrait row */
 .who-row {
   display: flex;

@@ -25,28 +25,36 @@ math: katex
 
 # Fra indøk til Autodesk
 
+<style scoped>
+/* Bildet er høyt portrett: en sentrert kvadratisk beskjæring hadde blitt mest
+   himmel. 63 % skyver utsnittet ned så begge personene ligger i sirkelen, og
+   scale(1.5) zoomer inn om samme senter så de to fyller sirkelen.
+   Resten av .photo-cluster ligger i theme.css. */
+.photo-cluster .family img { object-position: center 63%; transform: scale(1.5); }
+</style>
+
 <div class="person">
 
 <div>
 
-<div class="kicker">Ville bygge produkt i stedet for slides</div>
+<div class="kicker">Vilde</div>
 
 - Internship som utvikler under studiene
-- Bruke kode til å løse komplekse problemer
+- Gøy å bygge produkt i stedet for slides
 - Jobbe i en produktorganisasjon
 
 </div>
 
-<div class="person-photo">
-  <div class="frame"><img src="figures/people/vilde.jpg" alt="Vilde"/></div>
-  <span>Vilde</span>
+<div class="photo-cluster">
+  <div class="frame family"><img src="figures/people/vilde-2.jpg" alt="Vilde på sandvolleyballbanen"/></div>
+  <div class="frame portrait"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
 </div>
 
 </div>
 
 <div class="callout">
 
-Det er spennende å kombinere matematikk, algoritmer og programvareutvikling for å bidra til en mer bærekraftig verden.</em>
+Jobbe for en mer bærekraftig verden med koding og matte.</em>
 
 </div>
 
@@ -59,45 +67,14 @@ Det er spennende å kombinere matematikk, algoritmer og programvareutvikling for
 # Jente i Autodesk
 
 <style scoped>
-/* Portrett og familiebilde som to overlappende sirkler i høyre kolonne.
-   Boksen er 300x340: den store sirkelen ligger oppe til høyre, den lille henger
-   ut under midten av den. Plasseringen er ikke tilfeldig — den lille sirkelen
-   skal lande på kjolen til barnet, det eneste stedet i familiebildet der den
-   ikke dekker et ansikt. Endrer du størrelsene, må boksen og topp/venstre på
-   .portrait følge etter. */
-.person { grid-template-columns: 1fr 300px; gap: 1.8em; }
-
-.photo-cluster { position: relative; width: 300px; height: 340px; }
-.photo-cluster .frame {
-  position: absolute;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #ECEEEF;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-}
-.photo-cluster .frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.photo-cluster .family { width: 250px; height: 250px; top: 0; right: 0; }
 /* Den øverste fjerdedelen av familiebildet er bare hvit vegg, og hvitt mot hvit
    slide blir et hull. object-position skyver utsnittet ned så veggen forsvinner.
    68 %, ikke 85 %: sirkelen er smalest i toppen og bunnen, så ansiktene må ligge
-   nær midthøyden for at de to ytterste ikke skal bli beskåret av masken. */
+   nær midthøyden for at de to ytterste ikke skal bli beskåret av masken.
+   Resten av .photo-cluster ligger i theme.css. Den lille sirkelen er plassert
+   der den lander på kjolen til barnet — det eneste stedet i dette bildet der
+   den ikke dekker et ansikt. */
 .photo-cluster .family img { object-position: center 68%; }
-
-/* Hvit ring rundt portrettet, ikke bare kant: den løfter den lille sirkelen
-   visuelt over den store der de overlapper. */
-.photo-cluster .portrait {
-  width: 125px;
-  height: 125px;
-  top: 212px;
-  left: 112px;
-  box-shadow: 0 0 0 6px var(--paper), 0 0 0 7px rgba(0, 0, 0, 0.08);
-}
 </style>
 
 <div class="person">
@@ -720,7 +697,7 @@ h2 {
 <div class="people-row">
 
 <div class="person-photo">
-  <div class="frame"><img src="figures/people/vilde.jpg" alt="Vilde"/></div>
+  <div class="frame"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
   <span>Vilde</span>
 </div>
 
