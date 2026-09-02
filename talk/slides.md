@@ -620,6 +620,33 @@ Modellen har sett så mange løsninger at den kjenner igjen svaret.
 
 ---
 
+<style scoped>
+/* Bare figuren: ingen tittel, ingen callout. Figuren er 1,64:1 og sliden 16:9,
+   så høyden er det som begrenser — max-height styrer, og width: auto lar
+   bredden følge. justify-content sentrerer den i høyden når h1-en er borte.
+   Figuren har INPUT/OUTPUT og retningene skrevet inn i seg, så den forklarer
+   seg selv; teksten står i Say-notatet under. */
+section { justify-content: center; }
+img { display: block; margin: 0 auto; max-height: 84%; max-width: 100%; width: auto; }
+</style>
+
+<img src="figures/illustrations/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
+
+<!-- Say: den konkrete versjonen av skissen på forrige slide. Pek på de to
+     bildene til venstre: høyden på alt som står der, og hva det er — terreng,
+     bygning eller vegetasjon. Det er hele inngangen. Ingen mesh, ingen
+     randbetingelser.
+
+     Til høyre: åtte felt, ett per retning. Understrek at det ikke er åtte
+     modeller — det er én modell kjørt åtte ganger på rotert geometri, og de
+     vektes med vindrosen til det komfortkartet de så på Gløshaugen-sliden.
+
+     Har du tid til overs: 8 retninger x noen sekunder mot 8 x flere timer CFD.
+     Det er hele poenget med at den kan stå på mens man tegner. -->
+<!-- TODO ~0:40 -->
+
+---
+
 # To vindmodeller
 
 <style scoped>
