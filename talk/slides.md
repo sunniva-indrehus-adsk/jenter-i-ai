@@ -627,7 +627,7 @@ Modellen har sett så mange løsninger at den kjenner igjen svaret.
    Figuren har INPUT/OUTPUT og retningene skrevet inn i seg, så den forklarer
    seg selv; teksten står i Say-notatet under. */
 section { justify-content: center; }
-img { display: block; margin: 0 auto; max-height: 84%; max-width: 100%; width: auto; }
+img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: auto; }
 </style>
 
 <img src="figures/illustrations/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
