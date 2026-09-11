@@ -299,6 +299,18 @@ section.demo {
   align-items: center;
 }
 
+/* Marp pakker ![](...) i en <p>, og den arver bunnmarg fra standardtemaet.
+   Sliden sentrerer innholdet, så margen skyver bildet ca. 8 px opp og etterlater
+   en svart stripe langs underkanten — på hver eneste bilde-slide. Uten
+   width/height her faller img sin height:100% tilbake til auto, fordi den da
+   måles mot en <p> med automatisk høyde. */
+section.demo > p {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 0;
+}
+
 section.demo video,
 section.demo img {
   width: 100%;
@@ -332,6 +344,7 @@ section.demo .demo-label .kicker {
   color: var(--paper);
   opacity: 0.75;
 }
+
 
 /* Tittelkort som ligger over videoen de første 5 sekundene. Utseendet ligger
    her; når det vises og skjules styres av skriptet på demo-sliden, som toggler
@@ -384,6 +397,202 @@ section.demo .demo-intro.is-hidden {
   opacity: 0;
   transition: opacity 0.6s ease-out;
 }
+
+/* ── Bilde-slides: tekst oppå et stillbilde fra filmen ────────────────── */
+
+/* Filmen har sin egen engelske tekst nede til venstre. Den blurres bort i selve
+   bildet ved uthenting (tools/flipbook.sh, --mask), og bare på de bildene der
+   den faktisk er på skjermen. Derfor trenger overlegget her ikke å dekke noe —
+   det skal bare gi hvit skrift nok kontrast. Det er forskjellen på en tett
+   svart boks og et mykt sjikt. */
+
+/* Bærer for rollekortene på slide 5 og 6. De trenger hele bredden, mens
+   merkelappen under er en flate som hugger teksten — derfor to elementer. */
+section.overlay .roles-holder {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 0 var(--margin-x) 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Merkelappen på bilde-slidene: en svak flate bak skriften, ikke bak hele
+   bunnen. Den er stor nok til å løfte teksten fra fotoet, gjennomsiktig nok til
+   at motivet leses gjennom. Et sjikt over hele bredden ble prøvd før og vasket
+   ut nedre halvdel av bildet. */
+section.overlay .overlay-label,
+section.flipbook .demo-label {
+  position: absolute;
+  left: var(--margin-x);
+  right: auto;
+  bottom: 54px;
+  top: auto;
+  width: fit-content;
+  max-width: 72%;
+  height: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: rgba(255, 255, 255, 0.66);
+  border-radius: 10px;
+  padding: 15px 24px 18px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.42em;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  /* Flaten gjør jobben nå, så gløden rundt bokstavene er ikke lenger nødvendig. */
+  text-shadow: none;
+}
+
+
+/* Samme aksentblå kicker som ellers i decket, i stedet for hvit på svart. */
+section.overlay .overlay-label .kicker,
+section.flipbook .demo-label .kicker {
+  color: var(--accent);
+  margin-bottom: 0.3em;
+}
+
+section.overlay .overlay-label h1 {
+  color: var(--ink);
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin: 0;
+  font-size: 1em;
+  max-width: 64%;
+}
+
+/* Rollene på tidligfase-oppbyggingen: en stor figur med spørsmålene i en
+   snakkeboble over seg, og rollenavnet skrevet nederst på kroppen.
+
+   Boblen er HTML og ikke en del av SVG-en. Teksten må kunne brekke, og en SVG
+   lastet via <img> rendres i sitt eget dokument — den når ikke @font-face-en i
+   temaet, så all tekst der hadde falt tilbake til en systemskrift.
+
+   Rutenettet har to spalter også på sliden der bare arkitekten er med, slik at
+   figuren ikke flytter seg når utbyggeren kommer inn ved siden av. */
+section.overlay .roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4em;
+  align-items: end;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+section.overlay .role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Samme familie som .callout ellers i decket: lys blå flate, aksentblå kantstrek
+   mot venstre, mørk tekst. Fargen er --accent-soft lagt over hvitt og gjort
+   ugjennomsiktig, siden den her ligger på et foto og ikke på papir. */
+section.overlay .bubble {
+  position: relative;
+  background-color: rgba(232, 245, 251, 0.96);
+  /* Rund og med hel kontur, som en tegneserieboble — ikke den firkantede
+     .callout-formen. Fargen er fortsatt --accent-soft over hvitt, så den hører
+     hjemme i samme familie. */
+  border: 2px solid var(--accent);
+  border-radius: 34px;
+  padding: 21px 32px 23px;
+  align-self: stretch;
+  color: var(--ink);
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Halen peker ned mot hodet. 78 px fra venstre treffer midten av figuren, som
+   står venstrestilt i spalten under. drop-shadow fordi et pseudoelement ikke
+   arver box-shadow fra boblen — uten den forsvinner halen helt mot det lyse
+   sjiktet, og boblen slutter å lese som en snakkeboble. */
+section.overlay .bubble::after {
+  content: '';
+  position: absolute;
+  left: 78px;
+  bottom: -15px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 13px 0 13px;
+  /* Aksentblå, ikke samme farge som boblen: sjiktet under er nesten hvitt, og
+     en lyseblå hale forsvant helt i det. Blå knytter den dessuten til
+     kantstreken på venstre side — boblen peker med sitt eget aksentmerke. */
+  border-color: var(--accent) transparent transparent transparent;
+}
+
+/* 26 px, ikke 21: ved 19 px skrift stikker kulepunktet ut i boblekanten på
+   linjene som fyller hele bredden. */
+section.overlay .bubble ul { margin: 0; padding-left: 24px; }
+section.overlay .bubble li { margin: 7px 0; }
+
+section.overlay .figure {
+  position: relative;
+  margin-top: 14px;
+  line-height: 0;
+}
+
+section.overlay .figure img {
+  height: 290px;
+  width: auto;
+  display: block;
+}
+
+/* Navnet står inne i figuren, nederst på kroppen. Hvitt fordi kroppen er mørk.
+   Kroppen er 108 av 140 enheter bred, altså ca. 142 px når figuren er 290 px
+   høy — teksten må holde seg innenfor det. */
+section.overlay .figure .name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--paper);
+}
+
+
+/* Logoen og sidetallet er hvite på alle bilde-slides, fordi de fleste av dem er
+   mørke i bunnen. På de som fyller flaten OG er lyse der nede blir de nesten
+   usynlige, så der snus de. Kuttede slides har svart bunn og skal beholde hvit,
+   og .on-dark er mørke per definisjon — derfor unntas begge. */
+section.demo.overlay:not(.on-dark)::before,
+section.demo.flipbook:not(.on-dark)::before {
+  background-image: url('figures/logos/autodesk-logo-black.svg');
+}
+
+section.demo.overlay:not(.on-dark)::after,
+section.demo.flipbook:not(.on-dark)::after {
+  color: var(--muted);
+}
+
+/* Bilder som fyller hele flaten har ingen plate å stå på — merkelappen leser
+   rett mot fotoet. Mørk skrift med hvit glød er riktig på de lyse bildene, men
+   må snus på de mørke. Hvilke som er hvilke er målt, se forma-demo.shots. */
+/* .on-dark styrer nå BARE Autodesk-logoen og sidetallet. De står nedenfor
+   merkelappen, rett på fotoet, og må være hvite der bildet er mørkt.
+   Selve merkelappen er lys på alle bilde-slides — den skal se lik ut overalt,
+   og en lys flate med mørk skrift er det decket bruker ellers. Den leses like
+   godt mot det nattblå globusbildet som mot de lyse analysene. */
+
+/* Logokortet er allerede svart med hvit logo midt i bildet — der ville vår egen
+   logo nederst til venstre blitt en dublett. */
+section.overlay.logo-card::before { display: none; }
 
 section.demo::before {
   background-image: url('figures/logos/autodesk-logo-white.svg');
@@ -630,3 +839,112 @@ th {
   font-weight: 700;
   border-bottom: 2px solid var(--ink) !important;
 }
+
+/* ── Resultat-oppbyggingen: komfortkartet med modellene rundt ──────────── */
+
+/* Tre slides deler dette oppsettet, og bygger opp det samme bildet:
+     1. bare kartet i midten
+     2. pluss fysikkmodellen inn fra venstre
+     3. pluss surrogatmodellen inn fra høyre
+   Rutenettet er IDENTISK på alle tre, med tomme sideceller på de første. Det er
+   hele poenget: kartet må ikke flytte seg eller skifte størrelse når panelene
+   kommer til, ellers leses det som tre ulike slides i stedet for én som vokser.
+   Derfor ligger oppsettet her og ikke i en scoped style per slide. */
+section.result-build .build {
+  display: grid;
+  /* minmax(0, 1fr) og ikke 1fr: legenden i midtcellen har max-content-spalter,
+     og uten nullgulvet blir cellen like bred som legendens innhold krever —
+     da skyves høyre panel utenfor slideflaten. */
+  /* Like brede sidespalter: er de ulike, havner kartet utenfor midten — og på
+     det første trinnet, der begge sidene er tomme, er det det eneste man ser.
+     230 px er valgt bakfra, fra kartet: midtcellen blir da 532 px, som er den
+     bredden plottet hadde før panelene kom til. Kartet er resultatet sliden
+     handler om, og skal ikke krympe for å gi plass til modellene. */
+  grid-template-columns: 230px 40px minmax(0, 1fr) 40px 230px;
+  gap: 0.9em;
+  align-items: center;
+  margin: auto 0;
+}
+
+section.result-build .panel .h {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 0.98em;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+/* .d er beskrivelsen og følger flyten under tittelen. .t er tidsangivelsen og
+   skyves til bunnen, så den står på samme linje på begge sider. De må være to
+   elementer: lå de i samme avsnitt, havnet tidsangivelsen midt i en brytning på
+   den ene siden og alene på den andre — og da leses de ikke som parallelle. */
+section.result-build .panel .d { color: var(--muted); font-size: 0.76em; margin: 0.55em 0 0; }
+section.result-build .panel .t { color: var(--muted); font-size: 0.76em; margin: auto 0 0; }
+section.result-build .panel.ai .h { color: var(--accent); }
+/* Begge panelene har nå ikon, tittel og innhold i samme rekkefølge, og er
+   toppjustert. Da står ikonene og titlene på samme høyde på hver side av kartet
+   — uten det leses de to modellene som to ulike slags ting, ikke som to veier
+   til det samme. Pilene må holdes sentrert for seg; de skal peke mot kartet,
+   ikke mot toppen av raden. */
+/* Panelene strekkes til radens høyde og er flex-kolonner. Da kan ikon og tittel
+   ligge i toppen — justert mot hverandre — mens tidsangivelsen skyves til bunnen
+   med margin-top: auto og havner på samme linje på begge sider. Uten dette
+   dytter ligningen den venstre teksten ned, og de to står i utakt. */
+section.result-build .panel {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+section.result-build .panel img {
+  width: 108px;
+  height: 108px;
+  display: block;
+  margin-bottom: 0.6em;
+}
+
+/* Ligningen står i en 230 px spalte. Det er bredden som styrer, ikke høyden, så
+   leddene er brutt over fire linjer i markdownen i stedet for at skriften settes
+   ytterligere ned — under 0.5em leses den ikke fra salen. */
+section.result-build .panel .katex-display { margin: 0; }
+section.result-build .panel .katex-display > .katex { font-size: 0.54em; }
+
+/* Pilene er CSS-hjørner, ikke filer. De er usynlige på trinnet før panelet
+   kommer, men tar plassen sin — se .build ovenfor. */
+section.result-build .arr { align-self: center; position: relative; height: 3px; background: var(--ink); }
+section.result-build .arr::after {
+  content: '';
+  position: absolute;
+  top: -6.5px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+section.result-build .arr.to-right::after { right: -13px; border-left: 13px solid var(--ink); }
+section.result-build .arr.to-left::after { left: -13px; border-right: 13px solid var(--ink); }
+section.result-build .arr.ai { background: var(--accent); }
+section.result-build .arr.ai.to-left::after { border-right-color: var(--accent); }
+
+section.result-build .mid img { display: block; width: 100%; height: auto; }
+section.result-build .mid .figcap { margin-top: 0.5em; text-align: center; }
+
+/* Fargeforklaringen over kartet. Fargene og navnene er verifisert mot koden —
+   se kommentaren i wind-analysis-ui/src/analysis/surfaceResult/windColors.ts. */
+section.result-build .scale-strip { margin-bottom: 0.7em; }
+section.result-build .scale-strip .kicker { margin-bottom: 0.45em; font-size: 0.62em; }
+section.result-build .scale-strip .row {
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  justify-content: space-between;
+  gap: 0.4em;
+}
+section.result-build .scale-strip .row > div { font-size: 0.56em; line-height: 1.25; white-space: nowrap; }
+section.result-build .scale-strip .sw {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14);
+  margin-right: 0.35em;
+  vertical-align: -0.07em;
+}
+section.result-build .scale-strip .t { display: block; color: var(--muted); font-size: 0.88em; margin-top: 0.12em; }

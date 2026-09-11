@@ -23,7 +23,7 @@ math: katex
 
 <!-- paginate: true -->
 
-# Fra indøk til Autodesk
+# Jente i Autodesk
 
 <style scoped>
 /* Bildet er høyt portrett: en sentrert kvadratisk beskjæring hadde blitt mest
@@ -39,6 +39,7 @@ math: katex
 
 <div class="kicker">Vilde</div>
 
+- Fra indøk til Autodesk
 - Internship som utvikler under studiene
 - Gøy å bygge produkt i stedet for slides
 - Jobbe i en produktorganisasjon
@@ -83,7 +84,8 @@ Jobbe for en mer bærekraftig verden med koding og matte.</em>
 
 <div class="kicker">Sunniva</div>
 
-- **Fysmat på NTNU**, så forskning: numerikk — å gjøre ligninger om til kode
+- fra Fysmat til Autodesek
+  — Å gjøre ligninger om til kode
 - Da: Skrev et paper som kanskje fem mennesker i verden har lest
 - Nå: også ligniner i et verktøy tusenvis av arkitekter åpner hver dag
 
@@ -104,180 +106,225 @@ Samme type jobb, men høyere påvirking "i den virkelige verden"
 
 <div class="todo">tittel? </div>
 
+---
 
+<!-- _class: demo overlay -->
+
+<!-- Bildet er 32,4 s inn i filmen: tomta på Filipstad er valgt, terreng og
+     nabobygg er lastet, og ingenting er tegnet ennå. Det er hele poenget med
+     sliden, så bildet får bære det alene — spørsmålene har fått egen slide
+     etter denne. Ingen maske her; 32,4 ligger i det tekstfrie vinduet. -->
+
+![](figures/video/stills/tomt.jpg)
+
+<div class="overlay-label">
+  <div class="kicker">Tidligfase</div>
+  <h1>Alt er åpent, ingenting er tegnet</h1>
+</div>
+
+<!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, lastet
+     kontekst, ingen streker. Så: «og her begynner spørsmålene.» -->
+<!-- TODO ~0:20 -->
 
 ---
 
-<!-- _class: demo -->
+<!-- _class: demo overlay -->
 
-<!--
-«What is Forma Site Design» fra YouTube. Marp trenger --html=true for at
-<iframe> skal rendres; det ligger allerede i kommandoen i README.
+<!-- Steg 2 av tre på samme bilde: tomta ligger der fra forrige slide, og
+     arkitekten kommer inn. Bildet skal IKKE bytte — det er oppbyggingen som er
+     poenget, ikke tre forskjellige bilder. -->
 
-Embedden krever nett i salen, og den fungerer ikke i PDF-eksport. Last ned en
-lokal kopi som reserve og bytt iframe-en (og skriptet) mot:
-  <video src="figures/video/forma-demo.mp4" controls muted playsinline></video>
-CSS-en i theme.css håndterer begge.
+![](figures/video/stills/tomt.jpg)
 
-start=14 og end=74: klippet går fra 0:14 til 1:14 — 60 sekunder, spilt i vanlig
-hastighet. Bruker du den lokale reservefila i stedet, blir det #t=14,74 på
-slutten av src.
-
-Hvorfor 14 og ikke 18: tittelkortet ligger over de første 5 sekundene, så de
-fem første sekundene av klippet ser ingen. Starter vi på 0:14, er videoen kommet
-til 0:19 når kortet er borte, og det er der klippet skal begynne for publikum.
-
-rel=0 og modestbranding=1 demper YouTubes egne forslag. autoplay=1 krever
-mute=1 — nettlesere blokkerer autoplay med lyd. Lyden skal av uansett.
-
-controls=0 ligger BARE på data-autoplay-src: det er den som spilles i salen, og
-uten den blinker YouTubes store play-knapp og kontrollinjen gjennom tittelkortet
-(som er halvgjennomsiktig) i det videoen starter. Prisen er at du ikke kan pause
-midt i klippet — gå videre til neste slide i stedet. src beholder kontrollene,
-så reserveløsningen (og PDF-eksport, der skriptet ikke kjører) fortsatt har en
-play-knapp å trykke på.
-
-Tittelkortet «Autodesk Forma» ligger over videoen de første 5 sekundene og fader
-ut. Teksten står i .demo-intro-diven under, utseendet i theme.css, og tidene i
-setTimeout-en i skriptet. Kortet er helt dekkende hele tiden det ligger der, så
-verken YouTubes spinner eller kontrollinjen synes gjennom mens videoen laster.
-
-cc_load_policy=0 og iv_load_policy=3 ber om ingen undertekster og ingen
-annotasjoner. cc_load_policy er bare et hint — er undertekster slått på i din
-egen YouTube-konto vinner den, så sjekk CC-knappen i spilleren før du går på.
--->
-
-<iframe
-  id="forma-demo"
-  src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=14&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3"
-  data-autoplay-src="https://www.youtube-nocookie.com/embed/1ovhhMWpohw?start=14&end=74&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3&autoplay=1&mute=1&controls=0"
-  title="What is Forma Site Design"
-  allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-  referrerpolicy="strict-origin-when-cross-origin"></iframe>
-
-
-
-<div class="demo-intro">
-  <img src="figures/logos/autodesk-forma-logo.png" alt="Autodesk Forma"/>
+<div class="roles-holder">
+<div class="roles">
+<div class="role">
+<div class="bubble"><ul>
+<li>Hvor mange kvadratmeter får jeg plass til her?</li>
+<li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
+<li>Blir det bra her — sol, lys, luft, lyd?</li>
+</ul></div>
+<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+</div>
+</div>
 </div>
 
-<script>
-  // Autoplay og tittelkortet trigges når sliden BLIR AKTIV, ikke ved sidelast:
-  // Marp holder alle slides i DOM samtidig, så autoplay=1 rett i src ville
-  // spilt videoen ferdig lenge før du kom hit.
-  //
-  // Derfor to URL-er. src er uten autoplay og fullt spillbar — svikter skriptet,
-  // står du igjen med en vanlig video du trykker play på, ikke en svart slide.
-  // data-autoplay-src er den samme med autoplay=1&mute=1, og byttes inn av
-  // skriptet. (mute=1 er påkrevd; nettlesere blokkerer autoplay med lyd.)
-  //
-  // Dette må gjøres i JS, ikke CSS: Marpit prefikser alle selektorer — også i en
-  // global style-blokk — med section-scopet, mens aktiv-klassen bespoke-marp-active
-  // ligger på svg-elementet OVER section, altså utenfor rekkevidde derfra.
-  //
-  // VIKTIG: ingen bruk av tegnet «større enn» i denne blokka. Marp escaper det
-  // til en HTML-entitet inne i inline-script, og da knekker JS-en. Derfor
-  // function () i stedet for pilfunksjoner, og === i stedet for sammenligninger.
-  (function () {
-    const frame = document.getElementById('forma-demo');
-    if (!frame) return;
-    const intro = frame.parentElement.querySelector('.demo-intro');
-    const idleSrc = frame.src;
-    const slide = frame.closest('svg');
-    let timer;
-    function activate() {
-      frame.src = frame.dataset.autoplaySrc; // Ny src = starter forfra.
-      if (!intro) return;
-      intro.classList.remove('is-hidden');
-      clearTimeout(timer);
-      timer = setTimeout(function () { intro.classList.add('is-hidden'); }, 5000);
-    }
-    function deactivate() {
-      frame.src = idleSrc; // Stopper avspilling når du går videre.
-      clearTimeout(timer);
-      if (intro) intro.classList.add('is-hidden');
-    }
-    // Bespoke legger på klassene sine ETTER at denne script-taggen er parset, så
-    // svg-en er ennå ikke merket når vi kommer hit. Poll litt før vi gir opp.
-    let tries = 0;
-    (function waitForBespoke() {
-      // Statisk eksport (PDF): ingen bespoke, la src stå spillbar som den er.
-      if (!slide || tries++ === 40) return;
-      if (!slide.classList.contains('bespoke-marp-slide')) {
-        setTimeout(waitForBespoke, 50);
-        return;
-      }
-      let wasActive = slide.classList.contains('bespoke-marp-active');
-      if (wasActive) activate();
-      else if (intro) intro.classList.add('is-hidden');
-      new MutationObserver(function () {
-        const isActive = slide.classList.contains('bespoke-marp-active');
-        if (isActive === wasActive) return;
-        wasActive = isActive;
-        if (isActive) activate(); else deactivate();
-      }).observe(slide, { attributes: true, attributeFilter: ['class'] });
-    })();
-  })();
-</script>
-
-<!-- Say: 60 sekunder klipp. Ikke snakk over hele — la den rulle, og kommenter
-     bare det som skjer på slutten. -->
-<!-- TODO ~1:00 -->
+<!-- Say: «først kommer arkitekten.» Les de tre spørsmålene, ikke ordrett — de
+     står der for publikum, ikke for deg. -->
+<!-- TODO ~0:20 -->
 
 ---
 
-# Tidligfase: alt er åpent, ingenting er tegnet
+<!-- _class: demo overlay -->
 
-<style scoped>
-/* Sliden hadde ca. 135 px ubrukt plass nederst. Den går nå til luft. */
-.cols-2 { gap: 2.4em; margin-top: 0.7em; }
-.kicker { margin-bottom: 0.85em; }
-li { margin: 0.7em 0; }
-/* margin-top: auto virker fordi Marp gjør section til en flex-kolonne: auto
-   spiser all resterende høyde, så callouten legger seg i bunnen uansett hvor
-   mye tekst spaltene over har. Ingen magiske pikselverdier å vedlikeholde. */
-.callout { margin-top: auto; }
-</style>
+<!-- Steg 3: utbyggeren kommer inn ved siden av. Arkitekten står i samme spalte
+     som på forrige slide, så figuren ikke hopper når du klikker. -->
 
-<div class="cols-2">
+![](figures/video/stills/tomt.jpg)
 
-<div>
-
-<div class="kicker">Arkitekten lurer på</div>
-
-- Hvor mange kvadratmeter får jeg plass til her?
-- Hvor skal bygget stå, og hvor høyt kan det bli?
-- Blir det bra her — sol, lys, luft, lyd?
-
+<div class="roles-holder">
+<div class="roles">
+<div class="role">
+<div class="bubble"><ul>
+<li>Hvor mange kvadratmeter får jeg plass til her?</li>
+<li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
+<li>Blir det bra her — sol, lys, luft, lyd?</li>
+</ul></div>
+<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+</div>
+<div class="role">
+<div class="bubble"><ul>
+<li>Går regnestykket opp?</li>
+<li>Hva må vi dokumentere for kommunen?</li>
+<li>Hva koster det å ombestemme seg om tre måneder?</li>
+</ul></div>
+<div class="figure"><img src="figures/illustrations/rolle-utbygger.svg" alt=""><span class="name">Utbyggeren</span></div>
+</div>
+</div>
 </div>
 
-<div>
+<!-- Say: «og så kommer den som betaler.» Arkitekten spør om form, utbyggeren om
+     risiko — begge trenger svar før noe er tegnet ferdig. Punchlinja «noen få
+     uker der nesten alt avgjøres» sier du her, i stedet for å vise den. -->
+<!-- TODO ~0:25 -->
 
-<div class="kicker">Utbyggeren lurer på</div>
+---
 
-- Går regnestykket opp?
-- Hva må vi dokumentere for kommunen?
-- Hva koster det å ombestemme seg om tre måneder?
+<!-- _class: demo overlay logo-card -->
 
+<!-- Logokortet fra filmen (1 s). Det rammer inn Forma-delen: ett foran videoen,
+     ett etter vind- og AI-bildene. Marp-klassen logo-card skjuler vår egen
+     Autodesk-logo nederst til venstre, siden kortet alt har en midt i bildet. -->
+
+![](figures/video/stills/logo.jpg)
+
+<!-- Say: ikke stå her. Klikk videre med én gang — kortet er en sceneanvisning,
+     ikke en slide. -->
+<!-- TODO ~0:05 -->
+
+---
+
+<!-- _class: demo flipbook on-dark -->
+
+![](figures/video/flipbook/forma-demo-001.jpg)
+
+<div class="demo-label">
+<div class="kicker">Forma Site Design</div>
+Tidligfase, rett i nettleseren
 </div>
 
+---
+
+<!-- _class: demo flipbook on-dark -->
+<!-- _paginate: false -->
+
+![](figures/video/flipbook/forma-demo-002.jpg)
+
+<div class="demo-label">
+<div class="kicker">Kontekst</div>
+Skriv inn adressen
 </div>
 
-<div class="callout">
+---
 
-Noen få uker der nesten alt avgjøres.
+<!-- _class: demo flipbook -->
+<!-- _paginate: false -->
 
+![](figures/video/flipbook/forma-demo-003.jpg)
+
+<div class="demo-label">
+<div class="kicker">Kontekst</div>
+Velg tomta
 </div>
 
-<!-- Say: dette er rammen for hele resten av talken. Alt vi bygger, bygges for
-     disse ukene. -->
-<!-- TODO ~0:45 -->
+---
+
+<!-- _class: demo flipbook -->
+<!-- _paginate: false -->
+
+![](figures/video/flipbook/forma-demo-004.jpg)
+
+<div class="demo-label">
+<div class="kicker">Design</div>
+Tegn volumene direkte i 3D
+</div>
+
+---
+
+<!-- _class: demo flipbook -->
+<!-- _paginate: false -->
+
+![](figures/video/flipbook/forma-demo-005.jpg)
+
+<div class="demo-label">
+<div class="kicker">Design</div>
+Arealtallene oppdateres mens du tegner
+</div>
+
+---
+
+<!-- _class: demo flipbook -->
+<!-- _paginate: false -->
+
+![](figures/video/flipbook/forma-demo-006.jpg)
+
+<div class="demo-label">
+<div class="kicker">Analyse</div>
+Soltimer
+</div>
+
+---
+
+<!-- _class: demo flipbook -->
+<!-- _paginate: false -->
+
+![](figures/video/flipbook/forma-demo-008.jpg)
+
+<div class="demo-label">
+<div class="kicker">Analyse</div>
+Sammenlign alternativer side om side
+</div>
 
 ---
 
 # Analyser i Autodesk Forma
 
 <style scoped>
+/* Portrettene oppe til høyre: «det er dette vi jobber med». De ligger i
+   overskriftsbåndet, over streken under h1-en, så de ikke stjeler plass fra
+   rutenettet under. 58 px er valgt så de får plass mellom margin-top og streken.
+   Sirklene overlapper litt — det leses som «vi to», ikke som to løsrevne bilder.
+   Den hvite ringen skiller dem fra hverandre der de overlapper. */
+.working-on {
+  position: absolute;
+  right: var(--margin-x);
+  top: 46px;
+  display: flex;
+  align-items: center;
+  gap: 0.85em;
+}
+.working-on span {
+  font-size: 0.58em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.35;
+  /* Bredt nok til at <br>-en styrer brekket, ikke innpakkingen. */
+  max-width: 11em;
+}
+.working-on .faces { display: flex; flex: none; }
+.working-on .faces img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ECEEEF;
+  display: block;
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px rgba(0, 0, 0, 0.10);
+}
+.working-on .faces img + img { margin-left: -14px; }
 .cols-3 .card {
   padding: 0;
   overflow: hidden;
@@ -296,6 +343,13 @@ Noen få uker der nesten alt avgjøres.
   margin: 0;
 }
 </style>
+
+<div class="working-on">
+  <div class="faces">
+    <img src="figures/people/vilde-3.jpg" alt="Vilde">
+    <img src="figures/people/sunniva.png" alt="Sunniva">
+  </div>
+</div>
 
 <div class="cols-3">
 
@@ -333,230 +387,407 @@ Noen få uker der nesten alt avgjøres.
 
 <div class="figcap">Alle seks kjørt på samme tomt: hovedbygget på Gløshaugen.</div>
 
-<!-- Say: seks analyser, samme modell, samme ettermiddag. Pek på vind — «den ene
-     nederst til høyre er den vi skal snakke om resten av tiden.» -->
-<!-- TODO ~0:50 -->
+<!-- Say: seks analyser, samme modell, samme ettermiddag. La dem se bredden
+     her — ikke pek på noen enkelt ennå. Neste slide er den samme, med vind
+     ringet inn, og da tar du valget for dem. -->
+<!-- TODO ~0:40 -->
 
 ---
 
-
-# Vindkomfort
+# Analyser i Autodesk Forma
 
 <style scoped>
-.wind { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.5em; align-items: start; }
-/* Kartet er høyere enn skalaen, så skalaen sentreres mot det i stedet for å
-   henge i toppen med et tomrom under. align-self, ikke align-items: kartet skal
-   fortsatt ligge i topp — det er det som setter høyden på raden. */
-.wind > div:last-child { align-self: center; }
-/* Bildet er 2460x1606 — uten høydetak presser det callouten ned i logoen. */
-.wind img { height: 430px; width: 100%; object-fit: cover; object-position: center 45%; }
-.scale { list-style: none; margin: 0.2em 0 0 0; padding: 0; font-size: 0.78em; }
-.scale li { display: grid; grid-template-columns: 1em 1fr; gap: 0.75em; margin: 0.5em 0; align-items: baseline; }
-.scale .sw { width: 1em; height: 1em; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
-.scale b { font-weight: 700; }
-.scale span.txt { color: var(--muted); font-size: 0.9em; display: block; }
-.wind .callout { font-size: 0.82em; margin-top: 1.1em; }
+/* Portrettene oppe til høyre: «det er dette vi jobber med». De ligger i
+   overskriftsbåndet, over streken under h1-en, så de ikke stjeler plass fra
+   rutenettet under. 58 px er valgt så de får plass mellom margin-top og streken.
+   Sirklene overlapper litt — det leses som «vi to», ikke som to løsrevne bilder.
+   Den hvite ringen skiller dem fra hverandre der de overlapper. */
+.working-on {
+  position: absolute;
+  right: var(--margin-x);
+  top: 46px;
+  display: flex;
+  align-items: center;
+  gap: 0.85em;
+}
+.working-on span {
+  font-size: 0.58em;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.35;
+  /* Bredt nok til at <br>-en styrer brekket, ikke innpakkingen. */
+  max-width: 11em;
+}
+.working-on .faces { display: flex; flex: none; }
+.working-on .faces img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ECEEEF;
+  display: block;
+  box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px rgba(0, 0, 0, 0.10);
+}
+.working-on .faces img + img { margin-left: -14px; }
+.cols-3 .card {
+  padding: 0;
+  overflow: hidden;
+  align-self: start;
+  border-top: 1px solid var(--rule);
+}
+.cols-3 .card img {
+  display: block;
+  width: 100%;
+  /* 6.6em, ikke 7: bildeteksten under rutenettet trenger luft mot logoen. */
+  height: 6.6em;
+  object-fit: cover;
+}
+.cols-3 .card .figcap {
+  padding: 0.5em 0.7em;
+  margin: 0;
+}
+/* Ringen rundt vindkortet. overflow må settes tilbake til visible — kortene
+   klipper innholdet sitt, og ringen ligger utenfor kanten.
+   Ellipse og ikke en ramme rundt firkanten: det er samme tegn som den røde
+   ringen rundt tomta på Hesthagen-kartet, så decket bruker det konsekvent.
+   Sidene stikker mindre ut enn topp og bunn, fordi rutenettets kolonnegap er
+   det eneste som er ledig til hver side. */
+.cols-3 .card.ring {
+  position: relative;
+  overflow: visible;
+}
+.cols-3 .card.ring::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -13px;
+  right: -13px;
+  bottom: -12px;
+  border: 4px solid #D8352A;
+  border-radius: 50%;
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
 </style>
 
-<div class="wind">
-
-<div>
-<img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-<div class="figcap"><span class="figref">Figur</span> Komfortkart for vind, hovedbygget på Gløshaugen. Egen Forma-analyse.</div>
+<div class="working-on">
+  <div class="faces">
+    <img src="figures/people/vilde-3.jpg" alt="Vilde">
+    <img src="figures/people/sunniva.png" alt="Sunniva">
+  </div>
 </div>
 
-<div>
+<div class="cols-3">
 
-<div class="kicker">Komfortskalaen — Lawson LDDC</div>
+<div class="card">
+<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<div class="figcap"><span class="figref">Støy</span></div>
+</div>
 
-<!--
-FARGER OG NAVN ER HENTET FRA KODEN, ikke funnet på:
+<div class="card">
+<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<div class="figcap"><span class="figref">Solenergi</span></div>
+</div>
 
-  wind-analysis-ui/src/analysis/surfaceResult/windColors.ts:15
-      comfortColors = ["#B2F8DA","#55DCA2","#FED52A","#FFA900","#FF463A"]
-  wind-analysis-ui/src/i18n/translations/nb-NO/texts.json
-      comfort.labels = Sitte / Stå / Rusle / Gå / Ukomfortabelt
-  wind-surrogate/wind/lib/comfort.py:77
-      lawson_lddc: speed_thresholds [2.5, 4, 6, 8] m/s, 5 % for alle fire
-  wind-surrogate/wind/lib/comfort.py:130-152
-      compute_comfort(): klasse 0-4, én klasse per terskel som overskrides
+<div class="card">
+<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<div class="figcap"><span class="figref">Dagslys</span></div>
+</div>
 
-Fem kategorier, ikke fire — klasse 0 er den roligste og har ingen terskel.
-Samme palett i både CFD-appen og ML-webkomponenten.
--->
-<ul class="scale">
-<li><span class="sw" style="background:#B2F8DA"></span><span><b>Sitte</b><span class="txt">Under 2,5 m/s nesten hele året</span></span></li>
-<li><span class="sw" style="background:#55DCA2"></span><span><b>Stå</b><span class="txt">Over 2,5 m/s mer enn 5 % av tiden</span></span></li>
-<li><span class="sw" style="background:#FED52A"></span><span><b>Rusle</b><span class="txt">Over 4 m/s mer enn 5 % av tiden</span></span></li>
-<li><span class="sw" style="background:#FFA900"></span><span><b>Gå</b><span class="txt">Over 6 m/s mer enn 5 % av tiden</span></span></li>
-<li><span class="sw" style="background:#FF463A"></span><span><b>Ukomfortabelt</b><span class="txt">Over 8 m/s mer enn 5 % av tiden</span></span></li>
-</ul>
+<div class="card">
+<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<div class="figcap"><span class="figref">Mikroklima</span></div>
+</div>
 
+<div class="card">
+<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<div class="figcap"><span class="figref">Sol</span></div>
+</div>
+
+<div class="card ring">
+<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<div class="figcap"><span class="figref">Vind</span></div>
 </div>
 
 </div>
 
-<div class="todo">Bygge overgang til neste slide</div>
+<div class="figcap">Alle seks kjørt på samme tomt: hovedbygget på Gløshaugen.</div>
 
-<!-- Say: pek på de oransje flekkene ved bygningshjørnene. Det er der vinden
-     akselererer — og der arkitekten hadde tenkt en benk. -->
-<!-- TODO ~1:10 -->
+<!-- Say: «og det er denne ene vi skal bruke resten av tiden på.» Hold på
+     ringen et øyeblikk før du går videre — det er her vindfortellingen
+     begynner. Ikke forklar hvorfor vind ennå; det kommer på neste slide. -->
+<!-- TODO ~0:15 -->
 
 ---
 
-<!-- _class: section -->
+<!-- _class: result-build -->
 
-# Regulering av Hesthagen
-## Case
-<!-- TODO ~0:10 -->
+# Fra vind: komfortabelhet
+
+<div class="build">
+
+<div></div>
+
+<div></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div></div>
+
+<div></div>
+
+</div>
+
+<!-- Say: dette er svaret arkitekten ser. Ingen modell, ingen ligning — bare
+     resultatet, og fargene som sier hva det betyr. La det stå litt.
+     De to neste slidene legger på hvor svaret kommer fra. -->
+<!-- TODO ~0:30 -->
 
 ---
-# Hesthagen — fra parkeringsplass til bygg
 
-<style scoped>
-section { font-size: 22px; }
-/* Kartfila er 1000x625 (1,6:1), som i denne spalten blir ca. 349 px høyt — akkurat
-   lavt nok til at callouten under ikke havner i logoen. */
-.cols-2 img { display: block; width: 100%; height: auto; }
-</style>
+<!-- _class: result-build -->
 
-<div class="cols-2">
+# Fra vind: komfortabelhet
 
-<div>
+<div class="build">
 
-<div class="kicker">Tomta og planen</div>
+<div class="panel">
+  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
 
-- Brukt som NTNU-parkering mellom Klæbuveien og Gløshaugen
-- En del av **NTNUs samlokaliseringstrategi**
-- Fem etasjers hus der bilene står i dag
-- Torg, trapp, gangbru og en offentlig plass rundt bygget
-
-</div>
-
-<div>
-
-<!--
-BRUK -ring-fila her, ikke hesthagen-kart.png. Den røde ringen rundt tomta er
-brent inn i derivatfila; kildekartet har ingen ring. Marp klarte ikke å legge
-ringen på i inline SVG (hver slide rendres inne i sin egen <svg>, og en nøstet
-SVG med ekstern <image> falt ut av eksporten), så den ligger i PNG-en.
-
-Skal ringen flyttes: skriptet står i README under «Kartet med ring».
--->
-<img src="figures/illustrations/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
-<div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Rød ring: tomta som reguleres. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
-
-</div>
-
-</div>
-
-<div class="callout">
-
-Mye av det planen lover, er uterom.
-</div>
-
-
-<!-- Say: «dette er tomta, og halve salen har parkert der.» Gjør det lokalt før
-     du gjør det teknisk, og les callouten sakte — det er svingen inn til
-     vindanalysen.
-
-     Detaljregulering r20200032, vedtatt av bystyret 2. mars 2023. Kildene lå på
-     sliden før, men 0,58em på projektor leser ingen — ta dem muntlig om noen
-     spør:
-       https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/
-       https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim
--->
-<!--
-FIGUR: sliden tåler en massevolum-render i stedet for kartet. Lag den i Forma fra
-reguleringskartet og eksporter selv — IKKE klipp ut illustrasjonene fra
-planbeskrivelsen. De er forslagsstillerens, og repoet er offentlig (se «Ikke
-bruk» i README).
--->
-<!-- TODO ~0:50 -->
-
----
-# Fysikkmodellen
-
-<style scoped>
-section { font-size: 23px; }
-/* Ligningen skal fylle mer av sliden — den er poenget her, ikke en fotnote. */
-.katex-display { margin: 0.5em 0 0.35em; }
-.katex-display > .katex { font-size: 1.25em; }
-.eqname { text-align: center; color: var(--muted); font-size: 0.72em; line-height: 1.5; margin: 0 0 1.1em; }
-.eqname strong { color: var(--ink); font-weight: 700; }
-.eqname code { font-size: 0.9em; }
-</style>
-
-<!--
-LIGNINGEN ER VERIFISERT MOT KODEN i spacemakerai/wind-analysis-backend:
-
-  openfoam/UEqn.H          fvm::div(phi, U) + turbulence->divDevReff(U)
-                           == -fvc::grad(p), pluss
-                           fvm::Sp(0.2*leafAreaDensity*mag(U), U)
-  openfoam/createFields.H  leser inn feltet leafAreaDensity
-  openfoam/realizableKE.*  patchet realizable k–epsilon (Shih et al. 1995)
-  openfoam/Dockerfile.openfoam  OpenFOAM v2306, solver simpleFoam
-  README.md:87             «simpleFoam with custom realizableKE turbulence model»
-
-Tre ting den forrige ligningen tok feil:
-  1. Den hadde du/dt. simpleFoam har ingen ddt-term — vi løser det STASJONÆRE
-     problemet, altså den ferdig utblåste tilstanden, ikke forløpet dit.
-  2. Den hadde bare molekylær viskositet nu. Vi løser de REYNOLDS-MIDLEDE
-     ligningene, der nu erstattes av nu + nu_t og nu_t kommer fra k–epsilon.
-  3. Den manglet vegetasjonsleddet, som er vår egen endring av solveren.
-
-c_d = 0,2 er hardkodet i UEqn.H, a er leafAreaDensity (bladarealtetthet).
-Vil du droppe trærne fra sliden, er det ett \underbrace å slette.
--->
 $$
 \begin{aligned}
-\underbrace{(\mathbf{U}\cdot\nabla)\mathbf{U}}_{\text{vinden flytter seg selv}}
-\;&=\; -\nabla p
-\;+\; \underbrace{\nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big]}_{\text{friksjon og turbulens}}
-\;-\; \underbrace{c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U}}_{\text{trær}} \\[0.4em]
-\nabla\cdot\mathbf{U} \;&=\; 0
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
 \end{aligned}
 $$
 
-<div class="eqname"><strong>Reynolds-midlede Navier–Stokes-ligninger</strong> — stasjonære og inkompressible<br>lukket med <strong>realizable k–ε</strong> · løst i OpenFOAM med <code>simpleFoam</code></div>
+  <p class="t">Timer per iterasjon.</p>
+</div>
 
-<div class="cols-2">
+<div class="arr to-right"></div>
 
-<div>
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
 
-<div class="kicker">Hva som står der</div>
+<div></div>
 
-- $\mathbf{U}$ — den **tidsmidlede** vinden, ikke vindkast
-- Newtons andre lov for en luftpakke, pluss: luft blir ikke borte
-- Ingen formel gir svaret — det må regnes ut, punkt for punkt. Det er dette «numerikk» betyr
+<div></div>
 
 </div>
 
-<div>
+<!-- Say: «dette er hvordan vi FAKTISK regner det ut.» Ligningen er den
+     stasjonære RANS-en simpleFoam løser, med vårt eget vegetasjonsledd. Ikke gå
+     gjennom leddene her — den annoterte versjonen kommer på Fysikkmodell-sliden.
+     Poenget nå er bare: timer. -->
+<!-- TODO ~0:25 -->
 
-<div class="kicker">Derfor tar det tid</div>
+---
 
-- Del tomta i celler: millioner av dem for et bykvartal
-- Løs ligningene i hver celle, om og om igjen, til svaret står stille
-- Gjenta for hver vindretning, og vekt med vindstatistikken for stedet
+<!-- _class: result-build -->
 
+# Fra vind: komfortabelhet
+
+<div class="build">
+
+<div class="panel">
+  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
+
+$$
+\begin{aligned}
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
+\end{aligned}
+$$
+
+  <p class="t">Timer per iterasjon.</p>
+</div>
+
+<div class="arr to-right"></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div class="arr ai to-left"></div>
+
+<div class="panel ai">
+  <img src="figures/illustrations/modell-surrogat.svg" alt="">
+  <p class="h">Surrogatmodellen</p>
+  <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
+  <p class="t">Sekunder per iterasjon.</p>
 </div>
 
 </div>
 
+<!-- Say: «og dette er den andre veien til det samme bildet.» Begge pilene
+     peker inn mot samme kart — det er hele argumentet. Så: timer mot sekunder,
+     og hvorfor det avgjør hvem som kan bruke modellen. -->
+<!-- TODO ~0:30 -->
 
+---
 
-<div class="todo">gøy med matte eller stack overflow?</div>
+# To modeller, ett svar
 
-<!-- Say: ikke gå gjennom ligningen ledd for ledd. Poenget er ett: den kan ikke
-     løses, bare regnes — og det er ikke koden som er treg, det er problemet.
-     Flere celler og flere retninger er den eneste veien til et bedre svar.
+<style scoped>
+section { font-size: 22px; }
 
-     Har du 20 sekunder til overs: siste ledd er vår egen endring av solveren.
-     Trær er ikke vegger — de bremser vinden i forhold til hvor tett bladverket
-     er (a = bladarealtetthet), og c_d = 0,2. Det er en fin illustrasjon av at
-     «fysikkmodellen» ikke er noe man laster ned ferdig. -->
-<!-- TODO ~1:20 -->
+.lead { margin: 0.2em 0 0; font-size: 0.9em; color: var(--muted); max-width: 52em; }
+
+/* 300 px sider og ikke 200: sidene bærer nå egenskapene fra «Hva skiller dem»,
+   ikke bare en tidsangivelse. Det gjør kartet i midten mindre, men til gjengjeld
+   står forskjellene og det felles svaret på samme slide. */
+.trio {
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 1.4em;
+  align-items: start;
+  margin-top: 1.1em;
+}
+
+.trio .card { border-top-width: 3px; padding: 0.8em 0.9em 0.9em; }
+.trio .card.ai { border-top-color: var(--accent); background: var(--accent-soft); }
+
+/* Ikon og navn på samme linje sparer høyden en egen ikonrad ville tatt. */
+.trio .head { display: grid; grid-template-columns: 64px 1fr; gap: 0.7em; align-items: center; }
+.trio .head img { width: 64px; height: 64px; display: block; }
+.trio .head h3 { margin: 0; font-size: 1em; line-height: 1.15; }
+.trio .card.ai .head h3 { color: var(--accent); }
+
+/* Tiden er den største forskjellen mellom de to, så den får display-snittet og
+   egen linje. Resten av egenskapene står under, i mindre skrift. */
+.trio .clock {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.45em;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0.7em 0 0;
+}
+.trio .card.ai .clock { color: var(--accent); }
+.trio .clock span { font-family: var(--sans); font-weight: 400; font-size: 0.44em; color: var(--muted); margin-left: 0.4em; letter-spacing: 0; }
+
+.trio ul { margin: 0.7em 0 0; padding-left: 1.1em; font-size: 0.82em; }
+.trio li { margin: 0.32em 0; }
+
+.trio .mid img { display: block; width: 100%; height: auto; }
+.trio .mid .figcap { margin-top: 0.5em; text-align: center; }
+
+/* Fargeforklaringen, samme som på komfort-sliden. Fargene og navnene er
+   verifisert mot koden der — ikke funnet på her. */
+.scale-strip { margin-bottom: 0.7em; }
+.scale-strip .kicker { margin-bottom: 0.45em; font-size: 0.62em; }
+.scale-strip .row { display: grid; grid-template-columns: repeat(5, max-content); justify-content: space-between; gap: 0.4em; }
+.scale-strip .row > div { font-size: 0.56em; line-height: 1.25; white-space: nowrap; }
+.scale-strip .sw {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14);
+  margin-right: 0.35em;
+  vertical-align: -0.07em;
+}
+.scale-strip .t { display: block; color: var(--muted); font-size: 0.88em; margin-top: 0.12em; }
+</style>
+
+<p class="lead">Begge svarer på det samme spørsmålet — hvordan vinden oppfører seg mellom byggene. Forskjellen er hvor nøyaktig svaret blir, og hvor lenge du må vente på det.</p>
+
+<div class="trio">
+
+<div class="card">
+  <div class="head">
+    <img src="figures/illustrations/modell-cfd.svg" alt="">
+    <h3>Fullverdig CFD</h3>
+  </div>
+  <p class="clock">Timer<span>per kjøring</span></p>
+  <ul>
+    <li>Nøyaktig, og etterprøvbar</li>
+    <li>Kjøres én gang, til slutt</li>
+    <li><b>Dokumenterer</b> et valg som alt er tatt</li>
+  </ul>
+</div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Samme komfortkart — uansett hvilken av dem som regnet det ut.</div>
+</div>
+
+<div class="card ai">
+  <div class="head">
+    <img src="figures/illustrations/modell-surrogat.svg" alt="">
+    <h3>Surrogatmodellen</h3>
+  </div>
+  <p class="clock">Sekunder<span>per kjøring</span></p>
+  <ul>
+    <li>Omtrentlig, med et avvik vi måler</li>
+    <li>Kjøres hele tiden, mens man tegner</li>
+    <li><b>Tar</b> valget, sammen med arkitekten</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- Say: les inngangslinja først — den gjør at de to sidene leses som to
+     nøyaktighetsnivåer for samme svar, og ikke som to ulike verktøy.
+     Pek så på «Timer» mot «Sekunder». Det er den forskjellen som avgjør hvem
+     som kan bruke modellen, og når. Kartet i midten er beviset på at de svarer
+     på det samme. -->
+<!-- TODO ~0:45 -->
 
 ---
 
@@ -647,64 +878,109 @@ img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: 
 
 ---
 
-# To vindmodeller
+# Regulering av Hesthagen
+## Case
+<!-- TODO ~0:10 -->
+
+---
+
+# Hesthagen — fra parkeringsplass til bygg
 
 <style scoped>
-.cols-2 { gap: 1.4em; }
-.card { border-top-width: 3px; }
-.card.ai { border-top-color: var(--accent); background: var(--accent-soft); }
-.card ul { font-size: 0.84em; margin-top: 0.4em; }
-.card li { margin: 0.3em 0; }
-/* Punchlinja fra statement-sliden, flyttet inn hit: samme rolle, mindre type. */
-.punch { margin-top: 4em; border-left: 3px solid var(--accent); padding-left: 0.9em; }
-.punch .line {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.7em;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-}
-.punch .sub { margin: 0.25em 0 0; color: var(--muted); font-size: 0.82em; }
+section { font-size: 22px; }
+/* Kartfila er 1000x625 (1,6:1), som i denne spalten blir ca. 349 px høyt — akkurat
+   lavt nok til at callouten under ikke havner i logoen. */
+.cols-2 img { display: block; width: 100%; height: auto; }
 </style>
 
 <div class="cols-2">
 
-<div class="card">
+<div>
 
-<h3>Fullverdig CFD</h3>
+<div class="kicker">Tomta og planen</div>
 
-- Nøyaktig, og etterprøvbar
-- Timer per kjøring
-- Kjøres én gang, til slutt
-- **Dokumenterer** et valg som alt er tatt
-
-</div>
-
-<div class="card ai">
-
-<h3>Surrogatmodellen</h3>
-
-- Omtrentlig, med et avvik vi måler
-- Sekunder per kjøring
-- Kjøres hele tiden, mens man tegner
-- **Tar** valget, sammen med arkitekten
+- Brukt som NTNU-parkering mellom Klæbuveien og Gløshaugen
+- En del av **NTNUs samlokaliseringstrategi**
+- Fem etasjers hus der bilene står i dag
+- Torg, trapp, gangbru og en offentlig plass rundt bygget
 
 </div>
 
+<div>
+
+<!--
+BRUK -ring-fila her, ikke hesthagen-kart.png. Den røde ringen rundt tomta er
+brent inn i derivatfila; kildekartet har ingen ring. Marp klarte ikke å legge
+ringen på i inline SVG (hver slide rendres inne i sin egen <svg>, og en nøstet
+SVG med ekstern <image> falt ut av eksporten), så den ligger i PNG-en.
+
+Skal ringen flyttes: skriptet står i README under «Kartet med ring».
+-->
+<img src="figures/illustrations/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
+<div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Rød ring: tomta som reguleres. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
+
 </div>
 
-<div class="punch">
-  <p class="sub">Surrogatmodellen gir arkitekten mulighet til å teste mange alternativer — mens det ennå går an å endre dem.</p>
 </div>
 
-<!-- Say: gå gjennom kortene raskt, kolonne mot kolonne, ikke punkt for punkt.
-     Viktig nyanse: vi erstatter ikke CFD, vi flytter den bakover i prosessen.
-     Vær ærlig om avviket hvis noen spør; ikke selg det som gratis.
+<div class="callout">
 
-     Så pause, snu deg mot punchlinja og si den — dette er betalingen for
-     tittelen. Hold pausen etterpå, selv om sliden ikke lenger er tom. -->
-<!-- TODO ~0:55 -->
+Mye av det planen lover, er uterom.
+</div>
+
+
+<!-- Say: «dette er tomta, og halve salen har parkert der.» Gjør det lokalt før
+     du gjør det teknisk, og les callouten sakte — det er svingen inn til
+     vindanalysen.
+
+     Detaljregulering r20200032, vedtatt av bystyret 2. mars 2023. Kildene lå på
+     sliden før, men 0,58em på projektor leser ingen — ta dem muntlig om noen
+     spør:
+       https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/
+       https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim
+-->
+<!--
+FIGUR: sliden tåler en massevolum-render i stedet for kartet. Lag den i Forma fra
+reguleringskartet og eksporter selv — IKKE klipp ut illustrasjonene fra
+planbeskrivelsen. De er forslagsstillerens, og repoet er offentlig (se «Ikke
+bruk» i README).
+-->
+<!-- TODO ~0:50 -->
+
+---
+
+# Den kjører mens du tegner
+
+<style scoped>
+.ph {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(45deg, #F4F4F4 0 12px, #EDEDED 12px 24px);
+  color: var(--muted);
+  font-size: 0.85em;
+  text-align: center;
+  padding: 0 3em;
+  margin-top: 0.6em;
+}
+</style>
+
+<div class="ph">
+Opptak fra Hesthagen-modellen i Forma: flytt et volum, og se vindfeltet regne
+seg om.<br>Skjermopptak → figures/video/hesthagen-demo.mp4
+</div>
+
+<div class="todo">
+Mangler opptaket. Ta det opp selv fra Forma på Hesthagen-prosjektet — 10–15
+sekunder holder, og det tåler å gå på loop. Legg fila i talk/figures/video/ (den
+er gitignorert) og bruk tools/flipbook.sh --shots for å lage PDF-bildene, samme
+oppskrift som forma-demo. Se README, «To sett bilder».
+</div>
+
+<!-- Say: dette er hele poenget, demonstrert. Ikke forklar mens den kjører —
+     la dem se at tallet endrer seg i det volumet flyttes. -->
+<!-- TODO ~0:40 -->
 
 ---
 
