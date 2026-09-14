@@ -385,11 +385,10 @@ Sammenlign alternativer side om side
 
 </div>
 
-<div class="figcap">Alle seks kjørt på samme tomt: hovedbygget på Gløshaugen.</div>
 
 <!-- Say: seks analyser, samme modell, samme ettermiddag. La dem se bredden
      her — ikke pek på noen enkelt ennå. Neste slide er den samme, med vind
-     ringet inn, og da tar du valget for dem. -->
+     markert, og da tar du valget for dem. -->
 <!-- TODO ~0:40 -->
 
 ---
@@ -449,27 +448,15 @@ Sammenlign alternativer side om side
   padding: 0.5em 0.7em;
   margin: 0;
 }
-/* Ringen rundt vindkortet. overflow må settes tilbake til visible — kortene
-   klipper innholdet sitt, og ringen ligger utenfor kanten.
-   Ellipse og ikke en ramme rundt firkanten: det er samme tegn som den røde
-   ringen rundt tomta på Hesthagen-kartet, så decket bruker det konsekvent.
-   Sidene stikker mindre ut enn topp og bunn, fordi rutenettets kolonnegap er
-   det eneste som er ledig til hver side. */
+/* Vindkortet er markert med en ramme rundt selve kortet, ikke en ellipse rundt
+   det. outline og ikke border: outline tar ikke plass i rutenettet, så de seks
+   kortene står like store og på samme linje som uten markeringen. Fargen er
+   hentet fra strømlinjene i vindbildet selv (#0A42D7, plukket fra kjernen av
+   linjene), så markeringen peker på bildet i stedet for å konkurrere med det. */
 .cols-3 .card.ring {
   position: relative;
-  overflow: visible;
-}
-.cols-3 .card.ring::after {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: -13px;
-  right: -13px;
-  bottom: -12px;
-  border: 4px solid #D8352A;
-  border-radius: 50%;
-  transform: rotate(-3deg);
-  pointer-events: none;
+  outline: 3px solid #0A42D7;
+  outline-offset: 3px;
 }
 </style>
 
@@ -514,10 +501,9 @@ Sammenlign alternativer side om side
 
 </div>
 
-<div class="figcap">Alle seks kjørt på samme tomt: hovedbygget på Gløshaugen.</div>
 
 <!-- Say: «og det er denne ene vi skal bruke resten av tiden på.» Hold på
-     ringen et øyeblikk før du går videre — det er her vindfortellingen
+     rammen et øyeblikk før du går videre — det er her vindfortellingen
      begynner. Ikke forklar hvorfor vind ennå; det kommer på neste slide. -->
 <!-- TODO ~0:15 -->
 
