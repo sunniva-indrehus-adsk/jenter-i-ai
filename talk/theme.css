@@ -406,6 +406,38 @@ section.demo .demo-intro.is-hidden {
    det skal bare gi hvit skrift nok kontrast. Det er forskjellen på en tett
    svart boks og et mykt sjikt. */
 
+/* Kildehenvisning på bilde-slidene, oppe til høyre.
+
+   Den er ikke pynt. Flyfotoet er Geovekst-data under Norge digitalt-lisensen og
+   kartet er Kartverket under CC BY 4.0 — begge krever kreditering, og repoet er
+   offentlig. På slidene med figurtekst står henvisningen i .figcap; de
+   fullflate-bildene har ingen bildetekst å legge den i, så den ligger her.
+
+   Oppe til høyre fordi alt annet er opptatt: logoen er nede til venstre,
+   sidetallet nede til høyre, og merkelappen nede til venstre over logoen.
+   <header> bruker samme hjørne, men ingen av bilde-slidene har header. */
+section.overlay .photo-credit {
+  position: absolute;
+  top: 26px;
+  right: var(--margin-x);
+  max-width: 46%;
+  text-align: right;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--ink);
+  /* Lys flate bak, av samme familie som merkelappen — teksten skal kunne stå
+     mot både lys asfalt og mørke trekroner uten å bytte farge. */
+  background: rgba(255, 255, 255, 0.62);
+  border-radius: 6px;
+  padding: 5px 9px 6px;
+}
+
+section.overlay .photo-credit a {
+  color: var(--ink);
+  border-bottom: 0;
+}
+
 /* Bærer for rollekortene på slide 5 og 6. De trenger hele bredden, mens
    merkelappen under er en flate som hugger teksten — derfor to elementer. */
 section.overlay .roles-holder {
@@ -566,6 +598,125 @@ section.overlay .figure .name {
   color: var(--paper);
 }
 
+/* ── Rollene til VENSTRE for tomta, stablet ───────────────────────────────
+   Modifikator: <div class="roles-holder venstre">
+
+   Standardoppsettet legger rollene i to spalter over hele bredden nederst. To
+   ting ble galt med det her: snakkeboblene havnet rett oppå tomta, og den røde
+   streken er det eneste sliden egentlig peker på. Og da bæreren ble klemt inn i
+   venstre halvdel, ble hver spalte bare ca. 300 px — spørsmålene brakk over tre
+   linjer hver.
+
+   Løsningen er å stable i stedet for å sette side om side: ÉN spalte, to rader.
+   Da får hver boble hele 614 px, og hvert spørsmål går på én linje.
+
+   47 % gir innhold fra x=64 til x=678 av 1280. Tomta starter på x=698 i
+   flyfotoet (se ROLLER-ramma i tools/hesthagen_slide4.py), altså 20 px klaring.
+   Endrer du ramma i skriptet, må dette tallet sjekkes på nytt.
+
+   Bæreren strekkes over hele høyden og pakker fra toppen, ikke fra bunnen.
+   Det er grunnen til at arkitekten står på samme sted på begge slidene:
+   første rad ligger der uansett om utbyggeren har kommet inn eller ikke.
+   Med bunnjustering ville arkitekten hoppet opp idet den andre dukket opp. */
+section.overlay .roles-holder.venstre {
+  /* Faste piksler og ikke prosent: grensa er tomtas venstre kant, og den er et
+     pikseltall fra bildet (x=698), ikke en brøkdel av flata. 64 + 608 + 64 =
+     736, så innholdet slutter på x=672 og har 26 px klaring til den røde
+     streken. Endrer du ROLLER-ramma i tools/hesthagen_slide4.py, er dette
+     tallet det første som må sjekkes. */
+  right: auto;
+  width: 736px;
+  top: 0;
+  padding: 56px var(--margin-x) 60px;
+  justify-content: flex-start;
+}
+
+/* Én spalte, to rader. Høyderegnskapet er målt på rendringen, ikke regnet ut:
+   boblene ble 15 px høyere enn antatt, og med figur på 165 px rant utbyggeren
+   ned i Autodesk-logoen.
+
+     56 px topp + 102 (boble, 2 linjer à 21 px) + 11 + 164 (figur + navn)
+        + 22 (mellomrom) + 102 + 11 + 164  =  632
+
+   Logoen ligger på y 675-690, så det er ca. 50 px klaring. Øker du figurhøyden
+   eller legger til et kulepunkt, må du ta det igjen et annet sted. */
+/* 21 px, ikke 16: dette er spørsmålene publikum skal lese fra salen, og de er
+   nå korte nok til å gå på én linje hver ved denne størrelsen. Den lengste er
+   «Hva koster det å ombestemme seg om tre måneder?» på 47 tegn, som tar ca.
+   534 px — akkurat innenfor boblens tekstbredde.
+
+   Legger du til et ord, sjekk at ingen linje brekker. Brekker den, er det
+   billigere å korte teksten enn å sette skriften ned igjen. */
+section.overlay .roles-holder.venstre .roles {
+  grid-template-columns: 1fr;
+  gap: 22px;
+  align-items: start;
+  font-size: 21px;
+}
+
+/* Figurene står i MOTSATT ende av hver sin boble: arkitekten til venstre,
+   utbyggeren til høyre. Begge sentrert under boblen ble prøvd først, og det ble
+   for statisk — to figurer rett under hverandre på samme akse. Forskjøvet blir
+   det liv i oppbyggingen, og utbyggeren kommer samtidig unna Autodesk-logoen
+   nede til venstre.
+
+   Arkitekten er venstrestilt på begge slidene, så figuren ikke hopper når
+   utbyggeren kommer inn. */
+section.overlay .roles-holder.venstre .role { align-items: flex-start; }
+section.overlay .roles-holder.venstre .role.fig-hoyre { align-items: flex-end; }
+
+section.overlay .roles-holder.venstre .bubble {
+  border-radius: 30px;
+  padding: 18px 26px 20px;
+}
+section.overlay .roles-holder.venstre .bubble ul { padding-left: 24px; }
+section.overlay .roles-holder.venstre .bubble li { margin: 6px 0; }
+/* Halen peker ned mot hodet, så den må følge figuren til sin ende av boblen.
+   44 px er midten av figuren: 140 px høy gir 89 px bredde (140:220 i
+   viewBoxen), altså halvparten 44. */
+section.overlay .roles-holder.venstre .bubble::after {
+  left: 44px;
+  bottom: -12px;
+  border-width: 12px 10px 0 10px;
+}
+section.overlay .roles-holder.venstre .role.fig-hoyre .bubble::after {
+  left: auto;
+  right: 44px;
+}
+
+/* Navnet UNDER figuren, sentrert.
+
+   Inne på kroppen måtte det ned i 9,5 px for å få plass — figuren er smal, og
+   «UTBYGGEREN» hang likevel ut over kanten på begge sider. Ved siden av
+   figuren ble det lesbart, men da flyttet tyngdepunktet seg til høyre og
+   figuren sto ikke lenger midt under boblen. Under er begge problemene løst:
+   navnet kan være så bredt det vil, og aksen holder.
+
+   Hvit tekst med mørk skygge, altså temaets egen farge — navnet ligger nå på
+   fotoet og ikke på den lyse kroppen, så det trenger ikke snus til mørkt.
+
+   140 px figur: se høyderegnskapet over. Navnet under legger 24 px til hver
+   rad, og de må betales et sted. */
+section.overlay .roles-holder.venstre .figure {
+  margin-top: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  line-height: 1;
+}
+section.overlay .roles-holder.venstre .figure img { height: 140px; }
+section.overlay .roles-holder.venstre .figure .name {
+  position: static;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--paper);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 10px rgba(0, 0, 0, 0.6);
+}
 
 /* Logoen og sidetallet er hvite på alle bilde-slides, fordi de fleste av dem er
    mørke i bunnen. På de som fyller flaten OG er lyse der nede blir de nesten

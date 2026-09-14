@@ -9,15 +9,9 @@ math: katex
 <!-- _header: '24.09.2026' -->
 <!-- paginate: false -->
 
-# AI i Autodesk
 
-## Jenter i AI
+# Jenter i AI
 
-
-
-<!-- Say: les tittelen høyt. «Det høres ut som en innrømmelse. Det er en
-     designbeslutning, og vi skal vise dere hvorfor.» -->
-<!-- TODO ~0:20 -->
 
 ---
 
@@ -26,22 +20,7 @@ math: katex
 # Jenter i Autodesk
 
 <style scoped>
-/* Vilde og Sunniva sto på hver sin slide før, med kulepunkter ved siden av
-   bildet. Nå står de sammen: to bildeklynger side om side, navnet under hver.
-   Sliden er en presentasjon av to personer, ikke to CV-er — resten fortelles
-   muntlig.
 
-   .person i temaet er én tekstspalte pluss én bildespalte, så den passer ikke
-   her. Dette er to bildespalter og ingen tekst, derfor eget oppsett. */
-/* max-content og ikke 1fr: med to like brede spalter ble hver klynge sentrert
-   i sin halvdel av sliden, og da sto de to med et bredt tomrom mellom seg og
-   ut mot hver sin kant. Nå er spaltene like brede som klyngene, og paret står
-   samlet midt på flata.
-
-   --k er skaleringsfaktoren for klyngene. Temaets mål er k=1, altså 250 px
-   stor sirkel; 1,38 er så stort det blir før navnet kommer ned i logoen.
-   Skru på dette ene tallet hvis du vil ha dem større eller mindre — alle
-   målene under følger etter. */
 .jenter {
   --k: 1.38;
   display: grid;
@@ -54,16 +33,6 @@ math: katex
 
 .jente { display: flex; flex-direction: column; align-items: center; }
 
-/* Klyngen er målt om for denne sliden. Temaets boks er 300 px bred mens den
-   store sirkelen er 250 og ligger til høyre (right: 0) — altså 50 px dødt felt
-   til venstre. Begge sirklene står på akse x=175, men navnet sentreres på
-   boksens midte, x=150, og havnet dermed 25 px til venstre for bildene. Det
-   var skjevheten.
-
-   Her er boksen like bred som den store sirkelen, og begge sirklene er
-   sentrert i den. Da ligger sirkler og navn på samme loddrette akse.
-   Temaets forskjøvne variant var laget for en slide der klyngen sto i en
-   sidespalte ved siden av tekst — der var skjevheten et poeng. */
 .jente .photo-cluster {
   width: calc(250px * var(--k));
   height: calc(340px * var(--k));
@@ -85,29 +54,9 @@ math: katex
   box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(0, 0, 0, 0.08);
 }
 
-/* Navnene bruker .kicker fra temaet — samme blå versaler som merkelappene på
-   resten av slidene. Ingen egen skriftoppsetning her: decket skal ha ett sett
-   for denne typen tekst, ikke ett per slide.
 
-   Det eneste som overstyres er margen. .kicker er laget for å stå OVER innhold
-   og har margin-bottom; her står navnet under bildet, så margen må snus. */
 .jente .kicker { margin: 0.8em 0 0; }
 
-/* Utsnittene er bildeavhengige og må settes per person — begge klyngene har
-   samme .family-klasse, så uten en person-klasse rundt hadde den ene regelen
-   overskrevet den andre.
-
-   Tallene er stilt om etter at sirklene vokste fra 250 til 345 px. De gamle
-   (63 % / 68 %) var tilpasset den lille sirkelen, og på den store klippet de
-   capsen til Sunniva i overkanten.
-
-   Vilde: bildet er høyt portrett, og en sentrert kvadratisk beskjæring blir
-   mest himmel. 55 % henter utsnittet opp så de to havner nær sirkelens midte,
-   og scale(1.4) zoomer inn om samme senter.
-
-   Sunniva: den øverste fjerdedelen er hvit vegg, og hvitt mot hvit slide blir
-   et hull — men for langt ned og capsen kuttes av masken. 58 % er balansen:
-   ingen vegg i toppen, ingen klipping. */
 .jente.vilde .photo-cluster .family img { object-position: center 55%; transform: scale(1.4); }
 .jente.sunniva .photo-cluster .family img { object-position: center 58%; }
 </style>
@@ -167,58 +116,73 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
      «programvare» på en slide som skal si «tomt». Nå er det stedet selv: en
      parkeringsplass full av biler, der halve salen har stått.
 
-     Bildet er satt sammen av to lag som går over i hverandre (se
-     tools/hesthagen_slide4.py): til venstre Kartverkets gråtonekart, til høyre
-     flyfoto fra 2022. Overgangen ligger akkurat til venstre for tomta, så
-     tomta selv er rent foto og bilene leses. Det er hele poenget — planen har
-     ingenting tegnet der, virkeligheten er full av parkerte biler.
+     Flyfoto fra 2022, siste årgang før anlegget startet. Alt utenfor tomta er
+     dempet, så blikket havner på den uten at noe må peke. Rød strek er
+     tomtegrensa fra OpenStreetMap, ikke tegnet på frihånd.
 
-     Rød strek er tomtegrensa fra OpenStreetMap, ikke tegnet på frihånd.
+     Bildet lages av tools/hesthagen_slide4.py, varianten «flyfoto». Den har
+     sin egen ramme (ROLLER i skriptet) der tomta ligger til høyre og litt opp
+     — nettopp for at snakkeboblene på de to neste slidene skal få plass til
+     venstre uten å dekke den røde streken.
 
      Slide 4, 5 og 6 deler dette bildet. Det skal IKKE bytte når arkitekten og
-     utbyggeren kommer inn; det er oppbyggingen som er poenget.
+     utbyggeren kommer inn; det er oppbyggingen som er poenget. -->
 
-     Vil du bytte variant: bildene ligger under figures/illustrations/tidligfase/,
-     og skriptet lager fem. Bytt bare filnavnet på alle tre slidene. -->
+![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
 
-![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
+<style scoped>
+/* Tittelen skal stå på ÉN linje. Temaet kapper merkelappen på 72 % av flata og
+   h1-en på 64 % av lappen, og «Kunsten å fylle opp en tomt» brakk derfor i to.
+
+   Det er plass: lappen ligger nederst til venstre, og der nede er den røde
+   streken trukket tilbake til x≈785, mens lappen trenger ca. 590 px.
+
+   nowrap i tillegg til max-width, så den ikke begynner å brekke igjen hvis
+   noen legger til et ord. Blir tittelen mye lengre, stikker den i stedet ut
+   mot tomta — da er det tittelen som må kortes, ikke denne regelen som skal
+   fjernes. */
+.overlay-label { max-width: none; }
+.overlay-label h1 { max-width: none; white-space: nowrap; }
+</style>
 
 <div class="overlay-label">
   <div class="kicker">Tidligfase</div>
-  <h1>Alt er åpent, ingenting er tegnet</h1>
+  <h1>Kunsten å fylle opp en tomt</h1>
 </div>
 
 <div class="photo-credit">
   Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
 </div>
 
-<!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, lastet
-     kontekst, ingen streker. Så: «og her begynner spørsmålene.» -->
+<!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, biler der
+     halve salen har parkert, ingen streker. Så: «og her begynner spørsmålene.» -->
 <!-- TODO ~0:20 -->
 
 ---
 
 <!-- _class: demo overlay -->
 
-<!-- Steg 2 av tre på samme bilde: tomta ligger der fra forrige slide, og
-     arkitekten kommer inn. Bildet skal IKKE bytte — det er oppbyggingen som er
-     poenget, ikke tre forskjellige bilder. -->
+<!-- Steg 2 av tre på samme bilde: arkitekten kommer inn. Bildet skal IKKE
+     bytte — det er oppbyggingen som er poenget, ikke tre forskjellige bilder.
 
-![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
+     roles-holder «venstre» klemmer rollene inn i venstre halvdel, så boblene
+     ikke legger seg over tomta. Arkitekten står i samme spalte her som på
+     neste slide, så figuren ikke hopper når du klikker. -->
+
+![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
 
 <div class="photo-credit">
   Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
 </div>
 
-<div class="roles-holder">
+<div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
 <div class="bubble"><ul>
-<li>Hvor mange kvadratmeter får jeg plass til her?</li>
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her — sol, lys, luft, lyd?</li>
+<li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/illustrations/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
 </div>
 </div>
@@ -231,32 +195,30 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 
 <!-- _class: demo overlay -->
 
-<!-- Steg 3: utbyggeren kommer inn ved siden av. Arkitekten står i samme spalte
-     som på forrige slide, så figuren ikke hopper når du klikker. -->
+<!-- Steg 3: utbyggeren kommer inn ved siden av, i høyre spalte av samme
+     venstrestilte bærer. -->
 
-![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
+![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
 
 <div class="photo-credit">
   Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
 </div>
 
-<div class="roles-holder">
+<div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
 <div class="bubble"><ul>
-<li>Hvor mange kvadratmeter får jeg plass til her?</li>
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her — sol, lys, luft, lyd?</li>
+<li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/illustrations/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
-<div class="role">
+<div class="role fig-hoyre">
 <div class="bubble"><ul>
 <li>Går regnestykket opp?</li>
-<li>Hva må vi dokumentere for kommunen?</li>
 <li>Hva koster det å ombestemme seg om tre måneder?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-utbygger.svg" alt=""><span class="name">Utbyggeren</span></div>
+<div class="figure"><img src="figures/illustrations/rolle-utbygger-lys.svg" alt=""><span class="name">Utbyggeren</span></div>
 </div>
 </div>
 </div>
