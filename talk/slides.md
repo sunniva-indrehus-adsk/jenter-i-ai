@@ -9,142 +9,185 @@ math: katex
 <!-- _header: '24.09.2026' -->
 <!-- paginate: false -->
 
-# AI i Autodesk
 
-## Jenter i AI
+# Jenter i AI
 
-
-
-<!-- Say: les tittelen høyt. «Det høres ut som en innrømmelse. Det er en
-     designbeslutning, og vi skal vise dere hvorfor.» -->
-<!-- TODO ~0:20 -->
 
 ---
 
 <!-- paginate: true -->
 
-# Jente i Autodesk
+# Jenter i Autodesk
 
 <style scoped>
-/* Bildet er høyt portrett: en sentrert kvadratisk beskjæring hadde blitt mest
-   himmel. 63 % skyver utsnittet ned så begge personene ligger i sirkelen, og
-   scale(1.5) zoomer inn om samme senter så de to fyller sirkelen.
-   Resten av .photo-cluster ligger i theme.css. */
-.photo-cluster .family img { object-position: center 63%; transform: scale(1.5); }
+
+.jenter {
+  --k: 1.38;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: center;
+  align-items: start;
+  gap: 190px;
+  margin-top: 0.2em;
+}
+
+.jente { display: flex; flex-direction: column; align-items: center; }
+
+.jente .photo-cluster {
+  width: calc(250px * var(--k));
+  height: calc(340px * var(--k));
+}
+.jente .photo-cluster .family {
+  width: calc(250px * var(--k));
+  height: calc(250px * var(--k));
+  top: 0;
+  left: 0;
+  right: auto;
+}
+.jente .photo-cluster .portrait {
+  width: calc(125px * var(--k));
+  height: calc(125px * var(--k));
+  top: calc(212px * var(--k));
+  /* (250 - 125) / 2 = 62,5 — sentrert i boksen */
+  left: calc(62.5px * var(--k));
+  /* Ringen vokser med bildene, ellers blir den en tynn strek på 345 px. */
+  box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(0, 0, 0, 0.08);
+}
+
+
+.jente .kicker { margin: 0.8em 0 0; }
+
+.jente.vilde .photo-cluster .family img { object-position: center 55%; transform: scale(1.4); }
+.jente.sunniva .photo-cluster .family img { object-position: center 58%; }
 </style>
 
-<div class="person">
+<div class="jenter">
 
-<div>
-
-<div class="kicker">Vilde</div>
-
-- Fra indøk til Autodesk
-- Internship som utvikler under studiene
-- Gøy å bygge produkt i stedet for slides
-- Jobbe i en produktorganisasjon
-
+<div class="jente vilde">
+  <div class="photo-cluster">
+    <div class="frame family"><img src="figures/people/vilde-2.jpg" alt="Vilde på sandvolleyballbanen"/></div>
+    <div class="frame portrait"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
+  </div>
+  <div class="kicker">Vilde</div>
 </div>
 
-<div class="photo-cluster">
-  <div class="frame family"><img src="figures/people/vilde-2.jpg" alt="Vilde på sandvolleyballbanen"/></div>
-  <div class="frame portrait"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
-</div>
-
-</div>
-
-<div class="callout">
-
-Jobbe for en mer bærekraftig verden med koding og matte.</em>
-
-</div>
-
-<!-- Say: la Vilde fortelle selv. Poenget for publikum: det finnes flere veier inn,
-     og «jeg gikk ikke datateknikk» er ikke en sperre. -->
-<!-- TODO ~1:20 -->
-
----
-
-# Jente i Autodesk
-
-<style scoped>
-/* Den øverste fjerdedelen av familiebildet er bare hvit vegg, og hvitt mot hvit
-   slide blir et hull. object-position skyver utsnittet ned så veggen forsvinner.
-   68 %, ikke 85 %: sirkelen er smalest i toppen og bunnen, så ansiktene må ligge
-   nær midthøyden for at de to ytterste ikke skal bli beskåret av masken.
-   Resten av .photo-cluster ligger i theme.css. Den lille sirkelen er plassert
-   der den lander på kjolen til barnet — det eneste stedet i dette bildet der
-   den ikke dekker et ansikt. */
-.photo-cluster .family img { object-position: center 68%; }
-</style>
-
-<div class="person">
-
-<div>
-
-<div class="kicker">Sunniva</div>
-
-- fra Fysmat til Autodesek
-  — Å gjøre ligninger om til kode
-- Da: Skrev et paper som kanskje fem mennesker i verden har lest
-- Nå: også ligniner i et verktøy tusenvis av arkitekter åpner hver dag
-
-</div>
-
-<div class="photo-cluster">
-  <div class="frame family"><img src="figures/people/sunniva-2.jpg" alt="Sunniva med familien"/></div>
-  <div class="frame portrait"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+<div class="jente sunniva">
+  <div class="photo-cluster">
+    <div class="frame family"><img src="figures/people/sunniva-2.jpg" alt="Sunniva med familien"/></div>
+    <div class="frame portrait"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  </div>
+  <div class="kicker">Sunniva</div>
 </div>
 
 </div>
 
-<div class="callout">
+<!--
+TATT VARE PÅ: kulepunktene og callout-ene som sto på de to gamle slidene.
+Ikke slettet, fordi de er ekte innhold — men de står ikke på sliden nå, og
+skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 
-Samme type jobb, men høyere påvirking "i den virkelige verden"
+  Vilde
+  - Fra indøk til Autodesk
+  - Internship som utvikler under studiene
+  - Gøy å bygge produkt i stedet for slides
+  - Jobbe i en produktorganisasjon
+  callout: Jobbe for en mer bærekraftig verden med koding og matte.
 
-</div>
+  Sunniva
+  - fra Fysmat til Autodesk — å gjøre ligninger om til kode
+  - Da: skrev et paper som kanskje fem mennesker i verden har lest
+  - Nå: også ligninger i et verktøy tusenvis av arkitekter åpner hver dag
+  callout: Samme type jobb, men høyere påvirkning i den virkelige verden.
+-->
 
-<div class="todo">tittel? </div>
+<!-- Say: la hver av dere fortelle selv, kort. Poenget for publikum er at det
+     finnes flere veier inn — indøk og Fysmat, ikke datateknikk — og at «jeg
+     gikk ikke datateknikk» ikke er en sperre. Punktene står ikke på sliden
+     lenger, så de må sies. -->
+<!-- TODO ~1:40 -->
+
 
 ---
 
 <!-- _class: demo overlay -->
 
-<!-- Bildet er 32,4 s inn i filmen: tomta på Filipstad er valgt, terreng og
-     nabobygg er lastet, og ingenting er tegnet ennå. Det er hele poenget med
-     sliden, så bildet får bære det alene — spørsmålene har fått egen slide
-     etter denne. Ingen maske her; 32,4 ligger i det tekstfrie vinduet. -->
+<!-- Hesthagen-parkeringen, ikke Filipstad. Bildet sto før på et skjermbilde fra
+     demofilmen — en tomt i Oslo, med hele Forma-grensesnittet rundt. Det sa
+     «programvare» på en slide som skal si «tomt». Nå er det stedet selv: en
+     parkeringsplass full av biler, der halve salen har stått.
 
-![](figures/video/stills/tomt.jpg)
+     Flyfoto fra 2022, siste årgang før anlegget startet. Rød strek er
+     tomtegrensa fra OpenStreetMap, ikke tegnet på frihånd.
+
+     Denne sliden bruker -lys-utgaven: hele flata er like lys, så man ser
+     nabolaget rundt like godt som parkeringsplassen. Sliden skal vise STEDET.
+     Slide 4 og 5 bruker den dempede, der blikket skal ligge på tomta og
+     boblene. Bildet skifter altså her — det leser som at lyset dempes og
+     rollene trer fram.
+
+     Bildet lages av tools/hesthagen_slide4.py, varianten «flyfoto». Den har
+     sin egen ramme (ROLLER i skriptet) der tomta ligger til høyre og litt opp
+     — nettopp for at snakkeboblene på de to neste slidene skal få plass til
+     venstre uten å dekke den røde streken.
+
+     Slide 4, 5 og 6 deler dette bildet. Det skal IKKE bytte når arkitekten og
+     utbyggeren kommer inn; det er oppbyggingen som er poenget. -->
+
+![](figures/tidligfase/hesthagen-flyfoto-lys.jpg)
+
+<style scoped>
+/* Tittelen skal stå på ÉN linje. Temaet kapper merkelappen på 72 % av flata og
+   h1-en på 64 % av lappen, og «Kunsten å fylle opp en tomt» brakk derfor i to.
+
+   Det er plass: lappen ligger nederst til venstre, og der nede er den røde
+   streken trukket tilbake til x≈785, mens lappen trenger ca. 590 px.
+
+   nowrap i tillegg til max-width, så den ikke begynner å brekke igjen hvis
+   noen legger til et ord. Blir tittelen mye lengre, stikker den i stedet ut
+   mot tomta — da er det tittelen som må kortes, ikke denne regelen som skal
+   fjernes. */
+.overlay-label { max-width: none; }
+.overlay-label h1 { max-width: none; white-space: nowrap; }
+</style>
 
 <div class="overlay-label">
   <div class="kicker">Tidligfase</div>
-  <h1>Alt er åpent, ingenting er tegnet</h1>
+  <h1>Kunsten å fylle opp en tomt</h1>
 </div>
 
-<!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, lastet
-     kontekst, ingen streker. Så: «og her begynner spørsmålene.» -->
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
+</div>
+
+<!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, biler der
+     halve salen har parkert, ingen streker. Så: «og her begynner spørsmålene.» -->
 <!-- TODO ~0:20 -->
 
 ---
 
 <!-- _class: demo overlay -->
 
-<!-- Steg 2 av tre på samme bilde: tomta ligger der fra forrige slide, og
-     arkitekten kommer inn. Bildet skal IKKE bytte — det er oppbyggingen som er
-     poenget, ikke tre forskjellige bilder. -->
+<!-- Steg 2 av tre på samme bilde: arkitekten kommer inn. Bildet skal IKKE
+     bytte — det er oppbyggingen som er poenget, ikke tre forskjellige bilder.
 
-![](figures/video/stills/tomt.jpg)
+     roles-holder «venstre» klemmer rollene inn i venstre halvdel, så boblene
+     ikke legger seg over tomta. Arkitekten står i samme spalte her som på
+     neste slide, så figuren ikke hopper når du klikker. -->
 
-<div class="roles-holder">
+![](figures/tidligfase/hesthagen-flyfoto.jpg)
+
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
+</div>
+
+<div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
 <div class="bubble"><ul>
-<li>Hvor mange kvadratmeter får jeg plass til her?</li>
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her — sol, lys, luft, lyd?</li>
+<li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
 </div>
 </div>
@@ -157,28 +200,30 @@ Samme type jobb, men høyere påvirking "i den virkelige verden"
 
 <!-- _class: demo overlay -->
 
-<!-- Steg 3: utbyggeren kommer inn ved siden av. Arkitekten står i samme spalte
-     som på forrige slide, så figuren ikke hopper når du klikker. -->
+<!-- Steg 3: utbyggeren kommer inn ved siden av, i høyre spalte av samme
+     venstrestilte bærer. -->
 
-![](figures/video/stills/tomt.jpg)
+![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
-<div class="roles-holder">
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
+</div>
+
+<div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
 <div class="bubble"><ul>
-<li>Hvor mange kvadratmeter får jeg plass til her?</li>
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her — sol, lys, luft, lyd?</li>
+<li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
-<div class="role">
+<div class="role fig-hoyre">
 <div class="bubble"><ul>
 <li>Går regnestykket opp?</li>
-<li>Hva må vi dokumentere for kommunen?</li>
 <li>Hva koster det å ombestemme seg om tre måneder?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-utbygger.svg" alt=""><span class="name">Utbyggeren</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-utbygger-lys.svg" alt=""><span class="name">Utbyggeren</span></div>
 </div>
 </div>
 </div>
@@ -204,85 +249,67 @@ Samme type jobb, men høyere påvirking "i den virkelige verden"
 
 ---
 
-<!-- _class: demo flipbook on-dark -->
+<!-- _class: demo flipbook on-dark eget-merke -->
 
-![](figures/video/flipbook/forma-demo-001.jpg)
+<!-- Fire slides erstatter de sju flipbook-bildene fra demofilmen. Grunnen er
+     oppløsning: de gamle var hentet ut av en 1080p-video, tre på 1920 px og
+     fem beskåret til 1344. Disse er skjermbilder rett fra Forma, nedskalert
+     til 2560 px — 2x slideflata, altså deckets standard for fullflate-bilder.
+     Originalene på 3456 px ligger i site-design/original/.
 
-<div class="demo-label">
-<div class="kicker">Forma Site Design</div>
-Tidligfase, rett i nettleseren
-</div>
+     on-dark her og ikke på de tre neste: bakgrunnen er verdensrommet, altså
+     svart nede til venstre, og da må Autodesk-logoen og sidetallet være hvite.
+     De tre andre har Formas lyse sidepanel i det hjørnet. -->
 
----
-
-<!-- _class: demo flipbook on-dark -->
-<!-- _paginate: false -->
-
-![](figures/video/flipbook/forma-demo-002.jpg)
+![](figures/site-design/velg-geolokasjon.png)
 
 <div class="demo-label">
 <div class="kicker">Kontekst</div>
-Skriv inn adressen
+Velg geolokasjon
 </div>
 
 ---
 
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
+<!-- _class: demo flipbook eget-merke -->
 
-![](figures/video/flipbook/forma-demo-003.jpg)
+![](figures/site-design/bestill-data.png)
 
 <div class="demo-label">
 <div class="kicker">Kontekst</div>
-Velg tomta
+Bestill data
 </div>
 
 ---
 
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
+<!-- _class: demo flipbook eget-merke -->
 
-![](figures/video/flipbook/forma-demo-004.jpg)
+![](figures/site-design/sett-kontekst.png)
 
 <div class="demo-label">
-<div class="kicker">Design</div>
-Tegn volumene direkte i 3D
+<div class="kicker">Sett kontekst</div>
+Jobb i nettleseren
 </div>
 
 ---
 
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
+<!-- _class: demo flipbook eget-merke -->
 
-![](figures/video/flipbook/forma-demo-005.jpg)
+![](figures/site-design/vis-hesthagen-med-data.png)
 
 <div class="demo-label">
-<div class="kicker">Design</div>
-Arealtallene oppdateres mens du tegner
+<div class="kicker">Utforsk</div>
+Begynn å utforske din tomt
 </div>
 
 ---
 
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
+<!-- _class: demo flipbook eget-merke -->
 
-![](figures/video/flipbook/forma-demo-006.jpg)
-
-<div class="demo-label">
-<div class="kicker">Analyse</div>
-Soltimer
-</div>
-
----
-
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
-
-![](figures/video/flipbook/forma-demo-008.jpg)
+![](figures/site-design/hesthagen-med-tegning.png)
 
 <div class="demo-label">
-<div class="kicker">Analyse</div>
-Sammenlign alternativer side om side
+<div class="kicker">Tegn</div>
+Iterer over forslaget
 </div>
 
 ---
@@ -354,32 +381,32 @@ Sammenlign alternativer side om side
 <div class="cols-3">
 
 <div class="card">
-<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<img src="figures/analyser/noise.png" alt="Støy">
 <div class="figcap"><span class="figref">Støy</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<img src="figures/analyser/solar-energy.png" alt="Solenergi">
 <div class="figcap"><span class="figref">Solenergi</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<img src="figures/analyser/daylight.png" alt="Dagslys">
 <div class="figcap"><span class="figref">Dagslys</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<img src="figures/analyser/microclimate.png" alt="Mikroklima">
 <div class="figcap"><span class="figref">Mikroklima</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<img src="figures/analyser/sun.png" alt="Sol">
 <div class="figcap"><span class="figref">Sol</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<img src="figures/analyser/wind.png" alt="Vind">
 <div class="figcap"><span class="figref">Vind</span></div>
 </div>
 
@@ -470,32 +497,32 @@ Sammenlign alternativer side om side
 <div class="cols-3">
 
 <div class="card">
-<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<img src="figures/analyser/noise.png" alt="Støy">
 <div class="figcap"><span class="figref">Støy</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<img src="figures/analyser/solar-energy.png" alt="Solenergi">
 <div class="figcap"><span class="figref">Solenergi</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<img src="figures/analyser/daylight.png" alt="Dagslys">
 <div class="figcap"><span class="figref">Dagslys</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<img src="figures/analyser/microclimate.png" alt="Mikroklima">
 <div class="figcap"><span class="figref">Mikroklima</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<img src="figures/analyser/sun.png" alt="Sol">
 <div class="figcap"><span class="figref">Sol</span></div>
 </div>
 
 <div class="card ring">
-<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<img src="figures/analyser/wind.png" alt="Vind">
 <div class="figcap"><span class="figref">Vind</span></div>
 </div>
 
@@ -530,7 +557,7 @@ Sammenlign alternativer side om side
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
@@ -554,7 +581,7 @@ Sammenlign alternativer side om side
 <div class="build">
 
 <div class="panel">
-  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="h">Fysikkmodellen</p>
 
 $$
@@ -582,7 +609,7 @@ $$
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
@@ -607,7 +634,7 @@ $$
 <div class="build">
 
 <div class="panel">
-  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="h">Fysikkmodellen</p>
 
 $$
@@ -635,14 +662,14 @@ $$
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
 <div class="arr ai to-left"></div>
 
 <div class="panel ai">
-  <img src="figures/illustrations/modell-surrogat.svg" alt="">
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
   <p class="h">Surrogatmodellen</p>
   <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
   <p class="t">Sekunder per iterasjon.</p>
@@ -727,7 +754,7 @@ section { font-size: 22px; }
 
 <div class="card">
   <div class="head">
-    <img src="figures/illustrations/modell-cfd.svg" alt="">
+    <img src="figures/modeller/modell-cfd.svg" alt="">
     <h3>Fullverdig CFD</h3>
   </div>
   <p class="clock">Timer<span>per kjøring</span></p>
@@ -749,13 +776,13 @@ section { font-size: 22px; }
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Samme komfortkart — uansett hvilken av dem som regnet det ut.</div>
 </div>
 
 <div class="card ai">
   <div class="head">
-    <img src="figures/illustrations/modell-surrogat.svg" alt="">
+    <img src="figures/modeller/modell-surrogat.svg" alt="">
     <h3>Surrogatmodellen</h3>
   </div>
   <p class="clock">Sekunder<span>per kjøring</span></p>
@@ -807,7 +834,7 @@ Detaljene står i SVG-filens egen header, og manuset i Say-kommentaren nederst.
 (Ikke skriv en HTML-kommentar inni denne: den ytre slutter ved det første
 sluttmerket, og resten lekker ut som brødtekst.)
 -->
-<img src="figures/illustrations/02-surrogat-pipeline.svg" alt="Terreng og bygninger som høydekart inn, nevralt nett som roterer geometrien for åtte vindretninger, åtte vindfelt ut, vektet med vindrosen til et komfortkart — trent på ferdige CFD-kjøringer">
+<img src="figures/modeller/surrogat-pipeline.svg" alt="Terreng og bygninger som høydekart inn, nevralt nett som roterer geometrien for åtte vindretninger, åtte vindfelt ut, vektet med vindrosen til et komfortkart — trent på ferdige CFD-kjøringer">
 
 <div class="callout">
 
@@ -847,7 +874,7 @@ section { justify-content: center; }
 img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: auto; }
 </style>
 
-<img src="figures/illustrations/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
+<img src="figures/modeller/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
 
 <!-- Say: den konkrete versjonen av skissen på forrige slide. Pek på de to
      bildene til venstre: høyden på alt som står der, og hva det er — terreng,
@@ -861,77 +888,6 @@ img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: 
      Har du tid til overs: 8 retninger x noen sekunder mot 8 x flere timer CFD.
      Det er hele poenget med at den kan stå på mens man tegner. -->
 <!-- TODO ~0:40 -->
-
----
-
-# Regulering av Hesthagen
-## Case
-<!-- TODO ~0:10 -->
-
----
-
-# Hesthagen — fra parkeringsplass til bygg
-
-<style scoped>
-section { font-size: 22px; }
-/* Kartfila er 1000x625 (1,6:1), som i denne spalten blir ca. 349 px høyt — akkurat
-   lavt nok til at callouten under ikke havner i logoen. */
-.cols-2 img { display: block; width: 100%; height: auto; }
-</style>
-
-<div class="cols-2">
-
-<div>
-
-<div class="kicker">Tomta og planen</div>
-
-- Brukt som NTNU-parkering mellom Klæbuveien og Gløshaugen
-- En del av **NTNUs samlokaliseringstrategi**
-- Fem etasjers hus der bilene står i dag
-- Torg, trapp, gangbru og en offentlig plass rundt bygget
-
-</div>
-
-<div>
-
-<!--
-BRUK -ring-fila her, ikke hesthagen-kart.png. Den røde ringen rundt tomta er
-brent inn i derivatfila; kildekartet har ingen ring. Marp klarte ikke å legge
-ringen på i inline SVG (hver slide rendres inne i sin egen <svg>, og en nøstet
-SVG med ekstern <image> falt ut av eksporten), så den ligger i PNG-en.
-
-Skal ringen flyttes: skriptet står i README under «Kartet med ring».
--->
-<img src="figures/illustrations/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
-<div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Rød ring: tomta som reguleres. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
-
-</div>
-
-</div>
-
-<div class="callout">
-
-Mye av det planen lover, er uterom.
-</div>
-
-
-<!-- Say: «dette er tomta, og halve salen har parkert der.» Gjør det lokalt før
-     du gjør det teknisk, og les callouten sakte — det er svingen inn til
-     vindanalysen.
-
-     Detaljregulering r20200032, vedtatt av bystyret 2. mars 2023. Kildene lå på
-     sliden før, men 0,58em på projektor leser ingen — ta dem muntlig om noen
-     spør:
-       https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/
-       https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim
--->
-<!--
-FIGUR: sliden tåler en massevolum-render i stedet for kartet. Lag den i Forma fra
-reguleringskartet og eksporter selv — IKKE klipp ut illustrasjonene fra
-planbeskrivelsen. De er forslagsstillerens, og repoet er offentlig (se «Ikke
-bruk» i README).
--->
-<!-- TODO ~0:50 -->
 
 ---
 
