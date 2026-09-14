@@ -264,8 +264,8 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 ![](figures/site-design/velg-geolokasjon.png)
 
 <div class="demo-label">
-<div class="kicker">Kontekst</div>
-Velg geolokasjon
+<div class="kicker">Stedet</div>
+Velg adresse
 </div>
 
 ---
@@ -276,7 +276,7 @@ Velg geolokasjon
 
 <div class="demo-label">
 <div class="kicker">Kontekst</div>
-Bestill data
+Velg relevant data
 </div>
 
 ---
@@ -286,8 +286,8 @@ Bestill data
 ![](figures/site-design/sett-kontekst.png)
 
 <div class="demo-label">
-<div class="kicker">Sett kontekst</div>
-Jobb i nettleseren
+<div class="kicker">Grunnlaget</div>
+Sett tomt i kontekst med omgivelser
 </div>
 
 ---
@@ -297,8 +297,8 @@ Jobb i nettleseren
 ![](figures/site-design/vis-hesthagen-med-data.png)
 
 <div class="demo-label">
-<div class="kicker">Utforsk</div>
-Begynn å utforske din tomt
+<div class="kicker">Tomten</div>
+Planlegg
 </div>
 
 ---
@@ -308,8 +308,8 @@ Begynn å utforske din tomt
 ![](figures/site-design/hesthagen-med-tegning.png)
 
 <div class="demo-label">
-<div class="kicker">Tegn</div>
-Iterer over forslaget
+<div class="kicker">Forslag</div>
+Iterer over utforming
 </div>
 
 ---
