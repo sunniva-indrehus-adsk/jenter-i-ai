@@ -116,9 +116,14 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
      «programvare» på en slide som skal si «tomt». Nå er det stedet selv: en
      parkeringsplass full av biler, der halve salen har stått.
 
-     Flyfoto fra 2022, siste årgang før anlegget startet. Alt utenfor tomta er
-     dempet, så blikket havner på den uten at noe må peke. Rød strek er
+     Flyfoto fra 2022, siste årgang før anlegget startet. Rød strek er
      tomtegrensa fra OpenStreetMap, ikke tegnet på frihånd.
+
+     Denne sliden bruker -lys-utgaven: hele flata er like lys, så man ser
+     nabolaget rundt like godt som parkeringsplassen. Sliden skal vise STEDET.
+     Slide 4 og 5 bruker den dempede, der blikket skal ligge på tomta og
+     boblene. Bildet skifter altså her — det leser som at lyset dempes og
+     rollene trer fram.
 
      Bildet lages av tools/hesthagen_slide4.py, varianten «flyfoto». Den har
      sin egen ramme (ROLLER i skriptet) der tomta ligger til høyre og litt opp
@@ -128,7 +133,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
      Slide 4, 5 og 6 deler dette bildet. Det skal IKKE bytte når arkitekten og
      utbyggeren kommer inn; det er oppbyggingen som er poenget. -->
 
-![](figures/tidligfase/hesthagen-flyfoto.jpg)
+![](figures/tidligfase/hesthagen-flyfoto-lys.jpg)
 
 <style scoped>
 /* Tittelen skal stå på ÉN linje. Temaet kapper merkelappen på 72 % av flata og
@@ -244,7 +249,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 
 ---
 
-<!-- _class: demo flipbook on-dark -->
+<!-- _class: demo flipbook on-dark eget-merke -->
 
 <!-- Fire slides erstatter de sju flipbook-bildene fra demofilmen. Grunnen er
      oppløsning: de gamle var hentet ut av en 1080p-video, tre på 1920 px og
@@ -265,7 +270,7 @@ Velg geolokasjon
 
 ---
 
-<!-- _class: demo flipbook -->
+<!-- _class: demo flipbook eget-merke -->
 
 ![](figures/site-design/bestill-data.png)
 
@@ -276,7 +281,7 @@ Bestill data
 
 ---
 
-<!-- _class: demo flipbook -->
+<!-- _class: demo flipbook eget-merke -->
 
 ![](figures/site-design/sett-kontekst.png)
 
@@ -287,7 +292,7 @@ Jobb i nettleseren
 
 ---
 
-<!-- _class: demo flipbook -->
+<!-- _class: demo flipbook eget-merke -->
 
 ![](figures/site-design/vis-hesthagen-med-data.png)
 
@@ -298,7 +303,7 @@ Begynn å utforske din tomt
 
 ---
 
-<!-- _class: demo flipbook -->
+<!-- _class: demo flipbook eget-merke -->
 
 ![](figures/site-design/hesthagen-med-tegning.png)
 
@@ -883,77 +888,6 @@ img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: 
      Har du tid til overs: 8 retninger x noen sekunder mot 8 x flere timer CFD.
      Det er hele poenget med at den kan stå på mens man tegner. -->
 <!-- TODO ~0:40 -->
-
----
-
-# Regulering av Hesthagen
-## Case
-<!-- TODO ~0:10 -->
-
----
-
-# Hesthagen — fra parkeringsplass til bygg
-
-<style scoped>
-section { font-size: 22px; }
-/* Kartfila er 1000x625 (1,6:1), som i denne spalten blir ca. 349 px høyt — akkurat
-   lavt nok til at callouten under ikke havner i logoen. */
-.cols-2 img { display: block; width: 100%; height: auto; }
-</style>
-
-<div class="cols-2">
-
-<div>
-
-<div class="kicker">Tomta og planen</div>
-
-- Brukt som NTNU-parkering mellom Klæbuveien og Gløshaugen
-- En del av **NTNUs samlokaliseringstrategi**
-- Fem etasjers hus der bilene står i dag
-- Torg, trapp, gangbru og en offentlig plass rundt bygget
-
-</div>
-
-<div>
-
-<!--
-BRUK -ring-fila her, ikke hesthagen-kart.png. Den røde ringen rundt tomta er
-brent inn i derivatfila; kildekartet har ingen ring. Marp klarte ikke å legge
-ringen på i inline SVG (hver slide rendres inne i sin egen <svg>, og en nøstet
-SVG med ekstern <image> falt ut av eksporten), så den ligger i PNG-en.
-
-Skal ringen flyttes: skriptet står i README under «Kartet med ring».
--->
-<img src="figures/hesthagen/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
-<div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Rød ring: tomta som reguleres. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
-
-</div>
-
-</div>
-
-<div class="callout">
-
-Mye av det planen lover, er uterom.
-</div>
-
-
-<!-- Say: «dette er tomta, og halve salen har parkert der.» Gjør det lokalt før
-     du gjør det teknisk, og les callouten sakte — det er svingen inn til
-     vindanalysen.
-
-     Detaljregulering r20200032, vedtatt av bystyret 2. mars 2023. Kildene lå på
-     sliden før, men 0,58em på projektor leser ingen — ta dem muntlig om noen
-     spør:
-       https://www.trondheim.kommune.no/aktuelt/kunngjoring-arealplan/arkiv-vedtatte-planer/eldre/20232/Hesthagen-og-del-av-Hogskoleparken-gnr-bnr-405-39-405-177-405-101-mfl-detaljregulering-r20200032/
-       https://www.adressa.no/nyheter/trondheim/i/3MOkAP/naa-starter-det-enorme-byggeprosjektet-i-trondheim
--->
-<!--
-FIGUR: sliden tåler en massevolum-render i stedet for kartet. Lag den i Forma fra
-reguleringskartet og eksporter selv — IKKE klipp ut illustrasjonene fra
-planbeskrivelsen. De er forslagsstillerens, og repoet er offentlig (se «Ikke
-bruk» i README).
--->
-<!-- TODO ~0:50 -->
 
 ---
 

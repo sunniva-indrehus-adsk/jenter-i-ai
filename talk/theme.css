@@ -51,23 +51,36 @@ section {
 
 /* ── Headings ─────────────────────────────────────────────────────────── */
 
+/* Tittelen er aksentblå, ikke svart. Decket er fullt av blått allerede —
+   kickerne, callout-ene, strømlinjene på tittelsliden, surrogatsiden av
+   modellslidene — og en svart overskrift over alt det leste som om den kom fra
+   et annet dokument.
+
+   Streken under følger fargen. En blå tittel over en svart strek deler
+   overskriften i to; samme farge gjør den til én enhet.
+
+   Unntakene ligger lenger ned og er de slidene som har svart bakgrunn:
+   seksjonsskillene beholder hvit tittel, for blått på svart leser dårligere
+   enn hvitt. */
 h1 {
   font-family: var(--display);
   font-weight: 700;
   font-size: 1.75em;
   line-height: 1.15;
   letter-spacing: -0.015em;
-  color: var(--ink);
+  color: var(--accent);
   margin: 0 0 0.55em 0;
   padding-bottom: 0.35em;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 2px solid var(--accent);
 }
 
+/* Underoverskriften er svart, ikke grå. Med blå tittel over trenger den å
+   være det tyngste svarte på sliden, ellers blir hele toppen lys. */
 h2 {
   font-family: var(--sans);
   font-weight: 500;
   font-size: 1.15em;
-  color: var(--muted);
+  color: var(--ink);
   margin: 0 0 0.6em 0;
 }
 
@@ -240,11 +253,22 @@ section.title-photo {
   color: var(--ink);
 }
 
-section.title-photo h1 { color: var(--ink); }
+section.title-photo h1 { color: var(--accent); }
 section.title-photo h2 { color: #4A4A4A; }
 section.title-photo h3 { color: var(--accent); }
 section.title-photo header { color: var(--muted); }
-section.title-photo::before { content: none; }
+/* Renderingen hadde en «AUTODESK Forma»-lockup brent inn oppe til venstre, og
+   temaet undertrykte derfor sin egen logo her for å slippe to merker på samme
+   slide. Lockupen er nå malt ut av bilde­fila — bakgrunnen der var flat
+   (244,244,244), så det er usynlig — og tittelsliden bruker den vanlige
+   Autodesk-logoen som alle andre slides. Forma-merket hører ikke på
+   tittelsliden; foredraget handler om mer enn ett produkt.
+
+   Svart og ikke hvit: renderingen er nesten hvit. Posisjonen arves fra
+   section.title::before, altså oppe til venstre. */
+section.title-photo::before {
+  background-image: url('figures/logos/autodesk-logo-black.svg');
+}
 
 /* ── Section divider: black, centred ──────────────────────────────────── */
 
@@ -753,9 +777,16 @@ section.demo.flipbook:not(.on-dark)::after {
    og en lys flate med mørk skrift er det decket bruker ellers. Den leses like
    godt mot det nattblå globusbildet som mot de lyse analysene. */
 
-/* Logokortet er allerede svart med hvit logo midt i bildet — der ville vår egen
-   logo nederst til venstre blitt en dublett. */
-section.overlay.logo-card::before { display: none; }
+/* Bildet har alt et Autodesk-merke i seg, så temaets eget hjørnemerke blir en
+   dublett. To tilfeller:
+
+     logo-card    logokortet fra filmen, svart med hvit logo midt i bildet
+     eget-merke   site-design-skjermbildene, der Formas egen topplinje har
+                  merket oppe til venstre
+
+   Sidetallet står igjen — det er ikke en dublett av noe. */
+section.overlay.logo-card::before,
+section.demo.eget-merke::before { display: none; }
 
 section.demo::before {
   background-image: url('figures/logos/autodesk-logo-white.svg');
