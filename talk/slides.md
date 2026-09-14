@@ -23,103 +23,173 @@ math: katex
 
 <!-- paginate: true -->
 
-# Jente i Autodesk
+# Jenter i Autodesk
 
 <style scoped>
-/* Bildet er høyt portrett: en sentrert kvadratisk beskjæring hadde blitt mest
-   himmel. 63 % skyver utsnittet ned så begge personene ligger i sirkelen, og
-   scale(1.5) zoomer inn om samme senter så de to fyller sirkelen.
-   Resten av .photo-cluster ligger i theme.css. */
-.photo-cluster .family img { object-position: center 63%; transform: scale(1.5); }
+/* Vilde og Sunniva sto på hver sin slide før, med kulepunkter ved siden av
+   bildet. Nå står de sammen: to bildeklynger side om side, navnet under hver.
+   Sliden er en presentasjon av to personer, ikke to CV-er — resten fortelles
+   muntlig.
+
+   .person i temaet er én tekstspalte pluss én bildespalte, så den passer ikke
+   her. Dette er to bildespalter og ingen tekst, derfor eget oppsett. */
+/* max-content og ikke 1fr: med to like brede spalter ble hver klynge sentrert
+   i sin halvdel av sliden, og da sto de to med et bredt tomrom mellom seg og
+   ut mot hver sin kant. Nå er spaltene like brede som klyngene, og paret står
+   samlet midt på flata.
+
+   --k er skaleringsfaktoren for klyngene. Temaets mål er k=1, altså 250 px
+   stor sirkel; 1,38 er så stort det blir før navnet kommer ned i logoen.
+   Skru på dette ene tallet hvis du vil ha dem større eller mindre — alle
+   målene under følger etter. */
+.jenter {
+  --k: 1.38;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: center;
+  align-items: start;
+  gap: 190px;
+  margin-top: 0.2em;
+}
+
+.jente { display: flex; flex-direction: column; align-items: center; }
+
+/* Klyngen er målt om for denne sliden. Temaets boks er 300 px bred mens den
+   store sirkelen er 250 og ligger til høyre (right: 0) — altså 50 px dødt felt
+   til venstre. Begge sirklene står på akse x=175, men navnet sentreres på
+   boksens midte, x=150, og havnet dermed 25 px til venstre for bildene. Det
+   var skjevheten.
+
+   Her er boksen like bred som den store sirkelen, og begge sirklene er
+   sentrert i den. Da ligger sirkler og navn på samme loddrette akse.
+   Temaets forskjøvne variant var laget for en slide der klyngen sto i en
+   sidespalte ved siden av tekst — der var skjevheten et poeng. */
+.jente .photo-cluster {
+  width: calc(250px * var(--k));
+  height: calc(340px * var(--k));
+}
+.jente .photo-cluster .family {
+  width: calc(250px * var(--k));
+  height: calc(250px * var(--k));
+  top: 0;
+  left: 0;
+  right: auto;
+}
+.jente .photo-cluster .portrait {
+  width: calc(125px * var(--k));
+  height: calc(125px * var(--k));
+  top: calc(212px * var(--k));
+  /* (250 - 125) / 2 = 62,5 — sentrert i boksen */
+  left: calc(62.5px * var(--k));
+  /* Ringen vokser med bildene, ellers blir den en tynn strek på 345 px. */
+  box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(0, 0, 0, 0.08);
+}
+
+/* Navnene bruker .kicker fra temaet — samme blå versaler som merkelappene på
+   resten av slidene. Ingen egen skriftoppsetning her: decket skal ha ett sett
+   for denne typen tekst, ikke ett per slide.
+
+   Det eneste som overstyres er margen. .kicker er laget for å stå OVER innhold
+   og har margin-bottom; her står navnet under bildet, så margen må snus. */
+.jente .kicker { margin: 0.8em 0 0; }
+
+/* Utsnittene er bildeavhengige og må settes per person — begge klyngene har
+   samme .family-klasse, så uten en person-klasse rundt hadde den ene regelen
+   overskrevet den andre.
+
+   Tallene er stilt om etter at sirklene vokste fra 250 til 345 px. De gamle
+   (63 % / 68 %) var tilpasset den lille sirkelen, og på den store klippet de
+   capsen til Sunniva i overkanten.
+
+   Vilde: bildet er høyt portrett, og en sentrert kvadratisk beskjæring blir
+   mest himmel. 55 % henter utsnittet opp så de to havner nær sirkelens midte,
+   og scale(1.4) zoomer inn om samme senter.
+
+   Sunniva: den øverste fjerdedelen er hvit vegg, og hvitt mot hvit slide blir
+   et hull — men for langt ned og capsen kuttes av masken. 58 % er balansen:
+   ingen vegg i toppen, ingen klipping. */
+.jente.vilde .photo-cluster .family img { object-position: center 55%; transform: scale(1.4); }
+.jente.sunniva .photo-cluster .family img { object-position: center 58%; }
 </style>
 
-<div class="person">
+<div class="jenter">
 
-<div>
-
-<div class="kicker">Vilde</div>
-
-- Fra indøk til Autodesk
-- Internship som utvikler under studiene
-- Gøy å bygge produkt i stedet for slides
-- Jobbe i en produktorganisasjon
-
+<div class="jente vilde">
+  <div class="photo-cluster">
+    <div class="frame family"><img src="figures/people/vilde-2.jpg" alt="Vilde på sandvolleyballbanen"/></div>
+    <div class="frame portrait"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
+  </div>
+  <div class="kicker">Vilde</div>
 </div>
 
-<div class="photo-cluster">
-  <div class="frame family"><img src="figures/people/vilde-2.jpg" alt="Vilde på sandvolleyballbanen"/></div>
-  <div class="frame portrait"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
-</div>
-
-</div>
-
-<div class="callout">
-
-Jobbe for en mer bærekraftig verden med koding og matte.</em>
-
-</div>
-
-<!-- Say: la Vilde fortelle selv. Poenget for publikum: det finnes flere veier inn,
-     og «jeg gikk ikke datateknikk» er ikke en sperre. -->
-<!-- TODO ~1:20 -->
-
----
-
-# Jente i Autodesk
-
-<style scoped>
-/* Den øverste fjerdedelen av familiebildet er bare hvit vegg, og hvitt mot hvit
-   slide blir et hull. object-position skyver utsnittet ned så veggen forsvinner.
-   68 %, ikke 85 %: sirkelen er smalest i toppen og bunnen, så ansiktene må ligge
-   nær midthøyden for at de to ytterste ikke skal bli beskåret av masken.
-   Resten av .photo-cluster ligger i theme.css. Den lille sirkelen er plassert
-   der den lander på kjolen til barnet — det eneste stedet i dette bildet der
-   den ikke dekker et ansikt. */
-.photo-cluster .family img { object-position: center 68%; }
-</style>
-
-<div class="person">
-
-<div>
-
-<div class="kicker">Sunniva</div>
-
-- fra Fysmat til Autodesek
-  — Å gjøre ligninger om til kode
-- Da: Skrev et paper som kanskje fem mennesker i verden har lest
-- Nå: også ligniner i et verktøy tusenvis av arkitekter åpner hver dag
-
-</div>
-
-<div class="photo-cluster">
-  <div class="frame family"><img src="figures/people/sunniva-2.jpg" alt="Sunniva med familien"/></div>
-  <div class="frame portrait"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+<div class="jente sunniva">
+  <div class="photo-cluster">
+    <div class="frame family"><img src="figures/people/sunniva-2.jpg" alt="Sunniva med familien"/></div>
+    <div class="frame portrait"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  </div>
+  <div class="kicker">Sunniva</div>
 </div>
 
 </div>
 
-<div class="callout">
+<!--
+TATT VARE PÅ: kulepunktene og callout-ene som sto på de to gamle slidene.
+Ikke slettet, fordi de er ekte innhold — men de står ikke på sliden nå, og
+skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 
-Samme type jobb, men høyere påvirking "i den virkelige verden"
+  Vilde
+  - Fra indøk til Autodesk
+  - Internship som utvikler under studiene
+  - Gøy å bygge produkt i stedet for slides
+  - Jobbe i en produktorganisasjon
+  callout: Jobbe for en mer bærekraftig verden med koding og matte.
 
-</div>
+  Sunniva
+  - fra Fysmat til Autodesk — å gjøre ligninger om til kode
+  - Da: skrev et paper som kanskje fem mennesker i verden har lest
+  - Nå: også ligninger i et verktøy tusenvis av arkitekter åpner hver dag
+  callout: Samme type jobb, men høyere påvirkning i den virkelige verden.
+-->
 
-<div class="todo">tittel? </div>
+<!-- Say: la hver av dere fortelle selv, kort. Poenget for publikum er at det
+     finnes flere veier inn — indøk og Fysmat, ikke datateknikk — og at «jeg
+     gikk ikke datateknikk» ikke er en sperre. Punktene står ikke på sliden
+     lenger, så de må sies. -->
+<!-- TODO ~1:40 -->
+
 
 ---
 
 <!-- _class: demo overlay -->
 
-<!-- Bildet er 32,4 s inn i filmen: tomta på Filipstad er valgt, terreng og
-     nabobygg er lastet, og ingenting er tegnet ennå. Det er hele poenget med
-     sliden, så bildet får bære det alene — spørsmålene har fått egen slide
-     etter denne. Ingen maske her; 32,4 ligger i det tekstfrie vinduet. -->
+<!-- Hesthagen-parkeringen, ikke Filipstad. Bildet sto før på et skjermbilde fra
+     demofilmen — en tomt i Oslo, med hele Forma-grensesnittet rundt. Det sa
+     «programvare» på en slide som skal si «tomt». Nå er det stedet selv: en
+     parkeringsplass full av biler, der halve salen har stått.
 
-![](figures/video/stills/tomt.jpg)
+     Bildet er satt sammen av to lag som går over i hverandre (se
+     tools/hesthagen_slide4.py): til venstre Kartverkets gråtonekart, til høyre
+     flyfoto fra 2022. Overgangen ligger akkurat til venstre for tomta, så
+     tomta selv er rent foto og bilene leses. Det er hele poenget — planen har
+     ingenting tegnet der, virkeligheten er full av parkerte biler.
+
+     Rød strek er tomtegrensa fra OpenStreetMap, ikke tegnet på frihånd.
+
+     Slide 4, 5 og 6 deler dette bildet. Det skal IKKE bytte når arkitekten og
+     utbyggeren kommer inn; det er oppbyggingen som er poenget.
+
+     Vil du bytte variant: bildene ligger under figures/illustrations/tidligfase/,
+     og skriptet lager fem. Bytt bare filnavnet på alle tre slidene. -->
+
+![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
 
 <div class="overlay-label">
   <div class="kicker">Tidligfase</div>
   <h1>Alt er åpent, ingenting er tegnet</h1>
+</div>
+
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
 </div>
 
 <!-- Say: la bildet stå et øyeblikk før du sier noe. Tomt kvartal, lastet
@@ -134,7 +204,11 @@ Samme type jobb, men høyere påvirking "i den virkelige verden"
      arkitekten kommer inn. Bildet skal IKKE bytte — det er oppbyggingen som er
      poenget, ikke tre forskjellige bilder. -->
 
-![](figures/video/stills/tomt.jpg)
+![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
+
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
+</div>
 
 <div class="roles-holder">
 <div class="roles">
@@ -160,7 +234,11 @@ Samme type jobb, men høyere påvirking "i den virkelige verden"
 <!-- Steg 3: utbyggeren kommer inn ved siden av. Arkitekten står i samme spalte
      som på forrige slide, så figuren ikke hopper når du klikker. -->
 
-![](figures/video/stills/tomt.jpg)
+![](figures/illustrations/tidligfase/hesthagen-kart-foto.jpg)
+
+<div class="photo-credit">
+  Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
+</div>
 
 <div class="roles-holder">
 <div class="roles">
