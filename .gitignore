@@ -3,8 +3,25 @@ talk/_check.html
 talk/_p.*.png
 talk/slides.html
 talk/slides.pdf
+talk/slides-film.md
+talk/_pngcheck/
 .DS_Store
+
+# Kildevideoen til flipbooken. Framene under flipbook/ er sjekket inn (de er
+# små, og da slipper CI å ha ffmpeg), men selve filmen er for stor for git.
+talk/figures/video/*.mp4
+talk/figures/video/*.mov
 
 # Byggeresultat (workflowen lager dette i CI)
 _site/
 talk/index.html
+
+# Kontrollrenderinger. _varianter.md er sammenligningsdecket for slide 4 —
+# fem bakgrunner med den samme teksten oppå. Både kilden og PNG-ene er
+# engangsartikler; bildene de peker på ligger under figures/illustrations/.
+talk/_varianter.md
+talk/_varianter.*.png
+talk/_check.*.png
+talk/_sammenligning/
+talk/_komfort-varianter.md
+talk/_komfort.*.png
