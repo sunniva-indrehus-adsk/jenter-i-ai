@@ -225,7 +225,7 @@ section.title header { color: #B4B4B4; }
 
 section.title-photo {
   /* Override --photo in a slide's <style scoped> to use a different render. */
-  --photo: url('figures/illustrations/gløshaugen-streamlines.png');
+  --photo: url('figures/vind/gløshaugen-streamlines.png');
   background-color: var(--paper);
   background-image:
     radial-gradient(ellipse 78% 62% at 2% 104%,
@@ -428,7 +428,9 @@ section.overlay .photo-credit {
   color: var(--ink);
   /* Lys flate bak, av samme familie som merkelappen — teksten skal kunne stå
      mot både lys asfalt og mørke trekroner uten å bytte farge. */
-  background: rgba(255, 255, 255, 0.62);
+  /* Samme grunn som merkelappen under: hvitt på hvitt forsvinner. */
+  background: rgba(230, 234, 238, 0.9);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
   padding: 5px 9px 6px;
 }
@@ -470,7 +472,17 @@ section.flipbook .demo-label {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: rgba(255, 255, 255, 0.66);
+  /* Lys grå, ikke hvit. 66 % hvitt forsvant fullstendig på slidene der
+     bakgrunnen ER hvit — Formas sidepanel nede til venstre på site-design-
+     slidene er papirhvitt, og lappen ble usynlig der.
+
+     #E6EAEE på 92 % er mørk nok til å lese som en flate mot hvitt, og
+     fortsatt lys nok til at svart tekst og den blå kickeren står klart mot
+     den. 1 px kantstrek i tillegg, så kanten er skarp også der flaten og
+     bakgrunnen ligger nær hverandre — samme grep som .frame bruker på
+     portrettene. Litt av motivet skinner fortsatt gjennom på de mørke. */
+  background: rgba(230, 234, 238, 0.92);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.10);
   border-radius: 10px;
   padding: 15px 24px 18px;
   color: var(--ink);

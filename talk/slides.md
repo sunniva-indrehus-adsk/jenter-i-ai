@@ -128,7 +128,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
      Slide 4, 5 og 6 deler dette bildet. Det skal IKKE bytte når arkitekten og
      utbyggeren kommer inn; det er oppbyggingen som er poenget. -->
 
-![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
+![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
 <style scoped>
 /* Tittelen skal stå på ÉN linje. Temaet kapper merkelappen på 72 % av flata og
@@ -169,7 +169,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
      ikke legger seg over tomta. Arkitekten står i samme spalte her som på
      neste slide, så figuren ikke hopper når du klikker. -->
 
-![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
+![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
 <div class="photo-credit">
   Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
@@ -182,7 +182,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
 <li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
 </div>
 </div>
@@ -198,7 +198,7 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <!-- Steg 3: utbyggeren kommer inn ved siden av, i høyre spalte av samme
      venstrestilte bærer. -->
 
-![](figures/illustrations/tidligfase/hesthagen-flyfoto.jpg)
+![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
 <div class="photo-credit">
   Flyfoto 2022 © Geovekst / Trondheim kommune · Kart © Kartverket, CC BY 4.0
@@ -211,14 +211,14 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
 <li>Blir det bra her (lys, støy, vind)?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
 <div class="role fig-hoyre">
 <div class="bubble"><ul>
 <li>Går regnestykket opp?</li>
 <li>Hva koster det å ombestemme seg om tre måneder?</li>
 </ul></div>
-<div class="figure"><img src="figures/illustrations/rolle-utbygger-lys.svg" alt=""><span class="name">Utbyggeren</span></div>
+<div class="figure"><img src="figures/tidligfase/rolle-utbygger-lys.svg" alt=""><span class="name">Utbyggeren</span></div>
 </div>
 </div>
 </div>
@@ -246,83 +246,65 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 
 <!-- _class: demo flipbook on-dark -->
 
-![](figures/video/flipbook/forma-demo-001.jpg)
+<!-- Fire slides erstatter de sju flipbook-bildene fra demofilmen. Grunnen er
+     oppløsning: de gamle var hentet ut av en 1080p-video, tre på 1920 px og
+     fem beskåret til 1344. Disse er skjermbilder rett fra Forma, nedskalert
+     til 2560 px — 2x slideflata, altså deckets standard for fullflate-bilder.
+     Originalene på 3456 px ligger i site-design/original/.
 
-<div class="demo-label">
-<div class="kicker">Forma Site Design</div>
-Tidligfase, rett i nettleseren
-</div>
+     on-dark her og ikke på de tre neste: bakgrunnen er verdensrommet, altså
+     svart nede til venstre, og da må Autodesk-logoen og sidetallet være hvite.
+     De tre andre har Formas lyse sidepanel i det hjørnet. -->
 
----
-
-<!-- _class: demo flipbook on-dark -->
-<!-- _paginate: false -->
-
-![](figures/video/flipbook/forma-demo-002.jpg)
-
-<div class="demo-label">
-<div class="kicker">Kontekst</div>
-Skriv inn adressen
-</div>
-
----
-
-<!-- _class: demo flipbook -->
-<!-- _paginate: false -->
-
-![](figures/video/flipbook/forma-demo-003.jpg)
+![](figures/site-design/velg-geolokasjon.png)
 
 <div class="demo-label">
 <div class="kicker">Kontekst</div>
-Velg tomta
+Velg geolokasjon
 </div>
 
 ---
 
 <!-- _class: demo flipbook -->
-<!-- _paginate: false -->
 
-![](figures/video/flipbook/forma-demo-004.jpg)
+![](figures/site-design/bestill-data.png)
 
 <div class="demo-label">
-<div class="kicker">Design</div>
-Tegn volumene direkte i 3D
+<div class="kicker">Kontekst</div>
+Bestill data
 </div>
 
 ---
 
 <!-- _class: demo flipbook -->
-<!-- _paginate: false -->
 
-![](figures/video/flipbook/forma-demo-005.jpg)
+![](figures/site-design/sett-kontekst.png)
 
 <div class="demo-label">
-<div class="kicker">Design</div>
-Arealtallene oppdateres mens du tegner
+<div class="kicker">Sett kontekst</div>
+Jobb i nettleseren
 </div>
 
 ---
 
 <!-- _class: demo flipbook -->
-<!-- _paginate: false -->
 
-![](figures/video/flipbook/forma-demo-006.jpg)
+![](figures/site-design/vis-hesthagen-med-data.png)
 
 <div class="demo-label">
-<div class="kicker">Analyse</div>
-Soltimer
+<div class="kicker">Utforsk</div>
+Begynn å utforske din tomt
 </div>
 
 ---
 
 <!-- _class: demo flipbook -->
-<!-- _paginate: false -->
 
-![](figures/video/flipbook/forma-demo-008.jpg)
+![](figures/site-design/hesthagen-med-tegning.png)
 
 <div class="demo-label">
-<div class="kicker">Analyse</div>
-Sammenlign alternativer side om side
+<div class="kicker">Tegn</div>
+Iterer over forslaget
 </div>
 
 ---
@@ -394,32 +376,32 @@ Sammenlign alternativer side om side
 <div class="cols-3">
 
 <div class="card">
-<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<img src="figures/analyser/noise.png" alt="Støy">
 <div class="figcap"><span class="figref">Støy</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<img src="figures/analyser/solar-energy.png" alt="Solenergi">
 <div class="figcap"><span class="figref">Solenergi</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<img src="figures/analyser/daylight.png" alt="Dagslys">
 <div class="figcap"><span class="figref">Dagslys</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<img src="figures/analyser/microclimate.png" alt="Mikroklima">
 <div class="figcap"><span class="figref">Mikroklima</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<img src="figures/analyser/sun.png" alt="Sol">
 <div class="figcap"><span class="figref">Sol</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<img src="figures/analyser/wind.png" alt="Vind">
 <div class="figcap"><span class="figref">Vind</span></div>
 </div>
 
@@ -510,32 +492,32 @@ Sammenlign alternativer side om side
 <div class="cols-3">
 
 <div class="card">
-<img src="figures/illustrations/analyses/noise.png" alt="Støy">
+<img src="figures/analyser/noise.png" alt="Støy">
 <div class="figcap"><span class="figref">Støy</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/solar-energy.png" alt="Solenergi">
+<img src="figures/analyser/solar-energy.png" alt="Solenergi">
 <div class="figcap"><span class="figref">Solenergi</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/daylight.png" alt="Dagslys">
+<img src="figures/analyser/daylight.png" alt="Dagslys">
 <div class="figcap"><span class="figref">Dagslys</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/microclimate.png" alt="Mikroklima">
+<img src="figures/analyser/microclimate.png" alt="Mikroklima">
 <div class="figcap"><span class="figref">Mikroklima</span></div>
 </div>
 
 <div class="card">
-<img src="figures/illustrations/analyses/sun.png" alt="Sol">
+<img src="figures/analyser/sun.png" alt="Sol">
 <div class="figcap"><span class="figref">Sol</span></div>
 </div>
 
 <div class="card ring">
-<img src="figures/illustrations/analyses/wind.png" alt="Vind">
+<img src="figures/analyser/wind.png" alt="Vind">
 <div class="figcap"><span class="figref">Vind</span></div>
 </div>
 
@@ -570,7 +552,7 @@ Sammenlign alternativer side om side
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
@@ -594,7 +576,7 @@ Sammenlign alternativer side om side
 <div class="build">
 
 <div class="panel">
-  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="h">Fysikkmodellen</p>
 
 $$
@@ -622,7 +604,7 @@ $$
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
@@ -647,7 +629,7 @@ $$
 <div class="build">
 
 <div class="panel">
-  <img src="figures/illustrations/modell-cfd.svg" alt="">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="h">Fysikkmodellen</p>
 
 $$
@@ -675,14 +657,14 @@ $$
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
 <div class="arr ai to-left"></div>
 
 <div class="panel ai">
-  <img src="figures/illustrations/modell-surrogat.svg" alt="">
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
   <p class="h">Surrogatmodellen</p>
   <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
   <p class="t">Sekunder per iterasjon.</p>
@@ -767,7 +749,7 @@ section { font-size: 22px; }
 
 <div class="card">
   <div class="head">
-    <img src="figures/illustrations/modell-cfd.svg" alt="">
+    <img src="figures/modeller/modell-cfd.svg" alt="">
     <h3>Fullverdig CFD</h3>
   </div>
   <p class="clock">Timer<span>per kjøring</span></p>
@@ -789,13 +771,13 @@ section { font-size: 22px; }
       <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
     </div>
   </div>
-  <img src="figures/illustrations/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
   <div class="figcap">Samme komfortkart — uansett hvilken av dem som regnet det ut.</div>
 </div>
 
 <div class="card ai">
   <div class="head">
-    <img src="figures/illustrations/modell-surrogat.svg" alt="">
+    <img src="figures/modeller/modell-surrogat.svg" alt="">
     <h3>Surrogatmodellen</h3>
   </div>
   <p class="clock">Sekunder<span>per kjøring</span></p>
@@ -847,7 +829,7 @@ Detaljene står i SVG-filens egen header, og manuset i Say-kommentaren nederst.
 (Ikke skriv en HTML-kommentar inni denne: den ytre slutter ved det første
 sluttmerket, og resten lekker ut som brødtekst.)
 -->
-<img src="figures/illustrations/02-surrogat-pipeline.svg" alt="Terreng og bygninger som høydekart inn, nevralt nett som roterer geometrien for åtte vindretninger, åtte vindfelt ut, vektet med vindrosen til et komfortkart — trent på ferdige CFD-kjøringer">
+<img src="figures/modeller/surrogat-pipeline.svg" alt="Terreng og bygninger som høydekart inn, nevralt nett som roterer geometrien for åtte vindretninger, åtte vindfelt ut, vektet med vindrosen til et komfortkart — trent på ferdige CFD-kjøringer">
 
 <div class="callout">
 
@@ -887,7 +869,7 @@ section { justify-content: center; }
 img { display: block; margin: 0 auto; max-height: 100%; max-width: 100%; width: auto; }
 </style>
 
-<img src="figures/illustrations/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
+<img src="figures/modeller/surrogatmodell.png" alt="Inn: høydeprofil og kategorikart over tomta, med terreng, bygninger og vegetasjon. Ut: åtte vindfelt, ett for hver av de åtte vindretningene fra nord til nordvest">
 
 <!-- Say: den konkrete versjonen av skissen på forrige slide. Pek på de to
      bildene til venstre: høyden på alt som står der, og hva det er — terreng,
@@ -942,7 +924,7 @@ SVG med ekstern <image> falt ut av eksporten), så den ligger i PNG-en.
 
 Skal ringen flyttes: skriptet står i README under «Kartet med ring».
 -->
-<img src="figures/illustrations/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
+<img src="figures/hesthagen/hesthagen-kart-ring.png" alt="Kart over Hesthagen mellom Klæbuveien og Gløshaugen, med tomta som reguleres ringet inn i rødt">
 <div class="figcap"><span class="figref">Figur</span> Hesthagen, mellom Klæbuveien og Gløshaugen. Rød ring: tomta som reguleres. Kart: © <a href="https://www.kartverket.no/">Kartverket</a>, CC BY 4.0.</div>
 
 </div>
