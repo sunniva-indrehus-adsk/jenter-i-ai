@@ -536,151 +536,113 @@ Iterer over utforming
 
 ---
 
-<!-- _class: result-build -->
+<!-- _class: comfort-map -->
 
-# Fra vind: komfortabelhet
+<!-- Trinn 1 av 2: kartet alene. Merkelappene kommer på neste slide, som er
+     identisk bortsett fra dem — samme grep som rollekortene på tomt-sliden og
+     stigen lenger bak. Marp har ingen fragmenter, så oppbygging gjøres ved å
+     duplisere sliden.
 
-<div class="build">
+     Bildet, skalaen og alt annet MÅ være likt på de to, ellers hopper det når
+     du klikker. Retter du noe her, rett det samme på trinn 2. -->
 
-<div></div>
+# Vindkomfort
 
-<div></div>
+<div class="use">
 
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
-</div>
+<div class="map">
 
-<div></div>
-
-<div></div>
+<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
 
 </div>
 
-<!-- Say: dette er svaret arkitekten ser. Ingen modell, ingen ligning — bare
-     resultatet, og fargene som sier hva det betyr. La det stå litt.
-     De to neste slidene legger på hvor svaret kommer fra. -->
-<!-- TODO ~0:30 -->
+<div class="side">
+
+<div class="legend">
+<div class="kicker">Komfortskalaen</div>
+
+<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
+</div>
+</div>
+
+</div>
+
+<!-- Say: la kartet stå alene et øyeblikk. «Dette er svaret — ett kart over
+     hele tomta.» Gi salen tid til å se fargene og kjenne igjen stedet før du
+     begynner å forklare. Så klikker du, og merkelappene kommer på. -->
+<!-- TODO ~0:10 -->
 
 ---
+<!-- _class: comfort-map -->
 
-<!-- _class: result-build -->
+<!-- Trinn 2 av 2: samme slide med merkelappene på. Se kommentaren på trinn 1 —
+     alt utenom .pin-ene skal være identisk der.
 
-# Fra vind: komfortabelhet
+     Prosentene i .pin-ene er lest av fargene i windcomfortgløs.png og
+     verifisert mot pikslene: ring 1 og 3 ligger på Rusle (gult), ring 2 på
+     Sitte (lysegrønt). Byttes bildet, må de sjekkes på nytt. -->
 
-<div class="build">
+# Vindkomfort
 
-<div class="panel">
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="h">Fysikkmodellen</p>
+<div class="use">
 
-$$
-\begin{aligned}
-(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
-&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
-&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
-\nabla\cdot\mathbf{U} \;=\;& \;0
-\end{aligned}
-$$
+<div class="map">
 
-  <p class="t">Timer per iterasjon.</p>
+<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
+
+<div class="pin" style="left: 11%; top: 16%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>Åpent felt</b><span>Ingenting bremser vinden — her går du forbi.</span></span>
 </div>
 
-<div class="arr to-right"></div>
-
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+<div class="pin" style="left: 57%; top: 40%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>I le mellom byggene</b><span>Lunt nok til å sitte. Her kan uterommet ligge.</span></span>
 </div>
 
-<div></div>
-
-<div></div>
-
-</div>
-
-<!-- Say: «dette er hvordan vi FAKTISK regner det ut.» Ligningen er den
-     stasjonære RANS-en simpleFoam løser, med vårt eget vegetasjonsledd. Ikke gå
-     gjennom leddene her — den annoterte versjonen kommer på Fysikkmodell-sliden.
-     Poenget nå er bare: timer. -->
-<!-- TODO ~0:25 -->
-
----
-
-<!-- _class: result-build -->
-
-# Fra vind: komfortabelhet
-
-<div class="build">
-
-<div class="panel">
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="h">Fysikkmodellen</p>
-
-$$
-\begin{aligned}
-(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
-&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
-&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
-\nabla\cdot\mathbf{U} \;=\;& \;0
-\end{aligned}
-$$
-
-  <p class="t">Timer per iterasjon.</p>
-</div>
-
-<div class="arr to-right"></div>
-
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
-</div>
-
-<div class="arr ai to-left"></div>
-
-<div class="panel ai">
-  <img src="figures/modeller/modell-surrogat.svg" alt="">
-  <p class="h">Surrogatmodellen</p>
-  <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
-  <p class="t">Sekunder per iterasjon.</p>
+<div class="pin" style="left: 21%; top: 58%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>Mellom to bygg</b><span>Vinden presses gjennom og akselererer.</span></span>
 </div>
 
 </div>
 
-<!-- Say: «og dette er den andre veien til det samme bildet.» Begge pilene
-     peker inn mot samme kart — det er hele argumentet. Så: timer mot sekunder,
-     og hvorfor det avgjør hvem som kan bruke modellen. -->
-<!-- TODO ~0:30 -->
+<div class="side">
+
+<div class="legend">
+<div class="kicker">Komfortskalaen</div>
+
+<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
+</div>
+</div>
+
+</div>
+
+<!-- Say: her leser du kartet for salen. Tre steder, ikke flere — resten ser de
+     selv.
+
+     Det åpne feltet: ingenting står i veien, så vinden får fart. Gult betyr at
+     det er fint å gå gjennom, ikke å bli sittende.
+
+     Le-sonen mellom byggene: det er her uterommet skal ligge. Lyst grønt er
+     «sitte» — kaffen står i ro.
+
+     Passasjen mellom to bygg: vinden presses gjennom et trangere tverrsnitt og
+     akselererer. Det er den effekten folk kjenner uten å kunne forklare, og den
+     eneste måten å fikse den er å endre byggene — ikke å sette opp en skjerm
+     etterpå.
+
+     Poenget å lande: arkitekten trenger ikke tallene. Hun trenger å se hvor det
+     er grønt før volumene er låst. -->
+<!-- TODO ~0:35 -->
 
 ---
 
@@ -1458,10 +1420,11 @@ h2 {
 
      Her ligger to sett slides:
 
-     1. Vår egen vind-linje fra før merge-en: «Vindkomfort» (to trinn) og
-        «Hvordan beregner vi vindkomfort?». Hoveddecket bruker nå main sin
-        «Fra vind: komfortabelhet» i stedet — de sier mye av det samme, men
-        main sin versjon har komfortskalaen og kartet av hovedbygget.
+     1. «Fra vind: komfortabelhet» (tre trinn) og «Hvordan beregner vi
+        vindkomfort?». Hoveddecket bruker nå «Vindkomfort» (to trinn) i
+        stedet — de sier mye av det samme, men «Vindkomfort» viser kartet
+        over hele tomta med de påpekte stedene, der «Fra vind» har
+        komfortskalaen og kartet av hovedbygget.
 
      2. Blokka som alt lå i baklomma: CFD-ligningen, CFD mot surrogat og
         pipeline-skissen. Kommentaren under forklarer rekkefølgen.
@@ -1469,113 +1432,151 @@ h2 {
      Skal noe av dette opp i hoveddecket igjen, må du sjekke at det ikke
      dublerer main sin «To modeller, ett svar» eller «Surrogatmodellen».
      ────────────────────────────────────────────────────────────────────── -->
-<!-- _class: comfort-map -->
+<!-- _class: result-build -->
 
-<!-- Trinn 1 av 2: kartet alene. Merkelappene kommer på neste slide, som er
-     identisk bortsett fra dem — samme grep som rollekortene på tomt-sliden og
-     stigen lenger bak. Marp har ingen fragmenter, så oppbygging gjøres ved å
-     duplisere sliden.
+# Fra vind: komfortabelhet
 
-     Bildet, skalaen og alt annet MÅ være likt på de to, ellers hopper det når
-     du klikker. Retter du noe her, rett det samme på trinn 2. -->
+<div class="build">
 
-# Vindkomfort
+<div></div>
 
-<div class="use">
+<div></div>
 
-<div class="map">
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
 
-<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
+<div></div>
+
+<div></div>
 
 </div>
 
-<div class="side">
-
-<div class="legend">
-<div class="kicker">Komfortskalaen</div>
-
-<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
-</div>
-</div>
-
-</div>
-
-<!-- Say: la kartet stå alene et øyeblikk. «Dette er svaret — ett kart over
-     hele tomta.» Gi salen tid til å se fargene og kjenne igjen stedet før du
-     begynner å forklare. Så klikker du, og merkelappene kommer på. -->
-<!-- TODO ~0:10 -->
+<!-- Say: dette er svaret arkitekten ser. Ingen modell, ingen ligning — bare
+     resultatet, og fargene som sier hva det betyr. La det stå litt.
+     De to neste slidene legger på hvor svaret kommer fra. -->
+<!-- TODO ~0:30 -->
 
 ---
-<!-- _class: comfort-map -->
 
-<!-- Trinn 2 av 2: samme slide med merkelappene på. Se kommentaren på trinn 1 —
-     alt utenom .pin-ene skal være identisk der.
+<!-- _class: result-build -->
 
-     Prosentene i .pin-ene er lest av fargene i windcomfortgløs.png og
-     verifisert mot pikslene: ring 1 og 3 ligger på Rusle (gult), ring 2 på
-     Sitte (lysegrønt). Byttes bildet, må de sjekkes på nytt. -->
+# Fra vind: komfortabelhet
 
-# Vindkomfort
+<div class="build">
 
-<div class="use">
+<div class="panel">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
 
-<div class="map">
+$$
+\begin{aligned}
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
+\end{aligned}
+$$
 
-<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
-
-<div class="pin" style="left: 11%; top: 16%;">
-  <span class="dot"></span>
-  <span class="lbl"><b>Åpent felt</b><span>Ingenting bremser vinden — her går du forbi.</span></span>
+  <p class="t">Timer per iterasjon.</p>
 </div>
 
-<div class="pin" style="left: 57%; top: 40%;">
-  <span class="dot"></span>
-  <span class="lbl"><b>I le mellom byggene</b><span>Lunt nok til å sitte. Her kan uterommet ligge.</span></span>
+<div class="arr to-right"></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
 </div>
 
-<div class="pin" style="left: 21%; top: 58%;">
-  <span class="dot"></span>
-  <span class="lbl"><b>Mellom to bygg</b><span>Vinden presses gjennom og akselererer.</span></span>
-</div>
+<div></div>
 
-</div>
-
-<div class="side">
-
-<div class="legend">
-<div class="kicker">Komfortskalaen</div>
-
-<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
-<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
-</div>
-</div>
+<div></div>
 
 </div>
 
-<!-- Say: her leser du kartet for salen. Tre steder, ikke flere — resten ser de
-     selv.
+<!-- Say: «dette er hvordan vi FAKTISK regner det ut.» Ligningen er den
+     stasjonære RANS-en simpleFoam løser, med vårt eget vegetasjonsledd. Ikke gå
+     gjennom leddene her — den annoterte versjonen kommer på Fysikkmodell-sliden.
+     Poenget nå er bare: timer. -->
+<!-- TODO ~0:25 -->
 
-     Det åpne feltet: ingenting står i veien, så vinden får fart. Gult betyr at
-     det er fint å gå gjennom, ikke å bli sittende.
+---
 
-     Le-sonen mellom byggene: det er her uterommet skal ligge. Lyst grønt er
-     «sitte» — kaffen står i ro.
+<!-- _class: result-build -->
 
-     Passasjen mellom to bygg: vinden presses gjennom et trangere tverrsnitt og
-     akselererer. Det er den effekten folk kjenner uten å kunne forklare, og den
-     eneste måten å fikse den er å endre byggene — ikke å sette opp en skjerm
-     etterpå.
+# Fra vind: komfortabelhet
 
-     Poenget å lande: arkitekten trenger ikke tallene. Hun trenger å se hvor det
-     er grønt før volumene er låst. -->
-<!-- TODO ~0:35 -->
+<div class="build">
+
+<div class="panel">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
+
+$$
+\begin{aligned}
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
+\end{aligned}
+$$
+
+  <p class="t">Timer per iterasjon.</p>
+</div>
+
+<div class="arr to-right"></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div class="arr ai to-left"></div>
+
+<div class="panel ai">
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
+  <p class="h">Surrogatmodellen</p>
+  <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
+  <p class="t">Sekunder per iterasjon.</p>
+</div>
+
+</div>
+
+<!-- Say: «og dette er den andre veien til det samme bildet.» Begge pilene
+     peker inn mot samme kart — det er hele argumentet. Så: timer mot sekunder,
+     og hvorfor det avgjør hvem som kan bruke modellen. -->
+<!-- TODO ~0:30 -->
 
 ---
 
