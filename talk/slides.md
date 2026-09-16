@@ -646,6 +646,125 @@ Iterer over utforming
 
 ---
 
+<style scoped>
+section { font-size: 22px; }
+
+/* Tre trinn i oppskriften. De to første er ingrediensene og det tredje er
+   resultatet — derfor et plusstegn mellom 1 og 2, og en pil inn mot 3.
+   Skiltene er egne kolonner i rutenettet og ikke marger, så kortene blir like
+   brede uansett hvor mye tekst de har. */
+.recipe {
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr 46px 1fr;
+  gap: 0.9em;
+  align-items: stretch;
+  /* Samme margin og korthøyde som section.ladder: dette er samme slags slide
+     — trinn på rad — og de tre ladder-slidene kommer rett etter. Holder de
+     samme mål, leses de som én figur som bygges videre på. */
+  margin: 1.7em 0 0;
+}
+
+.recipe .card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1em 1.1em 1.2em;
+  min-height: 280px;
+}
+/* Det siste kortet er svaret, ikke enda en ingrediens. Aksentblå topplinje og
+   lys flate, samme grep som .panel.ai og .card.ai ellers i decket. */
+.recipe .card.out { border-top-color: var(--accent); background: var(--accent-soft); }
+
+/* Miniatyrene: fast høyde og overflow: hidden, så de tre boksene er like store
+   uansett hvilket format kildefila har. 185 px er den naturlige høyden til de
+   to liggende figurene i en 282 px bred kortspalte — da slipper de å beskjæres
+   i det hele tatt, og bare vindrosen trenger et utsnitt. */
+.recipe .thumb {
+  position: relative;
+  height: 185px;
+  overflow: hidden;
+  margin-bottom: 0.9em;
+}
+.recipe .thumb img { position: absolute; top: 0; left: 0; width: 100%; display: block; }
+/* Vindrosefila er stående og har fartsfordelingen under selve rosen. Her skal
+   bare rosen vises: bildet skaleres etter høyden (167 % ≈ rosen fyller de
+   øverste 58 % av fila), sentreres, og resten klippes av overflow: hidden. */
+.recipe .thumb.rose img {
+  width: auto;
+  height: 174%;
+  left: 50%;
+  top: -4%;
+  transform: translateX(-50%);
+}
+
+.recipe h3 { font-size: 1.05em; margin: 0 0 0.4em; }
+.recipe .card.out h3 { color: var(--accent); }
+.recipe p { margin: 0; font-size: 0.86em; line-height: 1.45; color: var(--muted); }
+
+/* Plusstegnet står for «og», pila for «blir til» — samme skille som på
+   result-build-slidene, der de to tegnene alt brukes med den betydningen. */
+.recipe .plus {
+  align-self: center;
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 1;
+}
+.recipe .arr { align-self: center; position: relative; height: 3px; background: var(--ink); }
+.recipe .arr::after {
+  content: '';
+  position: absolute;
+  top: -6.5px;
+  right: -13px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 13px solid var(--ink);
+}
+</style>
+
+# Hvordan beregner vi vindkomfort?
+
+<div class="recipe">
+
+<div class="card">
+  <div class="thumb"><img src="figures/vind/vindretninger-plan.svg" alt="Tomta sett ovenfra, med piler som peker inn mot den fra åtte vindretninger"></div>
+  <h3>Simulering</h3>
+  <p>Vi simulerer hvordan vinden beveger seg mellom byggene når den kommer fra åtte ulike retninger.</p>
+</div>
+
+<div class="plus">+</div>
+
+<div class="card">
+  <div class="thumb rose"><img src="figures/vind/vindrose.png" alt="Vindrose for stedet: åtte sektorer med hvor stor andel av tiden det blåser fra hver retning, sørvest størst med 22 prosent"></div>
+  <h3>Historiske data</h3>
+  <p>Målt vindhastighet og vindretning for stedet: hvor ofte det blåser fra hver retning, og hvor hardt.</p>
+</div>
+
+<div class="arr"></div>
+
+<div class="card out">
+  <div class="thumb"><img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen: grønt mellom byggene, gult i de åpne partiene"></div>
+  <h3>Vindkomfort</h3>
+  <p>Til sammen gir de hvor komfortabelt det er, sted for sted på tomta.</p>
+</div>
+
+</div>
+
+<!-- Say: oppskriften i tre trinn, før figurene på neste slide.
+
+     Trinn 1 og 2 er ingrediensene, trinn 3 er svaret — les plusstegnet og pila
+     høyt, så følger salen regnestykket.
+
+     Poenget som er verdt å stoppe på: simuleringen alene sier ingenting om
+     komfort. Den sier hva vinden GJØR hvis den kommer fra nordvest. Det er
+     først når du vet hvor ofte den faktisk gjør det, at du kan si om et sted
+     er lunt. Derfor er de historiske dataene ikke en detalj — uten dem har du
+     åtte bilder og ingen konklusjon. -->
+<!-- TODO ~0:25 -->
+---
+
 <!-- _class: ladder -->
 
 # Hvordan analyserer arkitekten vindforholdene?
@@ -1240,11 +1359,12 @@ h2 {
 
      Her ligger to sett slides:
 
-     1. «Fra vind: komfortabelhet» (tre trinn) og «Hvordan beregner vi
-        vindkomfort?». Hoveddecket bruker nå «Vindkomfort» (to trinn) i
-        stedet — de sier mye av det samme, men «Vindkomfort» viser kartet
-        over hele tomta med de påpekte stedene, der «Fra vind» har
-        komfortskalaen og kartet av hovedbygget.
+     1. «Fra vind: komfortabelhet» (tre trinn). Hoveddecket bruker nå
+        «Vindkomfort» (to trinn) i stedet — de sier mye av det samme, men
+        «Vindkomfort» viser kartet over hele tomta med de påpekte stedene,
+        der «Fra vind» har komfortskalaen og kartet av hovedbygget.
+        «Hvordan beregner vi vindkomfort?», som lå her, står nå i hovedløpet
+        rett etter «Vindkomfort».
 
      2. To av modell-slidene som sto i hovedløpet mellom «Tusenvis av
         simuleringer» og de 15 rutene: «To modeller, ett svar» og
@@ -1406,125 +1526,6 @@ $$
      og hvorfor det avgjør hvem som kan bruke modellen. -->
 <!-- TODO ~0:30 -->
 
----
-
-<style scoped>
-section { font-size: 22px; }
-
-/* Tre trinn i oppskriften. De to første er ingrediensene og det tredje er
-   resultatet — derfor et plusstegn mellom 1 og 2, og en pil inn mot 3.
-   Skiltene er egne kolonner i rutenettet og ikke marger, så kortene blir like
-   brede uansett hvor mye tekst de har. */
-.recipe {
-  display: grid;
-  grid-template-columns: 1fr 34px 1fr 46px 1fr;
-  gap: 0.9em;
-  align-items: stretch;
-  /* Samme margin og korthøyde som section.ladder: dette er samme slags slide
-     — trinn på rad — og de tre ladder-slidene kommer rett etter. Holder de
-     samme mål, leses de som én figur som bygges videre på. */
-  margin: 1.7em 0 0;
-}
-
-.recipe .card {
-  display: flex;
-  flex-direction: column;
-  padding: 1.1em 1.1em 1.2em;
-  min-height: 280px;
-}
-/* Det siste kortet er svaret, ikke enda en ingrediens. Aksentblå topplinje og
-   lys flate, samme grep som .panel.ai og .card.ai ellers i decket. */
-.recipe .card.out { border-top-color: var(--accent); background: var(--accent-soft); }
-
-/* Miniatyrene: fast høyde og overflow: hidden, så de tre boksene er like store
-   uansett hvilket format kildefila har. 185 px er den naturlige høyden til de
-   to liggende figurene i en 282 px bred kortspalte — da slipper de å beskjæres
-   i det hele tatt, og bare vindrosen trenger et utsnitt. */
-.recipe .thumb {
-  position: relative;
-  height: 185px;
-  overflow: hidden;
-  margin-bottom: 0.9em;
-}
-.recipe .thumb img { position: absolute; top: 0; left: 0; width: 100%; display: block; }
-/* Vindrosefila er stående og har fartsfordelingen under selve rosen. Her skal
-   bare rosen vises: bildet skaleres etter høyden (167 % ≈ rosen fyller de
-   øverste 58 % av fila), sentreres, og resten klippes av overflow: hidden. */
-.recipe .thumb.rose img {
-  width: auto;
-  height: 174%;
-  left: 50%;
-  top: -4%;
-  transform: translateX(-50%);
-}
-
-.recipe h3 { font-size: 1.05em; margin: 0 0 0.4em; }
-.recipe .card.out h3 { color: var(--accent); }
-.recipe p { margin: 0; font-size: 0.86em; line-height: 1.45; color: var(--muted); }
-
-/* Plusstegnet står for «og», pila for «blir til» — samme skille som på
-   result-build-slidene, der de to tegnene alt brukes med den betydningen. */
-.recipe .plus {
-  align-self: center;
-  text-align: center;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.5em;
-  line-height: 1;
-}
-.recipe .arr { align-self: center; position: relative; height: 3px; background: var(--ink); }
-.recipe .arr::after {
-  content: '';
-  position: absolute;
-  top: -6.5px;
-  right: -13px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 13px solid var(--ink);
-}
-</style>
-
-# Hvordan beregner vi vindkomfort?
-
-<div class="recipe">
-
-<div class="card">
-  <div class="thumb"><img src="figures/vind/vindretninger-plan.svg" alt="Tomta sett ovenfra, med piler som peker inn mot den fra åtte vindretninger"></div>
-  <h3>Simulering</h3>
-  <p>Vi simulerer hvordan vinden beveger seg mellom byggene når den kommer fra åtte ulike retninger.</p>
-</div>
-
-<div class="plus">+</div>
-
-<div class="card">
-  <div class="thumb rose"><img src="figures/vind/vindrose.png" alt="Vindrose for stedet: åtte sektorer med hvor stor andel av tiden det blåser fra hver retning, sørvest størst med 22 prosent"></div>
-  <h3>Historiske data</h3>
-  <p>Målt vindhastighet og vindretning for stedet: hvor ofte det blåser fra hver retning, og hvor hardt.</p>
-</div>
-
-<div class="arr"></div>
-
-<div class="card out">
-  <div class="thumb"><img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen: grønt mellom byggene, gult i de åpne partiene"></div>
-  <h3>Vindkomfort</h3>
-  <p>Til sammen gir de hvor komfortabelt det er, sted for sted på tomta.</p>
-</div>
-
-</div>
-
-<!-- Say: oppskriften i tre trinn, før figurene på neste slide.
-
-     Trinn 1 og 2 er ingrediensene, trinn 3 er svaret — les plusstegnet og pila
-     høyt, så følger salen regnestykket.
-
-     Poenget som er verdt å stoppe på: simuleringen alene sier ingenting om
-     komfort. Den sier hva vinden GJØR hvis den kommer fra nordvest. Det er
-     først når du vet hvor ofte den faktisk gjør det, at du kan si om et sted
-     er lunt. Derfor er de historiske dataene ikke en detalj — uten dem har du
-     åtte bilder og ingen konklusjon. -->
-<!-- TODO ~0:25 -->
 ---
 
 # To modeller, ett svar
