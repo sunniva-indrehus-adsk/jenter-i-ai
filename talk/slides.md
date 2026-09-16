@@ -1282,9 +1282,10 @@ section { font-size: 22px; }
 
 <!-- _class: ladder -->
 
-<!-- Kopi av trinn 2 (slide 20) — flata skal være IDENTISK med den, ellers
-     hopper stigen når du kommer tilbake til den her. Retter du et kort på
-     slide 20, rett det samme her.
+<!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
+     rett før «Slik simulerer vi vinden») — flata skal være IDENTISK med den,
+     ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
+     der, rett det samme her.
 
      Den står her fordi stigen har vært ute av bildet i tre slides (simulering,
      iterasjoner, treningsdata). Publikum trenger å se hvor vi var før trinn 3
