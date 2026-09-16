@@ -1294,6 +1294,68 @@ section.result-build .scale-strip .sw {
 }
 section.result-build .scale-strip .t { display: block; color: var(--muted); font-size: 0.88em; margin-top: 0.12em; }
 
+/* ── Fysikkmodellen: hvorfor simuleringen tar timer ────────────────────── */
+
+/* Den eneste sliden i decket der en likning er selve innholdet og ikke et ikon
+   for «her er det fysikk». To valg er verdt å vite om:
+
+   Leddene er merket med \underbrace inne i KaTeX-en, ikke med en liste i en
+   sidespalte. Da står forklaringen under leddet den forklarer, og salen slipper
+   å flytte blikket mellom to spalter for å finne ut hvilken tekst som hører til
+   hvilket symbol — det er den eneste måten en likning med fem merkede ledd blir
+   lesbar på 20 sekunder fra scenen.
+
+   Merkelappene er --muted og ikke fem ulike farger. Decket bruker farge til å
+   bety noe — grå fortid, svart i dag, blå AI, se stigen lenger ned — og fem
+   termfarger ville brutt med det uten å legge til informasjon. */
+
+/* Likningen sentreres i det som er igjen av flaten, med auto-marg over og
+   under. Da sitter den optisk i midten enten lead-linja går over én eller to
+   linjer; en hardkodet toppmarg gjorde at den hoppet. */
+section.physics .eqwrap { margin: auto 0; }
+section.physics .eqwrap .katex-display { margin: 0; }
+/* 0.95em er så stort likningen kan settes før den bredeste linja — viskositets-
+   leddet — treffer sidemargen. Den skal settes så stort som det går: dette er
+   den ene sliden der likningen ER innholdet, og salen sitter langt bak.
+   Merkelappene er subscripts og skaleres med, så de trenger ingen egen
+   størrelse. */
+section.physics .eqwrap .katex-display > .katex { font-size: 0.95em; }
+section.physics .eqcap {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.62em;
+  margin: 1.2em 0 0;
+}
+
+/* Regnestykket nederst er svaret på tittelen: likningen forteller hva vi løser,
+   raden forteller hvorfor det koster tid. Den er satt opp som et produkt fordi
+   det er nettopp multiplikasjonen som gjør timene — ingen av faktorene er dyr
+   alene. Summen står til høyre i displayfonten, så blikket lander på tallet
+   sist. */
+section.physics .cost {
+  display: flex;
+  align-items: stretch;
+  gap: 0.8em;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.9em;
+}
+section.physics .cost .f { flex: 1; font-size: 0.66em; line-height: 1.3; }
+section.physics .cost .f b { display: block; font-size: 1.16em; }
+section.physics .cost .f span { display: block; color: var(--muted); margin-top: 0.3em; }
+/* Gangetegnene er dempet med vilje — de skal binde faktorene sammen uten å bli
+   lest som innhold — men ikke så lyse som --rule, for da forsvant de helt på
+   projektor og raden falt fra hverandre i tre løse kolonner. */
+section.physics .cost .op {
+  align-self: center;
+  color: var(--muted);
+  font-size: 1.1em;
+  line-height: 1;
+}
+/* Summen er poenget med hele sliden og settes i displayfonten, stort nok til å
+   leses alene hvis salen bare får med seg én ting fra raden. */
+section.physics .cost .f.tot { flex: 0 0 auto; align-self: center; }
+section.physics .cost .f.tot b { font-family: var(--display); font-size: 2.1em; }
+
 /* ── Vindanalyse-stigen: tre kort som kommer ett om gangen ─────────────── */
 
 /* Tre slides på rad med samme rutenett: først ett kort, så to, så tre. De

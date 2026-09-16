@@ -1,53 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 200" role="img"
-     aria-label="Tomta sett ovenfra, med piler som peker inn mot den fra åtte vindretninger, merket nord, øst, sør og vest">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 312 312" role="img"
+     aria-label="Piler som peker inn mot tomta fra åtte vindretninger, merket nord, øst, sør og vest">
   <!-- Kort 1 på «Hvordan beregner vi vindkomfort?»: simuleringen kjøres én gang
        per vindretning. Tegnet i plan og ikke isometrisk — de åtte retningene er
        poenget, og i plan er de like lange og like tydelige hele veien rundt.
 
        Pilene peker INN mot tomta: de viser hvor vinden kommer FRA, som er måten
-       vindretninger oppgis på. Halene ligger på samme radius (78) hele veien
-       rundt, så ingen retning ser viktigere ut enn de andre.
+       vindretninger oppgis på. Halene ligger på samme radius (140) hele veien
+       rundt, så ingen retning ser viktigere ut enn de andre. Pilene er korte og
+       tynne med vilje: tomta i midten er motivet, pilene er bare skiltingen
+       rundt den.
+
+       viewBoxen er KVADRATISK, og det er den fordi .recipe .thumb i sliden er
+       det. Var den ikke det, ville preserveAspectRatio skalert ned innholdet
+       for å få det til å passe i boksen — og da krymper flyfotoet under, som
+       skaleres av CSS og ikke av SVG-en.
+
+       312 og ikke 304: halene er flyttet ut fra 130 til 140, og de fire
+       merkelappene skal fortsatt stå UTENFOR dem uten å bli klippet av
+       boksekanten. De ekstra 8 enhetene er den lufta. Forholdstallet er det som
+       betyr noe — halene er 44,9 % av boksen i radius, mot 42,8 % før.
+
+       INGEN ring rundt tomta lenger. Før lå det en grå sirkel her som markerte
+       kanten på flyfotoet; nå står fotoet rett mot kortflata, og kanten er
+       bildet selv. Det betyr også at radien her IKKE lenger er koblet til
+       prosenten i .thumb.dirs img.site — det eneste kravet er at fotoet holder
+       seg innenfor pilspissene på radius 110 (altså under 70,5 % i diameter).
+
+       Midten er TOM med vilje. Selve tomta er et eget <img> i sliden
+       (gløshaugenfromabove.png), klippet til sirkel og lagt UNDER denne
+       fila — en ekstern PNG referert inne i en SVG som lastes via <img> blir
+       ikke hentet av nettleseren, så komposisjonen må skje i sliden.
 
        Bare N, Ø, S og V er skrevet på. De fire diagonalene har piler, men ingen
-       tekst: åtte merkelapper i en 282 px bred miniatyr blir uleselige fra
-       salen, og de fire hovedretningene er nok til at rosen kan leses. Halene
-       er korta ned fra 92 til 78 for å gi plass til teksten utenfor dem.
+       tekst: åtte merkelapper i en miniatyr blir uleselige fra salen, og de
+       fire hovedretningene er nok til at rosen ved siden av kan leses.
+       12 px og ikke 14: merkelappene er skilting rundt motivet, ikke innhold,
+       og i den 360 px høye boksen leses de fint på 12 enheter.
 
-       Palett som modell-cfd.svg og modell-surrogat.svg: svart kontur, grå
-       flater. Formatet er 1,52:1, samme som komfortkartet på kort 3, så de tre
-       miniatyrene fyller like store bokser. -->
-  <g fill="#E4E4E4" stroke="#9A9A9A" stroke-width="1.6">
-    <circle cx="152" cy="100" r="38"/>
-  </g>
-  <g fill="#FFFFFF" stroke="#000000" stroke-width="1.8" stroke-linejoin="round">
-    <rect x="126" y="81" width="28" height="14" rx="1.5"/>
-    <rect x="160" y="96" width="13" height="23" rx="1.5"/>
-    <rect x="128" y="105" width="18" height="11" rx="1.5"/>
-  </g>
-  <g stroke="#000000" stroke-width="3" stroke-linecap="butt">
-    <line x1="152.0" y1="178.0" x2="152.0" y2="156.0"/>
-    <polygon points="152.0,145.0 145.0,156.0 159.0,156.0" stroke="none" fill="#000000"/>
-    <line x1="96.8" y1="155.2" x2="112.4" y2="139.6"/>
-    <polygon points="120.2,131.8 107.5,134.6 117.4,144.5" stroke="none" fill="#000000"/>
-    <line x1="74.0" y1="100.0" x2="96.0" y2="100.0"/>
-    <polygon points="107.0,100.0 96.0,93.0 96.0,107.0" stroke="none" fill="#000000"/>
-    <line x1="96.8" y1="44.8" x2="112.4" y2="60.4"/>
-    <polygon points="120.2,68.2 117.4,55.5 107.5,65.4" stroke="none" fill="#000000"/>
-    <line x1="152.0" y1="22.0" x2="152.0" y2="44.0"/>
-    <polygon points="152.0,55.0 159.0,44.0 145.0,44.0" stroke="none" fill="#000000"/>
-    <line x1="207.2" y1="44.8" x2="191.6" y2="60.4"/>
-    <polygon points="183.8,68.2 196.5,65.4 186.6,55.5" stroke="none" fill="#000000"/>
-    <line x1="230.0" y1="100.0" x2="208.0" y2="100.0"/>
-    <polygon points="197.0,100.0 208.0,107.0 208.0,93.0" stroke="none" fill="#000000"/>
-    <line x1="207.2" y1="155.2" x2="191.6" y2="139.6"/>
-    <polygon points="183.8,131.8 186.6,144.5 196.5,134.6" stroke="none" fill="#000000"/>
+       Pilene er Autodesk-blå (#0696D7, samme verdi som accent-variabelen i theme.css) og
+       ikke svarte: da leses de som skiltingen de er, og ikke som en del av
+       flyfotoet under. Merkelappene N/Ø/S/V står i grått (#6E6E6E, samme verdi
+       som muted-variabelen i theme.css): de er himmelretninger og ikke et poeng i seg
+       selv, så de skal ligge under pilene i vekt. Begge verdiene er hardkodet
+       fordi SVG-en lastes via <img> og ikke arver CSS-variabler. -->
+  <g stroke="#0696D7" stroke-width="2.4" stroke-linecap="butt">
+    <line x1="156" y1="296" x2="156" y2="277"/>
+    <polygon points="156,266 149.5,277 162.5,277" stroke="none" fill="#0696D7"/>
+    <line x1="57" y1="255" x2="70.4" y2="241.6"/>
+    <polygon points="78.2,233.8 65.8,237 75,246.2" stroke="none" fill="#0696D7"/>
+    <line x1="16" y1="156" x2="35" y2="156"/>
+    <polygon points="46,156 35,149.5 35,162.5" stroke="none" fill="#0696D7"/>
+    <line x1="57" y1="57" x2="70.4" y2="70.4"/>
+    <polygon points="78.2,78.2 75,65.8 65.8,75" stroke="none" fill="#0696D7"/>
+    <line x1="156" y1="16" x2="156" y2="35"/>
+    <polygon points="156,46 162.5,35 149.5,35" stroke="none" fill="#0696D7"/>
+    <line x1="255" y1="57" x2="241.6" y2="70.4"/>
+    <polygon points="233.8,78.2 246.2,75 237,65.8" stroke="none" fill="#0696D7"/>
+    <line x1="296" y1="156" x2="277" y2="156"/>
+    <polygon points="266,156 277,162.5 277,149.5" stroke="none" fill="#0696D7"/>
+    <line x1="255" y1="255" x2="241.6" y2="241.6"/>
+    <polygon points="233.8,233.8 237,246.2 246.2,237" stroke="none" fill="#0696D7"/>
   </g>
   <!-- Merkelappene ligger rett utenfor pilhalen de hører til: N over den øverste,
        S under den nederste, Ø og V på hver side. -->
-  <g font-family="'Artifakt Element','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15" font-weight="700" fill="#000000">
-    <text x="152" y="16" text-anchor="middle">N</text>
-    <text x="152" y="195" text-anchor="middle">S</text>
-    <text x="240" y="105" text-anchor="start">Ø</text>
-    <text x="64" y="105" text-anchor="end">V</text>
+  <g font-family="'Artifakt Element','Inter','Helvetica Neue',Helvetica,Arial,sans-serif" font-size="12" font-weight="700" fill="#6E6E6E">
+    <text x="156" y="12" text-anchor="middle">N</text>
+    <text x="156" y="309" text-anchor="middle">S</text>
+    <text x="299" y="161" text-anchor="start">Ø</text>
+    <text x="13" y="161" text-anchor="end">V</text>
   </g>
 </svg>
