@@ -900,9 +900,17 @@ section { font-size: 22px; }
   transform: translateX(-50%);
 }
 
-.recipe h3 { font-size: 1.05em; margin: 0 0 0.7em; }
+/* Korttitlene er grå og litt større enn før: grå fordi de er merkelapper på
+   figurene under, ikke påstander i seg selv — svart ga dem samme vekt som
+   tittelen øverst — og større fordi de skal leses fra bakerste rad likevel. */
+.recipe h3 {
+  font-size: 1.45em;
+  margin: 0 0 0.7em;
+  color: var(--muted);
+}
 .recipe p { margin: 0; font-size: 0.86em; line-height: 1.45; color: var(--muted); }
-/* Plusstegnet står for «og», som på result-build-slidene. */
+/* Plusstegnet står for «og», som på result-build-slidene. Grått, som
+   korttitlene: det er skilletegn mellom de to ingrediensene, ikke et av dem. */
 .recipe .plus {
   align-self: center;
   text-align: center;
@@ -910,6 +918,7 @@ section { font-size: 22px; }
   font-weight: 700;
   font-size: 2.4em;
   line-height: 1;
+  color: var(--muted);
 }
 </style>
 
@@ -1031,15 +1040,18 @@ section { font-size: 22px; }
 
 .lead { margin: 0.2em 0 0; font-size: 0.85em; color: var(--muted); max-width: 52em; }
 
-/* Bildet til venstre, ligningen i en fast spalte til høyre. 380 px og ikke 300:
+/* Bildet til venstre, ligningen i en fast spalte til høyre. 440 px og ikke 300:
    ligningen er det ene på sliden som faktisk må kunne leses fra bakerste rad,
    og skriftstørrelsen er låst til spaltebredden — leddene er brutt i markdownen
-   under, og blir spalten smalere, bryter KaTeX dem om igjen på egne steder. */
+   under, og blir spalten smalere, bryter KaTeX dem om igjen på egne steder.
+   align-items: center, ikke start: «Likningene»-kickeren som holdt kortet oppe
+   i flukt med bildets overkant er borte, og uten den er det midten av ligningen
+   som skal ligge på midten av bildet. */
 .sim {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
+  grid-template-columns: minmax(0, 1fr) 440px;
   gap: 1.5em;
-  align-items: start;
+  align-items: center;
   margin-top: 1.1em;
 }
 
@@ -1052,11 +1064,11 @@ section { font-size: 22px; }
 
 .sim .model { border: 1px solid var(--rule); border-top: 3px solid var(--ink); padding: 0.9em 1em 1em; }
 .sim .model .kicker { color: var(--ink); }
-/* 0.72em er den største verdien som holder de fire leddene på de fire linjene
-   de er brutt på i markdownen, i en 380 px spalte. Går du høyere, bryter KaTeX
+/* 0.85em er den største verdien som holder de fire leddene på de fire linjene
+   de er brutt på i markdownen, i en 440 px spalte. Går du høyere, bryter KaTeX
    den lengste linja — viskositetsleddet — om igjen midt i en parentes. */
 .sim .model .katex-display { margin: 0.2em 0 0; }
-.sim .model .katex-display > .katex { font-size: 0.72em; }
+.sim .model .katex-display > .katex { font-size: 0.85em; }
 /* Kostnaden hører til ligningen, ikke til bildet: den står under likningene, i
    samme kort, skilt med en strek. Den er det ene tallet salen må ha med seg
    videre — «femten forsøk på en ettermiddag» og surrogatmodellen henger begge
@@ -1082,7 +1094,6 @@ section { font-size: 22px; }
 </div>
 
 <div class="model">
-  <div class="kicker">Likningene</div>
 
 $$
 \begin{aligned}
@@ -1544,163 +1555,167 @@ section { font-size: 22px; }
 
 ---
 
-# Simulering eller estimat?
+<!-- Resultatsliden mellom de to modell-forklaringene og byttehandel-plottet.
+     Maskinlæringsmodellen-sliden viser hva modellen GJØR; plottet etterpå
+     abstraherer forskjellen til to akser. Denne står imellom og gir salen det
+     ene beviset de trenger for at plottet er ærlig: de to kartene ved siden av
+     hverandre, samme tomt og samme analyse, det ene simulert og det andre
+     estimert. Ser man dem ikke, er «nesten like presis» en påstand.
+
+     Merk at kameraet ikke er helt likt i de to bildene — estimatbildet står
+     litt lenger tilbake. Salen leser fargeflatene, ikke utsnittet, så det
+     bærer; men skal bildene byttes ut en gang, ta dem fra samme kameravinkel.
+
+     Bildene er 3840x2160 og kommer rett fra Forma, med samme komfortskala som
+     Gløshaugen-slidene. De er ikke beskåret. -->
+
+# Ser du forskjellen?
 
 <style scoped>
-/* SPREDNINGSPLOTT, bygd i CSS — ingen bildefil. To akser, to punkter:
-   presisjon opp, ventetid til høyre. Poenget er at punktene ligger på
-   DIAGONALEN: presisjon koster tid. Ingen av dem er «den beste» — de ligger
-   på hver sin ende av den samme byttehandelen, og derfor brukes de til hver
-   sin jobb.
+/* justify-content: start fordi sliden er kortere enn de fleste andre: uten den
+   sentrerer Marp innholdet loddrett, og tittelen legger seg et par centimeter
+   lavere enn på slidene rundt. Da hopper overskriften når du blar. */
+section { font-size: 22px; justify-content: flex-start; }
 
-   SLIDEN ER MED VILJE NESTEN TEKSTFRI. Den hadde en inngangslinje, to
-   y-aksemerker («Etterprøvbar» / «Omtrentlig — med et avvik vi måler») og en
-   forklaringslinje under hvert kort. Alt det er TATT UT: aksenavnene og
-   punktenes plassering sier det samme, og resten sies muntlig (se Say-noten
-   under). Skal noe tilbake, ta y-aksemerkene før forklaringslinjene — de er
-   det eneste som ikke leses rett av figuren.
-
-   MÅLENE ER I PX mot en 1280x720-slide. Uten inngangslinja er det ca. 510 px
-   igjen under h1-en, så plottet er 400 px høyt pluss ca. 46 px til
-   x-etikettene.
-
-   Pilspissene er innebygde <svg>-er, og de krever --html=true. Marp Core
-   slipper som standard bare gjennom en allowlist der div/img/p er med, men
-   IKKE svg — uten flagget havner SVG-kilden på sliden som synlig tekst.
-   Docker-kommandoen i README-en har flagget, så det er dekket.
-
-   Punktene er plassert med left/bottom i px inne i .plot, ikke i prosent.
-   Flytter du ett punkt, sjekk at kortene ikke møtes: kortene er ca. 96 px
-   høye nå, og de to punktene står 250 px fra hverandre i høyden. */
-
-section { font-size: 22px; }
-
-.kv { position: relative; width: 1090px; height: 446px; margin: 1.6em auto 0; }
-
-/* Aksekorset ER to borders på .plot. Da er det nøyaktig plottets kanter
-   punktene måles fra, og koordinatene kan ikke komme i utakt med aksene. */
-.plot {
-  position: absolute; left: 196px; top: 0; width: 880px; height: 400px;
-  border-left: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
+/* To like brede kort, side ved side. 560 px hver: 2 x 560 + 32 px mellomrom =
+   1152 px, som er nøyaktig bredden sliden har mellom margene. Kartene ligger i
+   en 560×315 ramme med overflow: hidden og scale() — samme utsnittshøyde som
+   før, men zoomet inn på tomten. Estimat-skjermbildet er tatt lenger unna i
+   kilden, så det får litt høyere faktor enn simuleringen. */
+.compare {
+  display: grid;
+  grid-template-columns: 560px 560px;
+  gap: 32px;
+  margin-top: 1.1em;
 }
 
-.arr { position: absolute; color: var(--ink); }
-.arr-y { left: -7px; top: -11px; }        /* på toppen av y-aksen */
-.arr-x { right: -11px; bottom: -7px; }    /* på enden av x-aksen */
+/* Kart først, én etikettstripe under: ikon + navn + undertekst, tida til høyre. */
+.compare figure { margin: 0; }
+.compare .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding-top: 0.5em;
+  margin-top: 0.5em;
+  border-top: 2px solid var(--ink);
+}
+.compare .head .who {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  min-width: 0;
+}
+/* 48 px: lesbart nok for surrogat-ikonet, mindre dominerende enn 60 px over
+   et allerede fullt kort. */
+.compare .head .who img {
+  width: 48px;
+  height: 48px;
+  display: block;
+  flex: none;
+}
+.compare .labels {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  min-width: 0;
+}
+.compare .head .name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+/* Bruk + presisjon i én setning, som underetiketten på stigekortene. */
+.compare .head .sub {
+  font-size: 0.8em;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.compare .head .time {
+  flex: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--muted);
+  text-align: right;
+}
+/* Estimatet er blått her, som på stigen og på byttehandel-plottet: blått er
+   modellen vi har laget, svart er fysikken den er trent på. */
+.compare .est .head { border-top-color: var(--accent); }
+.compare .est .head .name { color: var(--accent); }
 
-/* Aksenavnene står ved pilspissene, ikke midt på aksen: da leses de som
-   retningen aksen peker — «mer presisjon oppover», «mer tid mot høyre». */
-.ax-name { position: absolute; font-family: var(--display); font-weight: 700;
-           font-size: 0.82em; letter-spacing: -0.01em; }
-.ax-y { left: 10px; top: -8px; }
-.ax-x { right: 0; bottom: -34px; }
-
-/* Aksemerkene: bare tida, der punktets hjelpelinje treffer x-aksen. */
-.tick-x { position: absolute; white-space: nowrap;
-          top: calc(100% + 12px); transform: translateX(-50%);
-          font-family: var(--display); font-weight: 700; font-size: 0.95em;
-          letter-spacing: -0.015em; }
-
-/* Hjelpelinja ned til x-aksen. Stiplet og lys: den skal leses som
-   avlesning, ikke som en tredje strek i figuren. */
-.guide-v { position: absolute; border-left: 1px dashed var(--rule); bottom: 0; }
-
-.dot { position: absolute; width: 15px; height: 15px; border-radius: 50%;
-       transform: translate(-50%, 50%); box-shadow: 0 0 0 3.5px var(--paper); }
-
-/* Kortene: ikon og navn, og under det JOBBEN punktet gjør — ett ord.
-   Ikonene er de samme to som stigen og oppsummeringen bruker. */
-.node { position: absolute; width: 300px; }
-/* 64 px ikoner, samme mål som oppsummeringskortene i baklomma bruker. Ikke
-   mindre: kantene i modell-surrogat.svg er 1,15 px i en 120-viewBox med 0,38
-   i dekkevne, så under ca. 60 px forsvinner de og nettet blir en punktsky. */
-.node .head { display: grid; grid-template-columns: 64px 1fr; gap: 0.6em;
-              align-items: center; }
-.node .head img { width: 64px; height: 64px; display: block; }
-.node .head h3 { margin: 0; font-size: 1em; line-height: 1.15; }
-.node .bruk { margin: 0.4em 0 0; font-family: var(--display); font-weight: 700;
-              font-size: 1.25em; line-height: 1.1; letter-spacing: -0.015em; }
-
-/* SIMULERING: høyt oppe og langt ute — presis, men du venter.
-   Punktet står på (680, 340) i plottet, og kortet henger til VENSTRE for
-   det. Til høyre er det bare 200 px igjen, og kortet er 300 px bredt. */
-.sim .dot { left: 680px; bottom: 340px; background: var(--ink); }
-.sim .guide-v { left: 680px; height: 340px; }
-.sim .node { left: 348px; bottom: 340px; transform: translateY(50%);
-             text-align: right; }
-.sim .node .head { grid-template-columns: 1fr 64px; }
-
-/* ESTIMATET: nede til venstre — mindre presisjon, men svaret kommer med en
-   gang. Kortet henger til HØYRE for punktet, der det er plass. */
-.est .dot { left: 120px; bottom: 90px; background: var(--accent); }
-.est .guide-v { left: 120px; height: 90px; }
-.est .node { left: 150px; bottom: 90px; transform: translateY(50%); }
-.est .node .head h3 { color: var(--accent); }
-.est .node .bruk { color: var(--accent); }
+.compare .shot {
+  width: 560px;
+  height: 315px;
+  overflow: hidden;
+  line-height: 0;
+}
+.compare .shot img {
+  display: block;
+  width: 560px;
+  height: auto;
+  transform-origin: 50% 42%;
+}
+.compare .sim .shot img { transform: scale(1.32); }
+.compare .est .shot img { transform: scale(1.52); }
 </style>
 
-<div class="kv">
-<div class="plot">
+<div class="compare">
 
-  <svg class="arr arr-y" width="16" height="11" viewBox="0 0 16 11" aria-hidden="true">
-    <path d="M8 0 L16 11 L0 11 z" fill="currentColor"/></svg>
-  <svg class="arr arr-x" width="11" height="16" viewBox="0 0 11 16" aria-hidden="true">
-    <path d="M11 8 L0 0 L0 16 z" fill="currentColor"/></svg>
-
-  <div class="ax-name ax-y">Presisjon</div>
-  <div class="ax-name ax-x">Ventetid</div>
-
-  <div class="sim">
-    <div class="guide-v"></div>
-    <div class="tick-x" style="left: 680px">1–2 timer</div>
-    <div class="dot"></div>
-    <div class="node">
-      <div class="head">
-        <h3>Simulering</h3>
-        <img src="figures/modeller/modell-cfd.svg" alt="">
-      </div>
-      <p class="bruk">Dokumentasjon</p>
-    </div>
+<figure class="sim">
+  <div class="shot">
+    <img src="figures/simulation.png" alt="Vindkomfortkart over Gløshaugen fra simuleringen: grønne flater i le mellom byggene, gule felt over de åpne partiene i nord">
   </div>
-
-  <div class="est">
-    <div class="guide-v"></div>
-    <div class="tick-x" style="left: 120px">Sekunder</div>
-    <div class="dot"></div>
-    <div class="node">
-      <div class="head">
-        <img src="figures/modeller/modell-surrogat.svg" alt="">
-        <h3>Estimat</h3>
+  <div class="head">
+    <div class="who">
+      <img src="figures/modeller/modell-cfd.svg" alt="">
+      <div class="labels">
+        <span class="name">Simulering</span>
+        <span class="sub">Dokumentasjon · mer presis</span>
       </div>
-      <p class="bruk">Iterering</p>
     </div>
+    <span class="time">1–2 timer</span>
   </div>
+</figure>
+
+<figure class="est">
+  <div class="shot">
+    <img src="figures/estimate.png" alt="Vindkomfortkart over samme område fra maskinlæringsmodellen: de samme grønne og gule feltene, men med mykere overganger og litt mer gult i nord">
+  </div>
+  <div class="head">
+    <div class="who">
+      <img src="figures/modeller/modell-surrogat.svg" alt="">
+      <div class="labels">
+        <span class="name">Estimat</span>
+        <span class="sub">Iterasjoner · omtrentlig</span>
+      </div>
+    </div>
+    <span class="time">2–6 sekunder</span>
+  </div>
+</figure>
 
 </div>
-</div>
 
-<!-- Say: sliden er nesten tom med vilje — teksten som sto her, sier du i
-     stedet. Sliden før viste hva modellen gjør. Denne svarer på det salen
-     lurer på etterpå: skal den erstatte simuleringen? Nei.
+<!-- Say: to kart over samme tomt. Det ene tok et par timer, det andre kom mens
+     du tegnet. Ikke si hvilket som er hvilket med en gang — la salen se på dem
+     et par sekunder først.
 
-     To akser. Oppover: presisjon. Mot høyre: hvor lenge du venter. Punktene
-     ligger på diagonalen, og det er hele poenget — presisjon koster tid.
-     Begge har verdi, men ikke til det samme.
+     Poenget er ikke at de er identiske, for det er de ikke: se på de åpne
+     feltene i nord, der estimatet legger på litt mer gult, og på kantene
+     mellom sonene, som er mykere i estimatet. Det er tilnærmingen som synes.
 
-     Nede til venstre: estimatet. Sekunder, omtrentlig — med et avvik vi
-     måler. Det er ikke like presist, og det trenger det ikke å være, fordi
-     det brukes til å ITERERE: prøve tjue varianter før lunsj og se hvilken
-     vei det går.
+     Poenget er at konklusjonen er den samme. Uterommet mellom byggene er lunt
+     i begge, og de åpne flatene er utsatte i begge. Skal du velge hvor
+     inngangen og uteserveringen skal ligge, tar du samme valg av begge to.
 
-     Oppe til høyre: simuleringen. Én til to timer, etterprøvbar. Den brukes
-     til å DOKUMENTERE — svaret som skal stå i rapporten, og som noen kan
-     regne etter.
-
-     Har du tid: pek på hjørnet oppe til VENSTRE, det tomme. Raskt OG
-     nøyaktig finnes ikke ennå. Det er der forskningen står, og det er
-     derfor estimatet er trent på simuleringene, ikke i stedet for dem. -->
-<!-- TODO ~0:35 -->
+     Etikettene sier bruk og presisjon i én linje; tida står til høyre. Si at
+     simuleringen er mer presis men tar lengre tid — sekunder mot timer er
+     synlig uten at du må lese det opp. -->
+<!-- TODO ~0:30 -->
 
 ---
 

@@ -116,10 +116,12 @@ section {
    skriften på hver slide er blå, er blått ikke lenger en aksent — det er
    grunnfargen, og da har kickerne og callout-ene ingenting å peke seg ut mot.
 
-   Nå bærer streken fargen alene. Den er tynn, så den tåler å være blå uten å
-   ta over sliden, og den blir det som binder overskriften til resten av
-   aksentene. Autodesk-svart er dessuten den primære merkevarefargen (se
-   --ink), så tittelen i svart er også det riktigste merkevaremessig.
+   Nå er både tittelen og streken under den svarte. Streken var en periode blå,
+   som en siste rest av den blå tittelen, men da ble det blått øverst på hver
+   eneste slide igjen — i det små, men nok til at kickerne og callout-ene måtte
+   konkurrere om den samme fargen. Svart strek lar blått bety «se her».
+   Autodesk-svart er dessuten den primære merkevarefargen (se --ink), så
+   tittelen i svart er også det riktigste merkevaremessig.
 
    Unntakene ligger lenger ned og er de slidene som har svart bakgrunn:
    seksjonsskillene beholder hvit tittel, for svart på svart er ingenting. */
@@ -132,7 +134,7 @@ h1 {
   color: var(--ink);
   margin: 0 0 0.55em 0;
   padding-bottom: 0.35em;
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid var(--ink);
 }
 
 /* Underoverskriften er svart, som tittelen over. Den var satt svart for å veie
