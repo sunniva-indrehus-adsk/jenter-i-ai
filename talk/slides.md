@@ -1006,62 +1006,6 @@ section { font-size: 22px; }
 
 ---
 
-<!-- _class: physics -->
-
-# Hvorfor tar det timer?
-
-<style scoped>
-.lead { margin: 0.2em 0 0; font-size: 0.82em; color: var(--muted); max-width: 52em; }
-</style>
-
-<p class="lead">Fordi vi ikke slår opp et svar — vi løser bevegelseslikningene for luft, i hver celle i et rutenett over hele tomta, om og om igjen til strømningsbildet står stille.</p>
-
-<div class="eqwrap">
-
-$$
-\begin{aligned}
-\underbrace{(\mathbf{U}\cdot\nabla)\mathbf{U}}_{\textcolor{#6E6E6E}{\text{vinden frakter seg selv}}} \;=\;& -\underbrace{\nabla p}_{\textcolor{#6E6E6E}{\text{trykkforskjeller}}} \\[0.45em]
-&+\; \nabla\cdot\big[\underbrace{(\nu+\nu_t)}_{\textcolor{#6E6E6E}{\text{friksjon og turbulens}}}\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\[0.45em]
-&-\; \underbrace{c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U}}_{\textcolor{#6E6E6E}{\text{trær og vegetasjon som bremser}}} \\[0.45em]
-\underbrace{\nabla\cdot\mathbf{U}}_{\textcolor{#6E6E6E}{\text{luft forsvinner ikke}}} \;=\;& \;0
-\end{aligned}
-$$
-
-<p class="eqcap">Stasjonær RANS — det samme settet likninger vindeksperten løser. Vegetasjonsleddet er vårt eget tillegg.</p>
-
-</div>
-
-<div class="cost">
-  <div class="f"><b>millioner av celler</b><span>rutenettet over tomta</span></div>
-  <div class="op">×</div>
-  <div class="f"><b>tusenvis av runder</b><span>likningen er ikke-lineær — vi må gjette, regne, gjette bedre</span></div>
-  <div class="op">×</div>
-  <div class="f"><b>8 vindretninger</b><span>én kjøring per retning</span></div>
-  <div class="op">=</div>
-  <div class="f tot"><b>1–2 timer</b></div>
-</div>
-
-<!-- Say: her er svaret på «hvorfor timer?», og det er verdt å ta, fordi det er
-     grunnen til at neste slide finnes.
-
-     Ikke les likningen ledd for ledd. Si hva den ER: dette er fysikken for
-     luft i bevegelse, og den har vært kjent i 150 år. Pek på to ting og bare
-     to: vegetasjonsleddet — «det er vårt eget, trær bremser vinden» — og
-     ikke-lineariteten: vinden frakter seg selv, så du kan ikke løse dette i
-     ett trekk. Du gjetter et strømningsbilde, regner ut hvor galt det var,
-     gjetter bedre, og gjentar til det slutter å endre seg.
-
-     Så regnestykket nederst, sakte: millioner av celler, ganger tusenvis av
-     runder, ganger åtte vindretninger. Det er ikke ett ledd som er dyrt — det
-     er multiplikasjonen. Og det lander på én til to timer.
-
-     Poenget å sette igjen: timene er ikke dårlig programmering. De er prisen
-     på å regne ut fysikken ordentlig. -->
-<!-- TODO ~0:35 -->
-<!-- TODO: sjekk det faktiske celletallet i mesh-oppsettet før du sier
-     «millioner» fra scenen — bytt til det ekte tallet hvis du har det. -->
----
-
 <!-- Simuleringen forklart der den hører hjemme: rett etter stigen, mens
      «Simulering — timer» fortsatt henger i salen.
 
@@ -1148,8 +1092,6 @@ $$
 \nabla\cdot\mathbf{U} \;=\;& \;0
 \end{aligned}
 $$
-
-<p class="cost"><b>Én til to timer</b> per kjøring — og én kjøring per vindretning, åtte retninger.</p>
 
 </div>
 
