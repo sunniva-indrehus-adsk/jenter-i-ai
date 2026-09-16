@@ -823,7 +823,7 @@ section { font-size: 22px; }
    kort over en halv slide, og miniatyrene med. */
 .recipe {
   display: grid;
-  grid-template-columns: 372px 46px 372px;
+  grid-template-columns: 408px 46px 408px;
   justify-content: center;
   gap: 0.9em;
   align-items: stretch;
@@ -851,10 +851,17 @@ section { font-size: 22px; }
    margin-bottom her, og ingen min-height på kortet: høyden er tittel + figur. */
 .recipe .thumb {
   position: relative;
-  /* 324 px = bredden på miniatyren i en 372 px bred kortspalte, altså en
-     kvadratisk boks. Retningsfiguren har kvadratisk viewBox nettopp for å
-     passe her uten at preserveAspectRatio skalerer den ned. */
-  height: 324px;
+  /* 360 px = bredden på miniatyren i en 408 px bred kortspalte (408 minus 2 ×
+     1,1em padding), altså en kvadratisk boks. Retningsfiguren har kvadratisk
+     viewBox nettopp for å passe her uten at preserveAspectRatio skalerer den
+     ned — så kortbredden og denne høyden MÅ endres i par.
+
+     Opp fra 324/340: kortene stod på 340 px mens denne stod på 324, og da var
+     boksen 292 bred og 324 høy — ikke kvadratisk, så retningsfiguren ble
+     klippet 16 px inn på hver side. Nå stemmer de igjen, og siden det var
+     ~190 px ubrukt flate på hver side av rutenettet er det samtidig den
+     billigste måten å gjøre figurene større: alt i dem vokser 11 %. */
+  height: 360px;
   overflow: hidden;
 }
 .recipe .thumb img { position: absolute; top: 0; left: 0; width: 100%; display: block; }
@@ -863,9 +870,11 @@ section { font-size: 22px; }
    Begge er sentrert og skalert etter HØYDEN til boksen, så de holder seg på
    hverandre uansett hvor bred kortspalten blir.
 
-   92/304 av den kvadratiske viewBoxen til vindretninger-plan.svg er radien på
-   ringen i fila → diameteren er 60,5 % av boksen. Endres r der, må prosenten
-   her følge etter, ellers stikker flyfotoet ut under ringen. */
+   Ringen i SVG-en er borte, så prosenten her er ikke lenger låst til en radius
+   i fila. Det eneste kravet er at fotoet holder seg innenfor pilspissene:
+   de står på radius 110 av den 312 brede viewBoxen, altså 70,5 % i diameter.
+   67 % gir ~5 enheter klaring ned til spissene — går du høyere, legger fotoet
+   seg under pilene. */
 .recipe .thumb.dirs img {
   width: auto;
   height: 100%;
@@ -873,7 +882,7 @@ section { font-size: 22px; }
   transform: translateX(-50%);
 }
 .recipe .thumb.dirs img.site {
-  height: 60.5%;
+  height: 67%;
   top: 50%;
   aspect-ratio: 1;
   border-radius: 50%;
