@@ -1611,10 +1611,16 @@ section { font-size: 22px; }
    på hver sin ende av den samme byttehandelen, og derfor brukes de til hver
    sin jobb.
 
-   MÅLENE ER I PX mot en 1280x720-slide. Høyden er det trange: 720 px minus
-   56 px toppmarg og 72 px bunnmarg gir 592 px, h1 tar ca. 81 px ved
-   section-font 22 px, og inngangslinja ca. 70 px. Det er ca. 440 px igjen —
-   derfor er plottet 330 px høyt pluss ca. 46 px til x-etikettene.
+   SLIDEN ER MED VILJE NESTEN TEKSTFRI. Den hadde en inngangslinje, to
+   y-aksemerker («Etterprøvbar» / «Omtrentlig — med et avvik vi måler») og en
+   forklaringslinje under hvert kort. Alt det er TATT UT: aksenavnene og
+   punktenes plassering sier det samme, og resten sies muntlig (se Say-noten
+   under). Skal noe tilbake, ta y-aksemerkene før forklaringslinjene — de er
+   det eneste som ikke leses rett av figuren.
+
+   MÅLENE ER I PX mot en 1280x720-slide. Uten inngangslinja er det ca. 510 px
+   igjen under h1-en, så plottet er 400 px høyt pluss ca. 46 px til
+   x-etikettene.
 
    Pilspissene er innebygde <svg>-er, og de krever --html=true. Marp Core
    slipper som standard bare gjennom en allowlist der div/img/p er med, men
@@ -1622,20 +1628,17 @@ section { font-size: 22px; }
    Docker-kommandoen i README-en har flagget, så det er dekket.
 
    Punktene er plassert med left/bottom i px inne i .plot, ikke i prosent.
-   Flytter du ett punkt, sjekk at kortene ikke møtes: kortene er ca. 130 px
-   høye, og de to punktene står 180 px fra hverandre i høyden. Mindre
-   avstand enn det, og kortene overlapper. */
+   Flytter du ett punkt, sjekk at kortene ikke møtes: kortene er ca. 96 px
+   høye nå, og de to punktene står 250 px fra hverandre i høyden. */
 
 section { font-size: 22px; }
 
-.lead { margin: 0.2em 0 0; font-size: 0.9em; color: var(--muted); max-width: 52em; }
-
-.kv { position: relative; width: 1090px; height: 376px; margin: 1.1em auto 0; }
+.kv { position: relative; width: 1090px; height: 446px; margin: 1.6em auto 0; }
 
 /* Aksekorset ER to borders på .plot. Da er det nøyaktig plottets kanter
    punktene måles fra, og koordinatene kan ikke komme i utakt med aksene. */
 .plot {
-  position: absolute; left: 196px; top: 0; width: 880px; height: 330px;
+  position: absolute; left: 196px; top: 0; width: 880px; height: 400px;
   border-left: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
 }
@@ -1651,28 +1654,20 @@ section { font-size: 22px; }
 .ax-y { left: 10px; top: -8px; }
 .ax-x { right: 0; bottom: -34px; }
 
-/* Aksemerkene: verdien står der punktets hjelpelinje treffer aksen. Tida
-   står DERFOR ikke på kortene — den sto begge steder først, og da ble
-   «Sekunder» mot «1–2 timer» sagt to ganger i samme figur. Nå sier aksen
-   det, i display-snittet og i svart, og kortet sier hva punktet brukes til. */
-.tick { position: absolute; white-space: nowrap; }
-.tick-y { right: calc(100% + 12px); text-align: right; transform: translateY(50%);
-          font-size: 0.68em; line-height: 1.3; color: var(--muted); }
-.tick-x { top: calc(100% + 12px); transform: translateX(-50%);
+/* Aksemerkene: bare tida, der punktets hjelpelinje treffer x-aksen. */
+.tick-x { position: absolute; white-space: nowrap;
+          top: calc(100% + 12px); transform: translateX(-50%);
           font-family: var(--display); font-weight: 700; font-size: 0.95em;
           letter-spacing: -0.015em; }
 
-/* Hjelpelinjene bort til aksene. Stiplet og lyse: de skal leses som
+/* Hjelpelinja ned til x-aksen. Stiplet og lys: den skal leses som
    avlesning, ikke som en tredje strek i figuren. */
-.guide-h { position: absolute; border-top: 1px dashed var(--rule); left: 0; }
 .guide-v { position: absolute; border-left: 1px dashed var(--rule); bottom: 0; }
 
 .dot { position: absolute; width: 15px; height: 15px; border-radius: 50%;
        transform: translate(-50%, 50%); box-shadow: 0 0 0 3.5px var(--paper); }
 
-/* Kortene: ikon og navn på samme linje, og under det JOBBEN punktet gjør.
-   Jobben er det sliden handler om — «begge har verdi, men til ulike ting» —
-   så den står i display-snittet, like stor som en klokke ville vært.
+/* Kortene: ikon og navn, og under det JOBBEN punktet gjør — ett ord.
    Ikonene er de samme to som stigen og oppsummeringen bruker. */
 .node { position: absolute; width: 300px; }
 /* 64 px ikoner, samme mål som oppsummeringskortene i baklomma bruker. Ikke
@@ -1682,33 +1677,26 @@ section { font-size: 22px; }
               align-items: center; }
 .node .head img { width: 64px; height: 64px; display: block; }
 .node .head h3 { margin: 0; font-size: 1em; line-height: 1.15; }
-.node .bruk { margin: 0.5em 0 0; }
-.node .bruk b { display: block; font-family: var(--display); font-weight: 700;
-                font-size: 1.25em; line-height: 1.1; letter-spacing: -0.015em; }
-.node .bruk span { display: block; margin-top: 0.3em; font-size: 0.78em;
-                   line-height: 1.35; color: var(--muted); }
+.node .bruk { margin: 0.4em 0 0; font-family: var(--display); font-weight: 700;
+              font-size: 1.25em; line-height: 1.1; letter-spacing: -0.015em; }
 
 /* SIMULERING: høyt oppe og langt ute — presis, men du venter.
-   Punktet står på (680, 268) i plottet, og kortet henger til VENSTRE for
+   Punktet står på (680, 340) i plottet, og kortet henger til VENSTRE for
    det. Til høyre er det bare 200 px igjen, og kortet er 300 px bredt. */
-.sim .dot { left: 680px; bottom: 268px; background: var(--ink); }
-.sim .guide-h { bottom: 268px; width: 680px; }
-.sim .guide-v { left: 680px; height: 268px; }
-.sim .node { left: 348px; bottom: 268px; transform: translateY(50%);
+.sim .dot { left: 680px; bottom: 340px; background: var(--ink); }
+.sim .guide-v { left: 680px; height: 340px; }
+.sim .node { left: 348px; bottom: 340px; transform: translateY(50%);
              text-align: right; }
 .sim .node .head { grid-template-columns: 1fr 64px; }
 
 /* ESTIMATET: nede til venstre — mindre presisjon, men svaret kommer med en
    gang. Kortet henger til HØYRE for punktet, der det er plass. */
-.est .dot { left: 120px; bottom: 88px; background: var(--accent); }
-.est .guide-h { bottom: 88px; width: 120px; }
-.est .guide-v { left: 120px; height: 88px; }
-.est .node { left: 150px; bottom: 88px; transform: translateY(50%); }
-.est .node .head h3,
-.est .node .bruk b { color: var(--accent); }
+.est .dot { left: 120px; bottom: 90px; background: var(--accent); }
+.est .guide-v { left: 120px; height: 90px; }
+.est .node { left: 150px; bottom: 90px; transform: translateY(50%); }
+.est .node .head h3 { color: var(--accent); }
+.est .node .bruk { color: var(--accent); }
 </style>
-
-<p class="lead">Begge svarer på det samme spørsmålet, og begge har verdi — men ikke til det samme. Forskjellen er hvor mye presisjon du får igjen for ventetiden, og det er den forskjellen som bestemmer hvor i prosessen de hører hjemme.</p>
 
 <div class="kv">
 <div class="plot">
@@ -1722,47 +1710,46 @@ section { font-size: 22px; }
   <div class="ax-name ax-x">Ventetid</div>
 
   <div class="sim">
-    <div class="guide-h"></div>
     <div class="guide-v"></div>
-    <div class="tick tick-y" style="bottom: 268px">Etterprøvbar</div>
-    <div class="tick tick-x" style="left: 680px">1–2 timer</div>
+    <div class="tick-x" style="left: 680px">1–2 timer</div>
     <div class="dot"></div>
     <div class="node">
       <div class="head">
         <h3>Simulering</h3>
         <img src="figures/modeller/modell-cfd.svg" alt="">
       </div>
-      <p class="bruk"><b>Dokumentasjon</b><span>Svaret som skal tåle å bli etterprøvd</span></p>
+      <p class="bruk">Dokumentasjon</p>
     </div>
   </div>
 
   <div class="est">
-    <div class="guide-h"></div>
     <div class="guide-v"></div>
-    <div class="tick tick-y" style="bottom: 88px">Omtrentlig<br>— med et avvik vi måler</div>
-    <div class="tick tick-x" style="left: 120px">Sekunder</div>
+    <div class="tick-x" style="left: 120px">Sekunder</div>
     <div class="dot"></div>
     <div class="node">
       <div class="head">
         <img src="figures/modeller/modell-surrogat.svg" alt="">
         <h3>Estimat</h3>
       </div>
-      <p class="bruk"><b>Iterering</b><span>Prøv tjue varianter før lunsj</span></p>
+      <p class="bruk">Iterering</p>
     </div>
   </div>
 
 </div>
 </div>
 
-<!-- Say: sliden før viste hva modellen gjør. Denne svarer på det salen
+<!-- Say: sliden er nesten tom med vilje — teksten som sto her, sier du i
+     stedet. Sliden før viste hva modellen gjør. Denne svarer på det salen
      lurer på etterpå: skal den erstatte simuleringen? Nei.
 
      To akser. Oppover: presisjon. Mot høyre: hvor lenge du venter. Punktene
      ligger på diagonalen, og det er hele poenget — presisjon koster tid.
+     Begge har verdi, men ikke til det samme.
 
-     Nede til venstre: estimatet. Sekunder, med et avvik vi måler. Det er
-     ikke like presist, og det trenger det ikke å være, fordi det brukes til
-     å ITERERE: prøve tjue varianter og se hvilken vei det går.
+     Nede til venstre: estimatet. Sekunder, omtrentlig — med et avvik vi
+     måler. Det er ikke like presist, og det trenger det ikke å være, fordi
+     det brukes til å ITERERE: prøve tjue varianter før lunsj og se hvilken
+     vei det går.
 
      Oppe til høyre: simuleringen. Én til to timer, etterprøvbar. Den brukes
      til å DOKUMENTERE — svaret som skal stå i rapporten, og som noen kan
