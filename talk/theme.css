@@ -924,7 +924,23 @@ section.result-build .arr.to-left::after { left: -13px; border-right: 13px solid
 section.result-build .arr.ai { background: var(--accent); }
 section.result-build .arr.ai.to-left::after { border-right-color: var(--accent); }
 
-section.result-build .mid img { display: block; width: 100%; height: auto; }
+/* Høyden styrer, ikke bredden. Komfortkartfila er 1,287:1, og ved full
+   spaltebredde (532 px) blir den 413 px høy — da skyves bildeteksten under
+   den ned i Autodesk-logoen. 315 px er den høyeste verdien som gir plass til
+   figcap-en innenfor bunnmargen også på «For lenge når du drodler», der
+   lead-linja går over to linjer og skyver alt et hakk ned.
+
+   Samme tak på alle result-build-slidene, ikke ett per slide: «Slik regner vi
+   det ut» og «For lenge når du drodler» viser samme kart etter hverandre, og
+   det skal ikke hoppe i størrelse når du klikker. */
+section.result-build .mid img {
+  display: block;
+  max-height: 315px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
 section.result-build .mid .figcap { margin-top: 0.5em; text-align: center; }
 
 /* Fargeforklaringen over kartet. Fargene og navnene er verifisert mot koden —
@@ -948,3 +964,174 @@ section.result-build .scale-strip .sw {
   vertical-align: -0.07em;
 }
 section.result-build .scale-strip .t { display: block; color: var(--muted); font-size: 0.88em; margin-top: 0.12em; }
+
+/* ── Vindanalyse-stigen: tre kort som kommer ett om gangen ─────────────── */
+
+/* Tre slides på rad med samme rutenett: først ett kort, så to, så tre. De
+   tomme cellene står igjen som <div></div> og holder plassen, så ingenting
+   flytter seg mellom trinnene — samme grep som .build lenger oppe.
+
+   Reglene står her og ikke i en scoped style, fordi de deles av tre slides.
+   En scoped style måtte vært limt inn tre ganger, og da glir de fra hverandre
+   første gang noen retter på den ene. */
+section.ladder { font-size: 22px; }
+
+section.ladder .steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6em;
+  align-items: stretch;
+  margin: 1.7em 0 0;
+}
+
+/* Høye kort med tallet forankret i bunnen: etiketten leses først, så faller
+   blikket ned på tidsordet, og de tre ordene står på samme linje tvers over
+   sliden. Uten min-height blir kortene 90 px høye og sliden nesten tom. */
+section.ladder .card {
+  border-top-width: 3px;
+  padding: 1.2em 1.1em 1.3em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+
+/* Tre trinn, tre grader av farge — en trapp, ikke tre vilkårlige kulører:
+     grått  = fortiden, konsulenten. Tonet ned fordi den er historie.
+     svart  = i dag, simuleringen i verktøyet. Deckets vanlige kortfarge.
+     blått  = det nye, estimatet. Samme aksent som surrogat-kortene ellers.
+   Rekkefølgen i styrke er også rekkefølgen i tid, så fargen forteller det
+   samme som tallene under. */
+section.ladder .card.past {
+  border-top-color: var(--rule);
+  background: #F4F4F4;
+}
+section.ladder .card.past .kicker,
+section.ladder .card.past .name,
+section.ladder .card.past .clock { color: var(--muted); }
+
+section.ladder .card.ai { border-top-color: var(--accent); background: var(--accent-soft); }
+section.ladder .card.ai .kicker { color: var(--accent); }
+
+/* Hvem som gjør jobben, under kickeren som sier NÅR. Kickeren er den lille
+   versalen øverst («Før» / «Med Forma»), navnet er linja salen leser. Den
+   tekniske presiseringen står som egen grå linje under, uten parentes: den skal
+   være der for de som kjenner begrepet, men ikke konkurrere med navnet. */
+section.ladder .name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+section.ladder .name .sub {
+  display: block;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 0.72em;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-top: 0.25em;
+}
+
+section.ladder .clock {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.8em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: auto 0 0;
+}
+
+/* ── Komfortkart-slides: kartet stort, skalaen stående ved siden av ────── */
+
+/* Deles av «Hva forteller vindanalysen?» og «Vindkomfort». Reglene står her og
+   ikke i en scoped style fordi begge slidene bruker dem: en scoped style måtte
+   limes inn to ganger, og da glir de fra hverandre første gang noen retter på
+   den ene. Samme begrunnelse som section.ladder lenger opp. */
+section.comfort-map { font-size: 22px; }
+
+/* Kartet først, skalaen til høyre for det: rutene skal stå så nær flatene de
+   forklarer som mulig, så blikket ikke må krysse hele sliden for å slå opp en
+   farge. 230 px er nok til fem ord med m/s-en under. */
+section.comfort-map .use {
+  display: grid;
+  grid-template-columns: auto 230px;
+  justify-content: center;
+  gap: 1.5em;
+  align-items: center;
+  margin-top: 1.1em;
+}
+
+/* width: fit-content gjør wrapperen nøyaktig så bred som bildet. Uten den
+   fyller den spalten, og kartet slutter å ligge inntil skalaen. position:
+   relative er forankringen .pin-ene posisjoneres i prosent av. */
+section.comfort-map .map { position: relative; width: fit-content; }
+/* 480 px, ikke 500: over det legger nedre bildekant seg oppå Autodesk-logoen. */
+section.comfort-map .map img { display: block; max-height: 480px; width: auto; max-width: 100%; }
+
+/* Stående skala, ikke den liggende .scale-strip-en: på disse to slidene er
+   kartet hovedsaken, og da skal hvert trinn stå på egen linje så blikket kan
+   gå ned lista mens du snakker.
+
+   Ordet først og m/s-en under, i grått: ordet er det salen leser, tallet er
+   det arkitekten trenger. Standardnavnet (Lawson LDDC) er tatt ut av selve
+   sliden og står bare i Say-notatet — det sier ingenting til noen som ikke
+   kjenner det fra før. */
+section.comfort-map .legend { border-top: 1px solid var(--rule); padding-top: 0.7em; }
+section.comfort-map .legend .kicker { margin-bottom: 0.7em; }
+section.comfort-map .legend .row {
+  display: grid;
+  grid-template-columns: 1.1em 1fr;
+  gap: 0.65em;
+  margin: 0.3em 0;
+  align-items: start;
+}
+section.comfort-map .legend .sw {
+  width: 1.1em;
+  height: 1.1em;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.14);
+  margin-top: 0.2em;
+}
+section.comfort-map .legend b { font-size: 0.85em; line-height: 1.2; display: block; }
+section.comfort-map .legend .t { display: block; color: var(--muted); font-size: 0.68em; line-height: 1.3; }
+
+/* Merkelappene oppå kartet. Ringen er svart, ikke den røde fra Hesthagen-kartet
+   og analyse-rutenettet: rødt er en FARGE I SKALAEN her («Ukomfortabelt»), så
+   en rød ring oppå kartet hadde lest som et måleresultat og ikke som en peker. */
+section.comfort-map .pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  /* Uten max-content krymper etiketten til plassen som er igjen mot høyre kant
+     av kartet, og en kort setning blir fem ord på fem linjer. */
+  width: max-content;
+  transform: translateY(-50%);
+}
+/* Ringen skal ligge på motivet uansett hvilken vei etiketten går. Default:
+   boksens venstrekant ligger i punktet, ringen først. .left-of: boksen skyves
+   en hel bredde til venstre og snus, så ringen fortsatt lander i punktet. */
+section.comfort-map .pin.left-of { transform: translate(-100%, -50%); flex-direction: row-reverse; }
+section.comfort-map .pin .dot {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85);
+}
+section.comfort-map .pin .lbl {
+  background: rgba(255, 255, 255, 0.90);
+  border-radius: 6px;
+  padding: 0.4em 0.6em;
+  font-size: 0.62em;
+  line-height: 1.3;
+  max-width: 13em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
+}
+section.comfort-map .pin .lbl b { display: block; }
+section.comfort-map .pin .lbl span { color: var(--muted); }

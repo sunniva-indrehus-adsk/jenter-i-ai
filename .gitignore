@@ -3,8 +3,10 @@ talk/_check.html
 talk/_p.*.png
 talk/slides.html
 talk/slides.pdf
+talk/.preview
 .DS_Store
 
 # Byggeresultat (workflowen lager dette i CI)
 _site/
 talk/index.html
+vis-surrogate/
