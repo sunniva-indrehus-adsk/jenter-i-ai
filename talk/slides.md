@@ -823,7 +823,7 @@ section { font-size: 22px; }
    kort over en halv slide, og miniatyrene med. */
 .recipe {
   display: grid;
-  grid-template-columns: 340px 46px 340px;
+  grid-template-columns: 372px 46px 372px;
   justify-content: center;
   gap: 0.9em;
   align-items: stretch;
