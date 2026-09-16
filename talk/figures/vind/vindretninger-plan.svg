@@ -27,7 +27,7 @@
        seg innenfor pilspissene på radius 110 (altså under 70,5 % i diameter).
 
        Midten er TOM med vilje. Selve tomta er et eget <img> i sliden
-       (gløshaugenfromabove-utsnitt.png), klippet til sirkel og lagt UNDER denne
+       (gløshaugenfromabove.png), klippet til sirkel og lagt UNDER denne
        fila — en ekstern PNG referert inne i en SVG som lastes via <img> blir
        ikke hentet av nettleseren, så komposisjonen må skje i sliden.
 

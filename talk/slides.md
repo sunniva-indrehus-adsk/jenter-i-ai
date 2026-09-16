@@ -920,7 +920,7 @@ section { font-size: 22px; }
 <div class="card">
   <h3>Simulering</h3>
   <div class="thumb dirs">
-    <img class="site" src="figures/gløshaugenfromabove-utsnitt.png" alt="">
+    <img class="site" src="figures/gløshaugenfromabove.png" alt="">
     <img src="figures/vind/vindretninger-plan.svg" alt="Gløshaugen sett ovenfra, med piler som peker inn mot tomta fra åtte vindretninger">
   </div>
 </div>
