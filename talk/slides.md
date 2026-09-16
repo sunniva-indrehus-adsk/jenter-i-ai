@@ -618,13 +618,13 @@ Iterer over utforming
 
 <!-- _class: comfort-map -->
 
-<!-- Trinn 1 av 2: kartet alene. Merkelappene kommer på neste slide, som er
-     identisk bortsett fra dem — samme grep som rollekortene på tomt-sliden og
-     stigen lenger bak. Marp har ingen fragmenter, så oppbygging gjøres ved å
-     duplisere sliden.
+<!-- Trinn 1 av 4: kartet alene. Merkelappene kommer én av gangen på de tre
+     neste slidene, som er identiske bortsett fra dem — samme grep som
+     rollekortene på tomt-sliden og stigen lenger bak. Marp har ingen
+     fragmenter, så oppbygging gjøres ved å duplisere sliden.
 
-     Bildet, skalaen og alt annet MÅ være likt på de to, ellers hopper det når
-     du klikker. Retter du noe her, rett det samme på trinn 2. -->
+     Bildet, skalaen og alt annet MÅ være likt på alle fire, ellers hopper det
+     når du klikker. Retter du noe her, rett det samme på trinn 2–4. -->
 
 # Vindkomfort
 
@@ -659,12 +659,106 @@ Iterer over utforming
 ---
 <!-- _class: comfort-map -->
 
-<!-- Trinn 2 av 2: samme slide med merkelappene på. Se kommentaren på trinn 1 —
-     alt utenom .pin-ene skal være identisk der.
+<!-- Trinn 2 av 4: første merkelapp. Kartet er nå bygget opp over fire slides —
+     først kartet alene, så én merkelapp av gangen. Samme grep som rollekortene
+     på tomt-sliden: Marp har ingen fragmenter, så oppbygging gjøres ved å
+     duplisere sliden.
+
+     Bildet, skalaen og alt annet MÅ være likt på alle fire, ellers hopper det
+     når du klikker. Retter du noe her, rett det samme på de andre tre.
 
      Prosentene i .pin-ene er lest av fargene i windcomfortgløs.png og
      verifisert mot pikslene: ring 1 og 3 ligger på Rusle (gult), ring 2 på
      Sitte (lysegrønt). Byttes bildet, må de sjekkes på nytt. -->
+
+# Vindkomfort
+
+<div class="use">
+
+<div class="map">
+
+<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
+
+<div class="pin" style="left: 11%; top: 16%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>Åpent felt</b><span>Ingenting bremser vinden — her går du forbi.</span></span>
+</div>
+
+</div>
+
+<div class="side">
+
+<div class="legend">
+<div class="kicker">Komfortskalaen</div>
+
+<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
+</div>
+</div>
+
+</div>
+
+<!-- Say: her leser du kartet for salen, ett sted av gangen. Tre steder, ikke
+     flere — resten ser de selv.
+
+     Det åpne feltet først: ingenting står i veien, så vinden får fart. Gult
+     betyr at det er fint å gå gjennom, ikke å bli sittende. -->
+<!-- TODO ~0:12 -->
+
+---
+<!-- _class: comfort-map -->
+
+<!-- Trinn 3 av 4: første og andre merkelapp. Alt utenom .pin-ene skal være
+     identisk med de andre tre trinnene — se kommentaren på trinn 2. -->
+
+# Vindkomfort
+
+<div class="use">
+
+<div class="map">
+
+<img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen, sett på skrå: uterommene mellom byggene er i hovedsak grønne, med gule flater i de åpne partiene og enkelte oransje felt">
+
+<div class="pin" style="left: 11%; top: 16%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>Åpent felt</b><span>Ingenting bremser vinden — her går du forbi.</span></span>
+</div>
+
+<div class="pin" style="left: 57%; top: 40%;">
+  <span class="dot"></span>
+  <span class="lbl"><b>I le mellom byggene</b><span>Lunt nok til å sitte. Her kan uterommet ligge.</span></span>
+</div>
+
+</div>
+
+<div class="side">
+
+<div class="legend">
+<div class="kicker">Komfortskalaen</div>
+
+<div class="row"><span class="sw" style="background:#B2F8DA"></span><div><b>Sitte</b><span class="t">under 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#55DCA2"></span><div><b>Stå</b><span class="t">over 2,5 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FED52A"></span><div><b>Rusle</b><span class="t">over 4 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FFA900"></span><div><b>Gå</b><span class="t">over 6 m/s</span></div></div>
+<div class="row"><span class="sw" style="background:#FF463A"></span><div><b>Ukomfortabelt</b><span class="t">over 8 m/s</span></div></div>
+</div>
+</div>
+
+</div>
+
+<!-- Say: le-sonen mellom byggene: det er her uterommet skal ligge. Lyst grønt er
+     «sitte» — kaffen står i ro. Sett den opp mot det åpne feltet du nettopp
+     snakket om; kontrasten er hele poenget. -->
+<!-- TODO ~0:10 -->
+
+---
+<!-- _class: comfort-map -->
+
+<!-- Trinn 4 av 4: alle tre merkelappene på. Alt utenom .pin-ene skal være
+     identisk med de andre tre trinnene — se kommentaren på trinn 2. -->
 
 # Vindkomfort
 
@@ -706,23 +800,14 @@ Iterer over utforming
 
 </div>
 
-<!-- Say: her leser du kartet for salen. Tre steder, ikke flere — resten ser de
-     selv.
+<!-- Say: passasjen mellom to bygg: vinden presses gjennom et trangere tverrsnitt
+     og akselererer. Det er den effekten folk kjenner uten å kunne forklare, og
+     den eneste måten å fikse den er å endre byggene — ikke å sette opp en
+     skjerm etterpå.
 
-     Det åpne feltet: ingenting står i veien, så vinden får fart. Gult betyr at
-     det er fint å gå gjennom, ikke å bli sittende.
-
-     Le-sonen mellom byggene: det er her uterommet skal ligge. Lyst grønt er
-     «sitte» — kaffen står i ro.
-
-     Passasjen mellom to bygg: vinden presses gjennom et trangere tverrsnitt og
-     akselererer. Det er den effekten folk kjenner uten å kunne forklare, og den
-     eneste måten å fikse den er å endre byggene — ikke å sette opp en skjerm
-     etterpå.
-
-     Poenget å lande: arkitekten trenger ikke tallene. Hun trenger å se hvor det
-     er grønt før volumene er låst. -->
-<!-- TODO ~0:35 -->
+     Poenget å lande, nå som alle tre står på: arkitekten trenger ikke tallene.
+     Hun trenger å se hvor det er grønt før volumene er låst. -->
+<!-- TODO ~0:15 -->
 
 ---
 
@@ -884,7 +969,7 @@ section { font-size: 22px; }
 
 <div class="card">
   <div class="kicker">Med Forma</div>
-  <p class="name">Simulering <span class="sub">Computational Fluid Dynamics</span></p>
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
   <p class="clock">Timer</p>
 </div>
 
@@ -902,46 +987,6 @@ section { font-size: 22px; }
      selv. -->
 <!-- TODO ~0:12 -->
 
----
-
-<!-- _class: ladder -->
-
-# Hvordan analyserer arkitekten vindforholdene?
-
-<div class="steps">
-
-<div class="card past">
-  <div class="kicker">Før</div>
-  <p class="name">Ekstern vindekspert</p>
-  <p class="clock">Uker</p>
-</div>
-
-<div class="card">
-  <div class="kicker">Med Forma</div>
-  <p class="name">Simulering <span class="sub">Computational Fluid Dynamics</span></p>
-  <p class="clock">Timer</p>
-</div>
-
-<div class="card ai">
-  <div class="kicker">Med Forma</div>
-  <p class="name">Estimat <span class="sub">Maskinlæringsmodell</span></p>
-  <p class="clock">Sekunder</p>
-</div>
-
-</div>
-
-<!-- Say: og så det tredje trinnet. Ikke forklar det her — pek bare på at det
-     finnes, og si «dit skal vi». De to neste slidene er simuleringen, og så
-     tar vi estimatet.
-
-     Land det muntlig: når svaret kommer mens du tegner, blir analysen noe du
-     tar beslutninger PÅ i designfasen — ikke en rapport som bekrefter et valg
-     som alt er tatt.
-
-     Poenget å ta med videre, hvis salen bare husker én ting: når noe blir
-     hundre ganger billigere, endrer det ikke bare hvor fort det går. Det
-     endrer hvem som får bruke det, og når i prosessen. -->
-<!-- TODO ~0:15 -->
 ---
 
 <!-- Simuleringen forklart der den hører hjemme: rett etter stigen, mens
@@ -1035,6 +1080,99 @@ $$
      Da har salen tallet de trenger til neste steg: åtte retninger x et par
      timer, hver gang du flytter et volum. -->
 <!-- TODO ~0:30 -->
+---
+<!-- _class: demo -->
+
+<!-- Femten utsnitt fra samme skjermopptak på Hesthagen-modellen
+     (figures/video/hesthagenestimat.mov), samme kamera hver gang: det eneste
+     som endrer seg mellom rutene er bebyggelsen og komfortkartet.
+
+     Ingen tittel og full flate: rekka av ruter ER argumentet, og alt som ikke
+     er ruter stjeler plass fra dem. Tittelen «Arkitekten kan raskt vurdere
+     mange alternativer» sier du i stedet — den sto her før, se talenotatet.
+     Rutene er unummererte og uten bildetekst; rekka skal leses som en
+     bevegelse, ikke som en liste du kan peke i.
+
+     demo-klassen gir padding 0 og mørk bakgrunn. 5x3 på 1280x720 gir ruter på
+     256x240, altså litt høyere enn kilden (3:2), så object-fit: cover skjærer
+     noen piksler av sidene. Det tåler bildene — bygget står midt i ruta.
+
+     gap: 4px er streker i --ink mellom rutene. Vil du ha én sammenhengende
+     flate i stedet, sett gap: 0 — da flyter naborutene i hverandre der fargene
+     er like, og «femten forsøk» blir vanskeligere å telle.
+
+     Logoen må overstyres til den svarte: demo-klassen antar mørkt bilde og
+     setter hvit logo, men disse rutene er lyse, så den hvite forsvinner.
+
+     Ta bare bilder der komfortkartet står ferdig tegnet (grønt/gult) — hopp
+     over de blå rutene mens den regner, og ruter der en bygning er valgt. -->
+
+<style scoped>
+section::before { background-image: url('figures/logos/autodesk-logo-black.svg'); }
+section::after { color: var(--muted); }
+
+.iterations {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  gap: 4px;
+}
+.iterations figure { margin: 0; min-height: 0; }
+.iterations img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
+
+<div class="iterations">
+
+
+<figure><img src="figures/video/iterations/hesthagen-001.jpg" alt="Lukket kvartal rundt et gårdsrom, komfortkartet grønt inne i gården"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-002.jpg" alt="To vinkelstilte fløyer, komfortkartet tegnet på nytt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-003.jpg" alt="Én lang vinkelstilt lamell langs veien"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-004.jpg" alt="U-form med et punkthus i nord, gårdsrommet grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-005.jpg" alt="Buet fløy med punkthus, gårdsrommet nesten helt grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-006.jpg" alt="Tre frittstående volumer spredt på tomta"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-007.jpg" alt="Lamell og punkthus vinkelstilt mot hverandre"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-008.jpg" alt="Vinkelbygg med punkthus, stort grønt uterom"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-009.jpg" alt="Buet lamell med punkthus, bredt grønt gårdsrom"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-010.jpg" alt="To parallelle lameller på skrå over tomta"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-011.jpg" alt="Tre parallelle lameller"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-012.jpg" alt="Tre forskjøvne lameller"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-013.jpg" alt="Tre små frittstående volumer, komfortkartet nesten helt grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-014.jpg" alt="Seks små punkthus i et rutenett"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-015.jpg" alt="Forskjøvne punkthus i to rekker"></figure>
+
+</div>
+
+<!-- Say: ikke les opp rutene. Tittelen står ikke på sliden lenger, så den må
+     sies: «arkitekten kan raskt vurdere mange alternativer — femten forsøk,
+     én ettermiddag.» Så peker du på gårdsrommet i den første ruta mot en av de
+     siste: gult blir grønt. Poenget er ikke hvilket forslag som vant, det er
+     at du rakk å prøve dem alle.
+
+     Stillbilder og ikke video: video spiller ikke i PDF-eksport, se README.
+     Bildene er klippet fra skjermopptaket av Hesthagen-modellen. -->
+<!-- TODO ~0:40 -->
+
 ---
 
 <!-- Broen fra simuleringen til modellen: alle de kjørte simuleringene ER
@@ -1142,88 +1280,82 @@ section { font-size: 22px; }
 <!-- TODO ~0:35 -->
 ---
 
+<!-- _class: ladder -->
 
+<!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
+     rett før «Slik simulerer vi vinden») — flata skal være IDENTISK med den,
+     ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
+     der, rett det samme her.
 
+     Den står her fordi stigen har vært ute av bildet i tre slides (simulering,
+     iterasjoner, treningsdata). Publikum trenger å se hvor vi var før trinn 3
+     kommer på neste slide. -->
 
+# Hvordan analyserer arkitekten vindforholdene?
 
+<div class="steps">
 
-# Arkitekten kan raskt vurdere mange alternativer
+<div class="card past">
+  <div class="kicker">Før</div>
+  <p class="name">Ekstern vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
 
-<style scoped>
-/* Femten utsnitt fra samme skjermopptak på Hesthagen-modellen
-   (figures/video/hesthagenestimat.mov), samme kamera hver gang: det eneste som
-   endrer seg mellom rutene er bebyggelsen og komfortkartet. Sliden er med
-   vilje nesten uten tekst — rekka av ruter er argumentet, og resten sier du.
-   5x3 og 3:2: tre rader 4:3-ruter får ikke plass under overskriften på 720 px,
-   og 3:2 er dessuten utsnittet opptaket selv har (3398x2190), så rutene
-   beskjæres minst mulig. Rutene er unummererte og uten bildetekst — rekka skal
-   leses som en bevegelse, ikke som en liste du kan peke i.
-   Ta bare bilder der komfortkartet står ferdig tegnet (grønt/gult) — hopp over
-   de blå rutene mens den regner, og ruter der en bygning er valgt. */
-/* Rutene er så store som sliden tillater: høyden er bindende, så tittelen får
-   strammere marginer og rekka trekkes 40 px ut i hver sidemarg (64 -> 24 px).
-   Går du bredere enn dette, eller løser du opp gap-en, blir tredje rad
-   skjøvet ned i Autodesk-logoen. */
-h1 { margin-bottom: 0.3em; padding-bottom: 0.25em; }
+<div class="card">
+  <div class="kicker">Med Forma</div>
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
+  <p class="clock">Timer</p>
+</div>
 
-.iterations {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.4em;
-  margin: 0.35em -40px 0;
-}
-.iterations figure { position: relative; }
-.iterations img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border: 1px solid var(--rule);
-}
-</style>
-
-<div class="iterations">
-
-<figure><img src="figures/video/iterations/hesthagen-001.jpg" alt="Lukket kvartal rundt et gårdsrom, komfortkartet grønt inne i gården"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-002.jpg" alt="To vinkelstilte fløyer, komfortkartet tegnet på nytt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-003.jpg" alt="Én lang vinkelstilt lamell langs veien"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-004.jpg" alt="U-form med et punkthus i nord, gårdsrommet grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-005.jpg" alt="Buet fløy med punkthus, gårdsrommet nesten helt grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-006.jpg" alt="Tre frittstående volumer spredt på tomta"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-007.jpg" alt="Lamell og punkthus vinkelstilt mot hverandre"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-008.jpg" alt="Vinkelbygg med punkthus, stort grønt uterom"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-009.jpg" alt="Buet lamell med punkthus, bredt grønt gårdsrom"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-010.jpg" alt="To parallelle lameller på skrå over tomta"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-011.jpg" alt="Tre parallelle lameller"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-012.jpg" alt="Tre forskjøvne lameller"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-013.jpg" alt="Tre små frittstående volumer, komfortkartet nesten helt grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-014.jpg" alt="Seks små punkthus i et rutenett"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-015.jpg" alt="Forskjøvne punkthus i to rekker"></figure>
+<div></div>
 
 </div>
 
-<!-- Say: ikke les opp rutene. «Femten forsøk, én ettermiddag» — så peker du
-     på gårdsrommet i den første ruta mot en av de siste: gult blir grønt. Poenget er ikke
-     hvilket forslag som vant, det er at du rakk å prøve dem alle.
+<!-- Say: kort tilbakeblikk, ikke gjenta mesh-forklaringen fra første gang.
+     «Her var vi: eksperten tok uker, simuleringen i verktøyet tar timer.» Så
+     klikker du, og det tredje trinnet kommer på. -->
+<!-- TODO ~0:08 -->
 
-     Stillbilder og ikke video: video spiller ikke i PDF-eksport, se README.
-     Bildene er klippet fra skjermopptaket av Hesthagen-modellen. -->
-<!-- TODO ~0:40 -->
+---
 
+<!-- _class: ladder -->
+
+# Hvordan analyserer arkitekten vindforholdene?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <p class="name">Ekstern vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div class="card">
+  <div class="kicker">Med Forma</div>
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
+  <p class="clock">Timer</p>
+</div>
+
+<div class="card ai">
+  <div class="kicker">Med Forma</div>
+  <p class="name">Estimat <span class="sub">Maskinlæringsmodell</span></p>
+  <p class="clock">Sekunder</p>
+</div>
+
+</div>
+
+<!-- Say: og så det tredje trinnet. Ikke forklar det her — simuleringen og
+     treningsdataene har de alt sett. Pek bare på at estimatet finnes, og si
+     «det er dette vi skal se på nå». Neste slide er maskinlæringsmodellen.
+
+     Land det muntlig: når svaret kommer mens du tegner, blir analysen noe du
+     tar beslutninger PÅ i designfasen — ikke en rapport som bekrefter et valg
+     som alt er tatt.
+
+     Poenget å ta med videre, hvis salen bare husker én ting: når noe blir
+     hundre ganger billigere, endrer det ikke bare hvor fort det går. Det
+     endrer hvem som får bruke det, og når i prosessen. -->
+<!-- TODO ~0:15 -->
 ---
 
 
