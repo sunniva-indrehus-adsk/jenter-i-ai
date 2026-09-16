@@ -943,6 +943,440 @@ section { font-size: 22px; }
 <!-- TODO ~0:35 -->
 ---
 
+
+
+
+
+
+# Arkitekten kan raskt vurdere mange alternativer
+
+<style scoped>
+/* Femten utsnitt fra samme skjermopptak på Hesthagen-modellen
+   (figures/video/hesthagenestimat.mov), samme kamera hver gang: det eneste som
+   endrer seg mellom rutene er bebyggelsen og komfortkartet. Sliden er med
+   vilje nesten uten tekst — rekka av ruter er argumentet, og resten sier du.
+   5x3 og 3:2: tre rader 4:3-ruter får ikke plass under overskriften på 720 px,
+   og 3:2 er dessuten utsnittet opptaket selv har (3398x2190), så rutene
+   beskjæres minst mulig. Rutene er unummererte og uten bildetekst — rekka skal
+   leses som en bevegelse, ikke som en liste du kan peke i.
+   Ta bare bilder der komfortkartet står ferdig tegnet (grønt/gult) — hopp over
+   de blå rutene mens den regner, og ruter der en bygning er valgt. */
+/* Rutene er så store som sliden tillater: høyden er bindende, så tittelen får
+   strammere marginer og rekka trekkes 40 px ut i hver sidemarg (64 -> 24 px).
+   Går du bredere enn dette, eller løser du opp gap-en, blir tredje rad
+   skjøvet ned i Autodesk-logoen. */
+h1 { margin-bottom: 0.3em; padding-bottom: 0.25em; }
+
+.iterations {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.4em;
+  margin: 0.35em -40px 0;
+}
+.iterations figure { position: relative; }
+.iterations img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+</style>
+
+<div class="iterations">
+
+<figure><img src="figures/video/iterations/hesthagen-001.jpg" alt="Lukket kvartal rundt et gårdsrom, komfortkartet grønt inne i gården"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-002.jpg" alt="To vinkelstilte fløyer, komfortkartet tegnet på nytt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-003.jpg" alt="Én lang vinkelstilt lamell langs veien"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-004.jpg" alt="U-form med et punkthus i nord, gårdsrommet grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-005.jpg" alt="Buet fløy med punkthus, gårdsrommet nesten helt grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-006.jpg" alt="Tre frittstående volumer spredt på tomta"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-007.jpg" alt="Lamell og punkthus vinkelstilt mot hverandre"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-008.jpg" alt="Vinkelbygg med punkthus, stort grønt uterom"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-009.jpg" alt="Buet lamell med punkthus, bredt grønt gårdsrom"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-010.jpg" alt="To parallelle lameller på skrå over tomta"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-011.jpg" alt="Tre parallelle lameller"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-012.jpg" alt="Tre forskjøvne lameller"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-013.jpg" alt="Tre små frittstående volumer, komfortkartet nesten helt grønt"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-014.jpg" alt="Seks små punkthus i et rutenett"></figure>
+
+<figure><img src="figures/video/iterations/hesthagen-015.jpg" alt="Forskjøvne punkthus i to rekker"></figure>
+
+</div>
+
+<!-- Say: ikke les opp rutene. «Femten forsøk, én ettermiddag» — så peker du
+     på gårdsrommet i den første ruta mot en av de siste: gult blir grønt. Poenget er ikke
+     hvilket forslag som vant, det er at du rakk å prøve dem alle.
+
+     Stillbilder og ikke video: video spiller ikke i PDF-eksport, se README.
+     Bildene er klippet fra skjermopptaket av Hesthagen-modellen. -->
+<!-- TODO ~0:40 -->
+
+---
+
+# Vi står på stand
+
+<style scoped>
+.people-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8em;
+  margin-top: 1.6em;
+}
+/* 240 px x 4 + 3 gaper à 47 px = 1012 px av de 1152 px sliden har mellom
+   margene. Går portrettene over dette, brekker raden til to linjer. */
+.people-row .person-photo .frame { width: 240px; height: 240px; }
+.people-row .person-photo span { font-size: 0.7em; }
+/* Avslutningslinja: midtstilt under raden, i display-snittet, med luft nok til
+   at den leses som en invitasjon og ikke som en bildetekst. */
+h2 {
+  margin: 1.5em 0 0;
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.45em;
+  color: var(--ink);
+}
+</style>
+
+<div class="people-row">
+
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
+  <span>Vilde</span>
+</div>
+
+<div class="person-photo">
+  <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  <span>Sunniva</span>
+</div>
+
+<!-- TODO: legg inn figures/people/elizabeth.jpg -->
+<div class="person-photo">
+  <div class="frame"></div>
+  <span>Elizabeth</span>
+</div>
+
+<!-- TODO: legg inn figures/people/guro.jpg -->
+<div class="person-photo">
+  <div class="frame"></div>
+  <span>Guro</span>
+</div>
+
+</div>
+
+## Kom og spør oss om alt vi ikke fikk plass til her!
+
+<div class="todo">Portretter av Elizabeth og Guro mangler</div>
+
+
+<!-- TODO ~0:20 -->
+
+---
+<!-- ──────────────────────────────────────────────────────────────────────
+     BAKLOMMA. Alt under denne linja er utenfor taletiden.
+
+     Her ligger to sett slides:
+
+     1. «Fra vind: komfortabelhet» (tre trinn) og «Hvordan beregner vi
+        vindkomfort?». Hoveddecket bruker nå «Vindkomfort» (to trinn) i
+        stedet — de sier mye av det samme, men «Vindkomfort» viser kartet
+        over hele tomta med de påpekte stedene, der «Fra vind» har
+        komfortskalaen og kartet av hovedbygget.
+
+     2. Modell-slidene som sto i hovedløpet mellom «Tusenvis av simuleringer»
+        og de 15 rutene: «To modeller, ett svar», «Surrogatmodellen» og
+        «Maskinlæringsmodellen». Hovedløpet går nå rett fra treningsdataene
+        til rutene, og forklaringen av modellen tas muntlig. NB: det ligger
+        nå to slides som heter «Surrogatmodellen» her — main sin boksfigur
+        med treningsløkka, og vår pipeline-skisse lenger ned.
+
+     3. Blokka som alt lå i baklomma: CFD-ligningen, CFD mot surrogat og
+        pipeline-skissen. Kommentaren under forklarer rekkefølgen.
+
+     Skal noe av dette opp i hoveddecket igjen, må du sjekke at det ikke
+     dublerer main sin «To modeller, ett svar» eller «Surrogatmodellen».
+     ────────────────────────────────────────────────────────────────────── -->
+<!-- _class: result-build -->
+
+# Fra vind: komfortabelhet
+
+<div class="build">
+
+<div></div>
+
+<div></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div></div>
+
+<div></div>
+
+</div>
+
+<!-- Say: dette er svaret arkitekten ser. Ingen modell, ingen ligning — bare
+     resultatet, og fargene som sier hva det betyr. La det stå litt.
+     De to neste slidene legger på hvor svaret kommer fra. -->
+<!-- TODO ~0:30 -->
+
+---
+
+<!-- _class: result-build -->
+
+# Fra vind: komfortabelhet
+
+<div class="build">
+
+<div class="panel">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
+
+$$
+\begin{aligned}
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
+\end{aligned}
+$$
+
+  <p class="t">Timer per iterasjon.</p>
+</div>
+
+<div class="arr to-right"></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div></div>
+
+<div></div>
+
+</div>
+
+<!-- Say: «dette er hvordan vi FAKTISK regner det ut.» Ligningen er den
+     stasjonære RANS-en simpleFoam løser, med vårt eget vegetasjonsledd. Ikke gå
+     gjennom leddene her — den annoterte versjonen kommer på Fysikkmodell-sliden.
+     Poenget nå er bare: timer. -->
+<!-- TODO ~0:25 -->
+
+---
+
+<!-- _class: result-build -->
+
+# Fra vind: komfortabelhet
+
+<div class="build">
+
+<div class="panel">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="h">Fysikkmodellen</p>
+
+$$
+\begin{aligned}
+(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
+&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
+&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
+\nabla\cdot\mathbf{U} \;=\;& \;0
+\end{aligned}
+$$
+
+  <p class="t">Timer per iterasjon.</p>
+</div>
+
+<div class="arr to-right"></div>
+
+<div class="mid">
+  <div class="scale-strip">
+    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
+    <div class="row">
+      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
+      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
+      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
+      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
+    </div>
+  </div>
+  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
+  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
+</div>
+
+<div class="arr ai to-left"></div>
+
+<div class="panel ai">
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
+  <p class="h">Surrogatmodellen</p>
+  <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
+  <p class="t">Sekunder per iterasjon.</p>
+</div>
+
+</div>
+
+<!-- Say: «og dette er den andre veien til det samme bildet.» Begge pilene
+     peker inn mot samme kart — det er hele argumentet. Så: timer mot sekunder,
+     og hvorfor det avgjør hvem som kan bruke modellen. -->
+<!-- TODO ~0:30 -->
+
+---
+
+<style scoped>
+section { font-size: 22px; }
+
+/* Tre trinn i oppskriften. De to første er ingrediensene og det tredje er
+   resultatet — derfor et plusstegn mellom 1 og 2, og en pil inn mot 3.
+   Skiltene er egne kolonner i rutenettet og ikke marger, så kortene blir like
+   brede uansett hvor mye tekst de har. */
+.recipe {
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr 46px 1fr;
+  gap: 0.9em;
+  align-items: stretch;
+  /* Samme margin og korthøyde som section.ladder: dette er samme slags slide
+     — trinn på rad — og de tre ladder-slidene kommer rett etter. Holder de
+     samme mål, leses de som én figur som bygges videre på. */
+  margin: 1.7em 0 0;
+}
+
+.recipe .card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1em 1.1em 1.2em;
+  min-height: 280px;
+}
+/* Det siste kortet er svaret, ikke enda en ingrediens. Aksentblå topplinje og
+   lys flate, samme grep som .panel.ai og .card.ai ellers i decket. */
+.recipe .card.out { border-top-color: var(--accent); background: var(--accent-soft); }
+
+/* Miniatyrene: fast høyde og overflow: hidden, så de tre boksene er like store
+   uansett hvilket format kildefila har. 185 px er den naturlige høyden til de
+   to liggende figurene i en 282 px bred kortspalte — da slipper de å beskjæres
+   i det hele tatt, og bare vindrosen trenger et utsnitt. */
+.recipe .thumb {
+  position: relative;
+  height: 185px;
+  overflow: hidden;
+  margin-bottom: 0.9em;
+}
+.recipe .thumb img { position: absolute; top: 0; left: 0; width: 100%; display: block; }
+/* Vindrosefila er stående og har fartsfordelingen under selve rosen. Her skal
+   bare rosen vises: bildet skaleres etter høyden (167 % ≈ rosen fyller de
+   øverste 58 % av fila), sentreres, og resten klippes av overflow: hidden. */
+.recipe .thumb.rose img {
+  width: auto;
+  height: 174%;
+  left: 50%;
+  top: -4%;
+  transform: translateX(-50%);
+}
+
+.recipe h3 { font-size: 1.05em; margin: 0 0 0.4em; }
+.recipe .card.out h3 { color: var(--accent); }
+.recipe p { margin: 0; font-size: 0.86em; line-height: 1.45; color: var(--muted); }
+
+/* Plusstegnet står for «og», pila for «blir til» — samme skille som på
+   result-build-slidene, der de to tegnene alt brukes med den betydningen. */
+.recipe .plus {
+  align-self: center;
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 1;
+}
+.recipe .arr { align-self: center; position: relative; height: 3px; background: var(--ink); }
+.recipe .arr::after {
+  content: '';
+  position: absolute;
+  top: -6.5px;
+  right: -13px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 13px solid var(--ink);
+}
+</style>
+
+# Hvordan beregner vi vindkomfort?
+
+<div class="recipe">
+
+<div class="card">
+  <div class="thumb"><img src="figures/vind/vindretninger-plan.svg" alt="Tomta sett ovenfra, med piler som peker inn mot den fra åtte vindretninger"></div>
+  <h3>Simulering</h3>
+  <p>Vi simulerer hvordan vinden beveger seg mellom byggene når den kommer fra åtte ulike retninger.</p>
+</div>
+
+<div class="plus">+</div>
+
+<div class="card">
+  <div class="thumb rose"><img src="figures/vind/vindrose.png" alt="Vindrose for stedet: åtte sektorer med hvor stor andel av tiden det blåser fra hver retning, sørvest størst med 22 prosent"></div>
+  <h3>Historiske data</h3>
+  <p>Målt vindhastighet og vindretning for stedet: hvor ofte det blåser fra hver retning, og hvor hardt.</p>
+</div>
+
+<div class="arr"></div>
+
+<div class="card out">
+  <div class="thumb"><img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen: grønt mellom byggene, gult i de åpne partiene"></div>
+  <h3>Vindkomfort</h3>
+  <p>Til sammen gir de hvor komfortabelt det er, sted for sted på tomta.</p>
+</div>
+
+</div>
+
+<!-- Say: oppskriften i tre trinn, før figurene på neste slide.
+
+     Trinn 1 og 2 er ingrediensene, trinn 3 er svaret — les plusstegnet og pila
+     høyt, så følger salen regnestykket.
+
+     Poenget som er verdt å stoppe på: simuleringen alene sier ingenting om
+     komfort. Den sier hva vinden GJØR hvis den kommer fra nordvest. Det er
+     først når du vet hvor ofte den faktisk gjør det, at du kan si om et sted
+     er lunt. Derfor er de historiske dataene ikke en detalj — uten dem har du
+     åtte bilder og ingen konklusjon. -->
+<!-- TODO ~0:25 -->
+---
+
 # To modeller, ett svar
 
 <style scoped>
@@ -1270,433 +1704,6 @@ Modellen har sett så mange løsninger at den kjenner igjen svaret.
 <!-- TODO ~0:40 -->
 
 
----
-
-
-
-
-
-
-# Arkitekten kan raskt vurdere mange alternativer
-
-<style scoped>
-/* Femten utsnitt fra samme skjermopptak på Hesthagen-modellen
-   (figures/video/hesthagenestimat.mov), samme kamera hver gang: det eneste som
-   endrer seg mellom rutene er bebyggelsen og komfortkartet. Sliden er med
-   vilje nesten uten tekst — rekka av ruter er argumentet, og resten sier du.
-   5x3 og 3:2: tre rader 4:3-ruter får ikke plass under overskriften på 720 px,
-   og 3:2 er dessuten utsnittet opptaket selv har (3398x2190), så rutene
-   beskjæres minst mulig. Rutene er unummererte og uten bildetekst — rekka skal
-   leses som en bevegelse, ikke som en liste du kan peke i.
-   Ta bare bilder der komfortkartet står ferdig tegnet (grønt/gult) — hopp over
-   de blå rutene mens den regner, og ruter der en bygning er valgt. */
-/* Rutene er så store som sliden tillater: høyden er bindende, så tittelen får
-   strammere marginer og rekka trekkes 40 px ut i hver sidemarg (64 -> 24 px).
-   Går du bredere enn dette, eller løser du opp gap-en, blir tredje rad
-   skjøvet ned i Autodesk-logoen. */
-h1 { margin-bottom: 0.3em; padding-bottom: 0.25em; }
-
-.iterations {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 0.4em;
-  margin: 0.35em -40px 0;
-}
-.iterations figure { position: relative; }
-.iterations img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border: 1px solid var(--rule);
-}
-</style>
-
-<div class="iterations">
-
-<figure><img src="figures/video/iterations/hesthagen-001.jpg" alt="Lukket kvartal rundt et gårdsrom, komfortkartet grønt inne i gården"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-002.jpg" alt="To vinkelstilte fløyer, komfortkartet tegnet på nytt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-003.jpg" alt="Én lang vinkelstilt lamell langs veien"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-004.jpg" alt="U-form med et punkthus i nord, gårdsrommet grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-005.jpg" alt="Buet fløy med punkthus, gårdsrommet nesten helt grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-006.jpg" alt="Tre frittstående volumer spredt på tomta"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-007.jpg" alt="Lamell og punkthus vinkelstilt mot hverandre"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-008.jpg" alt="Vinkelbygg med punkthus, stort grønt uterom"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-009.jpg" alt="Buet lamell med punkthus, bredt grønt gårdsrom"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-010.jpg" alt="To parallelle lameller på skrå over tomta"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-011.jpg" alt="Tre parallelle lameller"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-012.jpg" alt="Tre forskjøvne lameller"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-013.jpg" alt="Tre små frittstående volumer, komfortkartet nesten helt grønt"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-014.jpg" alt="Seks små punkthus i et rutenett"></figure>
-
-<figure><img src="figures/video/iterations/hesthagen-015.jpg" alt="Forskjøvne punkthus i to rekker"></figure>
-
-</div>
-
-<!-- Say: ikke les opp rutene. «Femten forsøk, én ettermiddag» — så peker du
-     på gårdsrommet i den første ruta mot en av de siste: gult blir grønt. Poenget er ikke
-     hvilket forslag som vant, det er at du rakk å prøve dem alle.
-
-     Stillbilder og ikke video: video spiller ikke i PDF-eksport, se README.
-     Bildene er klippet fra skjermopptaket av Hesthagen-modellen. -->
-<!-- TODO ~0:40 -->
-
----
-
-# Vi står på stand
-
-<style scoped>
-.people-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.8em;
-  margin-top: 1.6em;
-}
-/* 240 px x 4 + 3 gaper à 47 px = 1012 px av de 1152 px sliden har mellom
-   margene. Går portrettene over dette, brekker raden til to linjer. */
-.people-row .person-photo .frame { width: 240px; height: 240px; }
-.people-row .person-photo span { font-size: 0.7em; }
-/* Avslutningslinja: midtstilt under raden, i display-snittet, med luft nok til
-   at den leses som en invitasjon og ikke som en bildetekst. */
-h2 {
-  margin: 1.5em 0 0;
-  text-align: center;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.45em;
-  color: var(--ink);
-}
-</style>
-
-<div class="people-row">
-
-<div class="person-photo">
-  <div class="frame"><img src="figures/people/vilde-3.jpg" alt="Vilde"/></div>
-  <span>Vilde</span>
-</div>
-
-<div class="person-photo">
-  <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
-  <span>Sunniva</span>
-</div>
-
-<!-- TODO: legg inn figures/people/elizabeth.jpg -->
-<div class="person-photo">
-  <div class="frame"></div>
-  <span>Elizabeth</span>
-</div>
-
-<!-- TODO: legg inn figures/people/guro.jpg -->
-<div class="person-photo">
-  <div class="frame"></div>
-  <span>Guro</span>
-</div>
-
-</div>
-
-## Kom og spør oss om alt vi ikke fikk plass til her!
-
-<div class="todo">Portretter av Elizabeth og Guro mangler</div>
-
-
-<!-- TODO ~0:20 -->
-
----
-<!-- ──────────────────────────────────────────────────────────────────────
-     BAKLOMMA. Alt under denne linja er utenfor taletiden.
-
-     Her ligger to sett slides:
-
-     1. «Fra vind: komfortabelhet» (tre trinn) og «Hvordan beregner vi
-        vindkomfort?». Hoveddecket bruker nå «Vindkomfort» (to trinn) i
-        stedet — de sier mye av det samme, men «Vindkomfort» viser kartet
-        over hele tomta med de påpekte stedene, der «Fra vind» har
-        komfortskalaen og kartet av hovedbygget.
-
-     2. Blokka som alt lå i baklomma: CFD-ligningen, CFD mot surrogat og
-        pipeline-skissen. Kommentaren under forklarer rekkefølgen.
-
-     Skal noe av dette opp i hoveddecket igjen, må du sjekke at det ikke
-     dublerer main sin «To modeller, ett svar» eller «Surrogatmodellen».
-     ────────────────────────────────────────────────────────────────────── -->
-<!-- _class: result-build -->
-
-# Fra vind: komfortabelhet
-
-<div class="build">
-
-<div></div>
-
-<div></div>
-
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
-</div>
-
-<div></div>
-
-<div></div>
-
-</div>
-
-<!-- Say: dette er svaret arkitekten ser. Ingen modell, ingen ligning — bare
-     resultatet, og fargene som sier hva det betyr. La det stå litt.
-     De to neste slidene legger på hvor svaret kommer fra. -->
-<!-- TODO ~0:30 -->
-
----
-
-<!-- _class: result-build -->
-
-# Fra vind: komfortabelhet
-
-<div class="build">
-
-<div class="panel">
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="h">Fysikkmodellen</p>
-
-$$
-\begin{aligned}
-(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
-&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
-&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
-\nabla\cdot\mathbf{U} \;=\;& \;0
-\end{aligned}
-$$
-
-  <p class="t">Timer per iterasjon.</p>
-</div>
-
-<div class="arr to-right"></div>
-
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
-</div>
-
-<div></div>
-
-<div></div>
-
-</div>
-
-<!-- Say: «dette er hvordan vi FAKTISK regner det ut.» Ligningen er den
-     stasjonære RANS-en simpleFoam løser, med vårt eget vegetasjonsledd. Ikke gå
-     gjennom leddene her — den annoterte versjonen kommer på Fysikkmodell-sliden.
-     Poenget nå er bare: timer. -->
-<!-- TODO ~0:25 -->
-
----
-
-<!-- _class: result-build -->
-
-# Fra vind: komfortabelhet
-
-<div class="build">
-
-<div class="panel">
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="h">Fysikkmodellen</p>
-
-$$
-\begin{aligned}
-(\mathbf{U}\cdot\nabla)\mathbf{U} \;=\;& -\nabla p \\
-&+\; \nabla\cdot\big[(\nu+\nu_t)\big(\nabla\mathbf{U}+\nabla\mathbf{U}^{\top}\big)\big] \\
-&-\; c_d\,a\,\lvert\mathbf{U}\rvert\,\mathbf{U} \\[0.3em]
-\nabla\cdot\mathbf{U} \;=\;& \;0
-\end{aligned}
-$$
-
-  <p class="t">Timer per iterasjon.</p>
-</div>
-
-<div class="arr to-right"></div>
-
-<div class="mid">
-  <div class="scale-strip">
-    <div class="kicker">Komfortskalaen — Lawson LDDC</div>
-    <div class="row">
-      <div><span class="sw" style="background:#B2F8DA"></span><b>Sitte</b><span class="t">under 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#55DCA2"></span><b>Stå</b><span class="t">over 2,5 m/s</span></div>
-      <div><span class="sw" style="background:#FED52A"></span><b>Rusle</b><span class="t">over 4 m/s</span></div>
-      <div><span class="sw" style="background:#FFA900"></span><b>Gå</b><span class="t">over 6 m/s</span></div>
-      <div><span class="sw" style="background:#FF463A"></span><b>Ukomf.</b><span class="t">over 8 m/s</span></div>
-    </div>
-  </div>
-  <img src="figures/vind/gløshaugen-komfor-plot.png" alt="Komfortkart for vind rundt hovedbygget på Gløshaugen">
-  <div class="figcap">Komfortkart for vind, hovedbygget på Gløshaugen.</div>
-</div>
-
-<div class="arr ai to-left"></div>
-
-<div class="panel ai">
-  <img src="figures/modeller/modell-surrogat.svg" alt="">
-  <p class="h">Surrogatmodellen</p>
-  <p class="d">Nevralt nett, trent på ferdige fysikkmodell-kjøringer.</p>
-  <p class="t">Sekunder per iterasjon.</p>
-</div>
-
-</div>
-
-<!-- Say: «og dette er den andre veien til det samme bildet.» Begge pilene
-     peker inn mot samme kart — det er hele argumentet. Så: timer mot sekunder,
-     og hvorfor det avgjør hvem som kan bruke modellen. -->
-<!-- TODO ~0:30 -->
-
----
-
-<style scoped>
-section { font-size: 22px; }
-
-/* Tre trinn i oppskriften. De to første er ingrediensene og det tredje er
-   resultatet — derfor et plusstegn mellom 1 og 2, og en pil inn mot 3.
-   Skiltene er egne kolonner i rutenettet og ikke marger, så kortene blir like
-   brede uansett hvor mye tekst de har. */
-.recipe {
-  display: grid;
-  grid-template-columns: 1fr 34px 1fr 46px 1fr;
-  gap: 0.9em;
-  align-items: stretch;
-  /* Samme margin og korthøyde som section.ladder: dette er samme slags slide
-     — trinn på rad — og de tre ladder-slidene kommer rett etter. Holder de
-     samme mål, leses de som én figur som bygges videre på. */
-  margin: 1.7em 0 0;
-}
-
-.recipe .card {
-  display: flex;
-  flex-direction: column;
-  padding: 1.1em 1.1em 1.2em;
-  min-height: 280px;
-}
-/* Det siste kortet er svaret, ikke enda en ingrediens. Aksentblå topplinje og
-   lys flate, samme grep som .panel.ai og .card.ai ellers i decket. */
-.recipe .card.out { border-top-color: var(--accent); background: var(--accent-soft); }
-
-/* Miniatyrene: fast høyde og overflow: hidden, så de tre boksene er like store
-   uansett hvilket format kildefila har. 185 px er den naturlige høyden til de
-   to liggende figurene i en 282 px bred kortspalte — da slipper de å beskjæres
-   i det hele tatt, og bare vindrosen trenger et utsnitt. */
-.recipe .thumb {
-  position: relative;
-  height: 185px;
-  overflow: hidden;
-  margin-bottom: 0.9em;
-}
-.recipe .thumb img { position: absolute; top: 0; left: 0; width: 100%; display: block; }
-/* Vindrosefila er stående og har fartsfordelingen under selve rosen. Her skal
-   bare rosen vises: bildet skaleres etter høyden (167 % ≈ rosen fyller de
-   øverste 58 % av fila), sentreres, og resten klippes av overflow: hidden. */
-.recipe .thumb.rose img {
-  width: auto;
-  height: 174%;
-  left: 50%;
-  top: -4%;
-  transform: translateX(-50%);
-}
-
-.recipe h3 { font-size: 1.05em; margin: 0 0 0.4em; }
-.recipe .card.out h3 { color: var(--accent); }
-.recipe p { margin: 0; font-size: 0.86em; line-height: 1.45; color: var(--muted); }
-
-/* Plusstegnet står for «og», pila for «blir til» — samme skille som på
-   result-build-slidene, der de to tegnene alt brukes med den betydningen. */
-.recipe .plus {
-  align-self: center;
-  text-align: center;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 1.5em;
-  line-height: 1;
-}
-.recipe .arr { align-self: center; position: relative; height: 3px; background: var(--ink); }
-.recipe .arr::after {
-  content: '';
-  position: absolute;
-  top: -6.5px;
-  right: -13px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 13px solid var(--ink);
-}
-</style>
-
-# Hvordan beregner vi vindkomfort?
-
-<div class="recipe">
-
-<div class="card">
-  <div class="thumb"><img src="figures/vind/vindretninger-plan.svg" alt="Tomta sett ovenfra, med piler som peker inn mot den fra åtte vindretninger"></div>
-  <h3>Simulering</h3>
-  <p>Vi simulerer hvordan vinden beveger seg mellom byggene når den kommer fra åtte ulike retninger.</p>
-</div>
-
-<div class="plus">+</div>
-
-<div class="card">
-  <div class="thumb rose"><img src="figures/vind/vindrose.png" alt="Vindrose for stedet: åtte sektorer med hvor stor andel av tiden det blåser fra hver retning, sørvest størst med 22 prosent"></div>
-  <h3>Historiske data</h3>
-  <p>Målt vindhastighet og vindretning for stedet: hvor ofte det blåser fra hver retning, og hvor hardt.</p>
-</div>
-
-<div class="arr"></div>
-
-<div class="card out">
-  <div class="thumb"><img src="figures/vind/windcomfortgløs.png" alt="Komfortkart for vind over Gløshaugen: grønt mellom byggene, gult i de åpne partiene"></div>
-  <h3>Vindkomfort</h3>
-  <p>Til sammen gir de hvor komfortabelt det er, sted for sted på tomta.</p>
-</div>
-
-</div>
-
-<!-- Say: oppskriften i tre trinn, før figurene på neste slide.
-
-     Trinn 1 og 2 er ingrediensene, trinn 3 er svaret — les plusstegnet og pila
-     høyt, så følger salen regnestykket.
-
-     Poenget som er verdt å stoppe på: simuleringen alene sier ingenting om
-     komfort. Den sier hva vinden GJØR hvis den kommer fra nordvest. Det er
-     først når du vet hvor ofte den faktisk gjør det, at du kan si om et sted
-     er lunt. Derfor er de historiske dataene ikke en detalj — uten dem har du
-     åtte bilder og ingen konklusjon. -->
-<!-- TODO ~0:25 -->
 ---
 
 <!-- ─────────────────────────────────────────────────────────────────
