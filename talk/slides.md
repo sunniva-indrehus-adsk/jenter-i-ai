@@ -1323,7 +1323,7 @@ section { font-size: 22px; }
   <img src="figures/modeller/modell-surrogat.svg" alt="">
   <h3>Det vi kunne bygge</h3>
   <p>En maskinlæringsmodell trent på resultatet av simuleringene. Den regner ikke på fysikken, men kjenner igjen hvordan vinden beveger seg.</p>
-  <p class="big">Vindestimat</p>
+  <p class="big">Maskinlæringsmodell</p>
 </div>
 
 </div>
