@@ -9,9 +9,57 @@ math: katex
 <!-- _header: '24.09.2026' -->
 <!-- paginate: false -->
 
+<!-- TITTELEN STÅR IKKE SKREVET HER, med vilje: arrangementets logo SIER
+     «Jenter i AI», og en h1 med samme ordene under den var det samme to ganger.
+     Skal teksten tilbake, legg inn «# Jenter i AI» — temaet styler den fortsatt
+     (section.title h1 / section.title-photo h1), så den lander nede til venstre
+     som før, i svart.
 
-# Jenter i AI
+     Logoen står nede til HØYRE. Der er renderingen flat og lys (195,206,215),
+     så den mørke vinrøde skriften i logoen leses rent, uten plate bak. Nede til
+     venstre ligger det hvite sjiktet som tittelteksten trengte — det står
+     igjen, og leses nå som en myk vignett.
 
+     «Building geometries by Geodata AS» var brent inn i bildefila nøyaktig der
+     logoen nå står. Den er malt ut (flata var ensfarget, så lappen er usynlig)
+     — se README, «Tittelslide med bilde», for hvor krediteringen er flyttet. -->
+
+<style scoped>
+/* Absolutt posisjonert, ikke i flyten: section.title er en flex-kolonne som
+   pakker fra bunnen og venstrestiller, og den vil ha logoen til venstre. Og
+   uten h1 er sliden ellers tom, så det er ingenting å forholde seg til.
+
+   64 px fra høyre er --margin-x, samme marg som Autodesk-logoen oppe til
+   venstre. 52 px fra bunnen: sidetallet er skrudd av på tittelsliden, så det er
+   bare kanten å holde avstand til.
+
+   INGEN PLATE BAK LOGOEN — den ligger rett på renderingen, som en overlay.
+   Det er mulig fordi temaet legger et mykt hvitt sjikt i nedre HØYRE hjørne på
+   section.title-photo, nettopp for denne logoen. Uten det sjiktet virker dette
+   ikke: Hovedbygningens høyre kant er en hard vertikal strek som går tvers
+   gjennom logoen, og håret i logofila er tegnet uten fyll, så kanten skinner
+   rett gjennom. Begrunnelsen og målene står ved section.title-photo i
+   theme.css — endrer du sjiktet der, sjekk denne sliden på nytt.
+
+   En hvit plate med hårstrek ble prøvd først. Den virket, men leste som en
+   klistrelapp oppå bildet i stedet for som en del av det. */
+.event-logo {
+  position: absolute;
+  right: var(--margin-x);
+  bottom: 52px;
+  line-height: 0;
+}
+/* viewBoxen er strammet til motivet i SVG-fila, så denne høyden ER logoens
+   høyde — ingen skjult marg å kompensere for. Forholdet er 1,061:1, altså
+   nesten kvadratisk: 230 px høy blir 244 px bred. Logoen dekker da x 972-1216
+   og y 438-668, som er innenfor der sjiktet i temaet er tettest. Blir den mye
+   større, vokser den ut av sjiktet og bygningskanten kommer til syne igjen. */
+.event-logo img { height: 230px; width: auto; display: block; }
+</style>
+
+<div class="event-logo">
+  <img src="figures/logos/JiA-logo.svg" alt="Jenter i AI">
+</div>
 
 ---
 
@@ -74,7 +122,7 @@ math: katex
 <div class="jente sunniva">
   <div class="photo-cluster">
     <div class="frame family"><img src="figures/people/sunniva-2.jpg" alt="Sunniva med familien"/></div>
-    <div class="frame portrait"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+    <div class="frame portrait"><img src="figures/people/sunniva-color.jpg" alt="Sunniva"/></div>
   </div>
   <div class="kicker">Sunniva</div>
 </div>
@@ -170,9 +218,19 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <!-- Steg 2 av tre på samme bilde: arkitekten kommer inn. Bildet skal IKKE
      bytte — det er oppbyggingen som er poenget, ikke tre forskjellige bilder.
 
-     roles-holder «venstre» klemmer rollene inn i venstre halvdel, så boblene
-     ikke legger seg over tomta. Arkitekten står i samme spalte her som på
-     neste slide, så figuren ikke hopper når du klikker. -->
+     roles-holder «venstre» klemmer rollene inn i venstre halvdel, så figurene
+     ikke legger seg over tomta. Arkitekten står i spalte 1 her og på neste
+     slide, så figuren ikke hopper når du klikker.
+
+     SPØRSMÅLENE STO PÅ FLATA FØR, i en snakkeboble over figuren. De er tatt ut
+     — boblene tok nesten halve sliden og tvang figuren ned i 140 px. Nå er
+     figuren 480 px og spørsmålene dine, ikke slidens. De er tatt vare på her:
+
+       - Hvor skal bygget stå, og hvor høyt kan det bli?
+       - Blir det bra her (lys, støy, vind)?
+
+     Skal de tilbake på flata, står oppskriften i theme.css over
+     «section.overlay .bubble». -->
 
 ![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
@@ -183,25 +241,29 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
-<div class="bubble"><ul>
-<li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her (lys, støy, vind)?</li>
-</ul></div>
 <div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
 </div>
 </div>
 
-<!-- Say: «først kommer arkitekten.» Les de tre spørsmålene, ikke ordrett — de
-     står der for publikum, ikke for deg. -->
+<!-- Say: «først kommer arkitekten.» Nå står ingenting skrevet, så spørsmålene
+     MÅ sies — de to over, i din egen rekkefølge. Vent til figuren har stått et
+     øyeblikk; den er stor nok til å bære pausen. -->
 <!-- TODO ~0:20 -->
 
 ---
 
 <!-- _class: demo overlay -->
 
-<!-- Steg 3: utbyggeren kommer inn ved siden av, i høyre spalte av samme
-     venstrestilte bærer. -->
+<!-- Steg 3: utbyggeren kommer inn ved siden av, i spalte 2 av samme
+     venstrestilte bærer. Arkitekten rører seg ikke — samme spalte, samme
+     figurhøyde som på forrige slide.
+
+     UTBYGGERENS SPØRSMÅL sto i en snakkeboble her før, som arkitektens. Begge
+     er tatt ut av samme grunn; se kommentaren på forrige slide. Tatt vare på:
+
+       - Går regnestykket opp?
+       - Hva koster det å ombestemme seg om tre måneder? -->
 
 ![](figures/tidligfase/hesthagen-flyfoto.jpg)
 
@@ -212,36 +274,50 @@ skal fortelles muntlig i stedet. Vil du ha dem tilbake på flata, er de her:
 <div class="roles-holder venstre">
 <div class="roles">
 <div class="role">
-<div class="bubble"><ul>
-<li>Hvor skal bygget stå, og hvor høyt kan det bli?</li>
-<li>Blir det bra her (lys, støy, vind)?</li>
-</ul></div>
 <div class="figure"><img src="figures/tidligfase/rolle-arkitekt-lys.svg" alt=""><span class="name">Arkitekten</span></div>
 </div>
-<div class="role fig-hoyre">
-<div class="bubble"><ul>
-<li>Går regnestykket opp?</li>
-<li>Hva koster det å ombestemme seg om tre måneder?</li>
-</ul></div>
+<div class="role">
 <div class="figure"><img src="figures/tidligfase/rolle-utbygger-lys.svg" alt=""><span class="name">Utbyggeren</span></div>
 </div>
 </div>
 </div>
 
 <!-- Say: «og så kommer den som betaler.» Arkitekten spør om form, utbyggeren om
-     risiko — begge trenger svar før noe er tegnet ferdig. Punchlinja «noen få
-     uker der nesten alt avgjøres» sier du her, i stedet for å vise den. -->
+     risiko — begge trenger svar før noe er tegnet ferdig. Spørsmålene deres
+     står ikke på sliden lenger, så de to over må sies. Punchlinja «noen få
+     uker der nesten alt avgjøres» lander du her. -->
 <!-- TODO ~0:25 -->
 
 ---
 
 <!-- _class: demo overlay logo-card -->
 
-<!-- Logokortet fra filmen (1 s). Det rammer inn Forma-delen: ett foran videoen,
-     ett etter vind- og AI-bildene. Marp-klassen logo-card skjuler vår egen
-     Autodesk-logo nederst til venstre, siden kortet alt har en midt i bildet. -->
+<!-- Logokortet som rammer inn Forma-delen. Marp-klassen logo-card skjuler vår
+     egen Autodesk-logo nederst til venstre, siden kortet alt har et merke midt
+     i bildet.
 
-![](figures/video/stills/logo.jpg)
+     Kortet var før et stillbilde fra demofilmen — figures/video/stills/logo.jpg,
+     som sa «Forma Site Design». To ting var galt: produktet heter Autodesk
+     Forma, og fila var 1920x1080 på en fullflate-slide, altså 1,5x av
+     slideflata der decket ellers holder 2x.
+
+     Nå er lockupen BYGD av vektor og tekst i stedet for å være et bilde: se
+     .forma-lockup i theme.css for målene og for hvorfor det ikke finnes en
+     SVG-fil å bruke i stedet. Den er dermed skarp uansett hvor stor skjermen i
+     salen er.
+
+     --lw er lockupens bredde og det eneste tallet som skal endres her. 620 px
+     er 48 % av slidebredden: stort nok til å lese som et tittelkort, lite nok
+     til at det fortsatt er luft rundt. -->
+
+<style scoped>
+.forma-lockup { --lw: 620px; }
+</style>
+
+<div class="forma-lockup">
+  <img class="merke" src="figures/logos/autodesk-logo-white.svg" alt="Autodesk Forma">
+  <div class="produkt">Forma</div>
+</div>
 
 <!-- Say: ikke stå her. Klikk videre med én gang — kortet er en sceneanvisning,
      ikke en slide. -->
@@ -374,7 +450,7 @@ Iterer over utforming
 <div class="working-on">
   <div class="faces">
     <img src="figures/people/vilde-3.jpg" alt="Vilde">
-    <img src="figures/people/sunniva.png" alt="Sunniva">
+    <img src="figures/people/sunniva-color.jpg" alt="Sunniva">
   </div>
 </div>
 
@@ -477,12 +553,16 @@ Iterer over utforming
 }
 /* Vindkortet er markert med en ramme rundt selve kortet, ikke en ellipse rundt
    det. outline og ikke border: outline tar ikke plass i rutenettet, så de seks
-   kortene står like store og på samme linje som uten markeringen. Fargen er
-   hentet fra strømlinjene i vindbildet selv (#0A42D7, plukket fra kjernen av
-   linjene), så markeringen peker på bildet i stedet for å konkurrere med det. */
+   kortene står like store og på samme linje som uten markeringen.
+
+   Fargen er --accent, deckets aksentblå. Den var #0A42D7 før — plukket fra
+   kjernen av strømlinjene i vindbildet — men et eget blått som ikke finnes
+   noe annet sted i decket leser som en tredje farge, ikke som deckets måte å
+   peke på noe. Aksentblå sier «dette er den vi følger videre» med samme
+   stemme som kickerne og AI-kortene. */
 .cols-3 .card.ring {
   position: relative;
-  outline: 3px solid #0A42D7;
+  outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
 </style>
@@ -490,7 +570,7 @@ Iterer over utforming
 <div class="working-on">
   <div class="faces">
     <img src="figures/people/vilde-3.jpg" alt="Vilde">
-    <img src="figures/people/sunniva.png" alt="Sunniva">
+    <img src="figures/people/sunniva-color.jpg" alt="Sunniva">
   </div>
 </div>
 
@@ -1328,7 +1408,7 @@ h2 {
 </div>
 
 <div class="person-photo">
-  <div class="frame"><img src="figures/people/sunniva.png" alt="Sunniva"/></div>
+  <div class="frame"><img src="figures/people/sunniva-color.jpg" alt="Sunniva"/></div>
   <span>Sunniva</span>
 </div>
 

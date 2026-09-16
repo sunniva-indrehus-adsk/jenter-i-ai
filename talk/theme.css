@@ -16,6 +16,62 @@
   font-display: block;
 }
 
+/* KaTeX-fontene, LOKALT. Dette er ikke pynt — det er forskjellen på at
+   ligningene rendrer og at de ikke gjør det uten nett.
+
+   Marp Core injiserer KaTeXs egen CSS, og den peker på cdn.jsdelivr.net. Uten
+   nett faller matten tilbake til en systemserif, og da forsvinner operatorene:
+   pruttegnet i (U·grad)U og transponerings-T-en blir BORTE, ikke bare stygge.
+   Det er verifisert ved å bygge PDF-en med `docker run --network none` og
+   sammenligne side 20 med den nettbygde.
+
+   Overstyringen virker fordi Marp legger temaet ETTER KaTeX-CSS-en, og en
+   senere @font-face med samme familie/vekt/stil erstatter den forrige.
+   Deskriptorene under er GENERERT fra KaTeXs egne regler i en bygget
+   index.html, så de matcher versjonen marp-cli v3.2.0 bruker (KaTeX 0.16.8)
+   eksakt. Oppgraderer du marp-cli, gjenta uthentingen — se README,
+   «Matte uten nett».
+
+   BARE DE FIRE ligningen faktisk bruker ligger her — Main-Regular, Main-Bold,
+   Math-Italic, Size1-Regular, til sammen 73 kB. KaTeX har 20 familier, men å
+   sjekke inn de 16 andre er 182 kB for symboler decket ikke har.
+
+   Konsekvensen er verdt å forstå: for de 16 står Marps egne CDN-regler urørt,
+   så de virker MED nett og faller til serif UTEN. Legger du inn et symbol fra
+   AMS, en større brøk (Size2-4), \mathscr, \mathfrak eller \texttt, må fonten
+   hentes ned hit og en @font-face legges til under — ellers ser ligningen
+   riktig ut på maskinen din og feil i PDF-en fra et bygg uten nett.
+
+   Kommandoen som avslører det står i README, «Matte uten nett»: bygg med
+   --network none og list KaTeX-fontene i PDF-en. Er lista kortere enn
+   symbolene du bruker, mangler det en fil.
+
+   Lisens: fonts/katex/KaTeX-MIT.txt. */
+@font-face {
+  font-family: KaTeX_Main;
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/katex/KaTeX_Main-Bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: KaTeX_Main;
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/katex/KaTeX_Main-Regular.woff2') format('woff2');
+}
+@font-face {
+  font-family: KaTeX_Math;
+  font-style: italic;
+  font-weight: 400;
+  src: url('fonts/katex/KaTeX_Math-Italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: KaTeX_Size1;
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/katex/KaTeX_Size1-Regular.woff2') format('woff2');
+}
+
 :root {
   --ink: #000000;          /* Autodesk black — the primary brand colour */
   --paper: #FFFFFF;
@@ -51,31 +107,37 @@ section {
 
 /* ── Headings ─────────────────────────────────────────────────────────── */
 
-/* Tittelen er aksentblå, ikke svart. Decket er fullt av blått allerede —
-   kickerne, callout-ene, strømlinjene på tittelsliden, surrogatsiden av
-   modellslidene — og en svart overskrift over alt det leste som om den kom fra
-   et annet dokument.
+/* Tittelen er SVART, streken under den er blå.
 
-   Streken under følger fargen. En blå tittel over en svart strek deler
-   overskriften i to; samme farge gjør den til én enhet.
+   Den var blå før, med den begrunnelsen at decket er fullt av blått allerede
+   (kickerne, callout-ene, strømlinjene på tittelsliden, surrogatsiden av
+   modellslidene) og at en svart overskrift over alt det leste som om den kom
+   fra et annet dokument. Effekten ble den motsatte: når også den største
+   skriften på hver slide er blå, er blått ikke lenger en aksent — det er
+   grunnfargen, og da har kickerne og callout-ene ingenting å peke seg ut mot.
+
+   Nå bærer streken fargen alene. Den er tynn, så den tåler å være blå uten å
+   ta over sliden, og den blir det som binder overskriften til resten av
+   aksentene. Autodesk-svart er dessuten den primære merkevarefargen (se
+   --ink), så tittelen i svart er også det riktigste merkevaremessig.
 
    Unntakene ligger lenger ned og er de slidene som har svart bakgrunn:
-   seksjonsskillene beholder hvit tittel, for blått på svart leser dårligere
-   enn hvitt. */
+   seksjonsskillene beholder hvit tittel, for svart på svart er ingenting. */
 h1 {
   font-family: var(--display);
   font-weight: 700;
   font-size: 1.75em;
   line-height: 1.15;
   letter-spacing: -0.015em;
-  color: var(--accent);
+  color: var(--ink);
   margin: 0 0 0.55em 0;
   padding-bottom: 0.35em;
   border-bottom: 2px solid var(--accent);
 }
 
-/* Underoverskriften er svart, ikke grå. Med blå tittel over trenger den å
-   være det tyngste svarte på sliden, ellers blir hele toppen lys. */
+/* Underoverskriften er svart, som tittelen over. Den var satt svart for å veie
+   opp for en blå tittel; nå er begge svarte, og h2-en skiller seg fra h1-en på
+   vekt og størrelse i stedet for på farge. */
 h2 {
   font-family: var(--sans);
   font-weight: 500;
@@ -236,24 +298,61 @@ section.title header { color: #B4B4B4; }
    The render already carries an Autodesk Forma lockup, so the theme's own
    logo is suppressed here to avoid two logos on one slide. */
 
+/* TO myke hvite sjikt over renderingen, ett i hvert nedre hjørne. Begge er der
+   for å gjøre noe leselig, ikke for pynt:
+
+     venstre   holdt tittelteksten leselig uansett hvor strømlinjene falt.
+               Tittelen står ikke skrevet lenger (arrangementslogoen sier den),
+               men sjiktet blir igjen og leses som en myk vignett.
+     høyre     bærer arrangementslogoen, som ligger nede til høyre.
+
+   HØYRE SJIKT ER IKKE VALGFRITT. Hovedbygningens høyre kant er en hard, rett
+   vertikal strek på x=1152 av 1280, og bygget dekker alt til venstre for den og
+   over y=585. En logo nede til høyre som er stor nok til å leses, får derfor
+   streken tvers gjennom seg — rendret og sett: den delte logoen i to og stakk
+   rett gjennom håret på tredje figur. I tillegg er håret i logofila tegnet UTEN
+   fyll (den er laget for hvit bakgrunn), så alt bak skinner gjennom.
+
+   En hvit plate bak logoen ble prøvd først og virket, men den leste som en
+   klistrelapp i stedet for som del av bildet. Sjiktet gir samme lesbarhet uten
+   kant — logoen ligger I renderingen, ikke oppå den.
+
+   64% x 56% og ikke 52% x 46%: begge ble rendret og sammenlignet i utsnitt. Den
+   smalere lot bygningskanten skimte gjennom bak tredje figur. Denne dekker helt.
+   Prisen er at høyre ende av bygget dempes, og det er en pris verdt å betale —
+   motivet er strømlinjene, og de går over hele flata.
+
+   Rekkefølgen i background-image betyr noe: gradientene MÅ stå før var(--photo),
+   ellers ligger fotoet øverst og sjiktene gjør ingenting. Legger du til et lag,
+   må background-size/-position/-repeat få ett komma mer hver. */
 section.title-photo {
   /* Override --photo in a slide's <style scoped> to use a different render. */
   --photo: url('figures/vind/gløshaugen-streamlines.png');
   background-color: var(--paper);
   background-image:
+    radial-gradient(ellipse 64% 56% at 98% 104%,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(255, 255, 255, 0.86) 44%,
+      rgba(255, 255, 255, 0.40) 72%,
+      rgba(255, 255, 255, 0) 100%),
     radial-gradient(ellipse 78% 62% at 2% 104%,
       rgba(255, 255, 255, 0.95) 0%,
       rgba(255, 255, 255, 0.82) 42%,
       rgba(255, 255, 255, 0.34) 70%,
       rgba(255, 255, 255, 0) 100%),
     var(--photo);
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
   color: var(--ink);
 }
 
-section.title-photo h1 { color: var(--accent); }
+/* Svart tittel, som på innholdsslidene. Renderingen bak er nesten hvit og har
+   et hvitt sjikt over venstre side, så svart er den sterkeste kontrasten flata
+   kan gi — og tittelsliden setter tonen for at overskrifter er svarte i dette
+   decket. h3 er ikke en tittel men en versal-eyebrow, i samme rolle som
+   .kicker ellers, og beholder derfor aksentblå. */
+section.title-photo h1 { color: var(--ink); }
 section.title-photo h2 { color: #4A4A4A; }
 section.title-photo h3 { color: var(--accent); }
 section.title-photo header { color: var(--muted); }
@@ -313,8 +412,14 @@ section.statement h1 {
   max-width: 92%;
 }
 
-/* ── Demo slide: video fyller hele flaten ─────────────────────────────── */
+/* ── Demo slide: bildet fyller hele flaten ────────────────────────────── */
 
+/* Het «video» før. Decket hadde en YouTube-embed av demofilmen på én slide i
+   HTML-utgaven, og en serie stillbilder i PDF-utgaven — ingen PDF-viser utenom
+   Adobe Acrobat spiller video. Det tvang fram to utgaver av decket og et skript
+   som byttet slidene om. Videoen er tatt helt ut, og stillbildene fra Forma
+   står nå i BEGGE utgavene. Reglene for <video> og <iframe> er fjernet med
+   den; de var det eneste som trengte dem. */
 section.demo {
   background-color: var(--ink);
   padding: 0;
@@ -335,20 +440,10 @@ section.demo > p {
   line-height: 0;
 }
 
-section.demo video,
 section.demo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-/* YouTube-embed: 16:9 skalert til å dekke flaten. Slidene er 16:9, så en
-   iframe på 100%/100% treffer riktig uten letterboxing. */
-section.demo iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
   display: block;
 }
 
@@ -369,66 +464,118 @@ section.demo .demo-label .kicker {
   opacity: 0.75;
 }
 
+/* .demo-intro er FJERNET. Det var tittelkortet som lå over demovideoen de
+   første 5 sekundene, med Autodesk Forma-lockupen på. Videoen er borte, og
+   lockupen står nå på sin egen slide (logokortet, slide 6) — der har den hele
+   flata og trenger ingen fade-logikk. */
 
-/* Tittelkort som ligger over videoen de første 5 sekundene. Utseendet ligger
-   her; når det vises og skjules styres av skriptet på demo-sliden, som toggler
-   .is-hidden. CSS alene kommer ikke til: Marpit prefikser alle selektorer med
-   section-scopet, så .bespoke-marp-active — som ligger på <svg> OVER section —
-   er utenfor rekkevidde herfra. */
-section.demo .demo-intro {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  /* Logoen sitter i øvre tredjedel, ikke midt i bildet — da dekker den mindre
-     av det som faktisk skjer i videoen. */
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 6%;
-  /* Helt dekkende, ikke halvgjennomsiktig: kortet ligger der i 5 sekunder, og
-     alt som skinner gjennom i mellomtiden — YouTubes spinner, et glimt av
-     kontrollinjen — er støy. Videoen avsløres når kortet fader ut. */
-  background-color: rgba(0, 0, 0, 1);
+/* ── AUTODESK FORMA-lockupen ──────────────────────────────────────────────
+
+   Bruk:
+     <div class="forma-lockup">
+       <img class="merke" src="figures/logos/autodesk-logo-white.svg" alt="Autodesk Forma">
+       <div class="produkt">Forma</div>
+     </div>
+
+   Størrelsen styres av ÉN variabel, --lw (lockupens bredde). Alt annet regnes
+   ut fra den, så lockupen kan skaleres fritt uten at proporsjonene glir.
+
+   HVORFOR BYGD OG IKKE EN BILDEFIL: det finnes ingen offentlig SVG av
+   produkt-lockupen «Autodesk Forma» — søker du den opp, får du Autodesks
+   ordinære firmalogo. De rasterversjonene som finnes er små. Og en SVG med
+   tekst i seg hjelper ikke: en SVG lastet via <img> rendres i sitt eget
+   dokument og når ikke @font-face-en i temaet, så «Forma» hadde falt tilbake
+   til en systemskrift (samme felle som er beskrevet ved .bubble lenger ned).
+
+   Derfor: merket og AUTODESK-ordmerket fra den PD-lisensierte SVG-en vi
+   allerede har i repoet, og produktnavnet som levende tekst i deckets egen
+   skrift. Vektor pluss tekst = skarpt i alle oppløsninger, på storskjerm og i
+   PDF, og det er samme skrift som resten av decket.
+
+   LISENS OG RETTIGHETER — hele grunnlaget ligger i repoet:
+
+     merket    autodesk-logo-white.svg, Autodesks primærlogo fra 2021, hentet
+               fra Wikimedia Commons som public domain (PD-textlogo). Kilde og
+               lisens står i toppen av selve SVG-fila.
+     «Forma»   levende tekst i Inter (SIL OFL 1.1, fonts/Inter-OFL.txt) eller
+               Artifakt hvis den er installert lokalt. Ingen bildefil.
+
+   Det er altså ingen nedlastet produktlogo her, og ingenting fra en
+   vektorlogo-side med uklar opphavsrett. Autodesk-navnet og -logoen er
+   registrerte varemerker; å sette produktnavnet i en nøytral skrift er
+   beskrivende bruk, på samme grunnlag som README-en alt beskriver for
+   firmalogoen.
+
+   MÅLENE ble lest av den offisielle lockupen og av en rastring av vår egen SVG.
+   Rasterfila som ble målt (figures/logos/autodesk-forma-logo.png) er SLETTET —
+   den hadde ingen dokumentert kilde, og CI kopierer hele figures/ til den
+   offentlige gh-pages-siden. Tallene under er derfor det som står igjen av den
+   målingen, og de er ettermålt på en rendring (se lenger ned). Vil du
+   kontrollere dem mot originalen, er Autodesks egen merkevareportal kilden.
+
+   Brøkdelene er av --lw:
+
+     0,1100   SVG-ens boksehøyde (viewBox 100x11)
+     0,1060   AUTODESK-grunnlinja, målt fra toppen av SVG-boksen
+     0,1856   der AUTODESK-ordmerket starter — «Forma» venstrestilles hit,
+              ikke mot merket, akkurat som i den offisielle lockupen
+     0,0994   «Forma»-versalhøyden (96 % av merkehøyden i originalen)
+     0,0468   luft mellom AUTODESK-grunnlinja og toppen av «Forma»
+
+   Skriftstørrelsen og margin-top er regnet ut fra versalhøyden og Inters
+   grunnlinjeplassering i en linje med line-height: 1, og deretter ETTERMÅLT på
+   en rendring ved --lw: 620px. Slik satt det:
+
+     AUTODESK-merket   64 px høyt   (regnet: 63,9)
+     «Forma»-versalen  64 px høy    (regnet: 61,6 — Inters versalhøyde er
+                                     0,755 em, ikke 0,727 som lagt til grunn)
+     luft imellom      29 px        (regnet: 29,0)
+     «Forma» starter   2,5 px til høyre for AUTODESK-ordmerket, som er samme
+                       vei og samme størrelse som i den offisielle lockupen
+                       (der er det 2 px av 500) — det er F-ens sidebæring.
+
+   Altså: «Forma» er noen piksler høyere mot AUTODESK enn originalen, der den
+   er 96 %. Det er innenfor, og det er ikke verdt en magisk korreksjonsfaktor.
+   Måler du på nytt etter en endring, er det disse fire tallene som gjelder.
+
+   Får du Artifakt installert lokalt, er versalhøyden en annen igjen, og
+   «Forma» blir noen piksler for høy eller for lav mot AUTODESK. Tallene her er
+   stilt inn mot Inter, som er det Docker og CI (og altså PDF-en) bruker.
+
+   Vekt 400, ikke 700: i den offisielle lockupen er produktnavnet tydelig
+   lettere enn det fete AUTODESK-ordmerket. */
+.forma-lockup {
+  --lw: 620px;
+  width: var(--lw);
+  font-family: var(--sans);
   color: var(--paper);
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 2.4em;
-  letter-spacing: -0.015em;
-  text-align: center;
-  pointer-events: none;
-  opacity: 1;
-  /* Ingen transition her, med vilje: kortet skal stå ferdig synlig i det sliden
-     blir aktiv, ikke fade inn. Overgangen ligger på .is-hidden, så den gjelder
-     bare veien ut. */
 }
 
-section.demo .demo-intro img {
-  width: 450px;
-  max-width: 46%;
-  /* Må overstyres eksplisitt: section.demo img over setter height:100% og
-     object-fit:cover for videoflaten, og det beskjærer logoen. */
+/* class="merke" og ikke bare img: section.demo img setter height: 100% og
+   object-fit: cover for fullflate-bildene, og den ville strukket logoen over hele
+   sliden. To klasser slår den uansett rekkefølge i fila. */
+.forma-lockup .merke {
+  display: block;
+  width: 100%;
   height: auto;
   object-fit: contain;
-  /* Logofila er svart grafikk på transparent bakgrunn — invert gjør den hvit
-     mot det mørke kortet. Bytt den ut med en hvit variant om du får en, og
-     fjern filteret. */
-  filter: invert(1);
 }
 
-/* Transition på målstadiet, ikke på basisregelen: da fader kortet ut når
-   skriptet legger på .is-hidden, men snapper rett til synlig når klassen
-   fjernes igjen. */
-section.demo .demo-intro.is-hidden {
-  opacity: 0;
-  transition: opacity 0.6s ease-out;
+.forma-lockup .produkt {
+  margin: calc(var(--lw) * 0.0241) 0 0 calc(var(--lw) * 0.1856);
+  font-size: calc(var(--lw) * 0.1367);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.005em;
 }
 
 /* ── Bilde-slides: tekst oppå et stillbilde fra filmen ────────────────── */
 
-/* Filmen har sin egen engelske tekst nede til venstre. Den blurres bort i selve
-   bildet ved uthenting (tools/flipbook.sh, --mask), og bare på de bildene der
-   den faktisk er på skjermen. Derfor trenger overlegget her ikke å dekke noe —
-   det skal bare gi hvit skrift nok kontrast. Det er forskjellen på en tett
-   svart boks og et mykt sjikt. */
+/* Bildene her er skjermbilder rett fra Forma, uten innbrent tekst. (Da de var
+   klippet ut av demofilmen, hadde filmen sin egen engelske tekst nede til
+   venstre, og den måtte blurres bort ved uthenting.) Overlegget trenger derfor
+   ikke å dekke noe — det skal bare gi skriften nok kontrast. Det er forskjellen
+   på en tett svart boks og et mykt sjikt. */
 
 /* Kildehenvisning på bilde-slidene, oppe til høyre.
 
@@ -564,7 +711,13 @@ section.overlay .role {
   align-items: flex-start;
 }
 
-/* Samme familie som .callout ellers i decket: lys blå flate, aksentblå kantstrek
+/* IKKE I BRUK PÅ NOEN SLIDE NÅ. Boblene sto på tidligfase-slidene, men tok for
+   mye av flata og er tatt ut — se kommentaren over .roles-holder.venstre
+   lenger ned. Reglene står igjen fordi spørsmålene er ekte innhold som kan
+   komme tilbake: legg <div class="bubble"><ul>…</ul></div> inn i en .role
+   igjen, og sett figurhøyden ned, så virker de som før.
+
+   Samme familie som .callout ellers i decket: lys blå flate, aksentblå kantstrek
    mot venstre, mørk tekst. Fargen er --accent-soft lagt over hvitt og gjort
    ugjennomsiktig, siden den her ligger på et foto og ikke på papir. */
 section.overlay .bubble {
@@ -634,121 +787,102 @@ section.overlay .figure .name {
   color: var(--paper);
 }
 
-/* ── Rollene til VENSTRE for tomta, stablet ───────────────────────────────
+/* ── Rollene til VENSTRE for tomta, side om side ──────────────────────────
    Modifikator: <div class="roles-holder venstre">
 
-   Standardoppsettet legger rollene i to spalter over hele bredden nederst. To
-   ting ble galt med det her: snakkeboblene havnet rett oppå tomta, og den røde
-   streken er det eneste sliden egentlig peker på. Og da bæreren ble klemt inn i
-   venstre halvdel, ble hver spalte bare ca. 300 px — spørsmålene brakk over tre
-   linjer hver.
+   Spørsmålene sto i snakkebobler på flata før. De er tatt ut: to bobler à to
+   kulepunkter la beslag på nesten halve sliden, og figurene måtte krympes til
+   140 px for å få plass under dem. Resultatet var en slide der teksten var
+   hovedsaken og menneskene en fotnote — stikk motsatt av hva de to slidene
+   skal si. Spørsmålene står nå bare i Say-notatene i slides.md og sies
+   muntlig; se de bevarte listene der hvis de skal tilbake på flata.
 
-   Løsningen er å stable i stedet for å sette side om side: ÉN spalte, to rader.
-   Da får hver boble hele 614 px, og hvert spørsmål går på én linje.
+   Uten boblene er høyden fri, og figurene kan bli så store at de faktisk
+   fyller sliden: 440 px, altså 61 % av flatehøyden — mot 140 px før.
 
-   47 % gir innhold fra x=64 til x=678 av 1280. Tomta starter på x=698 i
-   flyfotoet (se ROLLER-ramma i tools/hesthagen_slide4.py), altså 20 px klaring.
-   Endrer du ramma i skriptet, må dette tallet sjekkes på nytt.
+   HVORFOR 440 OG IKKE MER: 400, 440 og 480 ble rendret og sammenlignet. På 480
+   er figurene så brede at de to kroppene klemmer seg mot hverandre, og de
+   dekker så mye av flyfotoet at nabolaget rundt tomta forsvinner — og sliden
+   skal vise en TOMT som to roller står foran. 400 gir god luft, men fyller ikke
+   flata. 440 er den største høyden som fortsatt lar byen bak leses.
 
-   Bæreren strekkes over hele høyden og pakker fra toppen, ikke fra bunnen.
-   Det er grunnen til at arkitekten står på samme sted på begge slidene:
-   første rad ligger der uansett om utbyggeren har kommet inn eller ikke.
-   Med bunnjustering ville arkitekten hoppet opp idet den andre dukket opp. */
+   BREDDEREGNSKAPET er den harde grensa, og den er tomtas venstre kant:
+
+     Den røde streken er målt rad for rad på det nedskalerte flyfotoet
+     (1280x720). Trangeste punkt er y=220, der streken starter på x=699.
+     Mellom y=200 og y=480 ligger den aldri lenger vest enn det.
+
+     Figurene er 440 px høye. viewBoxen er 140x220, så boksen blir 280 px bred,
+     og to av dem er 560 px. Fra venstremargen x=64 slutter de på x=624 — 75 px
+     klaring til streken.
+
+   Øker du figurhøyden, spiser du av den klaringen: hver 10. px høyde koster
+   ca. 13 px bredde. Over ca. 550 px legger arkitekten seg oppå tomtegrensa,
+   men sliden blir uleselig lenge før det.
+
+   Ingen gap mellom spaltene, med vilje: viewBoxen har 16 av 140 enheter luft
+   på hver side av kroppen (kroppen er 108 enheter bred), så to bokser som
+   ligger kant i kant gir likevel ca. 65 px synlig luft mellom de to personene.
+   Legger du på gap her, må figurhøyden ned.
+
+   Bæreren pakker fra BUNNEN nå, ikke fra toppen. Figurene skal stå på bakken i
+   fotoet, og med to like høye figurer i to spalter hopper ingenting når
+   utbyggeren kommer inn på slide 5 — arkitekten ligger i spalte 1 uansett om
+   spalte 2 er tom eller ikke. Det var grunnen til toppakkingen før, og den
+   gjelden er betalt av rutenettet i stedet. */
 section.overlay .roles-holder.venstre {
-  /* Faste piksler og ikke prosent: grensa er tomtas venstre kant, og den er et
-     pikseltall fra bildet (x=698), ikke en brøkdel av flata. 64 + 608 + 64 =
-     736, så innholdet slutter på x=672 og har 26 px klaring til den røde
-     streken. Endrer du ROLLER-ramma i tools/hesthagen_slide4.py, er dette
-     tallet det første som må sjekkes. */
   right: auto;
-  width: 736px;
+  /* 64 + 560 + 64 = 688. Se breddregnskapet over. */
+  width: 688px;
   top: 0;
-  padding: 56px var(--margin-x) 60px;
-  justify-content: flex-start;
+  /* Ingen topp-padding: bunnen er ankeret. 64 px nede holder navnene klar av
+     Autodesk-logoen, som ligger på y 675-690. */
+  padding: 0 var(--margin-x) 64px;
+  justify-content: flex-end;
 }
 
-/* Én spalte, to rader. Høyderegnskapet er målt på rendringen, ikke regnet ut:
-   boblene ble 15 px høyere enn antatt, og med figur på 165 px rant utbyggeren
-   ned i Autodesk-logoen.
-
-     56 px topp + 102 (boble, 2 linjer à 21 px) + 11 + 164 (figur + navn)
-        + 22 (mellomrom) + 102 + 11 + 164  =  632
-
-   Logoen ligger på y 675-690, så det er ca. 50 px klaring. Øker du figurhøyden
-   eller legger til et kulepunkt, må du ta det igjen et annet sted. */
-/* 21 px, ikke 16: dette er spørsmålene publikum skal lese fra salen, og de er
-   nå korte nok til å gå på én linje hver ved denne størrelsen. Den lengste er
-   «Hva koster det å ombestemme seg om tre måneder?» på 47 tegn, som tar ca.
-   534 px — akkurat innenfor boblens tekstbredde.
-
-   Legger du til et ord, sjekk at ingen linje brekker. Brekker den, er det
-   billigere å korte teksten enn å sette skriften ned igjen. */
+/* To spalter, én rad — begge figurene står på samme bakkelinje. align-items:
+   end arves fra .roles, så navnene lander på samme høyde selv om hjelmen til
+   utbyggeren er litt høyere enn arkitektens beret. */
 section.overlay .roles-holder.venstre .roles {
-  grid-template-columns: 1fr;
-  gap: 22px;
-  align-items: start;
-  font-size: 21px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: end;
 }
 
-/* Figurene står i MOTSATT ende av hver sin boble: arkitekten til venstre,
-   utbyggeren til høyre. Begge sentrert under boblen ble prøvd først, og det ble
-   for statisk — to figurer rett under hverandre på samme akse. Forskjøvet blir
-   det liv i oppbyggingen, og utbyggeren kommer samtidig unna Autodesk-logoen
-   nede til venstre.
-
-   Arkitekten er venstrestilt på begge slidene, så figuren ikke hopper når
-   utbyggeren kommer inn. */
-section.overlay .roles-holder.venstre .role { align-items: flex-start; }
-section.overlay .roles-holder.venstre .role.fig-hoyre { align-items: flex-end; }
-
-section.overlay .roles-holder.venstre .bubble {
-  border-radius: 30px;
-  padding: 18px 26px 20px;
-}
-section.overlay .roles-holder.venstre .bubble ul { padding-left: 24px; }
-section.overlay .roles-holder.venstre .bubble li { margin: 6px 0; }
-/* Halen peker ned mot hodet, så den må følge figuren til sin ende av boblen.
-   44 px er midten av figuren: 140 px høy gir 89 px bredde (140:220 i
-   viewBoxen), altså halvparten 44. */
-section.overlay .roles-holder.venstre .bubble::after {
-  left: 44px;
-  bottom: -12px;
-  border-width: 12px 10px 0 10px;
-}
-section.overlay .roles-holder.venstre .role.fig-hoyre .bubble::after {
-  left: auto;
-  right: 44px;
-}
+/* Sentrert i sin egen spalte, ikke forskjøvet mot hver sin kant. Forskyvningen
+   fantes for å få figurene ut til hver sin boble; uten bobler er det bare to
+   personer som står ved siden av hverandre, og da er midten riktig. */
+section.overlay .roles-holder.venstre .role { align-items: center; }
 
 /* Navnet UNDER figuren, sentrert.
 
-   Inne på kroppen måtte det ned i 9,5 px for å få plass — figuren er smal, og
-   «UTBYGGEREN» hang likevel ut over kanten på begge sider. Ved siden av
-   figuren ble det lesbart, men da flyttet tyngdepunktet seg til høyre og
-   figuren sto ikke lenger midt under boblen. Under er begge problemene løst:
-   navnet kan være så bredt det vil, og aksen holder.
+   Inne på kroppen måtte det ned i 9,5 px for å få plass — figuren var smal, og
+   «UTBYGGEREN» hang likevel ut over kanten på begge sider. Under figuren kan
+   navnet være så bredt det vil, og aksen holder.
 
-   Hvit tekst med mørk skygge, altså temaets egen farge — navnet ligger nå på
+   Hvit tekst med mørk skygge, altså temaets egen farge — navnet ligger på
    fotoet og ikke på den lyse kroppen, så det trenger ikke snus til mørkt.
 
-   140 px figur: se høyderegnskapet over. Navnet under legger 24 px til hver
-   rad, og de må betales et sted. */
+   18 px, ikke 13: navnene er nå den ENESTE teksten på de to slidene, og de må
+   leses fra bakerste rad. Med 480 px figurer over dem er 13 px dessuten så
+   lite at det leser som en bildetekst i stedet for en merkelapp. */
 section.overlay .roles-holder.venstre .figure {
-  margin-top: 11px;
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 12px;
   line-height: 1;
 }
-section.overlay .roles-holder.venstre .figure img { height: 140px; }
+section.overlay .roles-holder.venstre .figure img { height: 440px; }
 section.overlay .roles-holder.venstre .figure .name {
   position: static;
   bottom: auto;
   left: auto;
   right: auto;
   text-align: center;
-  font-size: 13px;
+  font-size: 18px;
   letter-spacing: 0.1em;
   color: var(--paper);
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85), 0 0 10px rgba(0, 0, 0, 0.6);
@@ -770,7 +904,8 @@ section.demo.flipbook:not(.on-dark)::after {
 
 /* Bilder som fyller hele flaten har ingen plate å stå på — merkelappen leser
    rett mot fotoet. Mørk skrift med hvit glød er riktig på de lyse bildene, men
-   må snus på de mørke. Hvilke som er hvilke er målt, se forma-demo.shots. */
+   må snus på de mørke. Hvilke som er hvilke er avgjort per slide med .on-dark;
+   i dag er det bare «Velg adresse» (globusen mot verdensrommet). */
 /* .on-dark styrer nå BARE Autodesk-logoen og sidetallet. De står nedenfor
    merkelappen, rett på fotoet, og må være hvite der bildet er mørkt.
    Selve merkelappen er lys på alle bilde-slides — den skal se lik ut overalt,
