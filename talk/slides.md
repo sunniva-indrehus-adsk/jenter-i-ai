@@ -899,7 +899,7 @@ section { font-size: 22px; }
   text-align: center;
   font-family: var(--display);
   font-weight: 700;
-  font-size: 1.5em;
+  font-size: 2.4em;
   line-height: 1;
 }
 </style>
