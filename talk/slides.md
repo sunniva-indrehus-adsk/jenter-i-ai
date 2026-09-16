@@ -1056,15 +1056,22 @@ $$
 <!-- Simuleringen forklart der den hører hjemme: rett etter stigen, mens
      «Simulering — timer» fortsatt henger i salen.
 
-     To ting på sliden, og bare to: bildet er hva vinden GJØR, ligningen er hva
-     maskinen regner på. Bildet er argumentet og står størst. Ligningen skal
-     ikke leses fra salen — den skal veie, og forklare hvorfor det tar timer.
+     Tittelen er «Fysikkmodellen» og ikke «Simulering»: denne sliden og
+     «Maskinlæringsmodellen» lenger bak er de to forklarings-slidene, én per
+     modell, og de skal leses som et par. Begge titlene er hentet rett fra
+     underetikettene på stigekortene («Simulering — Fysikkmodell», «Estimat —
+     Maskinlæringsmodell»), så salen slipper å lære nye ord. Bytter du den
+     ene, bytt den andre.
+
+     Tre ting på sliden: bildet er hva vinden GJØR, likningene er hva maskinen
+     regner på, og kostnadslinja er hvorfor det tar timer. Bildet er argumentet
+     og står størst. Likningene skal ikke leses fra salen — de skal veie.
 
      Ligningen er den stasjonære RANS-en simpleFoam løser, med vårt eget
      vegetasjonsledd (c_d a |U| U). Den er flyttet hit fra den gamle «Slik
      regner vi det ut»-sliden, som nå ligger i baklomma nederst i fila. -->
 
-# Slik simulerer vi vinden
+# Fysikkmodellen
 
 <style scoped>
 section { font-size: 22px; }
@@ -1097,9 +1104,22 @@ section { font-size: 22px; }
    den lengste linja — viskositetsleddet — om igjen midt i en parentes. */
 .sim .model .katex-display { margin: 0.2em 0 0; }
 .sim .model .katex-display > .katex { font-size: 0.72em; }
+/* Kostnaden hører til ligningen, ikke til bildet: den står under likningene, i
+   samme kort, skilt med en strek. Den er det ene tallet salen må ha med seg
+   videre — «femten forsøk på en ettermiddag» og surrogatmodellen henger begge
+   på at dette er dyrt. Den sto bare i talerkommentaren før. */
+.sim .model .cost {
+  margin: 0.9em 0 0;
+  padding-top: 0.75em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.78em;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.sim .model .cost b { color: var(--ink); font-weight: 600; }
 </style>
 
-<p class="lead">Simuleringen regner ut fysikken: hvordan luft faktisk beveger seg rundt og mellom byggene.</p>
+<p class="lead">Simuleringen løser bevegelseslikningene for luft: hvordan den faktisk beveger seg rundt og mellom byggene.</p>
 
 <div class="sim">
 
@@ -1109,7 +1129,7 @@ section { font-size: 22px; }
 </div>
 
 <div class="model">
-  <div class="kicker">Fysikkmodellen</div>
+  <div class="kicker">Likningene</div>
 
 $$
 \begin{aligned}
@@ -1119,6 +1139,8 @@ $$
 \nabla\cdot\mathbf{U} \;=\;& \;0
 \end{aligned}
 $$
+
+<p class="cost"><b>Én til to timer</b> per kjøring — og én kjøring per vindretning, åtte retninger.</p>
 
 </div>
 
@@ -1132,14 +1154,14 @@ $$
      krøller den seg sammen i virvler. Det er DETTE simuleringen regner ut,
      punkt for punkt i luftrommet over tomta.
 
-     Si «én retning» tydelig, og si tallet selv — det står ikke på sliden: én
-     til to timer per kjøring, åtte kjøringer for å få komfortkartet de alt har
-     sett.
+     Si «én retning» tydelig — bildet viser sørøst, og det er hele poenget med
+     kostnadslinja: gang den opp. Tallet står nå på sliden, så du skal ikke lese
+     det opp, du skal regne det ut høyt: åtte retninger, en time eller to hver,
+     for det ene komfortkartet de alt har sett.
 
-     Så ligningen, og bare som en gest: dette er fysikken den løser. Ikke gå
-     gjennom leddene — det står ingen tekst under den, så det er du som bærer
-     poenget: den er tung nok til å ta én til to timer, og den må kjøres på
-     nytt for hver vindretning.
+     Så likningene, og bare som en gest: dette er fysikken den løser. Ikke gå
+     gjennom leddene. Det eneste du eventuelt peker på er det siste leddet —
+     trær og vegetasjon som bremser vinden — som er vårt eget tillegg.
 
      Da har salen tallet de trenger til neste steg: åtte retninger x et par
      timer, hver gang du flytter et volum. -->
@@ -1347,7 +1369,7 @@ section { font-size: 22px; }
 <!-- _class: ladder -->
 
 <!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
-     rett før «Slik simulerer vi vinden») — flata skal være IDENTISK med den,
+     rett før «Fysikkmodellen») — flata skal være IDENTISK med den,
      ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
      der, rett det samme her.
 
