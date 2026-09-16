@@ -4,12 +4,13 @@ talk/_p.*.png
 talk/slides.html
 talk/slides.pdf
 talk/.preview
-talk/slides-film.md
 talk/_pngcheck/
 .DS_Store
 
-# Kildevideoen til flipbooken. Framene under flipbook/ er sjekket inn (de er
-# små, og da slipper CI å ha ffmpeg), men selve filmen er for stor for git.
+# Råopptak. Ingen av dem er en del av decket — slidene bruker stillbilder som
+# er sjekket inn, så CI trenger aldri ffmpeg. Men de er for store for git, og
+# ffmpeg-kommandoene i README («Hente ruter ut av et skjermopptak») leter etter
+# dem her hvis du skal lage iterasjonsrutene på nytt.
 talk/figures/video/*.mp4
 talk/figures/video/*.mov
 
@@ -27,3 +28,9 @@ talk/_check.*.png
 talk/_sammenligning/
 talk/_komfort-varianter.md
 talk/_komfort.*.png
+
+# Kontrollbygg av PDF-en (nett/uten nett), engangsartikler
+talk/_offline.pdf
+talk/_online.pdf
+talk/_probe*.png
+talk/_probe.md
