@@ -1662,8 +1662,14 @@ section.comfort-map .pin .lbl span { color: var(--muted); }
    inn på en flate som har 648 før bunnmargen. */
 .sg { display: flex; align-items: flex-start; justify-content: center; gap: 34px;
       margin: 46px 0 0; }
+/* Etikettene star OVER hver kolonne, ikke under. Salen leser raden i
+   leseretning: ordet forst, bildet etterpa.
+   height: 21px er lasi med vilje (16 px x 1,3 rundet opp): de tre etikettene
+   ma ta akkurat like mye plass, ellers starter kolonnene pa ulik hoyde og
+   sirklene faller av samme midtlinje. Endrer du font-size her, endre hoyden
+   OG offsetene i .sg .pil og .sg .nett. */
 .sg .lab { font-size: 16px; font-weight: 700; text-align: center; line-height: 1.3;
-           margin: 0; }
+           height: 21px; margin: 0; white-space: nowrap; }
 
 /* Inn: to rundinger side om side. Ingen retning her — det er hele poenget.
 
@@ -1717,7 +1723,14 @@ section.comfort-map .pin .lbl span { color: var(--muted); }
    den gjorde), så nøkkelen er alt som ligger i bildeteksten nå. */
 .sg .key { display: flex; flex-direction: column; align-items: center; gap: 1px;
            margin-top: 0; font-weight: 400; font-size: 10.5px; color: var(--muted); }
-.sg .key i { width: 8px; height: 8px; display: inline-block; margin-right: 5px; }
+/* Hairline-ramme på swatchene er PÅKREVD her, ikke pynt: bygg er hvite
+   (#FFFFFF) og terrenget en lys grå (#CFCFCF), så uten ramme ville
+   bygg-swatchen vært en usynlig hvit rute på hvit bunn. Ramma ligger på ALLE
+   TRE med vilje — bare de lyse ville lest som en annen slags markering enn
+   vegetasjonen. Hold de tre hexene i slides.md i takt med CAT i
+   render_map.py, det er der begrunnelsen for paletten står. */
+.sg .key i { width: 8px; height: 8px; display: inline-block; margin-right: 5px;
+             border: 1px solid rgba(26,29,28,.22); box-sizing: border-box; }
 /* Høyderampen er den samme sekvensielle teal-skalaen render_map.py bruker. */
 /* 108 px og ikke full bredde: rampen ligger under en sirkel nå, og en strek
    som er bredere enn sirkelen er bred der den treffer, stikker ut på begge
@@ -1725,19 +1738,24 @@ section.comfort-map .pin .lbl span { color: var(--muted); }
 .sg .ramp { width: 130px; height: 8px; margin: 6px auto 0;
             background: linear-gradient(90deg,#F2F6F4,#CFE0DC,#96C0BA,#4E9490,#20666B,#0E3A44); }
 
-/* 121 px = 127 (sirkelradien) minus 6 (halve pilhøyden): pilspissen står midt
-   på sirklene den peker mellom.
+/* 154 px = 21 (etiketten over sirkelen) + 12 (gapet under den) + 127
+   (sirkelradien) minus 6 (halve pilhøyden): pilspissen står midt på sirklene
+   den peker mellom. De 33 første pikslene er etikettraden — den ligger over
+   bildene nå, så alt som skal på midtlinja må forbi den først.
 
    Pilene er 48 px lange, ikke 80. De er ren skilletegn — de sier «og så» og
    ingenting mer — så lengden er det billigste stedet å hente bredde fra når
    sirklene skal være større. Endrer du tallet, endre viewBox og de to
    path-ene i markupen under (begge pilene) OG diameteren i .sg .raster. */
-.sg .pil { flex: 0 0 auto; color: var(--ink); margin-top: 121px; }
+.sg .pil { flex: 0 0 auto; color: var(--ink); margin-top: 154px; }
 
 /* Nettet: samme ikon som brukes for surrogatmodellen ellers i dekket. */
-/* 58 px = 127 (sirkelradien) minus 69 (halve ikonhøyden): nettet står på samme
-   midtlinje som sirklene og pilene. */
-.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px;
+/* 58 px = 21 (etiketten) + 12 (gapet) + 127 (sirkelradien) minus 69 (halve
+   ikonhøyden) minus de 33 px etikettraden selv tar: nettet står på samme
+   midtlinje som sirklene og pilene.
+   gap: 12px og ikke 10 — samme gap som .inn og .ut, slik at etikettraden er
+   like høy i alle tre kolonnene. Med 10 satt ikonet 2 px for høyt. */
+.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 12px;
             margin-top: 58px; }
 .sg .nett img { display: block; width: 138px; height: 138px; }
 
@@ -1759,11 +1777,36 @@ section.comfort-map .pin .lbl span { color: var(--muted); }
 .sg .disc { position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
             border: 1px solid var(--rule); background: #fff; }
 .sg .disc img { display: block; width: 100%; height: 100%; }
+/* Byggene i FELTET er HVITE, ikke den mørkeste blå de var i skjermbildet
+   (#95B7D5). Grunnen: i den fargeskalaen betyr mørkere = mer vind, og
+   bygningsmassen lå på den mørkeste tonen — så fotavtrykkene leste som de
+   mest vindutsatte flatene på tomta, stikk i strid med poenget. Hvite bygg
+   tar dem ut av skalaen: det som har farge, er vind.
+
+   Fyllet er FLATT hvitt, uten kontur. Det er prøvd med en 8 px blå kontur
+   (ca. 1,4 px her) for å løfte kontrasten — hvitt mot den lyseste feltonen
+   (#DBE5EE) er bare 1,26:1 — men den ble stygg: fotavtrykkene er rasterisert
+   fra et 335x335-grid, så kantene er trappetrinn, og en kontur streker opp
+   nettopp de trappetrinnene. Uten kontur bærer antialias-frynsen fra
+   skjermbildet formene, og de leser mykt i stedet for taggete.
+   Vil du likevel ha mer kontrast: gå på fyllet (en litt kjøligere hvit), ikke
+   på en kontur.
+
+   Reproduseres med vis-surrogate/whiten_buildings.py. MERK at masken hentes
+   fra NORDØST-kjøringen, ikke fra bildet som farges: i sørvest treffer 18 502
+   feltpiksler øverst i disken samme #95B7D5 (feltet der er sterkere, altså
+   mørkere), og et fargematch på sørvest alene stanser hvite hull midt i
+   vindfeltet. Fotavtrykkene er identiske mellom kjøringene — samme tomt, fast
+   1441x1441-disk — og nordøst-masken er målt til 100,00 % inneholdt i
+   sørvest-masken. Bytter du retning, verifiser den dekningen på nytt; det
+   står hvordan i skriptet. Uberørte originaler ligger som
+   felt-sv-BLUE-ORIGINAL.png (og felt-no-BLUE-ORIGINAL.png) i den
+   gitignorerte vis-surrogate/. */
 /* Retningen er TATT UT av figuren, og det er prøvd BEGGE veier: først som en
    innstrømningspil med etikett ved feltet, og siden (2026-09-17) som et tredje
-   input-kort med en nordøst-pil. Begge er tatt ut igjen — figuren skal si
+   input-kort med en retningspil. Begge er tatt ut igjen — figuren skal si
    «geometri inn, vindfelt ut» og ingenting mer, og et retningskort reiser
    spørsmålet om hvordan retningen kommer inn, som er en omvei her.
-   Feltet ER fortsatt nordøst-kjøringen (felt-no.png); retningen er bare ikke
-   merket. Mekanismen — geometrien roteres til nettets orientering, svaret
-   roteres tilbake — står i Say-notatet, for et spørsmål fra salen. */
+   Feltet ER fortsatt én bestemt kjøring — sørvest (felt-sv.png); retningen er
+   bare ikke merket. Mekanismen — geometrien roteres til nettets orientering,
+   svaret roteres tilbake — står i Say-notatet, for et spørsmål fra salen. */
