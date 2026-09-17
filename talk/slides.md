@@ -1083,9 +1083,9 @@ section { font-size: 22px; }
      regner vi det ut»-sliden, som nå ligger i baklomma nederst i fila. -->
 
 <div class="mhead">
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <div>
-    <h1>Simulering i Forma</h1>
+  <h1>Simulering i Forma</h1>
+  <div class="mhead-row">
+    <img src="figures/modeller/modell-cfd.svg" alt="">
     <p class="sub">Fysikkmodell</p>
   </div>
 </div>
@@ -1096,7 +1096,9 @@ section { font-size: 22px; }
 /* Tittelkortet (.mhead) er felles for denne sliden og «Estimat i Forma», og
    reglene står i theme.css. Ikonet her er modell-cfd.svg. */
 
-.lead { margin: 0.2em 0 0; font-size: 0.85em; color: var(--muted); max-width: 52em; }
+/* Ingen .lead-regel her lenger: ingressen «Simuleringen løser
+   bevegelseslikningene …» er tatt ut, bildet og ligningen sier det samme.
+   «Estimat i Forma» har fortsatt sin. */
 
 /* Bildet til venstre, ligningen i en fast spalte til høyre. 440 px og ikke 300:
    ligningen er det ene på sliden som faktisk må kunne leses fra bakerste rad,
@@ -1116,7 +1118,7 @@ section { font-size: 22px; }
 /* Fila er 1,57:1. Høyden er det som begrenser, ikke bredden: over 400 px legger
    bildeteksten seg ned i Autodesk-logoen. Derfor styrer max-height, og bredden
    følger av formatet — ca. 630 px. margin: 0 og ikke 0 auto: bildet skal ligge
-   inntil venstremargen, i flukt med tittelen og lead-linja, ikke sentrert i en
+   inntil venstremargen, i flukt med tittelen, ikke sentrert i en
    spalte som er bredere enn det selv. */
 .sim img { display: block; width: auto; max-width: 100%; height: auto; max-height: 400px; margin: 0; }
 
@@ -1142,13 +1144,10 @@ section { font-size: 22px; }
 .sim .model .cost b { color: var(--ink); font-weight: 600; }
 </style>
 
-<p class="lead">Simuleringen løser bevegelseslikningene for luft: hvordan den faktisk beveger seg rundt og mellom byggene.</p>
-
 <div class="sim">
 
 <div class="viz">
   <img src="figures/vind/streamlines.png" alt="Strømlinjer fra en vindsimulering med vind fra sørøst: blå baner som deles rundt hovedbygningen, akselererer forbi gavlen og krøller seg sammen i virvler bak byggene">
-  <div class="figcap">Vind fra sørøst.</div>
 </div>
 
 <div class="model">
@@ -1471,9 +1470,9 @@ section { font-size: 22px; }
 
 
 <div class="mhead">
-  <img src="figures/modeller/modell-surrogat.svg" alt="">
-  <div>
-    <h1>Estimat i Forma</h1>
+  <h1>Estimat i Forma</h1>
+  <div class="mhead-row">
+    <img src="figures/modeller/modell-surrogat.svg" alt="">
     <p class="sub">Maskinlæringsmodell</p>
   </div>
 </div>
@@ -1511,7 +1510,15 @@ section { font-size: 22px; }
    rundt sirkelen. border-radius: 50% klipper den bort — dropper du det, får
    feltet en grå firkant rundt seg. */
 
-.sg { display: flex; align-items: center; justify-content: center; gap: 34px;
+/* align-items: flex-start, IKKE center. Med center ble hver KOLONNE sentrert,
+   og kolonnene er ulikt høye: inn-kolonnen har bildetekst + fargenøkkel under
+   sirklene, ut-kolonnen bare etiketten. Da havnet inn-sirklene ca. 20 px
+   høyere enn feltet, og pilene traff dem over midten.
+   Nå ligger overkanten på alle tre sirklene på samme linje, og siden de er
+   like store (254 px, se under) ligger midtene det også. Pilene og nettet
+   skyves ned med hver sin margin-top til samme midtlinje — 127 px er radien,
+   så alt som skal stå på midten av en sirkel regnes fra den. */
+.sg { display: flex; align-items: flex-start; justify-content: center; gap: 34px;
       margin: 18px 0 0; }
 .sg .lab { font-size: 16px; font-weight: 700; text-align: center; line-height: 1.3;
            margin: 0; }
@@ -1534,18 +1541,25 @@ section { font-size: 22px; }
    sirkel gir to former å lese der det bare er én. Nå er det sirkelen, og
    bildeteksten under den, akkurat som på utsiden. */
 .sg .inn { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-/* 216 px, og de står SIDE OM SIDE. Under hverandre blir de mindre, ikke
-   større, og det er høyden som avgjør: tittelkortet tar ca. 105 px, og
-   theme.css tar 56 px av toppen og 72 px av bunnen, så figuren har ca. 469 px
-   å gå på. Stablet skal den plassen dekke to sirkler + to bildetekster +
-   «Input»-etiketten, som kapper diameteren på ca. 170 px — under dagens 176.
-   Side om side er det bredden som begrenser, og der er det slakk: 2 x 216 +
-   16 px mellom + fire kolonnegap + to piler + nettet + feltet = 1142 av de
-   1152 tilgjengelige pikslene. Skal de vokse mer, må feltet (292 px) eller
-   nettet (138 px) krympe like mye. */
+/* 254 px, SAMME DIAMETER SOM FELTET UT. De tre sirklene er samme flate sett
+   på tre måter, og da skal de være like store — inn-rasterne var 216 mot
+   feltets 292, og forskjellen leste seg som at utsiden var det viktige
+   bildet. Tallet er det bredden tåler, ikke et valgt tall: 3 x 254 + 16 px
+   mellom rasterne + fire kolonnegap (34) + to piler (48) + nettet (138) =
+   1148 av de 1152 tilgjengelige pikslene. Sirklene vokste fra 232 til 254
+   fordi pilene ble kortet fra 80 til 48 px: hver piksel spart på pilene blir
+   to tredels piksel på hver sirkel. Skal de vokse mer, må gapene eller
+   nettet gi fra seg tre ganger så mye — og endrer du én diameter her, endre
+   .sg .panel like mye.
+
+   De står fortsatt SIDE OM SIDE. Under hverandre blir de mindre, ikke større,
+   og det er høyden som avgjør: tittelkortet tar ca. 105 px, og theme.css tar
+   56 px av toppen og 72 px av bunnen, så figuren har ca. 469 px å gå på.
+   Stablet skal den plassen dekke to sirkler + to bildetekster +
+   «Input»-etiketten. */
 .sg .raster { display: flex; gap: 16px; }
-.sg .raster figure { margin: 0; width: 216px; }
-.sg .raster .ring { width: 216px; height: 216px; border-radius: 50%;
+.sg .raster figure { margin: 0; width: 254px; }
+.sg .raster .ring { width: 254px; height: 254px; border-radius: 50%;
                     overflow: hidden; border: 1px solid var(--rule);
                     background: #fff; }
 .sg .raster .ring img { display: block; width: 100%; height: 100%; }
@@ -1569,10 +1583,20 @@ section { font-size: 22px; }
 .sg .ramp { width: 130px; height: 8px; margin: 6px auto 0;
             background: linear-gradient(90deg,#F2F6F4,#CFE0DC,#96C0BA,#4E9490,#20666B,#0E3A44); }
 
-.sg .pil { flex: 0 0 auto; color: var(--ink); }
+/* 121 px = 127 (sirkelradien) minus 6 (halve pilhøyden): pilspissen står midt
+   på sirklene den peker mellom.
+
+   Pilene er 48 px lange, ikke 80. De er ren skilletegn — de sier «og så» og
+   ingenting mer — så lengden er det billigste stedet å hente bredde fra når
+   sirklene skal være større. Endrer du tallet, endre viewBox og de to
+   path-ene i markupen under (begge pilene) OG diameteren i .sg .raster. */
+.sg .pil { flex: 0 0 auto; color: var(--ink); margin-top: 121px; }
 
 /* Nettet: samme ikon som brukes for surrogatmodellen ellers i dekket. */
-.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+/* 58 px = 127 (sirkelradien) minus 69 (halve ikonhøyden): nettet står på samme
+   midtlinje som sirklene og pilene. */
+.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px;
+            margin-top: 58px; }
 .sg .nett img { display: block; width: 138px; height: 138px; }
 
 /* Ut: feltet, stort.
@@ -1585,7 +1609,11 @@ section { font-size: 22px; }
    skjevt og var litt strukket. Legger du inn et nytt skjermbilde: kjør det
    gjennom crop_circle.py først, ikke kompenser med width/height her. */
 .sg .ut { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.sg .panel { position: relative; width: 292px; height: 292px; }
+/* 254 px = samme diameter som hver av inn-sirklene, se .sg .raster over.
+   Feltet var 292 og dominerte raden; nå er de tre sirklene like store og
+   raden leses som én bevegelse. Bildefila er kvadratisk med sirkelen
+   innskrevet, så den skalerer uten å bli skjev. */
+.sg .panel { position: relative; width: 254px; height: 254px; }
 .sg .disc { position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
             border: 1px solid var(--rule); background: #fff; }
 .sg .disc img { display: block; width: 100%; height: 100%; }
@@ -1623,16 +1651,16 @@ section { font-size: 22px; }
     </div>
     <p class="lab">Input</p>
   </div>
-  <svg class="pil" width="80" height="12" viewBox="0 0 80 12" aria-hidden="true">
-    <path d="M0 6 H72" stroke="currentColor" stroke-width="2.4"/>
-    <path d="M70 1 L79 6 L70 11 z" fill="currentColor"/></svg>
+  <svg class="pil" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="nett">
     <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
     <p class="lab">Nevralt nettverk</p>
   </div>
-  <svg class="pil" width="80" height="12" viewBox="0 0 80 12" aria-hidden="true">
-    <path d="M0 6 H72" stroke="currentColor" stroke-width="2.4"/>
-    <path d="M70 1 L79 6 L70 11 z" fill="currentColor"/></svg>
+  <svg class="pil" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="ut">
     <div class="panel">
       <div class="disc">
