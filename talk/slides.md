@@ -1432,6 +1432,7 @@ section { font-size: 22px; justify-content: center; }
 
 <div class="sg t1">
   <div class="inn">
+    <p class="lab">Input</p>
     <div class="raster">
       <figure>
         <div class="ring">
@@ -1445,32 +1446,31 @@ section { font-size: 22px; justify-content: center; }
         </div>
         <figcaption>
           <div class="key">
-            <span><i style="background:#6B4FD8"></i>Bygg</span>
-            <span><i style="background:#C98A2E"></i>Terreng</span>
+            <span><i style="background:#FFFFFF"></i>Bygg</span>
+            <span><i style="background:#CFCFCF"></i>Terreng</span>
             <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
           </div>
         </figcaption>
       </figure>
     </div>
-    <p class="lab">Input</p>
   </div>
   <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="nett steg2">
-    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
     <p class="lab">Nevralt nettverk</p>
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
   </div>
   <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="ut steg3">
+    <p class="lab">Output</p>
     <div class="panel">
       <div class="disc">
-        <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
+        <img src="figures/modeller/predictions/felt-sv.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
       </div>
     </div>
-    <p class="lab">Output</p>
   </div>
 </div>
 
@@ -1505,6 +1505,7 @@ section { font-size: 22px; justify-content: center; }
 
 <div class="sg t2">
   <div class="inn">
+    <p class="lab">Input</p>
     <div class="raster">
       <figure>
         <div class="ring">
@@ -1518,32 +1519,31 @@ section { font-size: 22px; justify-content: center; }
         </div>
         <figcaption>
           <div class="key">
-            <span><i style="background:#6B4FD8"></i>Bygg</span>
-            <span><i style="background:#C98A2E"></i>Terreng</span>
+            <span><i style="background:#FFFFFF"></i>Bygg</span>
+            <span><i style="background:#CFCFCF"></i>Terreng</span>
             <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
           </div>
         </figcaption>
       </figure>
     </div>
-    <p class="lab">Input</p>
   </div>
   <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="nett steg2">
-    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
     <p class="lab">Nevralt nettverk</p>
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
   </div>
   <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="ut steg3">
+    <p class="lab">Output</p>
     <div class="panel">
       <div class="disc">
-        <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
+        <img src="figures/modeller/predictions/felt-sv.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
       </div>
     </div>
-    <p class="lab">Output</p>
   </div>
 </div>
 
@@ -1579,6 +1579,7 @@ section { font-size: 22px; justify-content: center; }
 
 <div class="sg t3">
   <div class="inn">
+    <p class="lab">Input</p>
     <div class="raster">
       <figure>
         <div class="ring">
@@ -1592,39 +1593,38 @@ section { font-size: 22px; justify-content: center; }
         </div>
         <figcaption>
           <div class="key">
-            <span><i style="background:#6B4FD8"></i>Bygg</span>
-            <span><i style="background:#C98A2E"></i>Terreng</span>
+            <span><i style="background:#FFFFFF"></i>Bygg</span>
+            <span><i style="background:#CFCFCF"></i>Terreng</span>
             <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
           </div>
         </figcaption>
       </figure>
     </div>
-    <p class="lab">Input</p>
   </div>
   <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="nett steg2">
-    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
     <p class="lab">Nevralt nettverk</p>
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
   </div>
   <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
   <div class="ut steg3">
+    <p class="lab">Output</p>
     <div class="panel">
       <div class="disc">
-        <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
+        <img src="figures/modeller/predictions/felt-sv.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
       </div>
     </div>
-    <p class="lab">Output</p>
   </div>
 </div>
 
 <!-- Say: og ut kommer vindfeltet. Lyst er skjermet, mettet er eksponert.
      Bilde inn, bilde ut — det er hele rammen.
 
-     Feltet her er nordøst-kjøringen, men retningen står ikke på sliden. Si det
+     Feltet her er sørvest-kjøringen, men retningen står ikke på sliden. Si det
      bare hvis noen spør; figuren handler om inn og ut.
 
      Gjentakelsen sier du, den står ikke på sliden: det samme kjøres for alle
