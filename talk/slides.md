@@ -1309,17 +1309,19 @@ section::after { color: var(--muted); }
 <!-- Broen fra simuleringen til modellen: alle de kjørte simuleringene ER
      treningsdataene. Sliden er med vilje bare to bokser og en pil — den ene
      halvparten er noe vi allerede har, den andre er det vi fikk ut av det.
+     Kortene sier bare det aller nødvendigste — «geometri inn, vindfeltet ut»
+     og at modellen kjenner igjen i stedet for å regne, sies muntlig.
 
      Ikonene er de samme to som brukes om modellene ellers i decket (mesh-kuben
      og det nevrale nettet), så de leses som samme par hvis baklomme-slidene om
      surrogatmodellen tas inn igjen. -->
 
-# Tusenvis av simuleringer
-
 <style scoped>
-section { font-size: 22px; }
-
-.lead { margin: 0.2em 0 0; font-size: 0.85em; color: var(--muted); max-width: 52em; }
+/* Ingen tittel: «Tusenvis av simuleringer» sa det samme som venstre kort, og
+   satte overskrift på ingrediensen i stedet for på overgangen. Den sies
+   muntlig, samme grep som på iterasjonsrutene. Uten tittel er det ingenting
+   å toppstille mot, så kortene sentreres i flata. */
+section { font-size: 22px; justify-content: center; }
 
 /* To bokser og en pil: det vi har, og det vi fikk ut av det. Pila er en egen
    kolonne i rutenettet og ikke en marg, så de to kortene blir like brede — samme
@@ -1329,14 +1331,13 @@ section { font-size: 22px; }
   grid-template-columns: 1fr 46px 1fr;
   gap: 1.2em;
   align-items: stretch;
-  margin-top: 1.6em;
 }
 
 .bridge .card {
   display: flex;
   flex-direction: column;
   padding: 1.2em 1.2em 1.3em;
-  min-height: 300px;
+  min-height: 250px;
 }
 /* Høyre kort er svaret, ikke enda en ingrediens: aksentblå topplinje og lys
    flate, samme grep som .panel.ai og .card.ai ellers i decket. */
@@ -1355,7 +1356,10 @@ section { font-size: 22px; }
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--ink);
+  /* auto-margin dytter ordet ned i bunnen, padding-en holder en luft igjen
+     også når teksten over wrapper til to linjer. */
   margin: auto 0 0;
+  padding-top: 0.7em;
 }
 .bridge .card.ai .big { color: var(--accent); }
 
@@ -1373,14 +1377,12 @@ section { font-size: 22px; }
 }
 </style>
 
-<p class="lead">Simuleringen har vært kjørt tusenvis av ganger på tomter over hele verden. Hver kjøring er et eksempel på hvordan vinden beveger seg.</p>
-
 <div class="bridge">
 
 <div class="card">
   <img src="figures/modeller/modell-cfd.svg" alt="">
   <h3>Det vi har</h3>
-  <p>Tusenvis av ferdige simuleringer: geometri inn, vindfeltet ut. Hver av dem er et løst regnestykke.</p>
+  <p>Tusenvis av ferdige simuleringer.</p>
   <p class="big">Treningsdata</p>
 </div>
 
@@ -1389,7 +1391,7 @@ section { font-size: 22px; }
 <div class="card ai">
   <img src="figures/modeller/modell-surrogat.svg" alt="">
   <h3>Det vi kunne bygge</h3>
-  <p>En maskinlæringsmodell trent på resultatet av simuleringene. Den regner ikke på fysikken, men kjenner igjen hvordan vinden beveger seg.</p>
+  <p>En modell som kjenner igjen hvordan vinden beveger seg.</p>
   <p class="big">Maskinlæringsmodell</p>
 </div>
 
@@ -1410,8 +1412,6 @@ section { font-size: 22px; }
      betaler for den dyre analysen, blir den et eksempel til den raske. -->
 <!-- TODO ~0:35 -->
 ---
-
-
 <div class="mhead">
   <h1>Estimat i Forma</h1>
   <div class="mhead-row">
@@ -1420,157 +1420,17 @@ section { font-size: 22px; }
   </div>
 </div>
 
-<style scoped>
-/* Tittelkortet (.mhead) er felles for denne sliden og «Simulering i Forma»,
-   og reglene står i theme.css. Ikonet her er modell-surrogat.svg. */
+<!-- Trinn 1 av 3 i estimat-oppbyggingen. Markupen er den SAMME på alle tre
+     slidene — det eneste som skiller dem er klassen på .sg (t1/t2/t3), som
+     styrer hvor langt figuren har kommet. Elementene som ikke har kommet ennå
+     ligger der og holder plassen, så ingenting flytter seg mellom trinnene.
+     Reglene, og hvorfor figuren er bygd i CSS og ikke er et ferdig bilde,
+     står under «Estimat-oppbyggingen» i theme.css.
 
-/* Figuren er BYGD HER, ikke et ferdig bilde: bare rasterne, nettikonet og
-   feltet er filer (figures/illustrations/), resten er tekst og piler i CSS.
-   Da arver etikettene Artifakt og theme.css-fargene, og de kan rettes uten å
-   rendre noe på nytt. Kildebildene ligger i vis-surrogate/ — input-*.png fra
-   render_map.py, felt-*.png er skjermbilder av analysen. Se CONTEXT.md der.
+     Retter du på figuren: rett den samme linja på ALLE TRE slidene, ellers
+     hopper noe mellom trinnene. Tittelkortet er likt på alle tre, med vilje: salen skal se én slide som vokser, ikke tre nye. -->
 
-   Nettet er modell-surrogat.svg, det samme ikonet som stigen og oppsummeringen
-   bruker for surrogatmodellen. Det sto en tekstpille her før; ikonet sier det
-   samme uten å måtte leses, og binder sliden til resten av dekket.
-
-   Bunnstripen med de åtte retningene er TATT UT. Den gjorde sliden til to
-   historier; gjentakelsen er nå bare en setning i Say-notatet. Vil du ha den
-   tilbake, står 8-oppstillingen i vis-surrogate/slide.html.
-
-   TO FELLER, begge påvist ved rendring:
-
-   1. De innebygde SVG-ene (pilene) krever --html=true. Marp Core
-      slipper som standard bare gjennom en allowlist der div/img/p er med, men
-      IKKE svg — uten flagget havner SVG-kilden på sliden som synlig tekst.
-      Docker-kommandoen prosjektet kjører har --html=true, så det er dekket.
-
-   2. Målene er i px mot en 1280x720-slide, ikke 1600x900. Høyden er det som
-      er trangt: h1 tar ca. 80 px, og theme.css legger på 56 px topp- og 72 px
-      bunnmarg. Derfor står de to inn-rasterne SIDE OM SIDE.
-
-   Feltet er SIRKULÆRT i appens utlesning, men skjermbildet har grå bakgrunn
-   rundt sirkelen. border-radius: 50% klipper den bort — dropper du det, får
-   feltet en grå firkant rundt seg. */
-
-/* align-items: flex-start, IKKE center. Med center ble hver KOLONNE sentrert,
-   og kolonnene er ulikt høye: inn-kolonnen har bildetekst + fargenøkkel under
-   sirklene, ut-kolonnen bare etiketten. Da havnet inn-sirklene ca. 20 px
-   høyere enn feltet, og pilene traff dem over midten.
-   Nå ligger overkanten på alle tre sirklene på samme linje, og siden de er
-   like store (254 px, se under) ligger midtene det også. Pilene og nettet
-   skyves ned med hver sin margin-top til samme midtlinje — 127 px er radien,
-   så alt som skal stå på midten av en sirkel regnes fra den. */
-.sg { display: flex; align-items: flex-start; justify-content: center; gap: 34px;
-      margin: 18px 0 0; }
-.sg .lab { font-size: 16px; font-weight: 700; text-align: center; line-height: 1.3;
-           margin: 0; }
-
-/* Inn: to rundinger side om side. Ingen retning her — det er hele poenget.
-
-   SIRKLER og ikke firkanter, som feltet på utsiden: inn og ut er samme flate
-   sett på to måter, og med samme form leses raden som én bevegelse i stedet
-   for som to firkanter og en sirkel. Kildefilene ER kvadratiske rastere
-   (render_map.py), så border-radius: 50% klipper hjørnene bort. Det tåler de
-   — tomta ligger midt i ruta, og utlesningen de skal sammenliknes med er
-   sirkulær i appen uansett.
-
-   Klippet ligger på en egen .ring-div og ikke på <img>: overflow: hidden på
-   en forelder er det som faktisk holder rammestreken rund. Klassen kan IKKE
-   hete .disc — .sg .disc lenger ned er output-panelet og har position:
-   absolute; inset: 0, og den ville truffet disse også.
-
-   Kortramma er borte med samme begrunnelse: en firkantet ramme rundt en
-   sirkel gir to former å lese der det bare er én. Nå er det sirkelen, og
-   bildeteksten under den, akkurat som på utsiden. */
-.sg .inn { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-/* 254 px, SAMME DIAMETER SOM FELTET UT. De tre sirklene er samme flate sett
-   på tre måter, og da skal de være like store — inn-rasterne var 216 mot
-   feltets 292, og forskjellen leste seg som at utsiden var det viktige
-   bildet. Tallet er det bredden tåler, ikke et valgt tall: 3 x 254 + 16 px
-   mellom rasterne + fire kolonnegap (34) + to piler (48) + nettet (138) =
-   1148 av de 1152 tilgjengelige pikslene. Sirklene vokste fra 232 til 254
-   fordi pilene ble kortet fra 80 til 48 px: hver piksel spart på pilene blir
-   to tredels piksel på hver sirkel. Skal de vokse mer, må gapene eller
-   nettet gi fra seg tre ganger så mye — og endrer du én diameter her, endre
-   .sg .panel like mye.
-
-   De står fortsatt SIDE OM SIDE. Under hverandre blir de mindre, ikke større,
-   og det er høyden som avgjør: tittelkortet tar ca. 105 px, og theme.css tar
-   56 px av toppen og 72 px av bunnen, så figuren har ca. 469 px å gå på.
-   Stablet skal den plassen dekke to sirkler + to bildetekster +
-   «Input»-etiketten. */
-.sg .raster { display: flex; gap: 16px; }
-.sg .raster figure { margin: 0; width: 254px; }
-.sg .raster .ring { width: 254px; height: 254px; border-radius: 50%;
-                    overflow: hidden; border: 1px solid var(--rule);
-                    background: #fff; }
-.sg .raster .ring img { display: block; width: 100%; height: 100%; }
-/* «Høyde» står i samme størrelse og vekt som fargenavnene i nøkkelen ved
-   siden av — 10,5 px, grå. De to bildetekstene er samme slags opplysning
-   (hva rasteret viser), og da skal de veie likt: en fet 13 px-etikett over
-   det ene rasteret ga det et forsprang det ikke skal ha. */
-.sg .raster figcaption { padding: 7px 0 0; font-size: 10.5px; font-weight: 400;
-                         line-height: 1.3; color: var(--muted);
-                         text-align: center; }
-/* margin-top: 0 — nøkkelen sto under etiketten «Kategori» og trengte luft mot
-   den. Etiketten er tatt ut (ordet sa ikke mer enn de tre fargenavnene under
-   den gjorde), så nøkkelen er alt som ligger i bildeteksten nå. */
-.sg .key { display: flex; flex-direction: column; align-items: center; gap: 1px;
-           margin-top: 0; font-weight: 400; font-size: 10.5px; color: var(--muted); }
-.sg .key i { width: 8px; height: 8px; display: inline-block; margin-right: 5px; }
-/* Høyderampen er den samme sekvensielle teal-skalaen render_map.py bruker. */
-/* 108 px og ikke full bredde: rampen ligger under en sirkel nå, og en strek
-   som er bredere enn sirkelen er bred der den treffer, stikker ut på begge
-   sider av formen den forklarer. */
-.sg .ramp { width: 130px; height: 8px; margin: 6px auto 0;
-            background: linear-gradient(90deg,#F2F6F4,#CFE0DC,#96C0BA,#4E9490,#20666B,#0E3A44); }
-
-/* 121 px = 127 (sirkelradien) minus 6 (halve pilhøyden): pilspissen står midt
-   på sirklene den peker mellom.
-
-   Pilene er 48 px lange, ikke 80. De er ren skilletegn — de sier «og så» og
-   ingenting mer — så lengden er det billigste stedet å hente bredde fra når
-   sirklene skal være større. Endrer du tallet, endre viewBox og de to
-   path-ene i markupen under (begge pilene) OG diameteren i .sg .raster. */
-.sg .pil { flex: 0 0 auto; color: var(--ink); margin-top: 121px; }
-
-/* Nettet: samme ikon som brukes for surrogatmodellen ellers i dekket. */
-/* 58 px = 127 (sirkelradien) minus 69 (halve ikonhøyden): nettet står på samme
-   midtlinje som sirklene og pilene. */
-.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px;
-            margin-top: 58px; }
-.sg .nett img { display: block; width: 138px; height: 138px; }
-
-/* Ut: feltet, stort.
-
-   INGEN ZOOM HER, og det er med vilje. Feltene er beskåret til 1441x1441 med
-   sirkelen innskrevet (vis-surrogate/crop_circle.py), så 100 % treffer .disc
-   eksakt. Skjermbildene var opprinnelig hverken kvadratiske eller like store
-   — 1574x1484, 1530x1470, ... — og sirkelen lå tilfeldig i ramma. Da måtte
-   bildet skaleres for å dekke ruta, og resultatet var en sirkel som satt
-   skjevt og var litt strukket. Legger du inn et nytt skjermbilde: kjør det
-   gjennom crop_circle.py først, ikke kompenser med width/height her. */
-.sg .ut { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-/* 254 px = samme diameter som hver av inn-sirklene, se .sg .raster over.
-   Feltet var 292 og dominerte raden; nå er de tre sirklene like store og
-   raden leses som én bevegelse. Bildefila er kvadratisk med sirkelen
-   innskrevet, så den skalerer uten å bli skjev. */
-.sg .panel { position: relative; width: 254px; height: 254px; }
-.sg .disc { position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
-            border: 1px solid var(--rule); background: #fff; }
-.sg .disc img { display: block; width: 100%; height: 100%; }
-/* Retningen er TATT UT av figuren, og det er prøvd BEGGE veier: først som en
-   innstrømningspil med etikett ved feltet, og siden (2026-09-17) som et tredje
-   input-kort med en nordøst-pil. Begge er tatt ut igjen — figuren skal si
-   «geometri inn, vindfelt ut» og ingenting mer, og et retningskort reiser
-   spørsmålet om hvordan retningen kommer inn, som er en omvei her.
-   Feltet ER fortsatt nordøst-kjøringen (felt-no.png); retningen er bare ikke
-   merket. Mekanismen — geometrien roteres til nettets orientering, svaret
-   roteres tilbake — står i Say-notatet, for et spørsmål fra salen. */
-</style>
-
-<div class="sg">
+<div class="sg t1">
   <div class="inn">
     <div class="raster">
       <figure>
@@ -1585,8 +1445,8 @@ section { font-size: 22px; }
         </div>
         <figcaption>
           <div class="key">
-            <span><i style="background:#C98A2E"></i>Terreng</span>
             <span><i style="background:#6B4FD8"></i>Bygg</span>
+            <span><i style="background:#C98A2E"></i>Terreng</span>
             <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
           </div>
         </figcaption>
@@ -1594,17 +1454,17 @@ section { font-size: 22px; }
     </div>
     <p class="lab">Input</p>
   </div>
-  <svg class="pil" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+  <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
-  <div class="nett">
+  <div class="nett steg2">
     <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
     <p class="lab">Nevralt nettverk</p>
   </div>
-  <svg class="pil" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+  <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
     <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
     <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
-  <div class="ut">
+  <div class="ut steg3">
     <div class="panel">
       <div class="disc">
         <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
@@ -1614,32 +1474,166 @@ section { font-size: 22px; }
   </div>
 </div>
 
-<!-- Say: forrige slide sa at alle simuleringene ER treningsdataene, og
-     viste nett-ikonet. Her er det samme nettet i bruk: hva som går inn, og
-     hva som kommer ut. Én retning, stor nok til at salen ser feltet.
+<!-- Say: forrige slide sa at alle simuleringene ER treningsdataene. Nå skal
+     vi se det samme nettet i bruk — men start med hva som går INN.
 
-     Venstre: hele inngangen. Høyden på alt som står der, og hva det er —
-     terreng, bygg eller vegetasjon. Ingen mesh, ingen randbetingelser. Og
-     merk: ingen vindretning i inngangen.
+     Hele inngangen er dette: høyden på alt som står der, og hva det er —
+     bygg, terreng eller vegetasjon. To bilder av tomta.
 
-     Høyre: vindfeltet. Lyst er skjermet, mettet er eksponert. Bilde inn,
-     bilde ut — rammen som gjør den forståelig for en AI-sal.
+     Ikke noe mesh. Ingen randbetingelser. Og merk: ingen vindretning i
+     inngangen — det kommer vi tilbake til hvis noen spør. -->
+<!-- TODO ~0:15 -->
 
-     Retningen står ikke på sliden. Feltet er nordøst-kjøringen, så si det om
-     noen spør — men figuren handler om inn og ut, ikke om retninger.
+---
+<div class="mhead">
+  <h1>Estimat i Forma</h1>
+  <div class="mhead-row">
+    <img src="figures/modeller/modell-surrogat.svg" alt="">
+    <p class="sub">Maskinlæringsmodell</p>
+  </div>
+</div>
+
+<!-- Trinn 2 av 3 i estimat-oppbyggingen. Markupen er den SAMME på alle tre
+     slidene — det eneste som skiller dem er klassen på .sg (t1/t2/t3), som
+     styrer hvor langt figuren har kommet. Elementene som ikke har kommet ennå
+     ligger der og holder plassen, så ingenting flytter seg mellom trinnene.
+     Reglene, og hvorfor figuren er bygd i CSS og ikke er et ferdig bilde,
+     står under «Estimat-oppbyggingen» i theme.css.
+
+     Retter du på figuren: rett den samme linja på ALLE TRE slidene, ellers
+     hopper noe mellom trinnene. Dette er trinnet der pila og nettet slås på. -->
+
+<div class="sg t2">
+  <div class="inn">
+    <div class="raster">
+      <figure>
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-hoyde.png" alt="Høyderaster over tomta">
+        </div>
+        <figcaption>Høyde<div class="ramp"></div></figcaption>
+      </figure>
+      <figure>
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-kategori.png" alt="Raster med overflateklasser: terreng, bygg og vegetasjon">
+        </div>
+        <figcaption>
+          <div class="key">
+            <span><i style="background:#6B4FD8"></i>Bygg</span>
+            <span><i style="background:#C98A2E"></i>Terreng</span>
+            <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="lab">Input</p>
+  </div>
+  <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
+  <div class="nett steg2">
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
+    <p class="lab">Nevralt nettverk</p>
+  </div>
+  <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
+  <div class="ut steg3">
+    <div class="panel">
+      <div class="disc">
+        <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
+      </div>
+    </div>
+    <p class="lab">Output</p>
+  </div>
+</div>
+
+<!-- Say: så går de to bildene inn i nettet. Det er det samme ikonet salen
+     har sett på stigen og på bro-sliden — det er den modellen som ble trent
+     på de tusenvis av simuleringene.
+
+     Den regner ikke på fysikken. Den kjenner igjen.
+
+     Spør noen hvordan retningen kommer inn når den ikke er en inngang: vi
+     roterer geometrien til nettets orientering, kjører, og roterer svaret
+     tilbake. Det er med vilje ikke tegnet — det er et implementasjonsdetalj. -->
+<!-- TODO ~0:10 -->
+
+---
+<div class="mhead">
+  <h1>Estimat i Forma</h1>
+  <div class="mhead-row">
+    <img src="figures/modeller/modell-surrogat.svg" alt="">
+    <p class="sub">Maskinlæringsmodell</p>
+  </div>
+</div>
+
+<!-- Trinn 3 av 3 i estimat-oppbyggingen. Markupen er den SAMME på alle tre
+     slidene — det eneste som skiller dem er klassen på .sg (t1/t2/t3), som
+     styrer hvor langt figuren har kommet. Elementene som ikke har kommet ennå
+     ligger der og holder plassen, så ingenting flytter seg mellom trinnene.
+     Reglene, og hvorfor figuren er bygd i CSS og ikke er et ferdig bilde,
+     står under «Estimat-oppbyggingen» i theme.css.
+
+     Retter du på figuren: rett den samme linja på ALLE TRE slidene, ellers
+     hopper noe mellom trinnene. Dette er trinnet der feltet ut kommer, og figuren er hel. -->
+
+<div class="sg t3">
+  <div class="inn">
+    <div class="raster">
+      <figure>
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-hoyde.png" alt="Høyderaster over tomta">
+        </div>
+        <figcaption>Høyde<div class="ramp"></div></figcaption>
+      </figure>
+      <figure>
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-kategori.png" alt="Raster med overflateklasser: terreng, bygg og vegetasjon">
+        </div>
+        <figcaption>
+          <div class="key">
+            <span><i style="background:#6B4FD8"></i>Bygg</span>
+            <span><i style="background:#C98A2E"></i>Terreng</span>
+            <span><i style="background:#1B7F5A"></i>Vegetasjon</span>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+    <p class="lab">Input</p>
+  </div>
+  <svg class="pil steg2" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
+  <div class="nett steg2">
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
+    <p class="lab">Nevralt nettverk</p>
+  </div>
+  <svg class="pil steg3" width="48" height="12" viewBox="0 0 48 12" aria-hidden="true">
+    <path d="M0 6 H40" stroke="currentColor" stroke-width="2.4"/>
+    <path d="M38 1 L47 6 L38 11 z" fill="currentColor"/></svg>
+  <div class="ut steg3">
+    <div class="panel">
+      <div class="disc">
+        <img src="figures/modeller/predictions/felt-no.png" alt="Vindhastighet over tomta, 1,75 meter over bakken">
+      </div>
+    </div>
+    <p class="lab">Output</p>
+  </div>
+</div>
+
+<!-- Say: og ut kommer vindfeltet. Lyst er skjermet, mettet er eksponert.
+     Bilde inn, bilde ut — det er hele rammen.
+
+     Feltet her er nordøst-kjøringen, men retningen står ikke på sliden. Si det
+     bare hvis noen spør; figuren handler om inn og ut.
 
      Gjentakelsen sier du, den står ikke på sliden: det samme kjøres for alle
      åtte retningene i én batch — ikke åtte modeller — og vektes med vindrosen
      til komfortkartet de så på Gløshaugen-sliden.
 
      Har du tid til overs: 8 retninger x noen sekunder mot 8 x flere timer CFD.
-     Det er hele poenget med at den kan stå på mens man tegner.
-
-     Spør noen hvordan retningen kommer inn når den ikke er en inngang: vi
-     roterer geometrien til nettets orientering, kjører, og roterer svaret
-     tilbake. Det er med vilje ikke tegnet — det er et implementasjonsdetalj. -->
-<!-- TODO ~0:40 -->
-
+     Det er hele poenget med at den kan stå på mens man tegner. -->
+<!-- TODO ~0:15 -->
 
 ---
 
