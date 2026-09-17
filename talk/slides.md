@@ -858,6 +858,32 @@ Iterer over utforming
 
 ---
 
+<!-- _class: ladder -->
+
+# Hvordan analyserer arkitekten vinden?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div></div>
+
+<div></div>
+
+</div>
+
+<!-- Say: før måtte du leie inn noen. Vindanalyse var en konsulenttjeneste:
+     du bestilte den, og du ventet. Den kom sent i prosjektet, den kom én
+     gang, og den fortalte deg om det du alt hadde bestemt var greit. -->
+<!-- TODO ~0:10 -->
+
+---
+
 <style scoped>
 section { font-size: 22px; }
 
@@ -1003,68 +1029,6 @@ section { font-size: 22px; }
 <!-- TODO ~0:25 -->
 ---
 
-<!-- _class: ladder -->
-
-# Hvordan analyserer arkitekten vinden?
-
-<div class="steps">
-
-<div class="card past">
-  <div class="kicker">Før</div>
-  <img src="figures/modeller/modell-ekspert.svg" alt="">
-  <p class="name">Vindekspert</p>
-  <p class="clock">Uker</p>
-</div>
-
-<div></div>
-
-<div></div>
-
-</div>
-
-<!-- Say: før måtte du leie inn noen. Vindanalyse var en konsulenttjeneste:
-     du bestilte den, og du ventet. Den kom sent i prosjektet, den kom én
-     gang, og den fortalte deg om det du alt hadde bestemt var greit. -->
-<!-- TODO ~0:10 -->
-
----
-
-<!-- _class: ladder -->
-
-# Hvordan analyserer arkitekten vinden?
-
-<div class="steps">
-
-<div class="card past">
-  <div class="kicker">Før</div>
-  <img src="figures/modeller/modell-ekspert.svg" alt="">
-  <p class="name">Vindekspert</p>
-  <p class="clock">Uker</p>
-</div>
-
-<div class="card">
-  <div class="kicker">Med Forma</div>
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
-  <p class="clock">Timer</p>
-</div>
-
-<div></div>
-
-</div>
-
-<!-- Say: simuleringen i verktøyet var det virkelig store steget, og det er
-     verdt å si hvorfor: den er enkel å bruke. Du setter ikke opp et mesh, du
-     oppgir ikke randbetingelser — du trykker på en knapp, på geometrien du
-     alt har tegnet.
-
-     Det er dét som tar eksperten ut av loopen, ikke bare at det går raskere.
-     Vindanalysen i Forma gjorde informasjonen tilgjengelig for arkitekten
-     selv. -->
-<!-- TODO ~0:12 -->
-
----
-
 <!-- Simuleringen forklart der den hører hjemme: rett etter stigen, mens
      «Simulering — timer» fortsatt henger i salen.
 
@@ -1185,6 +1149,68 @@ $$
      Da har salen tallet de trenger til neste steg: åtte retninger x et par
      timer, hver gang du flytter et volum. -->
 <!-- TODO ~0:30 -->
+---
+
+<!-- _class: ladder -->
+
+# Hvordan analyserer arkitekten vinden?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div></div>
+
+<div></div>
+
+</div>
+
+<!-- Say: før måtte du leie inn noen. Vindanalyse var en konsulenttjeneste:
+     du bestilte den, og du ventet. Den kom sent i prosjektet, den kom én
+     gang, og den fortalte deg om det du alt hadde bestemt var greit. -->
+<!-- TODO ~0:10 -->
+
+---
+
+<!-- _class: ladder -->
+
+# Hvordan analyserer arkitekten vinden?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div class="card">
+  <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
+  <p class="clock">Timer</p>
+</div>
+
+<div></div>
+
+</div>
+
+<!-- Say: simuleringen i verktøyet var det virkelig store steget, og det er
+     verdt å si hvorfor: den er enkel å bruke. Du setter ikke opp et mesh, du
+     oppgir ikke randbetingelser — du trykker på en knapp, på geometrien du
+     alt har tegnet.
+
+     Det er dét som tar eksperten ut av loopen, ikke bare at det går raskere.
+     Vindanalysen i Forma gjorde informasjonen tilgjengelig for arkitekten
+     selv. -->
+<!-- TODO ~0:12 -->
+
 ---
 <!-- _class: demo -->
 
@@ -1383,89 +1409,6 @@ section { font-size: 22px; }
      nettverket som er arbeidet, det er treningsdataene. Hver gang en kunde
      betaler for den dyre analysen, blir den et eksempel til den raske. -->
 <!-- TODO ~0:35 -->
----
-
-<!-- _class: ladder -->
-
-<!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
-     rett før «Simulering i Forma»-sliden) — flata skal være IDENTISK med den,
-     ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
-     der, rett det samme her.
-
-     Den står her fordi stigen har vært ute av bildet i tre slides (simulering,
-     iterasjoner, treningsdata). Publikum trenger å se hvor vi var før trinn 3
-     kommer på neste slide. -->
-
-# Hvordan analyserer arkitekten vinden?
-
-<div class="steps">
-
-<div class="card past">
-  <div class="kicker">Før</div>
-  <img src="figures/modeller/modell-ekspert.svg" alt="">
-  <p class="name">Vindekspert</p>
-  <p class="clock">Uker</p>
-</div>
-
-<div class="card">
-  <div class="kicker">Med Forma</div>
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
-  <p class="clock">Timer</p>
-</div>
-
-<div></div>
-
-</div>
-
-<!-- Say: kort tilbakeblikk, ikke gjenta mesh-forklaringen fra første gang.
-     «Her var vi: eksperten tok uker, simuleringen i verktøyet tar timer.» Så
-     klikker du, og det tredje trinnet kommer på. -->
-<!-- TODO ~0:08 -->
-
----
-
-<!-- _class: ladder -->
-
-# Hvordan analyserer arkitekten vinden?
-
-<div class="steps">
-
-<div class="card past">
-  <div class="kicker">Før</div>
-  <img src="figures/modeller/modell-ekspert.svg" alt="">
-  <p class="name">Vindekspert</p>
-  <p class="clock">Uker</p>
-</div>
-
-<div class="card">
-  <div class="kicker">Med Forma</div>
-  <img src="figures/modeller/modell-cfd.svg" alt="">
-  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
-  <p class="clock">Timer</p>
-</div>
-
-<div class="card ai">
-  <div class="kicker">Med Forma</div>
-  <img src="figures/modeller/modell-surrogat.svg" alt="">
-  <p class="name">Estimat <span class="sub">Maskinlæringsmodell</span></p>
-  <p class="clock">Sekunder</p>
-</div>
-
-</div>
-
-<!-- Say: og så det tredje trinnet. Ikke forklar det her — simuleringen og
-     treningsdataene har de alt sett. Pek bare på at estimatet finnes, og si
-     «det er dette vi skal se på nå». Neste slide er maskinlæringsmodellen.
-
-     Land det muntlig: når svaret kommer mens du tegner, blir analysen noe du
-     tar beslutninger PÅ i designfasen — ikke en rapport som bekrefter et valg
-     som alt er tatt.
-
-     Poenget å ta med videre, hvis salen bare husker én ting: når noe blir
-     hundre ganger billigere, endrer det ikke bare hvor fort det går. Det
-     endrer hvem som får bruke det, og når i prosessen. -->
-<!-- TODO ~0:15 -->
 ---
 
 
@@ -1698,6 +1641,89 @@ section { font-size: 22px; }
 <!-- TODO ~0:40 -->
 
 
+---
+
+<!-- _class: ladder -->
+
+<!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
+     rett før «Simulering i Forma»-sliden) — flata skal være IDENTISK med den,
+     ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
+     der, rett det samme her.
+
+     Den står her fordi stigen har vært ute av bildet i tre slides (simulering,
+     iterasjoner, treningsdata). Publikum trenger å se hvor vi var før trinn 3
+     kommer på neste slide. -->
+
+# Hvordan analyserer arkitekten vinden?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div class="card">
+  <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
+  <p class="clock">Timer</p>
+</div>
+
+<div></div>
+
+</div>
+
+<!-- Say: kort tilbakeblikk, ikke gjenta mesh-forklaringen fra første gang.
+     «Her var vi: eksperten tok uker, simuleringen i verktøyet tar timer.» Så
+     klikker du, og det tredje trinnet kommer på. -->
+<!-- TODO ~0:08 -->
+
+---
+
+<!-- _class: ladder -->
+
+# Hvordan analyserer arkitekten vinden?
+
+<div class="steps">
+
+<div class="card past">
+  <div class="kicker">Før</div>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
+  <p class="clock">Uker</p>
+</div>
+
+<div class="card">
+  <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
+  <p class="clock">Timer</p>
+</div>
+
+<div class="card ai">
+  <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
+  <p class="name">Estimat <span class="sub">Maskinlæringsmodell</span></p>
+  <p class="clock">Sekunder</p>
+</div>
+
+</div>
+
+<!-- Say: og så det tredje trinnet. Ikke forklar det her — simuleringen og
+     treningsdataene har de alt sett. Pek bare på at estimatet finnes, og si
+     «det er dette vi skal se på nå». Neste slide er maskinlæringsmodellen.
+
+     Land det muntlig: når svaret kommer mens du tegner, blir analysen noe du
+     tar beslutninger PÅ i designfasen — ikke en rapport som bekrefter et valg
+     som alt er tatt.
+
+     Poenget å ta med videre, hvis salen bare husker én ting: når noe blir
+     hundre ganger billigere, endrer det ikke bare hvor fort det går. Det
+     endrer hvem som får bruke det, og når i prosessen. -->
+<!-- TODO ~0:15 -->
 ---
 
 <!-- Resultatsliden mellom de to modell-forklaringene og byttehandel-plottet.
