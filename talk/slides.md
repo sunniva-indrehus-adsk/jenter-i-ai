@@ -9,40 +9,88 @@ math: katex
 <!-- _header: '24.09.2026' -->
 <!-- paginate: false -->
 
-<!-- TITTELEN STÅR IKKE SKREVET HER, med vilje: arrangementets logo SIER
-     «Jenter i AI», og en h1 med samme ordene under den var det samme to ganger.
-     Skal teksten tilbake, legg inn «# Jenter i AI» — temaet styler den fortsatt
-     (section.title h1 / section.title-photo h1), så den lander nede til venstre
-     som før, i svart.
+<!-- FORSIDEN. Bakgrunnen er vindanalysen fra «Analyser i Autodesk Forma».
+     Temaet er bygget for byttet: photo-variabelen på section.title-photo
+     finnes nettopp for å kunne overstyres her, og standardverdien
+     (gløshaugen-streamlines.png) er den forsiden dekket hadde før.
 
-     Logoen står nede til HØYRE. Der er renderingen flat og lys (195,206,215),
-     så den mørke vinrøde skriften i logoen leses rent, uten plate bak. Nede til
-     venstre ligger det hvite sjiktet som tittelteksten trengte — det står
-     igjen, og leses nå som en myk vignett.
+     TITTELEN STÅR IKKE SKREVET HER, med vilje: arrangementets logo SIER
+     «Jenter i AI», og en h1 med de samme ordene under den var det samme to
+     ganger. Skal teksten tilbake, legg inn «# Jenter i AI» — temaet styler den
+     fortsatt (section.title h1 / section.title-photo h1), så den lander nede
+     til venstre, i svart.
 
-     «Building geometries by Geodata AS» var brent inn i bildefila nøyaktig der
-     logoen nå står. Den er malt ut (flata var ensfarget, så lappen er usynlig)
-     — se README, «Tittelslide med bilde», for hvor krediteringen er flyttet. -->
+     paginate: false står her, uten understrek, og gjelder derfor videre
+     nedover til «# Jenter i Autodesk» slår den på igjen. Fjerner du linja, får
+     forsiden sidetall.
+
+     JiA-logoen står nede til HØYRE. Den ble prøvd nede til
+     venstre, der bildet er roligst og utfadingen kunne vært svakere, men
+     høyre hjørne ser bedre ut og er valgt. Det koster et tettere hvitt sjikt,
+     siden det er der strømlinjene krøller seg sammen i mørkeblå virvler; se
+     stilen under.
+
+     To ting å være klar over:
+
+     1. Bildet er 2126x1190 og vises på full flate, altså 1,66x oppskalering.
+        Det er under de 2x README-en setter som norm for fullflatebilder
+        (gløshaugen-streamlines.png lå på 2,5x). På projektor er det trolig
+        greit, men det er det svakeste bildet i dekket på den målestokken.
+     2. Motivet er det samme som «Simulering i Forma» viser et nærbilde av
+        lenger bak. Det binder åpningen til foredragets kjerne, men det er
+        også en gjentakelse: salen har sett strømlinjene før du forklarer
+        dem. -->
 
 <style scoped>
+/* Bildet, og et tettere hvitt sjikt i hjørnet der JiA-logoen ligger. Alt
+   annet, inkludert plasseringen av logoen, arves fra section.title /
+   section.title-photo.
+
+   Gradientstabelen er den samme som i theme.css og i samme rekkefølge: hjørnet
+   nede til høyre, hjørnet nede til venstre, og bildet nederst. Bare den første
+   er endret, på to måter: den er STØRRE (76% x 74% mot temaets 64% x 56%,
+   altså 973 x 533 px mot 819 x 403 px) og TETTERE lenger ut (0.97 ved 50% og
+   0.62 ved 78%, mot 0.86 og 0.40).
+
+   Tallene er satt mot LOGOEN, ikke mot hjørnet: logoen dekker x 972 til 1216
+   og y 438 til 668 på en 1280 x 720-slide. Med ellipsen sentrert i 99%/103%
+   ligger logoens øvre kant på 0,57 av den loddrette radien og venstre kant på
+   0,30 av den vannrette, altså godt innenfor det første stoppet på 50%. Da er
+   flata logoen står på helt hvit, og utfadingen fortsetter et stykke OPP og
+   til VENSTRE for den før bildet kommer tilbake.
+
+   Venstre gradient er kopiert uendret fra temaet. Den må være med:
+   background-image erstatter hele stabelen, så utelater du den, forsvinner
+   sjiktet i venstre hjørne også.
+
+   Radiene er i prosent av slidens bredde og høyde, og stoppene i prosent av
+   radien, så de skalerer sammen: skal utfadingen dekke mer, er det 76%/74%
+   som skal opp. Skal den bli tettere der den alt dekker, er det stoppet på
+   0.62 ved 78%. Setter du 1.0 helt ut, blir hjørnet en hvit flate med en
+   synlig kant der bildet begynner igjen. En hvit plate med hårstrek ble prøvd
+   først, og forkastet nettopp der: den leste som en klistrelapp oppå bildet i
+   stedet for som en del av det. */
+section {
+  --photo: url('figures/analyser/wind.png');
+  background-image:
+    radial-gradient(ellipse 76% 74% at 99% 103%,
+      rgba(255, 255, 255, 0.99) 0%,
+      rgba(255, 255, 255, 0.97) 50%,
+      rgba(255, 255, 255, 0.62) 78%,
+      rgba(255, 255, 255, 0) 100%),
+    radial-gradient(ellipse 78% 62% at 2% 104%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.82) 42%,
+      rgba(255, 255, 255, 0.34) 70%,
+      rgba(255, 255, 255, 0) 100%),
+    var(--photo);
+}
+
 /* Absolutt posisjonert, ikke i flyten: section.title er en flex-kolonne som
-   pakker fra bunnen og venstrestiller, og den vil ha logoen til venstre. Og
-   uten h1 er sliden ellers tom, så det er ingenting å forholde seg til.
-
-   64 px fra høyre er --margin-x, samme marg som Autodesk-logoen oppe til
-   venstre. 52 px fra bunnen: sidetallet er skrudd av på tittelsliden, så det er
-   bare kanten å holde avstand til.
-
-   INGEN PLATE BAK LOGOEN — den ligger rett på renderingen, som en overlay.
-   Det er mulig fordi temaet legger et mykt hvitt sjikt i nedre HØYRE hjørne på
-   section.title-photo, nettopp for denne logoen. Uten det sjiktet virker dette
-   ikke: Hovedbygningens høyre kant er en hard vertikal strek som går tvers
-   gjennom logoen, og håret i logofila er tegnet uten fyll, så kanten skinner
-   rett gjennom. Begrunnelsen og målene står ved section.title-photo i
-   theme.css — endrer du sjiktet der, sjekk denne sliden på nytt.
-
-   En hvit plate med hårstrek ble prøvd først. Den virket, men leste som en
-   klistrelapp oppå bildet i stedet for som en del av det. */
+   pakker fra bunnen og venstrestiller, og den vil ha logoen til venstre. 64 px
+   fra høyre er --margin-x, samme marg som Autodesk-logoen oppe til venstre.
+   52 px fra bunnen: sidetallet er av på forsiden, så det er bare kanten å
+   holde avstand til. */
 .event-logo {
   position: absolute;
   right: var(--margin-x);
@@ -50,10 +98,9 @@ math: katex
   line-height: 0;
 }
 /* viewBoxen er strammet til motivet i SVG-fila, så denne høyden ER logoens
-   høyde — ingen skjult marg å kompensere for. Forholdet er 1,061:1, altså
-   nesten kvadratisk: 230 px høy blir 244 px bred. Logoen dekker da x 972-1216
-   og y 438-668, som er innenfor der sjiktet i temaet er tettest. Blir den mye
-   større, vokser den ut av sjiktet og bygningskanten kommer til syne igjen. */
+   høyde — ingen skjult marg å kompensere for. Forholdet er 1,061:1: 230 px høy
+   blir 244 px bred, og logoen dekker da x 972-1216 og y 438-668, innenfor der
+   sjiktet over er tettest. Blir den mye større, vokser den ut av sjiktet. */
 .event-logo img { height: 230px; width: auto; display: block; }
 </style>
 
@@ -958,13 +1005,14 @@ section { font-size: 22px; }
 
 <!-- _class: ladder -->
 
-# Hvordan analyserer arkitekten vindforholdene?
+# Hvordan analyserer arkitekten vinden?
 
 <div class="steps">
 
 <div class="card past">
   <div class="kicker">Før</div>
-  <p class="name">Ekstern vindekspert</p>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
   <p class="clock">Uker</p>
 </div>
 
@@ -983,18 +1031,20 @@ section { font-size: 22px; }
 
 <!-- _class: ladder -->
 
-# Hvordan analyserer arkitekten vindforholdene?
+# Hvordan analyserer arkitekten vinden?
 
 <div class="steps">
 
 <div class="card past">
   <div class="kicker">Før</div>
-  <p class="name">Ekstern vindekspert</p>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
   <p class="clock">Uker</p>
 </div>
 
 <div class="card">
   <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
   <p class="clock">Timer</p>
 </div>
@@ -1018,12 +1068,11 @@ section { font-size: 22px; }
 <!-- Simuleringen forklart der den hører hjemme: rett etter stigen, mens
      «Simulering — timer» fortsatt henger i salen.
 
-     Tittelen er «Fysikkmodellen» og ikke «Simulering»: denne sliden og
-     «Maskinlæringsmodellen» lenger bak er de to forklarings-slidene, én per
-     modell, og de skal leses som et par. Begge titlene er hentet rett fra
-     underetikettene på stigekortene («Simulering — Fysikkmodell», «Estimat —
-     Maskinlæringsmodell»), så salen slipper å lære nye ord. Bytter du den
-     ene, bytt den andre.
+     Tittelen er «Simulering i Forma» med «Fysikkmodell» under — de samme to
+     ordene som står på stigekortet, så salen slipper å lære nye ord. Denne sliden og «Estimat i
+     Forma» lenger bak er de to forklarings-slidene, én per modell, og de skal
+     leses som et par: samme tittelkort, samme ikoner som på stigen og i
+     oppsummeringen. Bytter du den ene, bytt den andre.
 
      Tre ting på sliden: bildet er hva vinden GJØR, likningene er hva maskinen
      regner på, og kostnadslinja er hvorfor det tar timer. Bildet er argumentet
@@ -1033,10 +1082,19 @@ section { font-size: 22px; }
      vegetasjonsledd (c_d a |U| U). Den er flyttet hit fra den gamle «Slik
      regner vi det ut»-sliden, som nå ligger i baklomma nederst i fila. -->
 
-# Fysikkmodellen
+<div class="mhead">
+  <img src="figures/modeller/modell-cfd.svg" alt="">
+  <div>
+    <h1>Simulering i Forma</h1>
+    <p class="sub">Fysikkmodell</p>
+  </div>
+</div>
 
 <style scoped>
 section { font-size: 22px; }
+
+/* Tittelkortet (.mhead) er felles for denne sliden og «Estimat i Forma», og
+   reglene står i theme.css. Ikonet her er modell-cfd.svg. */
 
 .lead { margin: 0.2em 0 0; font-size: 0.85em; color: var(--muted); max-width: 52em; }
 
@@ -1331,7 +1389,7 @@ section { font-size: 22px; }
 <!-- _class: ladder -->
 
 <!-- Kopi av trinn 2 av stigen (den med «Simulering — timer» som siste kort,
-     rett før «Fysikkmodellen») — flata skal være IDENTISK med den,
+     rett før «Simulering i Forma»-sliden) — flata skal være IDENTISK med den,
      ellers hopper stigen når du kommer tilbake til den her. Retter du et kort
      der, rett det samme her.
 
@@ -1339,18 +1397,20 @@ section { font-size: 22px; }
      iterasjoner, treningsdata). Publikum trenger å se hvor vi var før trinn 3
      kommer på neste slide. -->
 
-# Hvordan analyserer arkitekten vindforholdene?
+# Hvordan analyserer arkitekten vinden?
 
 <div class="steps">
 
 <div class="card past">
   <div class="kicker">Før</div>
-  <p class="name">Ekstern vindekspert</p>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
   <p class="clock">Uker</p>
 </div>
 
 <div class="card">
   <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
   <p class="clock">Timer</p>
 </div>
@@ -1368,24 +1428,27 @@ section { font-size: 22px; }
 
 <!-- _class: ladder -->
 
-# Hvordan analyserer arkitekten vindforholdene?
+# Hvordan analyserer arkitekten vinden?
 
 <div class="steps">
 
 <div class="card past">
   <div class="kicker">Før</div>
-  <p class="name">Ekstern vindekspert</p>
+  <img src="figures/modeller/modell-ekspert.svg" alt="">
+  <p class="name">Vindekspert</p>
   <p class="clock">Uker</p>
 </div>
 
 <div class="card">
   <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-cfd.svg" alt="">
   <p class="name">Simulering <span class="sub">Fysikkmodell</span></p>
   <p class="clock">Timer</p>
 </div>
 
 <div class="card ai">
   <div class="kicker">Med Forma</div>
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
   <p class="name">Estimat <span class="sub">Maskinlæringsmodell</span></p>
   <p class="clock">Sekunder</p>
 </div>
@@ -1407,9 +1470,18 @@ section { font-size: 22px; }
 ---
 
 
-# Maskinlæringsmodellen
+<div class="mhead">
+  <img src="figures/modeller/modell-surrogat.svg" alt="">
+  <div>
+    <h1>Estimat i Forma</h1>
+    <p class="sub">Maskinlæringsmodell</p>
+  </div>
+</div>
 
 <style scoped>
+/* Tittelkortet (.mhead) er felles for denne sliden og «Simulering i Forma»,
+   og reglene står i theme.css. Ikonet her er modell-surrogat.svg. */
+
 /* Figuren er BYGD HER, ikke et ferdig bilde: bare rasterne, nettikonet og
    feltet er filer (figures/illustrations/), resten er tekst og piler i CSS.
    Da arver etikettene Artifakt og theme.css-fargene, og de kan rettes uten å
@@ -1444,22 +1516,60 @@ section { font-size: 22px; }
 .sg .lab { font-size: 16px; font-weight: 700; text-align: center; line-height: 1.3;
            margin: 0; }
 
-/* Inn: to rastere side om side. Ingen retning her — det er hele poenget. */
+/* Inn: to rundinger side om side. Ingen retning her — det er hele poenget.
+
+   SIRKLER og ikke firkanter, som feltet på utsiden: inn og ut er samme flate
+   sett på to måter, og med samme form leses raden som én bevegelse i stedet
+   for som to firkanter og en sirkel. Kildefilene ER kvadratiske rastere
+   (render_map.py), så border-radius: 50% klipper hjørnene bort. Det tåler de
+   — tomta ligger midt i ruta, og utlesningen de skal sammenliknes med er
+   sirkulær i appen uansett.
+
+   Klippet ligger på en egen .ring-div og ikke på <img>: overflow: hidden på
+   en forelder er det som faktisk holder rammestreken rund. Klassen kan IKKE
+   hete .disc — .sg .disc lenger ned er output-panelet og har position:
+   absolute; inset: 0, og den ville truffet disse også.
+
+   Kortramma er borte med samme begrunnelse: en firkantet ramme rundt en
+   sirkel gir to former å lese der det bare er én. Nå er det sirkelen, og
+   bildeteksten under den, akkurat som på utsiden. */
 .sg .inn { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.sg .raster { display: flex; gap: 12px; }
-.sg .raster figure { margin: 0; width: 176px; border: 1px solid var(--rule);
-                     background: #fff; }
-.sg .raster img { display: block; width: 100%; }
-.sg .raster figcaption { padding: 6px 8px; border-top: 1px solid var(--rule);
-                         font-size: 13px; font-weight: 700; line-height: 1.3; }
-.sg .key { display: flex; flex-direction: column; gap: 1px; margin-top: 5px;
-           font-weight: 400; font-size: 10.5px; color: var(--muted); }
+/* 216 px, og de står SIDE OM SIDE. Under hverandre blir de mindre, ikke
+   større, og det er høyden som avgjør: tittelkortet tar ca. 105 px, og
+   theme.css tar 56 px av toppen og 72 px av bunnen, så figuren har ca. 469 px
+   å gå på. Stablet skal den plassen dekke to sirkler + to bildetekster +
+   «Input»-etiketten, som kapper diameteren på ca. 170 px — under dagens 176.
+   Side om side er det bredden som begrenser, og der er det slakk: 2 x 216 +
+   16 px mellom + fire kolonnegap + to piler + nettet + feltet = 1142 av de
+   1152 tilgjengelige pikslene. Skal de vokse mer, må feltet (292 px) eller
+   nettet (138 px) krympe like mye. */
+.sg .raster { display: flex; gap: 16px; }
+.sg .raster figure { margin: 0; width: 216px; }
+.sg .raster .ring { width: 216px; height: 216px; border-radius: 50%;
+                    overflow: hidden; border: 1px solid var(--rule);
+                    background: #fff; }
+.sg .raster .ring img { display: block; width: 100%; height: 100%; }
+/* «Høyde» står i samme størrelse og vekt som fargenavnene i nøkkelen ved
+   siden av — 10,5 px, grå. De to bildetekstene er samme slags opplysning
+   (hva rasteret viser), og da skal de veie likt: en fet 13 px-etikett over
+   det ene rasteret ga det et forsprang det ikke skal ha. */
+.sg .raster figcaption { padding: 7px 0 0; font-size: 10.5px; font-weight: 400;
+                         line-height: 1.3; color: var(--muted);
+                         text-align: center; }
+/* margin-top: 0 — nøkkelen sto under etiketten «Kategori» og trengte luft mot
+   den. Etiketten er tatt ut (ordet sa ikke mer enn de tre fargenavnene under
+   den gjorde), så nøkkelen er alt som ligger i bildeteksten nå. */
+.sg .key { display: flex; flex-direction: column; align-items: center; gap: 1px;
+           margin-top: 0; font-weight: 400; font-size: 10.5px; color: var(--muted); }
 .sg .key i { width: 8px; height: 8px; display: inline-block; margin-right: 5px; }
 /* Høyderampen er den samme sekvensielle teal-skalaen render_map.py bruker. */
-.sg .ramp { width: 100%; height: 8px; margin-top: 6px;
+/* 108 px og ikke full bredde: rampen ligger under en sirkel nå, og en strek
+   som er bredere enn sirkelen er bred der den treffer, stikker ut på begge
+   sider av formen den forklarer. */
+.sg .ramp { width: 130px; height: 8px; margin: 6px auto 0;
             background: linear-gradient(90deg,#F2F6F4,#CFE0DC,#96C0BA,#4E9490,#20666B,#0E3A44); }
 
-.sg .pil { flex: 0 0 auto; color: var(--accent); }
+.sg .pil { flex: 0 0 auto; color: var(--ink); }
 
 /* Nettet: samme ikon som brukes for surrogatmodellen ellers i dekket. */
 .sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -1479,23 +1589,30 @@ section { font-size: 22px; }
 .sg .disc { position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
             border: 1px solid var(--rule); background: #fff; }
 .sg .disc img { display: block; width: 100%; height: 100%; }
-/* Retningen er TATT UT av figuren. Det sto en innstrømningspil på 45 grader
-   med en etikett oppe til høyre for feltet, og en nordnål nede til høyre.
-   Begge er borte. Feltet er fortsatt nordøst-kjøringen (felt-no.png) —
-   retningen er bare ikke merket, så sliden sier «input: geometri, output:
-   vindfelt» uten å gjøre et nummer av hvilken retning det er. */
+/* Retningen er TATT UT av figuren, og det er prøvd BEGGE veier: først som en
+   innstrømningspil med etikett ved feltet, og siden (2026-09-17) som et tredje
+   input-kort med en nordøst-pil. Begge er tatt ut igjen — figuren skal si
+   «geometri inn, vindfelt ut» og ingenting mer, og et retningskort reiser
+   spørsmålet om hvordan retningen kommer inn, som er en omvei her.
+   Feltet ER fortsatt nordøst-kjøringen (felt-no.png); retningen er bare ikke
+   merket. Mekanismen — geometrien roteres til nettets orientering, svaret
+   roteres tilbake — står i Say-notatet, for et spørsmål fra salen. */
 </style>
 
 <div class="sg">
   <div class="inn">
     <div class="raster">
       <figure>
-        <img src="figures/modeller/predictions/input-hoyde.png" alt="Høyderaster over tomta">
-        <figcaption>Høydeprofil<div class="ramp"></div></figcaption>
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-hoyde.png" alt="Høyderaster over tomta">
+        </div>
+        <figcaption>Høyde<div class="ramp"></div></figcaption>
       </figure>
       <figure>
-        <img src="figures/modeller/predictions/input-kategori.png" alt="Raster med overflateklasser: terreng, bygg og vegetasjon">
-        <figcaption>Kategori
+        <div class="ring">
+          <img src="figures/modeller/predictions/input-kategori.png" alt="Raster med overflateklasser: terreng, bygg og vegetasjon">
+        </div>
+        <figcaption>
           <div class="key">
             <span><i style="background:#C98A2E"></i>Terreng</span>
             <span><i style="background:#6B4FD8"></i>Bygg</span>
@@ -1510,8 +1627,8 @@ section { font-size: 22px; }
     <path d="M0 6 H72" stroke="currentColor" stroke-width="2.4"/>
     <path d="M70 1 L79 6 L70 11 z" fill="currentColor"/></svg>
   <div class="nett">
-    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nett: tre lag noder bundet sammen av kanter">
-    <p class="lab">Nevralt nett</p>
+    <img src="figures/modeller/modell-surrogat.svg" alt="Nevralt nettverk: tre lag noder bundet sammen av kanter">
+    <p class="lab">Nevralt nettverk</p>
   </div>
   <svg class="pil" width="80" height="12" viewBox="0 0 80 12" aria-hidden="true">
     <path d="M0 6 H72" stroke="currentColor" stroke-width="2.4"/>
@@ -1556,7 +1673,7 @@ section { font-size: 22px; }
 ---
 
 <!-- Resultatsliden mellom de to modell-forklaringene og byttehandel-plottet.
-     Maskinlæringsmodellen-sliden viser hva modellen GJØR; plottet etterpå
+     «Estimat i Forma»-sliden viser hva modellen GJØR; plottet etterpå
      abstraherer forskjellen til to akser. Denne står imellom og gir salen det
      ene beviset de trenger for at plottet er ærlig: de to kartene ved siden av
      hverandre, samme tomt og samme analyse, det ene simulert og det andre
