@@ -1826,7 +1826,15 @@ section { font-size: 22px; justify-content: flex-start; }
   transform-origin: 50% 42%;
 }
 .compare .sim .shot img { transform: scale(1.32); }
-.compare .est .shot img { transform: scale(1.52); }
+/* Estimatet zoomes MINDRE enn simuleringen, ikke mer. Det er ikke en smakssak:
+   de to skjermbildene er tatt med ulik kamerainnramming, og tallene her er det
+   eneste som får dem til å vise samme flate. Dagens estimate.png (byttet
+   2026-09-17) er ca. 1,6x tettere innrammet enn den forrige, så den gamle
+   verdien 1,52 ville zoomet langt inn i tomta. 1,0 er gulvet — under det
+   slipper .shot (560x315) gap i kanten, fordi bildet er 16:9 og fyller ruta
+   akkurat på scale(1). Bytter du skjermbilde: sammenlign bredden på ETT bygg
+   i de to panelene, ikke totalinntrykket. */
+.compare .est .shot img { transform: scale(1); }
 </style>
 
 <div class="compare">
@@ -1849,7 +1857,7 @@ section { font-size: 22px; justify-content: flex-start; }
 
 <figure class="est">
   <div class="shot">
-    <img src="figures/estimate.png" alt="Vindkomfortkart over samme område fra maskinlæringsmodellen: de samme grønne og gule feltene, men med mykere overganger og litt mer gult i nord">
+    <img src="figures/estimate.png" alt="Vindkomfortkart over samme område fra maskinlæringsmodellen: de samme grønne feltene i le mellom byggene, men tydelig mer gult over de åpne partiene i nord">
   </div>
   <div class="head">
     <div class="who">
@@ -1870,8 +1878,13 @@ section { font-size: 22px; justify-content: flex-start; }
      et par sekunder først.
 
      Poenget er ikke at de er identiske, for det er de ikke: se på de åpne
-     feltene i nord, der estimatet legger på litt mer gult, og på kantene
-     mellom sonene, som er mykere i estimatet. Det er tilnærmingen som synes.
+     feltene i nord, der estimatet legger på tydelig mer gult. Det er
+     tilnærmingen som synes.
+
+     (Sa tidligere «litt mer gult» og «mykere kanter». Begge er justert etter
+     at skjermbildet ble byttet 2026-09-17: gulforskjellen i nord er større nå,
+     og kantene mellom sonene er ikke mykere enn i simuleringen — den
+     påstanden stemte ikke lenger og er tatt ut.)
 
      Poenget er at konklusjonen er den samme. Uterommet mellom byggene er lunt
      i begge, og de åpne flatene er utsatte i begge. Skal du velge hvor
