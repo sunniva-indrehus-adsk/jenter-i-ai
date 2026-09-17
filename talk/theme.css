@@ -157,23 +157,27 @@ h1 {
    en underetikett i em som ble 21 px på den ene og 25 px på den andre fordi
    slidene har ulik basis-font-size). Én definisjon her kan ikke gjøre det.
 
-   Understreken som h1 normalt har er flyttet opp på .mhead, så den går under
-   ikonet OG teksten — ellers stopper streken der tittelordet slutter og
-   ikonet henger utenfor.
+   Kortet står i to etasjer: tittelen alene over streken, ikonet og
+   underetiketten på rad UNDER den. Streken blir da den samme tittelstreken som
+   på alle andre slides — full bredde, rett under tittelordet — og ikonet leses
+   sammen med undertittelen det hører til, ikke som en logo foran tittelen.
 
    Faste piksler, av samme grunn som h1 over: slidene har ulik basis. */
-.mhead {
-  display: flex;
-  align-items: center;
-  gap: 21px;
-  margin: 0 0 21px;
+.mhead { margin: 0 0 21px; }
+.mhead h1 {
+  margin: 0;
   padding-bottom: 13px;
   border-bottom: 2px solid var(--ink);
 }
-.mhead img { width: 56px; height: 56px; display: block; flex: none; }
-.mhead h1 { margin: 0; padding: 0; border: none; }
+.mhead-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 11px;
+}
+.mhead-row img { width: 40px; height: 40px; display: block; flex: none; }
 .mhead .sub {
-  margin: 4px 0 0;
+  margin: 0;
   font-size: 21px;
   font-weight: 500;
   color: var(--muted);
