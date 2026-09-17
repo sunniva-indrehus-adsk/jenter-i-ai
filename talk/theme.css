@@ -1594,3 +1594,176 @@ section.comfort-map .pin .lbl {
 }
 section.comfort-map .pin .lbl b { display: block; }
 section.comfort-map .pin .lbl span { color: var(--muted); }
+
+/* ── Estimat-oppbyggingen: inngangen, så nettet, så feltet ut ──────────── */
+
+/* TRE SLIDES deler denne figuren og bygger den opp:
+     1. bare inngangen — de to rasterne og etiketten «Input»
+     2. pluss pila og det nevrale nettet
+     3. pluss pila og vindfeltet ut
+   Markupen er IDENTISK på alle tre. Det som ikke har kommet ennå, skjules med
+   visibility: hidden og BEHOLDER plassen sin. Med display: none ville raden
+   blitt smalere og inn-sirklene glidd mot midten for så å hoppe tilbake, og da
+   leses det som tre ulike slides i stedet for én figur som vokser.
+
+   Reglene står her og ikke i en scoped style fordi de deles av tre slides. En
+   scoped style måtte vært limt inn tre ganger, og de ville glidd fra hverandre
+   første gang noen rettet på den ene — samme begrunnelse som .ladder over.
+
+   Selektorene er IKKE prefikset med section.<klasse>, slik .ladder og
+   .result-build er. De to trenger prefikset fordi de overstyrer de felles
+   .card- og .name-reglene; her ligger alt allerede under .sg, som ikke finnes
+   noe annet sted i dekket. */
+.sg.t1 .steg2,
+.sg.t1 .steg3,
+.sg.t2 .steg3 { visibility: hidden; }
+
+/* Figuren er BYGD HER, ikke et ferdig bilde: bare rasterne, nettikonet og
+   feltet er filer (figures/illustrations/), resten er tekst og piler i CSS.
+   Da arver etikettene Artifakt og theme.css-fargene, og de kan rettes uten å
+   rendre noe på nytt. Kildebildene ligger i vis-surrogate/ — input-*.png fra
+   render_map.py, felt-*.png er skjermbilder av analysen. Se CONTEXT.md der.
+
+   Nettet er modell-surrogat.svg, det samme ikonet som stigen og oppsummeringen
+   bruker for surrogatmodellen. Det sto en tekstpille her før; ikonet sier det
+   samme uten å måtte leses, og binder sliden til resten av dekket.
+
+   Bunnstripen med de åtte retningene er TATT UT. Den gjorde sliden til to
+   historier; gjentakelsen er nå bare en setning i Say-notatet. Vil du ha den
+   tilbake, står 8-oppstillingen i vis-surrogate/slide.html.
+
+   TO FELLER, begge påvist ved rendring:
+
+   1. De innebygde SVG-ene (pilene) krever --html=true. Marp Core
+      slipper som standard bare gjennom en allowlist der div/img/p er med, men
+      IKKE svg — uten flagget havner SVG-kilden på sliden som synlig tekst.
+      Docker-kommandoen prosjektet kjører har --html=true, så det er dekket.
+
+   2. Målene er i px mot en 1280x720-slide, ikke 1600x900. Høyden er det som
+      er trangt: h1 tar ca. 80 px, og theme.css legger på 56 px topp- og 72 px
+      bunnmarg. Derfor står de to inn-rasterne SIDE OM SIDE.
+
+   Feltet er SIRKULÆRT i appens utlesning, men skjermbildet har grå bakgrunn
+   rundt sirkelen. border-radius: 50% klipper den bort — dropper du det, får
+   feltet en grå firkant rundt seg. */
+
+/* align-items: flex-start, IKKE center. Med center ble hver KOLONNE sentrert,
+   og kolonnene er ulikt høye: inn-kolonnen har bildetekst + fargenøkkel under
+   sirklene, ut-kolonnen bare etiketten. Da havnet inn-sirklene ca. 20 px
+   høyere enn feltet, og pilene traff dem over midten.
+   Nå ligger overkanten på alle tre sirklene på samme linje, og siden de er
+   like store (254 px, se under) ligger midtene det også. Pilene og nettet
+   skyves ned med hver sin margin-top til samme midtlinje — 127 px er radien,
+   så alt som skal stå på midten av en sirkel regnes fra den. */
+/* 46 px og ikke 18: med 18 satt figuren for høyt i flata — ca. 46 px luft
+   over og 102 px under, og øyet leste den som festet til tittelkortet i
+   stedet for å stå i midten. De 28 ekstra pikslene deler differansen, så det
+   er like mye luft over og under. Rommet finnes: blokka slutter ca. 574 px
+   inn på en flate som har 648 før bunnmargen. */
+.sg { display: flex; align-items: flex-start; justify-content: center; gap: 34px;
+      margin: 46px 0 0; }
+.sg .lab { font-size: 16px; font-weight: 700; text-align: center; line-height: 1.3;
+           margin: 0; }
+
+/* Inn: to rundinger side om side. Ingen retning her — det er hele poenget.
+
+   SIRKLER og ikke firkanter, som feltet på utsiden: inn og ut er samme flate
+   sett på to måter, og med samme form leses raden som én bevegelse i stedet
+   for som to firkanter og en sirkel. Kildefilene ER kvadratiske rastere
+   (render_map.py), så border-radius: 50% klipper hjørnene bort. Det tåler de
+   — tomta ligger midt i ruta, og utlesningen de skal sammenliknes med er
+   sirkulær i appen uansett.
+
+   Klippet ligger på en egen .ring-div og ikke på <img>: overflow: hidden på
+   en forelder er det som faktisk holder rammestreken rund. Klassen kan IKKE
+   hete .disc — .sg .disc lenger ned er output-panelet og har position:
+   absolute; inset: 0, og den ville truffet disse også.
+
+   Kortramma er borte med samme begrunnelse: en firkantet ramme rundt en
+   sirkel gir to former å lese der det bare er én. Nå er det sirkelen, og
+   bildeteksten under den, akkurat som på utsiden. */
+.sg .inn { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+/* 254 px, SAMME DIAMETER SOM FELTET UT. De tre sirklene er samme flate sett
+   på tre måter, og da skal de være like store — inn-rasterne var 216 mot
+   feltets 292, og forskjellen leste seg som at utsiden var det viktige
+   bildet. Tallet er det bredden tåler, ikke et valgt tall: 3 x 254 + 16 px
+   mellom rasterne + fire kolonnegap (34) + to piler (48) + nettet (138) =
+   1148 av de 1152 tilgjengelige pikslene. Sirklene vokste fra 232 til 254
+   fordi pilene ble kortet fra 80 til 48 px: hver piksel spart på pilene blir
+   to tredels piksel på hver sirkel. Skal de vokse mer, må gapene eller
+   nettet gi fra seg tre ganger så mye — og endrer du én diameter her, endre
+   .sg .panel like mye.
+
+   De står fortsatt SIDE OM SIDE. Under hverandre blir de mindre, ikke større,
+   og det er høyden som avgjør: tittelkortet tar ca. 105 px, og theme.css tar
+   56 px av toppen og 72 px av bunnen, så figuren har ca. 469 px å gå på.
+   Stablet skal den plassen dekke to sirkler + to bildetekster +
+   «Input»-etiketten. */
+.sg .raster { display: flex; gap: 16px; }
+.sg .raster figure { margin: 0; width: 254px; }
+.sg .raster .ring { width: 254px; height: 254px; border-radius: 50%;
+                    overflow: hidden; border: 1px solid var(--rule);
+                    background: #fff; }
+.sg .raster .ring img { display: block; width: 100%; height: 100%; }
+/* «Høyde» står i samme størrelse og vekt som fargenavnene i nøkkelen ved
+   siden av — 10,5 px, grå. De to bildetekstene er samme slags opplysning
+   (hva rasteret viser), og da skal de veie likt: en fet 13 px-etikett over
+   det ene rasteret ga det et forsprang det ikke skal ha. */
+.sg .raster figcaption { padding: 7px 0 0; font-size: 10.5px; font-weight: 400;
+                         line-height: 1.3; color: var(--muted);
+                         text-align: center; }
+/* margin-top: 0 — nøkkelen sto under etiketten «Kategori» og trengte luft mot
+   den. Etiketten er tatt ut (ordet sa ikke mer enn de tre fargenavnene under
+   den gjorde), så nøkkelen er alt som ligger i bildeteksten nå. */
+.sg .key { display: flex; flex-direction: column; align-items: center; gap: 1px;
+           margin-top: 0; font-weight: 400; font-size: 10.5px; color: var(--muted); }
+.sg .key i { width: 8px; height: 8px; display: inline-block; margin-right: 5px; }
+/* Høyderampen er den samme sekvensielle teal-skalaen render_map.py bruker. */
+/* 108 px og ikke full bredde: rampen ligger under en sirkel nå, og en strek
+   som er bredere enn sirkelen er bred der den treffer, stikker ut på begge
+   sider av formen den forklarer. */
+.sg .ramp { width: 130px; height: 8px; margin: 6px auto 0;
+            background: linear-gradient(90deg,#F2F6F4,#CFE0DC,#96C0BA,#4E9490,#20666B,#0E3A44); }
+
+/* 121 px = 127 (sirkelradien) minus 6 (halve pilhøyden): pilspissen står midt
+   på sirklene den peker mellom.
+
+   Pilene er 48 px lange, ikke 80. De er ren skilletegn — de sier «og så» og
+   ingenting mer — så lengden er det billigste stedet å hente bredde fra når
+   sirklene skal være større. Endrer du tallet, endre viewBox og de to
+   path-ene i markupen under (begge pilene) OG diameteren i .sg .raster. */
+.sg .pil { flex: 0 0 auto; color: var(--ink); margin-top: 121px; }
+
+/* Nettet: samme ikon som brukes for surrogatmodellen ellers i dekket. */
+/* 58 px = 127 (sirkelradien) minus 69 (halve ikonhøyden): nettet står på samme
+   midtlinje som sirklene og pilene. */
+.sg .nett { display: flex; flex-direction: column; align-items: center; gap: 10px;
+            margin-top: 58px; }
+.sg .nett img { display: block; width: 138px; height: 138px; }
+
+/* Ut: feltet, stort.
+
+   INGEN ZOOM HER, og det er med vilje. Feltene er beskåret til 1441x1441 med
+   sirkelen innskrevet (vis-surrogate/crop_circle.py), så 100 % treffer .disc
+   eksakt. Skjermbildene var opprinnelig hverken kvadratiske eller like store
+   — 1574x1484, 1530x1470, ... — og sirkelen lå tilfeldig i ramma. Da måtte
+   bildet skaleres for å dekke ruta, og resultatet var en sirkel som satt
+   skjevt og var litt strukket. Legger du inn et nytt skjermbilde: kjør det
+   gjennom crop_circle.py først, ikke kompenser med width/height her. */
+.sg .ut { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+/* 254 px = samme diameter som hver av inn-sirklene, se .sg .raster over.
+   Feltet var 292 og dominerte raden; nå er de tre sirklene like store og
+   raden leses som én bevegelse. Bildefila er kvadratisk med sirkelen
+   innskrevet, så den skalerer uten å bli skjev. */
+.sg .panel { position: relative; width: 254px; height: 254px; }
+.sg .disc { position: absolute; inset: 0; overflow: hidden; border-radius: 50%;
+            border: 1px solid var(--rule); background: #fff; }
+.sg .disc img { display: block; width: 100%; height: 100%; }
+/* Retningen er TATT UT av figuren, og det er prøvd BEGGE veier: først som en
+   innstrømningspil med etikett ved feltet, og siden (2026-09-17) som et tredje
+   input-kort med en nordøst-pil. Begge er tatt ut igjen — figuren skal si
+   «geometri inn, vindfelt ut» og ingenting mer, og et retningskort reiser
+   spørsmålet om hvordan retningen kommer inn, som er en omvei her.
+   Feltet ER fortsatt nordøst-kjøringen (felt-no.png); retningen er bare ikke
+   merket. Mekanismen — geometrien roteres til nettets orientering, svaret
+   roteres tilbake — står i Say-notatet, for et spørsmål fra salen. */
