@@ -125,16 +125,58 @@ section {
 
    Unntakene ligger lenger ned og er de slidene som har svart bakgrunn:
    seksjonsskillene beholder hvit tittel, for svart på svart er ingenting. */
+/* 38,5 px i FASTE piksler, og ikke 1.75em. em-en var relativ til section sin
+   font-size, og den varierer fra slide til slide: 26 px er standard, men
+   section.ladder, section.comfort-map og fire slides med sin egen <style
+   scoped> setter 22 px for å få innholdet sitt til å gå opp. Tittelen fulgte
+   med ned, så dekket hadde to tittelstørrelser — 45,5 px på fem slides og 38,5
+   px på tolv — uten at det var ment slik. Tallet 38,5 er valgt fordi det var
+   det de tolv hadde: da flytter ingen av de tolv seg en piksel.
+   Marger og padding under står i em av h1 sin EGEN størrelse, så de er låst
+   sammen med den nå.
+   Unntakene (section.title, section.section, section.statement, .overlay)
+   setter sin egen font-size lenger ned og er ikke berørt — de skal være
+   store, og de ligger på slides uten basisoverstyring. */
 h1 {
   font-family: var(--display);
   font-weight: 700;
-  font-size: 1.75em;
+  font-size: 38.5px;
   line-height: 1.15;
   letter-spacing: -0.015em;
   color: var(--ink);
   margin: 0 0 0.55em 0;
   padding-bottom: 0.35em;
   border-bottom: 2px solid var(--ink);
+}
+
+/* ── Tittelkort med ikon: «Simulering i Forma» og «Estimat i Forma» ────── */
+
+/* De to modell-slidene har samme tittelkort med hvert sitt ikon, og de skal
+   være identiske. Reglene sto som to kopier i <style scoped> på hver sin
+   slide, og kopiene hadde alt glidd fra hverandre (56 px mot 52 px ikon, og
+   en underetikett i em som ble 21 px på den ene og 25 px på den andre fordi
+   slidene har ulik basis-font-size). Én definisjon her kan ikke gjøre det.
+
+   Understreken som h1 normalt har er flyttet opp på .mhead, så den går under
+   ikonet OG teksten — ellers stopper streken der tittelordet slutter og
+   ikonet henger utenfor.
+
+   Faste piksler, av samme grunn som h1 over: slidene har ulik basis. */
+.mhead {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  margin: 0 0 21px;
+  padding-bottom: 13px;
+  border-bottom: 2px solid var(--ink);
+}
+.mhead img { width: 56px; height: 56px; display: block; flex: none; }
+.mhead h1 { margin: 0; padding: 0; border: none; }
+.mhead .sub {
+  margin: 4px 0 0;
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 /* Underoverskriften er svart, som tittelen over. Den var satt svart for å veie
@@ -1406,12 +1448,32 @@ section.ladder .card.past .clock { color: var(--muted); }
 section.ladder .card.ai { border-top-color: var(--accent); background: var(--accent-soft); }
 section.ladder .card.ai .kicker { color: var(--accent); }
 
+/* Ikonet i øvre høyre hjørne: de samme tre ikonene som brukes på bro-sliden,
+   på sammenlikningssliden og på de to modell-forklaringene, så salen kjenner
+   igjen hvem som gjør jobben før de har lest et ord.
+   Absolutt plassert, og ikke i flyten over navnet: da blir kortet lest som
+   kicker → navn → tall i én venstrekolonne, med ikonet som en merkelapp i
+   hjørnet. Kortet har allerede position: relative (se over).
+   Til høyre for ikonet er det 48 px pluss luft som ikke kan brukes til tekst,
+   derfor padding-right på .name: navnene er korte nok i dag, men uten den
+   legger et navn på to ord seg under ikonet første gang noen skriver et.
+   Tallet nederst er langt fra hjørnet og trenger den ikke. */
+section.ladder .card img {
+  position: absolute;
+  top: 1.1em;
+  right: 1.0em;
+  display: block;
+  width: 48px;
+  height: 48px;
+}
+
 /* Hvem som gjør jobben, under kickeren som sier NÅR. Kickeren er den lille
    versalen øverst («Før» / «Med Forma»), navnet er linja salen leser. Den
    tekniske presiseringen står som egen grå linje under, uten parentes: den skal
    være der for de som kjenner begrepet, men ikke konkurrere med navnet. */
 section.ladder .name {
   font-family: var(--display);
+  padding-right: 58px;
   font-weight: 700;
   font-size: 1.1em;
   line-height: 1.2;
