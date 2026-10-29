@@ -375,7 +375,7 @@ section.title header { color: #B4B4B4; }
    må background-size/-position/-repeat få ett komma mer hver. */
 section.title-photo {
   /* Override --photo in a slide's <style scoped> to use a different render. */
-  --photo: url('figures/vind/gløshaugen-streamlines.png');
+  --photo: none;
   background-color: var(--paper);
   background-image:
     radial-gradient(ellipse 64% 56% at 98% 104%,

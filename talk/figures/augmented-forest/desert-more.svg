@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- The desert after the genie: the same scene, but the dunes have swallowed it. Bigger sun, bleached sky,
+       sand blowing, and the cactus from desert.svg buried to its arms. Used on "AI intensifies both". -->
+  <defs>
+    <linearGradient id="sky-hot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9CCBE6"/>
+      <stop offset="1" stop-color="#F6E7C4"/>
+    </linearGradient>
+    <clipPath id="frame-d"><rect width="400" height="300" rx="14"/></clipPath>
+  </defs>
+  <g clip-path="url(#frame-d)">
+    <rect width="400" height="300" fill="url(#sky-hot)"/>
+    <circle cx="300" cy="64" r="70" fill="#FFF3C4" opacity="0.8"/>
+    <circle cx="300" cy="64" r="50" fill="#F2C14E"/>
+    <g stroke="#F2C14E" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.75">
+      <path d="M300-8v-6M220 64h-14M394 64h-14M243 7l-9-9M357 121l-9-9M243 121l-9 9M357 7l-9 9"/>
+    </g>
+    <g stroke="#E0B25A" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.7">
+      <path d="M20 70q10-8 20 0t20 0t20 0t20 0"/>
+      <path d="M50 92q10-8 20 0t20 0t20 0t20 0"/>
+      <path d="M30 114q10-8 20 0t20 0t20 0"/>
+    </g>
+    <path d="M0 150Q70 96 150 132T300 112T400 120V300H0Z" fill="#F0D59C"/>
+    <path d="M0 178Q110 120 210 168T400 150V300H0Z" fill="#EBCB8B"/>
+    <g fill="#7A9E5A">
+      <rect x="104" y="150" width="20" height="40" rx="10"/>
+      <rect x="80" y="160" width="15" height="30" rx="7.5"/>
+      <rect x="131" y="156" width="15" height="34" rx="7.5"/>
+    </g>
+    <path d="M0 200Q60 168 130 186T260 176T400 190V300H0Z" fill="#E2B866"/>
+    <path d="M0 232Q120 196 250 226T400 214V300H0Z" fill="#D9A752"/>
+    <path d="M0 262Q140 236 280 258T400 250V300H0Z" fill="#C99A45"/>
+    <path d="M0 286Q150 268 400 282V300H0Z" fill="#B57F2A"/>
+    <g stroke="#FFF4DA" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8">
+      <path d="M230 150q30-6 60 0M250 160q24-5 48 0M60 212q30-6 60 0M300 196q26-5 52 0"/>
+    </g>
+  </g>
+</svg>

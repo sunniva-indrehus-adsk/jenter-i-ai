@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" stroke-linecap="round">
+  <!-- Plant: one small, safe step. -->
+  <path d="M60 104V54" stroke="#6B4A2B" stroke-width="7"/>
+  <path d="M60 70C60 40 36 30 18 34C18 58 38 72 60 70Z" fill="#5FA777"/>
+  <path d="M60 58C60 26 86 14 104 18C104 46 82 60 60 58Z" fill="#2E7D4F"/>
+  <path d="M24 106Q60 92 96 106" fill="none" stroke="#C08A2E" stroke-width="7"/>
+</svg>

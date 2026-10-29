@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#2E7D4F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Futures: the options for what it could do next. One path branching into many. -->
+  <path d="M60 112V76"/>
+  <path d="M60 76C60 60 34 58 34 40V24"/><path d="M60 76C60 60 86 58 86 40V24"/><path d="M60 76V20"/>
+  <path d="M34 44C34 36 18 34 18 22"/><path d="M86 44C86 36 102 34 102 22"/>
+  <g fill="#2E7D4F" stroke="none">
+    <circle cx="18" cy="16" r="7"/><circle cx="34" cy="16" r="7"/><circle cx="60" cy="12" r="7"/><circle cx="86" cy="16" r="7"/><circle cx="102" cy="16" r="7"/>
+  </g>
+</svg>

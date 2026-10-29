@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- It degrades: a gear sinking into black tar. -->
+  <g transform="translate(60 58)" fill="#0696D7">
+    <circle r="26"/>
+    <g id="t"><rect x="-7" y="-38" width="14" height="16" rx="2"/></g>
+    <use href="#t" transform="rotate(45)"/><use href="#t" transform="rotate(90)"/><use href="#t" transform="rotate(135)"/>
+    <use href="#t" transform="rotate(180)"/><use href="#t" transform="rotate(225)"/><use href="#t" transform="rotate(270)"/><use href="#t" transform="rotate(315)"/>
+    <circle r="10" fill="#fff"/>
+  </g>
+  <path d="M4 70q9-8 18 0t19 0t19 0t19 0t19 0t18 0V116H4z" fill="#1B1B1B"/>
+  <circle cx="30" cy="88" r="4" fill="#fff" opacity="0.35"/><circle cx="84" cy="96" r="3" fill="#fff" opacity="0.35"/>
+</svg>
