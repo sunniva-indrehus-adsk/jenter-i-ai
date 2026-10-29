@@ -21,9 +21,18 @@ jobs:
       - name: Hent ut repoet
         uses: actions/checkout@v4
 
-      # Same image and version as the README uses locally, so CI and your
-      # machine give identical results. `talk` is mounted as the working
-      # directory so the relative paths to figures/ and fonts/ in theme.css hold.
+      # Samme image og versjon som README-en bruker lokalt, så CI og maskinen
+      # din gir identisk resultat. Katalogen `talk` monteres som arbeidsmappe,
+      # slik at de relative stiene til figures/ og fonts/ i theme.css stemmer.
+      #
+      # PDF og HTML bygges fra SAMME fil, slides.md, så de viser det samme.
+      # Decket hadde to utgaver før — YouTube-embed i HTML, stillbilder i PDF,
+      # fordi ingen PDF-viser utenom Adobe Acrobat spiller video — og et
+      # mellomsteg (inject_film.py) som byttet slidene om. Videoen er tatt ut,
+      # og det maskineriet er borte.
+      #
+      # Alt som trengs er sjekket inn: bildene, Inter og KaTeX-fontene. Bygget
+      # gjør ingen nettkall, og trenger verken ffmpeg eller preprosessering.
       - name: Bygg HTML
         run: |
           docker run --rm \
@@ -31,7 +40,7 @@ jobs:
             -e MARP_USER="$(id -u):$(id -g)" \
             -e LANG=C.UTF-8 \
             marpteam/marp-cli:v3.2.0 \
-            --theme theme.css --allow-local-files --html augmented-forest.md -o index.html
+            --theme theme.css --allow-local-files --html slides.md -o index.html
 
       - name: Bygg PDF
         run: |
@@ -40,7 +49,7 @@ jobs:
             -e MARP_USER="$(id -u):$(id -g)" \
             -e LANG=C.UTF-8 \
             marpteam/marp-cli:v3.2.0 \
-            --theme theme.css --allow-local-files --html augmented-forest.md --pdf -o slides.pdf
+            --theme theme.css --allow-local-files --html slides.md --pdf -o slides.pdf
 
       - name: Sett sammen nettstedet
         run: |

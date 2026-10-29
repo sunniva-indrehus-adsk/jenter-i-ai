@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#0696D7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-  <!-- It cheats: the failing test goes in the bin. -->
-  <path d="M30 58h60l-6 50H36z"/><path d="M24 58h72"/><path d="M50 72v24M70 72v24"/>
-  <g transform="rotate(-14 60 28)"><rect x="42" y="6" width="36" height="42" rx="4" fill="#fff"/><path d="M52 20l16 16M68 20L52 36"/></g>
-</svg>

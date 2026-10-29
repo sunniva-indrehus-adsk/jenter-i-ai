@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img"
+     aria-label="Ikon for surrogatmodellen: et nevralt nettverk">
+  <!-- Aksentblå, som surrogatboksen i 02-surrogat-pipeline.svg. Kantene ligger
+       lavt i dekkevne og nodene i midtlaget er litt større — uten den
+       graderingen blir 35 streker bare en grøt på 106 px.
+       Samme bredde og høyde som mesh-kuben, så de to leses som et par. -->
+  <g stroke="#0696D7" stroke-width="1.15" opacity="0.38">
+    <line x1="22" y1="30" x2="60" y2="22"/>
+    <line x1="22" y1="30" x2="60" y2="41"/>
+    <line x1="22" y1="30" x2="60" y2="60"/>
+    <line x1="22" y1="30" x2="60" y2="79"/>
+    <line x1="22" y1="30" x2="60" y2="98"/>
+    <line x1="22" y1="50" x2="60" y2="22"/>
+    <line x1="22" y1="50" x2="60" y2="41"/>
+    <line x1="22" y1="50" x2="60" y2="60"/>
+    <line x1="22" y1="50" x2="60" y2="79"/>
+    <line x1="22" y1="50" x2="60" y2="98"/>
+    <line x1="22" y1="70" x2="60" y2="22"/>
+    <line x1="22" y1="70" x2="60" y2="41"/>
+    <line x1="22" y1="70" x2="60" y2="60"/>
+    <line x1="22" y1="70" x2="60" y2="79"/>
+    <line x1="22" y1="70" x2="60" y2="98"/>
+    <line x1="22" y1="90" x2="60" y2="22"/>
+    <line x1="22" y1="90" x2="60" y2="41"/>
+    <line x1="22" y1="90" x2="60" y2="60"/>
+    <line x1="22" y1="90" x2="60" y2="79"/>
+    <line x1="22" y1="90" x2="60" y2="98"/>
+    <line x1="60" y1="22" x2="98" y2="40"/>
+    <line x1="60" y1="22" x2="98" y2="60"/>
+    <line x1="60" y1="22" x2="98" y2="80"/>
+    <line x1="60" y1="41" x2="98" y2="40"/>
+    <line x1="60" y1="41" x2="98" y2="60"/>
+    <line x1="60" y1="41" x2="98" y2="80"/>
+    <line x1="60" y1="60" x2="98" y2="40"/>
+    <line x1="60" y1="60" x2="98" y2="60"/>
+    <line x1="60" y1="60" x2="98" y2="80"/>
+    <line x1="60" y1="79" x2="98" y2="40"/>
+    <line x1="60" y1="79" x2="98" y2="60"/>
+    <line x1="60" y1="79" x2="98" y2="80"/>
+    <line x1="60" y1="98" x2="98" y2="40"/>
+    <line x1="60" y1="98" x2="98" y2="60"/>
+    <line x1="60" y1="98" x2="98" y2="80"/>
+  </g>
+  <g fill="#0696D7">
+    <circle cx="22" cy="30" r="5.6"/>
+    <circle cx="22" cy="50" r="5.6"/>
+    <circle cx="22" cy="70" r="5.6"/>
+    <circle cx="22" cy="90" r="5.6"/>
+    <circle cx="60" cy="22" r="6.4"/>
+    <circle cx="60" cy="41" r="6.4"/>
+    <circle cx="60" cy="60" r="6.4"/>
+    <circle cx="60" cy="79" r="6.4"/>
+    <circle cx="60" cy="98" r="6.4"/>
+    <circle cx="98" cy="40" r="5.6"/>
+    <circle cx="98" cy="60" r="5.6"/>
+    <circle cx="98" cy="80" r="5.6"/>
+  </g>
+</svg>

@@ -1,9 +1,36 @@
-# Marp render artefacts
+# Marp render artefakter
+talk/_check.html
+talk/_p.*.png
 talk/slides.html
 talk/slides.pdf
 talk/.preview
+talk/_pngcheck/
 .DS_Store
 
-# Build output (the workflow creates this in CI)
+# Råopptak. Ingen av dem er en del av decket — slidene bruker stillbilder som
+# er sjekket inn, så CI trenger aldri ffmpeg. Men de er for store for git, og
+# ffmpeg-kommandoene i README («Hente ruter ut av et skjermopptak») leter etter
+# dem her hvis du skal lage iterasjonsrutene på nytt.
+talk/figures/video/*.mp4
+talk/figures/video/*.mov
+
+# Byggeresultat (workflowen lager dette i CI)
 _site/
 talk/index.html
+vis-surrogate/
+
+# Kontrollrenderinger. _varianter.md er sammenligningsdecket for slide 4 —
+# fem bakgrunner med den samme teksten oppå. Både kilden og PNG-ene er
+# engangsartikler; bildene de peker på ligger under figures/illustrations/.
+talk/_varianter.md
+talk/_varianter.*.png
+talk/_check.*.png
+talk/_sammenligning/
+talk/_komfort-varianter.md
+talk/_komfort.*.png
+
+# Kontrollbygg av PDF-en (nett/uten nett), engangsartikler
+talk/_offline.pdf
+talk/_online.pdf
+talk/_probe*.png
+talk/_probe.md

@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="round">
-  <!-- Ask: where are we? -->
-  <circle cx="60" cy="60" r="48"/>
-  <path d="M60 24L72 60H48Z" fill="#2E7D4F" stroke="#2E7D4F"/><path d="M60 96L72 60H48Z" fill="#C08A2E" stroke="#C08A2E"/>
-</svg>
