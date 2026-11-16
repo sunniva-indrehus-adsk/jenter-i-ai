@@ -35,7 +35,7 @@ jobs:
       # gjør ingen nettkall, og trenger verken ffmpeg eller preprosessering.
       # To decks bygges fra samme tema og de samme figurene:
       #
-      #   women-engineering-forma/  engelsk, 17.11.2026     — publiseres på /
+      #   women-engineering-forma/  engelsk, 17.11.2026     — publiseres på /women-engineering-forma/
       #   jenter-i-ai/              Jenter i AI, 24.09.2026 — publiseres på /jenter-i-ai/
       #
       # women-engineering-forma/figures, fonts og theme.css er symlenker til
@@ -66,23 +66,31 @@ jobs:
               --theme theme.css --allow-local-files --html slides.md $flag -o $out
           done
 
+      # Hvert deck får sin egen mappe på GitHub Pages, oppkalt etter mappa i
+      # repoet, og rota er en liten forside (site/index.html) som lenker til
+      # begge:
+      #
+      #   /                          site/index.html
+      #   /women-engineering-forma/  engelsk, 17.11.2026
+      #   /jenter-i-ai/              norsk, Jenter i AI, 24.09.2026
+      #
+      # figures/ og fonts/ kopieres inn i hver mappe, fordi HTML-en og temaet
+      # peker på dem relativt til seg selv. cp -RL følger symlenkene i
+      # women-engineering-forma/, så det er de ekte filene som publiseres.
       - name: Sett sammen nettstedet
         run: |
-          mkdir -p _site/jenter-i-ai
-          # Engelsk på rota
-          mv women-engineering-forma/index.html _site/index.html
-          mv women-engineering-forma/slides.pdf _site/slides.pdf
-          cp -R jenter-i-ai/figures _site/figures
-          cp -R jenter-i-ai/fonts   _site/fonts
-          # Norsk under /jenter-i-ai/. Figurene kopieres en gang til, fordi
-          # HTML-en peker på figures/ relativt til seg selv.
-          mv jenter-i-ai/index.html _site/jenter-i-ai/index.html
-          mv jenter-i-ai/slides.pdf _site/jenter-i-ai/slides.pdf
-          cp -R jenter-i-ai/figures _site/jenter-i-ai/figures
-          cp -R jenter-i-ai/fonts   _site/jenter-i-ai/fonts
+          mkdir -p _site
+          cp site/index.html _site/index.html
+          for deck in women-engineering-forma jenter-i-ai; do
+            mkdir -p "_site/$deck"
+            mv "$deck/index.html" "_site/$deck/index.html"
+            mv "$deck/slides.pdf" "_site/$deck/slides.pdf"
+            cp -RL "$deck/figures" "_site/$deck/figures"
+            cp -RL "$deck/fonts"   "_site/$deck/fonts"
+          done
           # Uten denne kjører GitHub Pages innholdet gjennom Jekyll.
           touch _site/.nojekyll
-          echo "Bygget:"; find _site -type f -not -path '*/figures/*' | sort
+          echo "Bygget:"; find _site -type f -not -path '*/figures/*' -not -path '*/fonts/*' | sort
 
       # Gjør resultatet nedlastbart fra kjøringen — også for pull requests,
       # der vi ikke publiserer.

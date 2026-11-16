@@ -4,8 +4,12 @@ To utgaver av samme foredrag, med samme tema og de samme bildene:
 
 | Mappe | Utgave | Dato | Publisert på GitHub Pages |
 | --- | --- | --- | --- |
-| `women-engineering-forma/` | Engelsk | 17.11.2026 | `/` (rota) |
-| `jenter-i-ai/` | Norsk, for **Jenter i AI** | 24.09.2026 | `/jenter-i-ai/` |
+| `women-engineering-forma/` | Engelsk | 17.11.2026 | <https://sunniva-indrehus-adsk.github.io/wind-analysis-ml/women-engineering-forma/> |
+| `jenter-i-ai/` | Norsk, for **Jenter i AI** | 24.09.2026 | <https://sunniva-indrehus-adsk.github.io/wind-analysis-ml/jenter-i-ai/> |
+
+Rota, <https://sunniva-indrehus-adsk.github.io/wind-analysis-ml/>, er en liten
+forside som lenker til begge. Den ligger i `site/index.html`; legg til en lenke
+der når det kommer et nytt foredrag.
 
 `jenter-i-ai/` eier tema og bilder. I `women-engineering-forma/` er `figures`,
 `fonts` og `theme.css` symlenker til `jenter-i-ai/`, så rett en figur eller
@@ -81,8 +85,8 @@ Bytt `--pdf -o …slides.pdf` med `-o …index.html` for nettutgaven.
 ## Publisering
 
 `.github/workflows/publiser-slides.yml` bygger begge decks ved hver push til
-`main` og publiserer dem til `gh-pages`: det engelske på rota, det norske under
-`/jenter-i-ai/`. På pull requests bygges de bare, og resultatet kan lastes ned
+`main` og publiserer dem til `gh-pages`, hvert i sin mappe (`/women-engineering-forma/`
+og `/jenter-i-ai/`), med forsiden fra `site/index.html` på rota. På pull requests bygges de bare, og resultatet kan lastes ned
 som artefakt fra kjøringen.
 
 ### Feilsøking
@@ -438,11 +442,11 @@ Pages må slås på én gang, etter at workflowen har kjørt første gang og lag
 eller fra terminalen:
 
 ```bash
-gh api -X POST repos/sunniva-indrehus-adsk/jenter-i-ai/pages \
+gh api -X POST repos/sunniva-indrehus-adsk/wind-analysis-ml/pages \
   -f 'source[branch]=gh-pages' -f 'source[path]=/'
 ```
 
-Decket ligger så på `https://sunniva-indrehus-adsk.github.io/jenter-i-ai/`.
+Decket ligger så på `https://sunniva-indrehus-adsk.github.io/wind-analysis-ml/`.
 
 ## Autodesk-profil
 
