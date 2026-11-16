@@ -5,7 +5,7 @@ Kjør fra repoets rot:
     python3 tools/hesthagen_slide4.py            # alle variantene
     python3 tools/hesthagen_slide4.py flyfoto    # bare én
 
-Bildene havner i talk/figures/tidligfase/. Slidene 4, 5 og 6 deler
+Bildene havner i jenter-i-ai/figures/tidligfase/. Slidene 4, 5 og 6 deler
 ett og samme bilde — det er oppbyggingen som er poenget, så bildet skal ikke
 bytte når arkitekten og utbyggeren kommer inn.
 
@@ -26,7 +26,7 @@ from PIL import Image, ImageDraw, ImageFilter
 sys.path.insert(0, str(Path(__file__).parent))
 from hesthagen_geo import SITE, Frame, graatone, orto, site_center
 
-OUT = Path(__file__).parent.parent / 'talk' / 'figures' / 'tidligfase'
+OUT = Path(__file__).parent.parent / 'jenter-i-ai' / 'figures' / 'tidligfase'
 
 W, H = 2560, 1440          # 2x Marp-flaten (1280x720), så PDF-en blir skarp
 MPP = 0.113                # ≈ ortofotoets egen oppløsning (ca. 0,10 m/px)

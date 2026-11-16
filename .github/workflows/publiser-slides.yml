@@ -22,8 +22,8 @@ jobs:
         uses: actions/checkout@v4
 
       # Samme image og versjon som README-en bruker lokalt, så CI og maskinen
-      # din gir identisk resultat. Katalogen `talk` monteres som arbeidsmappe,
-      # slik at de relative stiene til figures/ og fonts/ i theme.css stemmer.
+      # din gir identisk resultat. Mappa decket ligger i monteres slik at de
+      # relative stiene til figures/ og fonts/ i theme.css stemmer.
       #
       # PDF og HTML bygges fra SAMME fil, slides.md, så de viser det samme.
       # Decket hadde to utgaver før — YouTube-embed i HTML, stillbilder i PDF,
@@ -33,34 +33,56 @@ jobs:
       #
       # Alt som trengs er sjekket inn: bildene, Inter og KaTeX-fontene. Bygget
       # gjør ingen nettkall, og trenger verken ffmpeg eller preprosessering.
-      - name: Bygg HTML
+      # To decks bygges fra samme tema og de samme figurene:
+      #
+      #   women-engineering-forma/  engelsk, 17.11.2026     — publiseres på /
+      #   jenter-i-ai/              Jenter i AI, 24.09.2026 — publiseres på /jenter-i-ai/
+      #
+      # women-engineering-forma/figures, fonts og theme.css er symlenker til
+      # jenter-i-ai/. Derfor monteres hele repoet (ikke bare én katalog) for det
+      # engelske decket, så lenkene peker innenfor containeren.
+      - name: Bygg engelsk deck (women-engineering-forma)
         run: |
-          docker run --rm \
-            -v "$PWD/talk":/home/marp/app \
-            -e MARP_USER="$(id -u):$(id -g)" \
-            -e LANG=C.UTF-8 \
-            marpteam/marp-cli:v3.2.0 \
-            --theme theme.css --allow-local-files --html slides.md -o index.html
+          for fmt in html pdf; do
+            if [ "$fmt" = pdf ]; then out=slides.pdf; flag=--pdf; else out=index.html; flag=; fi
+            docker run --rm \
+              -v "$PWD":/home/marp/app \
+              -e MARP_USER="$(id -u):$(id -g)" \
+              -e LANG=C.UTF-8 \
+              marpteam/marp-cli:v3.2.0 \
+              --theme women-engineering-forma/theme.css --allow-local-files --html \
+              women-engineering-forma/slides.md $flag -o women-engineering-forma/$out
+          done
 
-      - name: Bygg PDF
+      - name: Bygg norsk deck (jenter-i-ai)
         run: |
-          docker run --rm \
-            -v "$PWD/talk":/home/marp/app \
-            -e MARP_USER="$(id -u):$(id -g)" \
-            -e LANG=C.UTF-8 \
-            marpteam/marp-cli:v3.2.0 \
-            --theme theme.css --allow-local-files --html slides.md --pdf -o slides.pdf
+          for fmt in html pdf; do
+            if [ "$fmt" = pdf ]; then out=slides.pdf; flag=--pdf; else out=index.html; flag=; fi
+            docker run --rm \
+              -v "$PWD/jenter-i-ai":/home/marp/app \
+              -e MARP_USER="$(id -u):$(id -g)" \
+              -e LANG=C.UTF-8 \
+              marpteam/marp-cli:v3.2.0 \
+              --theme theme.css --allow-local-files --html slides.md $flag -o $out
+          done
 
       - name: Sett sammen nettstedet
         run: |
-          mkdir -p _site
-          mv talk/index.html _site/index.html
-          mv talk/slides.pdf  _site/slides.pdf
-          cp -R talk/figures  _site/figures
-          cp -R talk/fonts    _site/fonts
+          mkdir -p _site/jenter-i-ai
+          # Engelsk på rota
+          mv women-engineering-forma/index.html _site/index.html
+          mv women-engineering-forma/slides.pdf _site/slides.pdf
+          cp -R jenter-i-ai/figures _site/figures
+          cp -R jenter-i-ai/fonts   _site/fonts
+          # Norsk under /jenter-i-ai/. Figurene kopieres en gang til, fordi
+          # HTML-en peker på figures/ relativt til seg selv.
+          mv jenter-i-ai/index.html _site/jenter-i-ai/index.html
+          mv jenter-i-ai/slides.pdf _site/jenter-i-ai/slides.pdf
+          cp -R jenter-i-ai/figures _site/jenter-i-ai/figures
+          cp -R jenter-i-ai/fonts   _site/jenter-i-ai/fonts
           # Uten denne kjører GitHub Pages innholdet gjennom Jekyll.
           touch _site/.nojekyll
-          echo "Bygget:"; find _site -type f | sort
+          echo "Bygget:"; find _site -type f -not -path '*/figures/*' | sort
 
       # Gjør resultatet nedlastbart fra kjøringen — også for pull requests,
       # der vi ikke publiserer.

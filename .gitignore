@@ -1,36 +1,41 @@
 # Marp render artefakter
-talk/_check.html
-talk/_p.*.png
-talk/slides.html
-talk/slides.pdf
-talk/.preview
-talk/_pngcheck/
+jenter-i-ai/_check.html
+jenter-i-ai/_p.*.png
+jenter-i-ai/slides.html
+jenter-i-ai/slides.pdf
+jenter-i-ai/.preview
+jenter-i-ai/_pngcheck/
 .DS_Store
 
 # Råopptak. Ingen av dem er en del av decket — slidene bruker stillbilder som
 # er sjekket inn, så CI trenger aldri ffmpeg. Men de er for store for git, og
 # ffmpeg-kommandoene i README («Hente ruter ut av et skjermopptak») leter etter
 # dem her hvis du skal lage iterasjonsrutene på nytt.
-talk/figures/video/*.mp4
-talk/figures/video/*.mov
+jenter-i-ai/figures/video/*.mp4
+jenter-i-ai/figures/video/*.mov
 
 # Byggeresultat (workflowen lager dette i CI)
 _site/
-talk/index.html
+jenter-i-ai/index.html
 vis-surrogate/
 
 # Kontrollrenderinger. _varianter.md er sammenligningsdecket for slide 4 —
 # fem bakgrunner med den samme teksten oppå. Både kilden og PNG-ene er
 # engangsartikler; bildene de peker på ligger under figures/illustrations/.
-talk/_varianter.md
-talk/_varianter.*.png
-talk/_check.*.png
-talk/_sammenligning/
-talk/_komfort-varianter.md
-talk/_komfort.*.png
+jenter-i-ai/_varianter.md
+jenter-i-ai/_varianter.*.png
+jenter-i-ai/_check.*.png
+jenter-i-ai/_sammenligning/
+jenter-i-ai/_komfort-varianter.md
+jenter-i-ai/_komfort.*.png
 
 # Kontrollbygg av PDF-en (nett/uten nett), engangsartikler
-talk/_offline.pdf
-talk/_online.pdf
-talk/_probe*.png
-talk/_probe.md
+jenter-i-ai/_offline.pdf
+jenter-i-ai/_online.pdf
+jenter-i-ai/_probe*.png
+jenter-i-ai/_probe.md
+
+# Byggeresultat for det engelske decket
+women-engineering-forma/index.html
+women-engineering-forma/slides.pdf
+women-engineering-forma/slides.html
