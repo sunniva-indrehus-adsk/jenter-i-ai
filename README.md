@@ -1,37 +1,55 @@
-# Jenter i AI
+# Foredrag: vindanalyse og maskinlæring i Autodesk Forma
 
-> _Kort pitch for foredraget her._
+To utgaver av samme foredrag, med samme tema og de samme bildene:
 
-Foredrag for **Jenter i AI**. Slides på norsk.
+| Mappe | Utgave | Dato | Publisert på GitHub Pages |
+| --- | --- | --- | --- |
+| `women-engineering-forma/` | Engelsk | 17.11.2026 | `/` (rota) |
+| `jenter-i-ai/` | Norsk, for **Jenter i AI** | 24.09.2026 | `/jenter-i-ai/` |
 
-## Kjøre slidene
+`jenter-i-ai/` eier tema og bilder. I `women-engineering-forma/` er `figures`,
+`fonts` og `theme.css` symlenker til `jenter-i-ai/`, så rett en figur eller
+temaet ett sted, og begge decks får endringen. Det eneste som er eget for det
+engelske decket er `slides.md`.
 
-Ingen byggesteg — `talk/slides.md` redigeres direkte.
+Ingen byggesteg — `slides.md` i hver mappe redigeres direkte.
 
-> **Kjør fra `talk/`, ikke fra rota.** Både `--theme theme.css` og katalogen som
-> serveres (`.`) tolkes relativt til der du står. Står du i rota finner ikke Marp
-> `theme.css`, og slidene rendres med standardtemaet — de blir stygge, men det er
-> ingen feilmelding som forteller deg det.
+## Se slidene lokalt
 
-```bash
-cd talk
-
-# Watch mode (live reload på http://localhost:8080/slides.md)
-docker run --rm --init -v "$PWD":/home/marp/app -e LANG=$LANG -p 8080:8080 -p 37717:37717 \
-  marpteam/marp-cli:v3.2.0 \
-  --theme theme.css --watch -s --html=true .
-```
+Begge kommandoene starter en server med live reload. Åpne
+<http://localhost:8080/slides.md> og stopp med `Ctrl-C`. Kjør én av gangen —
+begge bruker port 8080.
 
 Hver linje slutter med backslash `\` — det må være **siste tegn på linja** (ingen
 mellomrom etter), ellers splitter zsh kommandoen og du får feil som
 `flag needs an argument: 'e'`.
 
-Åpne <http://localhost:8080/slides.md>. Stopp serveren med `Ctrl-C`.
+### Engelsk: women-engineering-forma
 
-Vil du heller kjøre uten å bytte katalog, pek mountet rett på `talk/`:
+Kjør fra **rota** av repoet. Symlenkene peker ut av mappa, til `jenter-i-ai/`,
+så hele repoet må monteres for at de skal virke inne i containeren:
 
 ```bash
-docker run --rm --init -v "$PWD/talk":/home/marp/app -e LANG=$LANG -p 8080:8080 -p 37717:37717 \
+docker run --rm --init -v "$PWD":/home/marp/app -e LANG=$LANG -p 8080:8080 -p 37717:37717 \
+  marpteam/marp-cli:v3.2.0 \
+  --theme women-engineering-forma/theme.css --watch -s --html=true women-engineering-forma
+```
+
+### Norsk: jenter-i-ai
+
+Kjør fra **`jenter-i-ai/`**:
+
+```bash
+cd jenter-i-ai
+docker run --rm --init -v "$PWD":/home/marp/app -e LANG=$LANG -p 8080:8080 -p 37717:37717 \
+  marpteam/marp-cli:v3.2.0 \
+  --theme theme.css --watch -s --html=true .
+```
+
+Eller fra rota, med mountet pekt rett på mappa:
+
+```bash
+docker run --rm --init -v "$PWD/jenter-i-ai":/home/marp/app -e LANG=$LANG -p 8080:8080 -p 37717:37717 \
   marpteam/marp-cli:v3.2.0 \
   --theme theme.css --watch -s --html=true .
 ```
@@ -39,16 +57,42 @@ docker run --rm --init -v "$PWD/talk":/home/marp/app -e LANG=$LANG -p 8080:8080 
 Har du `marp` installert lokalt, får du Artifakt i stedet for Inter:
 
 ```bash
-cd talk && marp --theme theme.css --html -w slides.md
+cd jenter-i-ai && marp --theme theme.css --html -w slides.md
+cd women-engineering-forma && marp --theme theme.css --html -w slides.md
 ```
+
+## Bygge PDF og HTML lokalt
+
+Samme image som CI. Resultatet havner ved siden av `slides.md` og er gitignorert.
+
+```bash
+# Engelsk, fra rota
+docker run --rm -v "$PWD":/home/marp/app -e LANG=C.UTF-8 marpteam/marp-cli:v3.2.0 \
+  --theme women-engineering-forma/theme.css --allow-local-files --html \
+  women-engineering-forma/slides.md --pdf -o women-engineering-forma/slides.pdf
+
+# Norsk, fra rota
+docker run --rm -v "$PWD/jenter-i-ai":/home/marp/app -e LANG=C.UTF-8 marpteam/marp-cli:v3.2.0 \
+  --theme theme.css --allow-local-files --html slides.md --pdf -o slides.pdf
+```
+
+Bytt `--pdf -o …slides.pdf` med `-o …index.html` for nettutgaven.
+
+## Publisering
+
+`.github/workflows/publiser-slides.yml` bygger begge decks ved hver push til
+`main` og publiserer dem til `gh-pages`: det engelske på rota, det norske under
+`/jenter-i-ai/`. På pull requests bygges de bare, og resultatet kan lastes ned
+som artefakt fra kjøringen.
 
 ### Feilsøking
 
 | Symptom | Årsak |
 | --- | --- |
-| Slidene har hvit bakgrunn og serif-tekst, ingen logo | Temaet ble ikke funnet — du kjørte fra rota i stedet for `talk/` |
+| Slidene har hvit bakgrunn og serif-tekst, ingen logo | Temaet ble ikke funnet — feil mappe. Norsk: kjør fra `jenter-i-ai/`. Engelsk: kjør fra rota |
+| Engelsk deck mangler bilder | Bare `women-engineering-forma/` ble montert, så symlenkene peker ut i ingenting. Monter rota |
 | `Bind for 0.0.0.0:8080 failed: port is already allocated` | En gammel container kjører. `docker ps`, så `docker stop <navn>` |
-| Endringer i `slides.md` slår ikke gjennom | Watch-modus følger bare den monterte katalogen — sjekk at mountet peker på `talk/` |
+| Endringer i `slides.md` slår ikke gjennom | Watch-modus følger bare den monterte katalogen — sjekk at mountet peker på `jenter-i-ai/` |
 
 Sjekk hva som faktisk serveres:
 
@@ -67,10 +111,9 @@ stiene var lange og alt lå i samme haug.
 | `figures/site-design/` | Skjermbilder fra Forma, ett per steg (slide 7–11) |
 | `figures/analyser/` | De seks analyse-ikonene |
 | `figures/vind/` | Gløshaugen-renderingene: komfortkartet og strømlinjene |
-| `figures/modeller/` | Fysikkmodell og surrogat: ikoner, pipeline-tegning, nettverksplott |
-| `figures/hesthagen/` | Kartverket-kartet over tomta, med og uten ring |
+| `figures/modeller/` | Fysikkmodell og surrogat: ikoner og prediksjonsbilder |
 | `figures/people/` | Portretter |
-| `figures/logos/` | Autodesk-merket som SVG, svart og hvit. Begge public domain fra Wikimedia, kilde og lisens i toppen av filene |
+| `figures/logos/` | Autodesk-merket som SVG, svart og hvit (public domain fra Wikimedia, kilde og lisens i toppen av filene), JiA-logoen og `girls.png` (forsiden på det engelske decket) |
 | `figures/video/` | Demofilmens klippelister og de 15 iterasjonsrutene |
 
 Figurene er ikke lenger nummerert etter rekkefølge i decket. Mappa sier hvor
@@ -78,13 +121,13 @@ figuren hører hjemme, og da blir nummeret bare noe som må stelles hver gang en
 slide flyttes.
 
 ```markdown
-![](figures/modeller/surrogat-pipeline.svg)
+![](figures/modeller/modell-surrogat.svg)
 ```
 
 eller, for å styre størrelsen:
 
 ```html
-<img src="figures/modeller/surrogat-pipeline.svg" width="90%">
+<img src="figures/modeller/modell-surrogat.svg" width="90%">
 ```
 
 #### Oppløsningskravet: 2x av det figuren vises i
@@ -102,25 +145,12 @@ faktisk viser dem i:
 | `site-design/*.png` | 2560x~1427 | fullflate | **2,0x** |
 | `tidligfase/hesthagen-flyfoto*.jpg` | 2560x1440 | fullflate | **2,0x** |
 | `vind/gløshaugen-streamlines.png` | 3205x1785 | fullflate (tittelsliden) | **2,5x** |
-| `modeller/surrogatmodell.png` | 2090x1274 | ~971x592 | **2,2x** |
 | `vind/streamlines.png` | 2582x1640 | ~630x400 | **4,1x** |
-| `vind/windcomfortgløs.png` | 2744x2132 | ~618x480 | **4,4x** |
-| `vind/gløshaugen-komfor-plot.png` | 2460x1606 | ~483x315 | **5,1x** |
 | `vind/vindrose.png` | 1156x1652 | ~225x322 | **5,1x** |
 | `analyser/*.png` | 1930–2648 bred | ~363 bred | **5,3–7,3x** |
 | `modeller/predictions/*.png` | 670–1441 | 176–292 | **3,8–4,9x** |
 | `people/*.jpg` | 1950–4032 | maks 345 | **6,7–12x** |
 | `video/iterations/*.jpg` | 3200x2134 | ~236x157 | **13x** |
-| `hesthagen/hesthagen-kart-ring.png` | 1000x625 | ~558x349 | **1,79x** ⚠️ |
-
-**Det ene unntaket** er kartet med ring, og det står på en baklomma-slide som
-ikke er med i de 15 minuttene. Det kan ikke fikses fra det som ligger i repoet:
-kildefila `hesthagen-kart.png` er selv bare 1200x900, og utsnittet bruker
-allerede 1000 av de 1200 pikslene. Skal det opp, må kartet hentes på nytt fra
-Kartverkets WMS i dobbel oppløsning — `tools/hesthagen_geo.py` kan gjøre det
-(`Frame(w, h, mpp, …)` er fritt valgbar) — men innrammingen til dagens fil er
-ikke skrevet ned noe sted, så `CROP`- og ringkoordinatene under «Kartet med
-ring» må måles opp på nytt samtidig.
 
 To filer er slettet i samme gjennomgang fordi de var for små OG erstattet av noe
 bedre: `people/sunniva.png` (255x255, vist 240 px — byttet til
@@ -209,51 +239,11 @@ og 0,135 for flyfoto med `ROLLER`. Begge er grovere enn ortofotoets egne ca.
 begge tjenestene deler, og det er derfor kart og foto ligger pikselnøyaktig oppå
 hverandre.
 
-#### Kartet med ring
-
-`hesthagen-kart-ring.png` er et utsnitt rundt tomta med en rød ring rundt
-parkeringsplassen. **Kildefila `hesthagen-kart.png` er slettet** — den var 602 kB
-som ingen slide viste, og den var likevel for lavoppløst (se
-«Oppløsningskravet»), så skal ringen flyttes, må kartet hentes på nytt fra
-Kartverkets WMS uansett. Skriptet under står igjen som oppskrift på hva som skal
-skje etterpå.
-
-Ringen er **brent inn i fila**, ikke lagt på i CSS eller SVG — Marp rendrer hver slide inne i sin egen `<svg>`, og en nøstet
-inline-SVG med en ekstern `<image>` kom ikke opp i eksporten. En bakt PNG rendrer
-likt i watch-modus, HTML og PDF.
-
-`CROP` er utsnittet (behold forholdet 1,6:1, ellers endres høyden på sliden),
-`CX/CY/RX/RY` er ringen — alt i kildefilas pikselkoordinater. Tallene gjaldt den
-slettede 1200x900-fila, så de må måles opp på nytt mot kartet du henter:
-
-```python
-from PIL import Image, ImageDraw
-
-SRC = 'figures/hesthagen/hesthagen-kart.png'
-OUT = 'figures/hesthagen/hesthagen-kart-ring.png'
-CROP = (100, 190, 1100, 815)          # 1000x625 = 1,6:1
-CX, CY, RX, RY = 572, 500, 142, 138   # midt på parkeringsplassen
-RED, W, SS = (225, 37, 27, 255), 8, 4 # SS = supersampling, PIL tegner uten antialias
-
-base = Image.open(SRC).convert('RGBA').crop(CROP)
-w, h = base.size
-ov = Image.new('RGBA', (w * SS, h * SS), (0, 0, 0, 0))
-cx, cy = (CX - CROP[0]) * SS, (CY - CROP[1]) * SS
-ImageDraw.Draw(ov).ellipse(
-    [cx - RX * SS, cy - RY * SS, cx + RX * SS, cy + RY * SS],
-    outline=RED, width=W * SS)
-base.alpha_composite(ov.resize((w, h), Image.LANCZOS))
-base.convert('RGB').save(OUT)
-```
-
-CC BY tillater derivater så lenge attribusjonen følger med — den står i
-bildeteksten på sliden.
-
 For animerte SVG-er med SMIL (`<animate>` / `<animateMotion>`), bruk `<object>`
 i stedet for `<img>` — da kjører nettleseren dem som et levende dokument:
 
 ```html
-<object data="figures/modeller/surrogat-pipeline.svg" type="image/svg+xml" width="90%"></object>
+<object data="figures/modeller/modell-surrogat.svg" type="image/svg+xml" width="90%"></object>
 ```
 
 Interaktive widgets som trenger CSS-søskenselektorer må ligge inline i sliden —
@@ -296,21 +286,21 @@ viser Hesthagen i stedet for Filipstad. `slides.md` er nå den eneste kilden:
 
 | Fil | Hva |
 |---|---|
-| `talk/slides.md` | **kilden.** Redigér her — det er ikke noe byggesteg over denne |
-| `talk/slides.pdf` | PDF-en du framfører fra og deler |
-| `talk/index.html` | nettutgaven som publiseres på GitHub Pages |
+| `jenter-i-ai/slides.md` | **kilden.** Redigér her — det er ikke noe byggesteg over denne |
+| `jenter-i-ai/slides.pdf` | PDF-en du framfører fra og deler |
+| `jenter-i-ai/index.html` | nettutgaven som publiseres på GitHub Pages |
 
-Borte med videoen: `talk/_filmslide.md`, den genererte `talk/slides-film.md`,
+Borte med videoen: `jenter-i-ai/_filmslide.md`, den genererte `jenter-i-ai/slides-film.md`,
 `tools/inject_film.py`, klippelistene `forma-demo.shots` og `forma-demo.stills`,
 og reglene for `<video>`, `<iframe>` og `.demo-intro` i `theme.css`.
 
 ### Bygge
 
 Ingen preprosessering, ingen mellomfiler og ingen skript — begge formater kommer
-rett fra `slides.md` med én kommando hver. Kjør fra `talk/`:
+rett fra `slides.md` med én kommando hver. Kjør fra `jenter-i-ai/`:
 
 ```bash
-cd talk
+cd jenter-i-ai
 
 # PDF
 docker run --rm -v "$PWD":/home/marp/app -e MARP_USER="$(id -u):$(id -g)" -e LANG=C.UTF-8 \
@@ -361,19 +351,19 @@ Beslektede klasser:
 Det er sånn `figures/video/iterations/` ble laget — 15 ruter fra ett opptak av
 Hesthagen-modellen, samme kamera hele veien. Rutene er sjekket inn, så dette
 trengs bare hvis du skal lage serien på nytt. Legg opptaket i
-`talk/figures/video/` (gitignorert, for stort for git) og kjør ffmpeg i Docker:
+`jenter-i-ai/figures/video/` (gitignorert, for stort for git) og kjør ffmpeg i Docker:
 
 ```bash
 # 15 ruter jevnt fordelt over opptaket
 docker run --rm -e PUID=$(id -u) -e PGID=$(id -g) \
-  -v "$PWD/talk/figures/video:/in:ro" -v "$PWD/talk/figures/video/iterations:/out" \
+  -v "$PWD/jenter-i-ai/figures/video:/in:ro" -v "$PWD/jenter-i-ai/figures/video/iterations:/out" \
   linuxserver/ffmpeg -nostdin -v error -i /in/opptak.mov \
-  -vf "fps=15/$(ffprobe -v error -show_entries format=duration -of csv=p=0 talk/figures/video/opptak.mov)" \
+  -vf "fps=15/$(ffprobe -v error -show_entries format=duration -of csv=p=0 jenter-i-ai/figures/video/opptak.mov)" \
   -q:v 3 /out/hesthagen-%03d.jpg
 
 # Kontaktark for å se hva som finnes hvor. Hver rute er 2 sekunder, radvis fra 0
 docker run --rm -e PUID=$(id -u) -e PGID=$(id -g) \
-  -v "$PWD/talk/figures/video:/in:ro" -v /tmp/contact:/out \
+  -v "$PWD/jenter-i-ai/figures/video:/in:ro" -v /tmp/contact:/out \
   linuxserver/ffmpeg -nostdin -v error -i /in/opptak.mov \
   -vf "fps=0.5,scale=480:270,tile=5x5" -q:v 3 /out/sheet-%02d.jpg
 ```
@@ -387,8 +377,8 @@ plukket for hånd fra et kontaktark og ikke bare tatt jevnt fordelt.
 macOS har verktøyet innebygd:
 
 ```bash
-screencapture -w talk/figures/site-design/nytt-steg.png   # klikk på vinduet
-screencapture -s talk/figures/site-design/nytt-steg.png   # dra ut et utsnitt
+screencapture -w jenter-i-ai/figures/site-design/nytt-steg.png   # klikk på vinduet
+screencapture -s jenter-i-ai/figures/site-design/nytt-steg.png   # dra ut et utsnitt
 ```
 
 **Forberedelsene er det som betyr noe:**
@@ -415,7 +405,7 @@ zip-arkiv, og innebygde videoer ligger urørt i `ppt/media/`:
 
 ```bash
 unzip -l deck.pptx | grep -iE 'ppt/media/.*\.(mp4|mov|m4v|webm)'
-unzip -j deck.pptx "ppt/media/media1.mp4" -d talk/figures/video/
+unzip -j deck.pptx "ppt/media/media1.mp4" -d jenter-i-ai/figures/video/
 ```
 
 Er videoen *lenket* i stedet for innebygd, ligger den ikke der — da står stien i
@@ -435,7 +425,7 @@ stedet opp resultatet som en artefakt du kan laste ned fra kjøringen. Det gjør
 at en ødelagt slide fanges opp før den treffer `main`.
 
 Byggingen bruker samme Docker-image og versjon som README-en over
-(`marpteam/marp-cli:v3.2.0`), med `talk/` montert som arbeidsmappe. Da blir CI og
+(`marpteam/marp-cli:v3.2.0`), med `jenter-i-ai/` montert som arbeidsmappe. Da blir CI og
 maskinen din identiske.
 
 ### Engangsoppsett
@@ -456,7 +446,7 @@ Decket ligger så på `https://sunniva-indrehus-adsk.github.io/jenter-i-ai/`.
 
 ## Autodesk-profil
 
-Temaet (`talk/theme.css`) etterligner Autodesks visuelle profil:
+Temaet (`jenter-i-ai/theme.css`) etterligner Autodesks visuelle profil:
 
 | Element | Valg |
 | --- | --- |
@@ -475,7 +465,7 @@ fortsatt holder.
 
 ### Logo
 
-`talk/figures/logos/autodesk-logo-black.svg` og `-white.svg` er
+`jenter-i-ai/figures/logos/autodesk-logo-black.svg` og `-white.svg` er
 [Autodesks primærlogo fra 2021][logo], hentet fra Wikimedia Commons. Filen er
 **public domain** der — den består bare av enkle geometriske former og tekst, og
 kommer ikke over terskelen for verkshøyde. Den hvite varianten er samme fil med
@@ -493,9 +483,9 @@ sjekkes inn. Temaet løser det med en to-trinns stakk:
 
 1. `'Artifakt Element'` / `'Artifakt Legend'` — treffer hvis du har skriften
    installert lokalt (den ligger i `/Library/Fonts` på en Autodesk-Mac).
-2. `'Inter'` — pakket med i `talk/fonts/Inter-latin.woff2` (48 kB, variabel
+2. `'Inter'` — pakket med i `jenter-i-ai/fonts/Inter-latin.woff2` (48 kB, variabel
    vekt 100–900) under [SIL Open Font License 1.1][ofl]. Lisensteksten ligger i
-   `talk/fonts/Inter-OFL.txt`, som OFL krever.
+   `jenter-i-ai/fonts/Inter-OFL.txt`, som OFL krever.
 
 Inter er en nær nok neo-grotesk til at decket ser likt ut uansett hvilken av de
 to som slår til. Docker-eksport bruker Inter, siden containeren ikke ser
@@ -511,10 +501,10 @@ systemserif, og da forsvant operatorene — punkttegnet i `(U·∇)U` og
 transponerings-T-en ble **borte**, ikke bare stygge. Det er lett å ikke oppdage,
 fordi bygget går fint og alt annet på sliden ser riktig ut.
 
-Fikset på samme måte som Inter: fontene ligger i `talk/fonts/katex/` og temaet
+Fikset på samme måte som Inter: fontene ligger i `jenter-i-ai/fonts/katex/` og temaet
 deklarerer dem lokalt. Overstyringen virker fordi Marp legger temaet **etter**
 KaTeX-CSS-en, og en senere `@font-face` med samme familie/vekt/stil erstatter
-den forrige. Lisens: MIT, `talk/fonts/katex/KaTeX-MIT.txt`.
+den forrige. Lisens: MIT, `jenter-i-ai/fonts/katex/KaTeX-MIT.txt`.
 
 **Bare de fire ligningen faktisk bruker er sjekket inn** — `Main-Regular`,
 `Main-Bold`, `Math-Italic`, `Size1-Regular`, til sammen 73 kB. KaTeX har 20
@@ -523,14 +513,14 @@ familier, men de 16 andre er 182 kB for symboler decket ikke har.
 Konsekvensen er verdt å forstå: for de 16 står Marps egne CDN-regler urørt, så de
 virker **med** nett og faller til serif **uten**. Legger du inn et symbol fra
 AMS, en større brøk (`Size2`–`Size4`), `\mathscr`, `\mathfrak` eller `\texttt`,
-må fonten lastes ned til `talk/fonts/katex/` og en `@font-face` legges til i
+må fonten lastes ned til `jenter-i-ai/fonts/katex/` og en `@font-face` legges til i
 `theme.css` — ellers ser ligningen riktig ut på maskinen din og feil i PDF-en fra
 et bygg uten nett.
 
 **Sjekk at det fortsatt holder** — bygg med nettet avslått og sammenlign:
 
 ```bash
-cd talk
+cd jenter-i-ai
 docker run --rm --network none -v "$PWD":/home/marp/app \
   -e MARP_USER="$(id -u):$(id -g)" -e LANG=C.UTF-8 \
   marpteam/marp-cli:v3.2.0 \
@@ -564,7 +554,7 @@ og dermed deskriptorene kan endre seg. Bygg HTML-en én gang med nett, og genere
 `@font-face`-reglene fra KaTeXs egne regler i resultatet:
 
 ```bash
-cd talk
+cd jenter-i-ai
 python3 - <<'PY'
 import re
 html = open('index.html').read()
@@ -583,7 +573,7 @@ PY
 
 Last ned de nye `.woff2`-ene fra samme CDN-URL-er og bytt blokka i `theme.css`.
 
-> Portrettene i `talk/figures/people/` blir offentlige når repoet publiseres.
+> Portrettene i `jenter-i-ai/figures/people/` blir offentlige når repoet publiseres.
 > Sjekk at alle avbildede er med på det.
 
 ## Slidetyper
@@ -714,7 +704,7 @@ bruk, på samme grunnlag som avsnittet «Logo» over beskriver for firmalogoen.
 
 Rasterfila `figures/logos/autodesk-forma-logo.png` er **slettet**. Den lå i
 repoet fra før, hadde ingen dokumentert kilde eller lisens, og
-`publiser-slides.yml` kopierer hele `talk/figures/` til den offentlige
+`publiser-slides.yml` kopierer hele `jenter-i-ai/figures/` til den offentlige
 gh-pages-siden. Målene den ble brukt til står nå i kommentaren over
 `.forma-lockup` i `theme.css`, sammen med ettermålingen på en rendring.
 
@@ -744,7 +734,7 @@ du blar gjennom decket.
 Rekk over alt som står igjen:
 
 ```bash
-grep -n 'class="todo"' talk/slides.md
+grep -n 'class="todo"' jenter-i-ai/slides.md
 ```
 
 `<!-- TODO ~M:SS -->`-kommentarene er noe annet: de er tidsbudsjett per slide,
@@ -769,8 +759,8 @@ mindre filer blir synlig uskarpe på projektor.
 - `<style scoped>` i sliden for layout som bare gjelder den ene sliden.
 - `<!-- Say: … -->` for manus, `<!-- TODO ~M:SS -->` for tidsbudsjett per slide.
 - Matte er KaTeX (`math: katex` i frontmatter).
-- **Eksporter alltid til `talk/`.** Logoen hentes med en relativ `url()` i
-  temaet, så en HTML-fil som havner utenfor `talk/` mister merket i hjørnet.
+- **Eksporter alltid til `jenter-i-ai/`.** Logoen hentes med en relativ `url()` i
+  temaet, så en HTML-fil som havner utenfor `jenter-i-ai/` mister merket i hjørnet.
 
 ## Kilder og rettigheter
 
@@ -780,14 +770,12 @@ er offentlig.
 | Fil | Kilde | Lisens |
 | --- | --- | --- |
 | `figures/logos/autodesk-logo-*.svg` | [Wikimedia Commons][logo] | Public domain (varemerke består) |
-| `figures/hesthagen/hesthagen-kart.png` | [Kartverket][kv], `topograatone` WMTS, sydd sammen av fliser | CC BY 4.0 — «© Kartverket» |
 | `figures/vind/gløshaugen-*.png` | Egne Forma-renderinger. **Bygningsgeometrien er fra Geodata AS**, som Forma krediterte i en innbrent bunnlinje i renderingen — den er malt ut av `gløshaugen-streamlines.png` for å gi plass til arrangementslogoen, så krediteringen står her i stedet | Egne renderinger; bygningsgeometri © Geodata AS |
-| `figures/modeller/surrogat-pipeline.svg` | Egen tegning | Egen |
-| `figures/hesthagen/hesthagen-kart-ring.png` | Derivat av Kartverket-kartet, se «Kartet med ring» | CC BY 4.0 — «© Kartverket» |
 | `figures/tidligfase/*.jpg` | Ortofoto 2022 fra [Trondheim kommunes WMS][tkwms] + [Kartverket][kv] `topograatone`, satt sammen av `tools/hesthagen_slide4.py` | Ortofoto: Geovekst, åpne data under [Norge digitalt-lisens][ndl]. Kart: CC BY 4.0 |
 | `figures/site-design/*.png` | Egne skjermbilder fra Autodesk Forma. Kartgrunnlaget i dem er Kartverket/Geovekst/OpenStreetMap, kreditert i Formas egen bunnlinje i bildet | Egne skjermbilder av eget produkt |
 | `figures/tidligfase/rolle-*-lys.svg` | Egne tegninger | Egne |
 | `figures/people/*` | Egne portretter | Egne |
+| `figures/logos/girls.png` | «Who run the world? Girls!»-bildet på forsiden av det engelske decket, lagt inn av foredragsholder | ⚠️ **Ikke avklart** — samme spørsmål som JiA-logoen under |
 | `figures/logos/JiA-logo.svg` | «Jenter i AI»-arrangementets egen logo, lagt inn av foredragsholder | ⚠️ **Ikke avklart** — se under |
 | `fonts/Inter-latin.woff2` | [Inter][inter] | SIL OFL 1.1, se `fonts/Inter-OFL.txt` |
 
@@ -810,7 +798,7 @@ krediteringsformen med Trondheim kommune eller Kartverket.
 
 **Arrangementslogoen er ikke avklart.** `figures/logos/JiA-logo.svg` er «Jenter
 i AI»-arrangementets egen logo. Den ligger nå på tittelsliden, og
-`publiser-slides.yml` kopierer hele `talk/figures/` til `gh-pages`, altså til en
+`publiser-slides.yml` kopierer hele `jenter-i-ai/figures/` til `gh-pages`, altså til en
 offentlig nettside. Å bruke arrangørens logo i et foredrag *for* arrangementet er
 normalt uproblematisk, men **å republisere den på vår egen side er en annen sak**
 — avklar det med arrangørene før decket pushes til `main`. Blir svaret nei, er
