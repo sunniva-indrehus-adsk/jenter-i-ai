@@ -14,14 +14,14 @@ lang: en
      Translated from the Jenter i AI deck of September 24, 2026, which still
      lives unchanged in jenter-i-ai/slides.md.
 
-     No title text: the "Who run the world? Girls!" image (figures/logos/
-     girls.png) bottom right is the event mark, in place of the Jenter i AI
-     logo.
+     No title text: the "Women in Engineering" card (figures/logos/
+     women-engineering.png) bottom right is the event mark, in place of the
+     Jenter i AI logo.
 
      The white layers the theme puts in the two bottom corners
      (section.title-photo in theme.css) existed to give the JiA logo and the
      title a calm surface. Neither is here, so background-image is overridden
-     to the photo alone. The girls image is opaque and carries itself.
+     to the photo alone. The card is opaque and carries itself.
 
      paginate: false is set here without an underscore, so it carries on
      down until "# Women in Autodesk" turns it back on. -->
@@ -37,8 +37,9 @@ section {
 
 /* Absolutely positioned, not in the flow: section.title is a flex column that
    packs to the bottom left. 64 px from the right is --margin-x, the same
-   margin as the Autodesk logo top left. The image is 582 x 582, so 230 px is
-   a 2.5x downscale and stays sharp on a large screen. */
+   margin as the Autodesk logo top left. The card is 16:9 (3840 x 2160), so a
+   width of 440 px gives 247 px of height, and it stays sharp on a large
+   screen. */
 .event-logo {
   position: absolute;
   right: var(--margin-x);
@@ -46,8 +47,8 @@ section {
   line-height: 0;
 }
 .event-logo img {
-  height: 230px;
-  width: auto;
+  width: 440px;
+  height: auto;
   display: block;
   border-radius: 14px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
@@ -55,7 +56,7 @@ section {
 </style>
 
 <div class="event-logo">
-  <img src="figures/logos/girls.png" alt="Who run the world? Girls!">
+  <img src="figures/logos/women-engineering.png" alt="Women in Engineering">
 </div>
 
 ---
