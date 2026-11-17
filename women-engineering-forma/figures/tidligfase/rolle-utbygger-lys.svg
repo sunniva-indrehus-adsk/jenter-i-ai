@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 220" role="img"
+     aria-label="Figur av en utbygger med gul sikkerhetshjelm">
+  <!-- Lys utgave av rolle-utbygger.svg. Samme kropp som arkitekten; forskjellen
+       er hodeplagget. Se rolle-arkitekt-lys.svg for hvorfor den er lys. -->
+  <g fill="#F4F4F4" stroke="#23262A" stroke-width="2.6" stroke-linejoin="round">
+    <circle cx="70" cy="50" r="28.7"/>
+    <path d="M17.3 218.7 v-84.7 a52.7 52.7 0 0 1 105.4 0 v84.7 Z"/>
+  </g>
+
+  <!-- Gult er en gjenstandsfarge her, ikke en merkevarefarge — en vernehjelm
+       er gul. -->
+  <g stroke="#23262A" stroke-width="2.2" stroke-linejoin="round">
+    <path d="M38 36 A32 32 0 0 1 102 36 Z" fill="#FFC62E"/>
+    <rect x="26" y="33" width="88" height="11" rx="5.5" fill="#FFC62E"/>
+    <rect x="66" y="9" width="8" height="26" rx="4" fill="#D99B00"/>
+  </g>
+</svg>
